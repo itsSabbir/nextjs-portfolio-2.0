@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { withRouter } from 'next/router';
 
 import Contact from './Contact';
@@ -21,10 +20,8 @@ function Navbar({ router }) {
     const nestedActiveClass = activeItem === NESTED_ACTIVE_CLASS ? NESTED_ACTIVE_CLASS : '';
 
     return (
-      <Link href={href}>
-        <a className={`nav-item ${activeClass} ${nestedActiveClass}`}>{text}</a>
-      </Link>
-    );
+      <a className={`nav-item ${activeClass} ${nestedActiveClass}`} href={href}>{text}</a>
+    ); 
   };
 
   const renderNested = ({ items = [] }) => {
@@ -43,11 +40,9 @@ function Navbar({ router }) {
   return (
     <nav className="navbar">
       <div className="container">
-        <Link href="/">
-          <a className="logo">
-            Khadem A. Alam
-          </a>
-        </Link>
+        <a className="logo" href="/">
+          Khadem A. Alam
+        </a>
 
         <ul className="nav-links">
           {navs.map((nav, index) => (
