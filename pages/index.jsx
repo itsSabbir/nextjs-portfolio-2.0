@@ -78,7 +78,7 @@ const Home = () => {
           <div className="hero-image-wrapper">
              {/* Keep the profile picture */}
             <Image
-              src="/profile_pic.jpg" // Ensure this path is correct
+              src="/profile_pic.jpeg" // Ensure this path is correct
               alt="Sabbir Hossain - Professional Headshot"
               width={250} height={250} priority
               className="profile-picture-hero"
