@@ -250,21 +250,54 @@ function Experiences() {
 
        <hr className="break-section" />
 
+            {/* ========================== */}
+      {/* Education Section (Revised Structure) */}
       {/* ========================== */}
-      {/* Education Section          */}
-      {/* ========================== */}
-       <section className="hero education-section" id="education">
-        <div className="container">
+      <section className="hero education-section" id="education">
+        <div className="container"> {/* Ensures max-width and centering */}
           <h2 className="title">Education</h2>
-          <div className="education-details">
-             <h3>University of Toronto</h3>
-             <p><b>Bachelor of Science (Honours)</b> - Graduated June 2024</p>
-             {/* Specific program names from CV */}
-             <p><i>Specialist Program: Computer Science, Bioinformatics & Computational Biology</i></p>
-             <p><i>Minor: Immunology</i></p>
-             <p>Major GPA: 3.96 / 4.0</p>
-             {/* Updated coursework list to be more descriptive */}
-             <p className="coursework">
+
+          {/* This div will now control the max-width and centering of the text block below */}
+          {/* We remove the inline text-align: center here */}
+          <div className="education-details" style={{ maxWidth: '750px', margin: '0 auto' }}>
+
+            {/* University Name */}
+            {/* Maybe slightly larger font or more top margin */}
+            <h3 style={{ marginBottom: '0.2em', textAlign: 'left' }}> {/* Align heading left */}
+                University of Toronto
+            </h3>
+            {/* Campus Name - Smaller, italic, below Uni name */}
+            <p style={{ fontStyle: 'italic', color: 'var(--muted-off-white)', marginTop: '0', marginBottom: '1.5em', fontSize: '0.95rem', textAlign: 'left' }}> {/* Align left */}
+                St. George Campus
+            </p>
+
+            {/* Core Degree Info - Grouped, left-aligned text */}
+            <div className="degree-info" style={{ textAlign: 'left', marginBottom: '1em' }}> {/* Align text left */}
+              <p style={{ margin: '0.1em 0' }}>
+                <b>Bachelor of Science (Honours)</b>
+              </p>
+              <p style={{ margin: '0.1em 0', fontSize: '0.9em', color: 'var(--muted-off-white)' }}>
+                Graduated June 2024
+              </p>
+            </div>
+
+            {/* Program Details - Left-aligned */}
+            <div className="program-details" style={{ textAlign: 'left', marginBottom: '1em' }}> {/* Align text left */}
+                <p style={{ margin: '0.3em 0' }}>
+                    <i>Specialist: Computer Science, Bioinformatics & Computational Biology</i>
+                </p>
+                <p style={{ margin: '0.3em 0' }}>
+                    <i>Minor: Immunology</i>
+                </p>
+            </div>
+
+            {/* GPA - Left-aligned */}
+            <p style={{ textAlign: 'left', marginBottom: '2em' }}> {/* Align left */}
+              Major GPA: 3.96 / 4.0
+            </p>
+
+            {/* Coursework Paragraph - Remains largely the same (left-aligned text within the already centered block) */}
+             <p className="coursework" style={{ textAlign: 'left', margin: '0' }}> {/* Remove extra margins if controlled elsewhere */}
                 <b>Relevant Coursework:</b> Data Structures & Analysis (CSC263), Software Design (CSC207), Systems Programming (CSC209), Algorithm Design & Analysis (CSC373), Computability & Complexity (Theory), Operating Systems, Database Systems, Machine Learning Principles, Distributed Systems Design, Cloud Computing Concepts, Computer Networks, Mathematical Reasoning for CS (CSC165), Applied Bioinformatics (BCB410), Systems Biology (BCB420), Core Bioinformatics (BCH441/BCB410), Calculus, Statistics & Probability, Advanced Project Courses (BCB330Y1/BCB430Y1 - Omics Integration & ML for Protein Interaction).
              </p>
           </div>

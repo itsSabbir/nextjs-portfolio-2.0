@@ -1,69 +1,79 @@
-// --- START OF UPDATED components/Navbar.jsx ---
-import Link from 'next/link'; // ** Added: Use Next.js Link for client-side navigation **
-import { useRouter } from 'next/router'; // ** Added: Import the useRouter hook **
-import Contact from './Contact'; // Assuming Contact component exists and is correct
+// --- components/Navbar.jsx ---
 
-// Removed: Legacy 'withRouter' import
+import Link from 'next/link';           // Use Next.js Link for client-side navigation
+import { useRouter } from 'next/router'; // Hook to access router information (like current path)
+import Contact from './Contact';       // Import the Contact component for icons
 
-// No need for this constant if we don't implement nested routes visually right now
-// const NESTED_ACTIVE_CLASS = 'nested-active';
-
+/**
+ * Renders the main navigation bar for the website.
+ * Includes the site logo (name), navigation links, and contact icons.
+ * Uses useRouter to highlight the currently active page link.
+ */
 function Navbar() {
-  // Use the hook to get router information
+  // Get the router object which contains information about the current route
   const router = useRouter();
 
-  // Navigation items configuration
+  // Define the navigation links that will appear in the navbar
   const navs = [
-    { text: 'Home', href: '/' },
-    { text: 'Experiences', href: '/experiences' },
-    // Future links can be added here easily:
+    { text: 'Home', href: '/' },             // Link to the homepage
+    { text: 'Experiences', href: '/experiences' }, // Link to the experiences page
+    // Future links can be added here easily by uncommenting or adding new objects:
     // { text: 'Projects', href: '/projects' },
+    // { text: 'Blog', href: '/blog' },
     // { text: 'About', href: '/about' },
   ];
 
-  // Simplified check for active path directly using router.pathname
+  /**
+   * Checks if the provided navigation link 'href' matches the current page's path.
+   * @param {string} href - The href attribute of the navigation link.
+   * @returns {boolean} - True if the href matches the current router pathname, false otherwise.
+   */
   const isPathActive = (href) => {
+    // Simple check: is the link's destination the exact same as the current page route?
     return router.pathname === href;
-    // ** Note:** The old logic for 'nested-active' is removed for simplicity.
-    // If true nested dropdowns are added later, this logic would need expanding.
+    // Note: This doesn't handle nested routes (e.g., highlighting "Blog" when on "/blog/my-post").
+    // For that, more complex logic using router.asPath and startsWith might be needed if structure changes.
   };
 
   return (
-    <nav className="navbar">
+    // Use the semantic <nav> element for navigation
+    <nav className="navbar"> {/* Styled by .navbar in app.css */}
+      {/* Use .container for consistent centering and max-width */}
       <div className="container">
-        {/* Logo Link - wraps the name */}
-        <Link href="/" className="logo"> {/* ** Changed: Use Link component ** */}
-           {/* ** Changed: Updated name ** */}
+        {/* Logo: A link back to the homepage */}
+        <Link href="/" className="logo"> {/* Link component wraps the logo text */}
+          {/* Your Name/Logo Text */}
           Sabbir Hossain
         </Link>
 
-        {/* Navigation Links List */}
-        <ul className="nav-links">
+        {/* Navigation Links Section */}
+        <ul className="nav-links"> {/* Unordered list for navigation items */}
+          {/* Map over the 'navs' array to create each navigation link */}
           {navs.map((nav) => {
+            // Determine if the current link is active
             const isActive = isPathActive(nav.href);
-            // ** Determine class string dynamically **
-            const activeClass = isActive ? 'active' : '';
+            // Dynamically create the className string, adding 'active' if the link is active
+            const activeClass = isActive ? 'active' : ''; // CSS rule `.nav-item.active` provides styling
 
             return (
-              <li key={nav.href}>
-                {/* ** Changed: Use Link component for navigation item ** */}
+              <li key={nav.href}> {/* Use the href as a unique key */}
+                {/* Use the Link component for the actual navigation item */}
                 <Link href={nav.href} className={`nav-item ${activeClass}`}>
-                  {nav.text}
+                  {nav.text} {/* The visible text of the link */}
                 </Link>
-                {/* ** Removed: Nested rendering logic - simplify for now ** */}
-                {/* If nested menus are needed later, this can be re-added */}
+                {/* Nested rendering logic (for dropdowns) was removed for simplicity */}
               </li>
             );
           })}
         </ul>
 
-        {/* Contact Component (assumed correct) */}
+        {/* Include the Contact component (Email, GitHub, LinkedIn icons) */}
+        {/* Ensure the Contact component itself is correctly implemented */}
         <Contact />
       </div>
     </nav>
   );
 }
 
-// ** Changed: Export the component directly, no need for withRouter **
+// Export the Navbar component for use in Layout.jsx
 export default Navbar;
-// --- END OF UPDATED components/Navbar.jsx ---

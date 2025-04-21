@@ -1,77 +1,44 @@
-// --- START OF UPDATED components/Layout.jsx ---
+// --- components/TagList.jsx ---
+
 import React from 'react';
-import Head from 'next/head'; // ** Added: Import Head for meta tags **
-import Image from 'next/image'; // ** Added: Import Image for PDF icon **
 
-// Import core layout components
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
+/**
+ * Renders a list of tags, optionally with a preceding caption.
+ * Used for displaying skills, technologies associated with jobs/projects, etc.
+ *
+ * @param {{ tags: string[], caption?: string }} props - Component props.
+ * @param {string[]} props.tags - An array of strings, where each string is a tag to display. Defaults to empty array.
+ * @param {string} [props.caption] - An optional string to display as a label before the tags (e.g., "Skills:"). Defaults to null.
+ */
+function TagList({ tags = [], caption = null }) {
+  // If the tags array is empty or not provided, don't render the component.
+  if (!tags || tags.length === 0) {
+    return null;
+  }
 
-function Layout({ children }) {
-  // Update this with the EXACT filename of your CV PDF in the /public folder
-  const resumePdfPath = "/Sabbir_Hossain_CV.pdf";
+  // Determine the wrapper className based on whether a caption is present.
+  // The CSS uses '.tags-wrapper' and '.tags-wrapper.no-caption' for styling.
+  const wrapperClassName = `tags-wrapper ${caption ? '' : 'no-caption'}`;
 
   return (
-    <>
-      {/* ** Added: Default Head component for global metadata ** */}
-      <Head>
-        {/* --- Fallback Title --- */}
-        {/* (Individual pages should override this with more specific titles) */}
-        <title>Sabbir Hossain | Software Engineer & Data Scientist</title>
+    // The main container div, styled by CSS based on wrapperClassName.
+    <div className={wrapperClassName}>
+      {/* Conditionally render the caption span only if a caption string is provided. */}
+      {caption && <span className="caption">{caption}</span>}
 
-        {/* --- Favicon Links --- */}
-        {/* (Assuming standard favicon placement in /public) */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        {/* Add other sizes if you have them e.g., apple-touch-icon, icon.svg */}
-        {/* <link rel="icon" href="/icon.svg" type="image/svg+xml" /> */}
-        {/* <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> */}
-        {/* <link rel="manifest" href="/manifest.webmanifest" /> */}
-
-        {/* --- Basic Meta Tags --- */}
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="author" content="Sabbir Hossain" />
-        {/* --- Add Default Description (pages should override) --- */}
-        <meta name="description" content="Personal portfolio website for Sabbir Hossain, showcasing skills and experience in Software Engineering, Data Science, and Bioinformatics." />
-         {/* --- Optional: Theme Color --- */}
-        {/* <meta name="theme-color" content="#0A192F" /> */}
-      </Head>
-
-      {/* Render Navbar component */}
-      <Navbar />
-
-      {/* Main content area where page components get rendered */}
-      {/* root-content-container adds padding defined in CSS */}
-      <main className="root-content-container"> {/* Changed div to semantic main tag */}
-        {children}
-      </main>
-
-      {/* Floating PDF Download Button */}
-      <div className="get-pdf">
-        {/* ** Changed: Updated href to use the variable ** */}
-        <a
-          className="pdf-link" // Keep class if styled specifically
-          href={resumePdfPath}
-          target="_blank"
-          rel="noopener noreferrer" // Corrected attribute value
-          title="Download Sabbir Hossain's Resume (PDF)" // Updated title
-        >
-           {/* ** Changed: Use next/image for PDF icon ** */}
-           <Image
-              src="/pdf-icon.svg" // Assuming this path is correct in /public
-              alt="Download Resume PDF" // More descriptive alt text
-              width={30} // Use size defined in CSS, provide base here
-              height={30}
-              // Filters are applied via CSS, no need for inline style/filter prop
-           />
-        </a>
+      {/* The container specifically for the tag items. */}
+      <div className="tags-container">
+        {/* Map over the tags array to create a span for each tag. */}
+        {tags.map((tag, index) => (
+          // Use the tag string and its index to create a unique key.
+          // The .tag-item class is used for styling individual tags in app.css.
+          <span key={`${tag}-${index}`} className="tag-item">
+            {tag} {/* Display the tag text */}
+          </span>
+        ))}
       </div>
-
-      {/* Render Footer component */}
-      <Footer />
-    </>
+    </div>
   );
 }
 
-export default Layout;
-// --- END OF UPDATED components/Layout.jsx ---
+export default TagList;

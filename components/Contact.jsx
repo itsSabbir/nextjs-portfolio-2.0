@@ -1,56 +1,57 @@
-// --- START OF UPDATED components/Contact.jsx ---
-import React from 'react';
-import Image from 'next/image'; // ** Import Next.js Image **
+// --- components/Contact.jsx ---
 
-// Update items with Sabbir's correct links and alt text descriptions
+import React from 'react';
+import Image from 'next/image'; // Use Next.js Image component
+
+// Updated contact details for Sabbir Hossain
 const contactItems = [
   {
-    title: 'Email Sabbir Hossain', // More descriptive title
-    altText: 'Email Icon',        // Alt text for the image
-    src: '/mail-icon.png',
-    external_link: 'mailto:hossain.sabbir17@gmail.com'
+    title: 'Email Sabbir Hossain',         // Tooltip text
+    altText: 'Email Icon',               // Alt text for accessibility
+    src: '/mail-icon.png',               // Path relative to the /public folder
+    external_link: 'mailto:hossain.sabbir17@gmail.com' // Your email address
   },
   {
-    title: 'Sabbir Hossain on GitHub', // More descriptive title
+    title: 'Sabbir Hossain on GitHub',
     altText: 'GitHub Octocat Icon',
     src: '/github-icon.png',
-    external_link: 'https://github.com/itsSabbir' // Correct GitHub link
+    external_link: 'https://github.com/itsSabbir' // Your GitHub profile URL
   },
   {
-    title: 'Sabbir Hossain on LinkedIn', // More descriptive title
+    title: 'Sabbir Hossain on LinkedIn',
     altText: 'LinkedIn Logo',
     src: '/linkedin-icon.png',
-    external_link: 'https://linkedin.com/in/itssabbir' // Correct LinkedIn link
+    external_link: 'https://linkedin.com/in/itssabbir' // Your LinkedIn profile URL
   }
 ];
 
+/**
+ * Renders the contact icons (Email, GitHub, LinkedIn).
+ * Intended to be used within the Navbar.
+ * This component itself does NOT cause layout duplication.
+ */
 function Contact() {
-  // Removed the outer wrapper div (`contact-wrapper`) - let the parent (.navbar .container) handle positioning.
-  // The CSS already targets .image-block-wrapper within .contact-wrapper,
-  // so keeping .image-block-wrapper should maintain the styling.
-  // If issues arise, we might need to rename .image-block-wrapper to .contact-wrapper
-  // or adjust the CSS selector in app.css.
-
+  // The outer container (.contact-wrapper in CSS) is handled by the Navbar's CSS
+  // We just need the flex container for the icons themselves.
+  // .image-block-wrapper is used by the existing CSS rules.
   return (
-      // ** Changed: Removed outer `contact-wrapper` and the problematic `pre-text` div **
-      // This `image-block-wrapper` should now directly be inside the Navbar's container flex layout
-      <div className="image-block-wrapper">
+      <div className="image-block-wrapper"> {/* This className is styled in app.css */}
         {contactItems.map(({ title, altText, src, external_link }, index) => (
           <a
             key={index}
-            // Removed: `image-block-item` class (may not be needed if parent is flex)
             href={external_link}
-            title={title} // Keep title attribute for tooltips
-            target="_blank"
-            rel="noopener noreferrer" // Correct attribute value
+            title={title}       // Provides tooltip on hover
+            target="_blank"     // Opens link in a new tab
+            rel="noopener noreferrer" // Security best practice for target="_blank"
+            // No specific className needed here if styling targets the wrapper or img
           >
-            {/* ** Changed: Use next/image ** */}
+            {/* Use next/image for optimized images */}
             <Image
-                src={src}
-                alt={altText} // Use specific alt text
-                width={20} // Specify base width (CSS might override)
-                height={20} // Specify base height
-                // Remove explicit filter from here if handled by CSS
+              src={src}
+              alt={altText}
+              width={20}        // Base width (CSS might override via .contact-wrapper img)
+              height={20}       // Base height
+              // Filtering (like grayscale) is handled by the CSS in app.css
             />
           </a>
         ))}
@@ -59,4 +60,3 @@ function Contact() {
 }
 
 export default Contact;
-// --- END OF UPDATED components/Contact.jsx ---
