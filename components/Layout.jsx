@@ -19,7 +19,7 @@ function Layout({ children }) {
 
   // Define the path to your resume PDF file located in the /public folder.
   // Ensure the actual filename in /public matches this EXACTLY.
-  const resumePdfPath = '/Sabbir_Hossain_CV.pdf';
+  const resumePdfPath = '/1SabbirHossain.pdf';
 
   return (
     // Use a React Fragment (<>) to group elements without adding an extra div to the DOM
