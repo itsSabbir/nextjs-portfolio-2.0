@@ -2,7 +2,7 @@
 import Head from 'next/head';
 
 // Component Imports - Ensure these are correctly implemented in your /components folder
-import ExternalLink from '../components/ExternalLink';
+// import ExternalLink from '../components/ExternalLink'; I might use this later for the links to the different tech stacks.
 import TagList from '../components/TagList';
 
 function Experiences() {
