@@ -1,7 +1,7 @@
 // --- components/Contact.jsx ---
 
-import React from 'react';
 import Image from 'next/image'; // Use Next.js Image component
+import React from 'react';
 
 // Updated contact details for Sabbir Hossain
 const contactItems = [

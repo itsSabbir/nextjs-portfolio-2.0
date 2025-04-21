@@ -1,13 +1,14 @@
+/* eslint-disable max-len */
 // --- pages/index.jsx ---
 
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Import reusable components
-import TagList from '../components/TagList';
 import ExternalLink from '../components/ExternalLink';
 import RenderMarkdown from '../components/RenderMarkdown'; // Import the markdown renderer
+// Import reusable components
+import TagList from '../components/TagList';
 
 const Home = () => {
   // Placeholder data for featured projects - Replace with your actual selected projects later
@@ -250,7 +251,7 @@ const Home = () => {
       {/* === Section 6: Call to Action / Seeking === */}
       <section className="seeking-section" id="connect">
         <div className="container">
-          <h2>Let's Build Something Impactful!</h2>
+          <h2>Let&apos;s Build Something Impactful!</h2>
           {/* Use RenderMarkdown for paragraphs */}
           <RenderMarkdown className="" text={seekingPara1} />
           <RenderMarkdown className="" text={seekingPara2} />
@@ -266,8 +267,7 @@ const Home = () => {
               href="https://linkedin.com/in/itssabbir"
               target="_blank"
               rel="noopener noreferrer"
-              className="cta cta-secondary"
-            >
+              className="cta cta-secondary">
               Connect on LinkedIn
             </a>
           </div>

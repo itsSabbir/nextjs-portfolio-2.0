@@ -2,6 +2,7 @@
 
 import Link from 'next/link'; // Use Next.js Link for client-side navigation
 import { useRouter } from 'next/router'; // Hook to access router information (like current path)
+
 import Contact from './Contact'; // Import the Contact component for icons
 
 /**

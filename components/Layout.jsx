@@ -1,8 +1,9 @@
+/* eslint-disable max-len */
 // --- components/Layout.jsx ---
 
-import React from 'react';
 import Head from 'next/head'; // For setting meta tags, title, links in the document head
 import Image from 'next/image'; // For optimized images (like the PDF icon)
+import React from 'react';
 
 // Import the reusable Navbar and Footer components
 import Footer from './Footer'; // Corrected path assuming Footer.jsx is in the same folder
@@ -44,7 +45,8 @@ function Layout({ children }) {
         {/* --- Default Description (pages should override with specific content) --- */}
         <meta
           name="description"
-          content="Personal portfolio website for Sabbir Hossain, showcasing skills and experience in Software Engineering, Data Science, and Bioinformatics."
+          content="Personal portfolio website for Sabbir Hossain, showcasing skills 
+          and experience in Software Engineering, Data Science, and Bioinformatics."
         />
         {/* --- Optional: Theme Color (sets browser UI color on mobile) --- */}
         {/* <meta name="theme-color" content="#0A192F" /> */}

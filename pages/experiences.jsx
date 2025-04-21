@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // --- START OF UPDATED pages/experiences.jsx (Version 4 - All Details Combined - Most Compiled Version)  ---
 import Head from 'next/head';
 
@@ -215,7 +216,7 @@ function Experiences() {
                 learning; implemented unit and integration tests to ensure model reliability and validity.
               </p>
               <p className="sub-point">
-                <b>Assisted in debugging and optimizing production code</b> under senior engineers' guidance,
+                <b>Assisted in debugging and optimizing production code</b> under senior engineers&apos; guidance,
                 identifying bottlenecks and improving performance by 20%.
               </p>
               <p className="sub-point">
@@ -434,8 +435,7 @@ function Experiences() {
                 marginBottom: '1.5em',
                 fontSize: '0.95rem',
                 textAlign: 'left'
-              }}
-            >
+              }}>
               {' '}
               {/* Align left */}
               St. George Campus
