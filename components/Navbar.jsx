@@ -1,8 +1,8 @@
 // --- components/Navbar.jsx ---
 
-import Link from 'next/link';           // Use Next.js Link for client-side navigation
+import Link from 'next/link'; // Use Next.js Link for client-side navigation
 import { useRouter } from 'next/router'; // Hook to access router information (like current path)
-import Contact from './Contact';       // Import the Contact component for icons
+import Contact from './Contact'; // Import the Contact component for icons
 
 /**
  * Renders the main navigation bar for the website.
@@ -15,8 +15,8 @@ function Navbar() {
 
   // Define the navigation links that will appear in the navbar
   const navs = [
-    { text: 'Home', href: '/' },             // Link to the homepage
-    { text: 'Experiences', href: '/experiences' }, // Link to the experiences page
+    { text: 'Home', href: '/' }, // Link to the homepage
+    { text: 'Experiences', href: '/experiences' } // Link to the experiences page
     // Future links can be added here easily by uncommenting or adding new objects:
     // { text: 'Projects', href: '/projects' },
     // { text: 'Blog', href: '/blog' },
@@ -37,17 +37,23 @@ function Navbar() {
 
   return (
     // Use the semantic <nav> element for navigation
-    <nav className="navbar"> {/* Styled by .navbar in app.css */}
+    <nav className="navbar">
+      {' '}
+      {/* Styled by .navbar in app.css */}
       {/* Use .container for consistent centering and max-width */}
       <div className="container">
         {/* Logo: A link back to the homepage */}
-        <Link href="/" className="logo"> {/* Link component wraps the logo text */}
+        <Link href="/" className="logo">
+          {' '}
+          {/* Link component wraps the logo text */}
           {/* Your Name/Logo Text */}
           Sabbir Hossain
         </Link>
 
         {/* Navigation Links Section */}
-        <ul className="nav-links"> {/* Unordered list for navigation items */}
+        <ul className="nav-links">
+          {' '}
+          {/* Unordered list for navigation items */}
           {/* Map over the 'navs' array to create each navigation link */}
           {navs.map((nav) => {
             // Determine if the current link is active
@@ -56,7 +62,9 @@ function Navbar() {
             const activeClass = isActive ? 'active' : ''; // CSS rule `.nav-item.active` provides styling
 
             return (
-              <li key={nav.href}> {/* Use the href as a unique key */}
+              <li key={nav.href}>
+                {' '}
+                {/* Use the href as a unique key */}
                 {/* Use the Link component for the actual navigation item */}
                 <Link href={nav.href} className={`nav-item ${activeClass}`}>
                   {nav.text} {/* The visible text of the link */}

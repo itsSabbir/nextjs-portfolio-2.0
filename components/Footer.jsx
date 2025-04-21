@@ -12,7 +12,9 @@ function Footer() {
 
   return (
     // Use the semantic <footer> element for the main footer container
-    <footer className="footer"> {/* Styled by .footer in app.css */}
+    <footer className="footer">
+      {' '}
+      {/* Styled by .footer in app.css */}
       {/* Use the .container class for consistent centering and max-width */}
       <div className="container">
         <p>

@@ -7,7 +7,6 @@
 /* Importing Source Sans Pro from Google Fonts. Could switch later if desired. */
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
 
-
 /* ==========================================================================
    1. Root Variables & Base Styles
    ========================================================================== */
@@ -16,15 +15,15 @@
 /* Central place to manage core design tokens like colors and padding. Makes theming easier. */
 :root {
   /* Layout Padding */
-  --body-padding: 100px;   /* Default horizontal padding for large screens */
+  --body-padding: 100px; /* Default horizontal padding for large screens */
 
   /* Color Palette - Based on Navy, Gryffindor Red/Gold, Off-white */
-  --navy-blue: #0A192F;        /* Primary background - Dark, professional */
-  --light-navy: #172A45;       /* Secondary background - Subtle depth for cards/sections */
-  --gryffindor-red: #AE0001;    /* Primary accent - Bold actions, CTAs, highlights */
-  --gryffindor-gold: #D4AF37;   /* Secondary accent - Links, borders, subtle highlights */
-  --off-white: #F5F5F5;        /* Primary text - High contrast on navy */
-  --muted-off-white: #A8B2D1; /* Secondary text - Descriptions, dates, less emphasis */
+  --navy-blue: #0a192f; /* Primary background - Dark, professional */
+  --light-navy: #172a45; /* Secondary background - Subtle depth for cards/sections */
+  --gryffindor-red: #ae0001; /* Primary accent - Bold actions, CTAs, highlights */
+  --gryffindor-gold: #d4af37; /* Secondary accent - Links, borders, subtle highlights */
+  --off-white: #f5f5f5; /* Primary text - High contrast on navy */
+  --muted-off-white: #a8b2d1; /* Secondary text - Descriptions, dates, less emphasis */
 }
 
 /* --- Base Body Styles --- */
@@ -32,25 +31,26 @@
 body {
   font-family: 'Source Sans Pro', sans-serif; /* Use the imported font */
   font-size: 1.125rem; /* Base font size (approx 18px) */
-  background-color: var(--navy-blue);   /* Apply primary background */
-  color: var(--off-white);             /* Apply primary text color */
-  box-sizing: border-box;            /* Consistent box model */
-  min-width: 320px;                /* Prevent issues on very narrow screens */
-  min-height: 100vh;               /* Ensure body fills viewport height */
-  margin: 0;                       /* Remove default body margin */
+  background-color: var(--navy-blue); /* Apply primary background */
+  color: var(--off-white); /* Apply primary text color */
+  box-sizing: border-box; /* Consistent box model */
+  min-width: 320px; /* Prevent issues on very narrow screens */
+  min-height: 100vh; /* Ensure body fills viewport height */
+  margin: 0; /* Remove default body margin */
   transition: background-color 0.3s, color 0.3s; /* Smooth theme transitions (if ever implemented) */
-  line-height: 1.6;                /* Default line spacing for readability */
+  line-height: 1.6; /* Default line spacing for readability */
   -webkit-font-smoothing: antialiased; /* Improve font rendering on Webkit */
-  -moz-osx-font-smoothing: grayscale;  /* Improve font rendering on Firefox */
+  -moz-osx-font-smoothing: grayscale; /* Improve font rendering on Firefox */
 }
 
 /* --- Global Box Sizing & Color Inheritance --- */
 /* Ensures all elements use border-box and inherit text color naturally */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   color: inherit;
   box-sizing: border-box;
 }
-
 
 /* ==========================================================================
    2. Core HTML Element Styling (Links, Paragraphs, Headings)
@@ -59,16 +59,17 @@ body {
 /* --- General Link Styling --- */
 a {
   color: var(--gryffindor-gold); /* Gold for default link color */
-  text-decoration: none;          /* Remove default underline */
+  text-decoration: none; /* Remove default underline */
   transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out; /* Smooth hover */
 }
 /* Adding focus style for accessibility */
-a:hover, a:focus {
-  color: var(--gryffindor-red);   /* Red on hover/focus */
-  opacity: 0.85;                /* Subtle dimming */
-  text-decoration: underline;   /* Underline for clear affordance */
+a:hover,
+a:focus {
+  color: var(--gryffindor-red); /* Red on hover/focus */
+  opacity: 0.85; /* Subtle dimming */
+  text-decoration: underline; /* Underline for clear affordance */
   outline: 2px solid transparent; /* Prepare for focus ring */
-  outline-offset: 2px;          /* Offset focus ring slightly */
+  outline-offset: 2px; /* Offset focus ring slightly */
 }
 /* Consider adding a specific focus style if default ring isn't visible enough on background */
 /* a:focus-visible { outline: 2px solid var(--gryffindor-gold); } */
@@ -76,17 +77,17 @@ a:hover, a:focus {
 /* --- General Paragraph Styling --- */
 /* Applies to <p> tags outside of specifically styled sections */
 p {
-  line-height: 1.7;               /* Slightly increased line height for paragraphs */
+  line-height: 1.7; /* Slightly increased line height for paragraphs */
   color: var(--muted-off-white); /* Use muted color for general text */
-  max-width: 700px;             /* Limit line length for readability */
-  margin-top: 0;                /* Remove default top margin */
-  margin-bottom: 1em;           /* Consistent spacing below paragraphs */
+  max-width: 700px; /* Limit line length for readability */
+  margin-top: 0; /* Remove default top margin */
+  margin-bottom: 1em; /* Consistent spacing below paragraphs */
 }
-p strong { /* Styling for bold text within paragraphs */
-  color: var(--off-white);        /* Make bold text brighter */
-  font-weight: 600;             /* Standard bold weight */
+p strong {
+  /* Styling for bold text within paragraphs */
+  color: var(--off-white); /* Make bold text brighter */
+  font-weight: 600; /* Standard bold weight */
 }
-
 
 /* ==========================================================================
    3. Layout & Container Utilities
@@ -102,14 +103,13 @@ p strong { /* Styling for bold text within paragraphs */
 /* --- Standard Content Container --- */
 /* Centers content and applies max-width */
 .root-content-container .container {
-  max-width: 980px;     /* Maximum width of the main content area */
-  width: 100%;          /* Takes full width until max-width */
-  margin-left: auto;    /* Center horizontally */
+  max-width: 980px; /* Maximum width of the main content area */
+  width: 100%; /* Takes full width until max-width */
+  margin-left: auto; /* Center horizontally */
   margin-right: auto;
-  padding-left: 15px;   /* Small inner padding for spacing */
+  padding-left: 15px; /* Small inner padding for spacing */
   padding-right: 15px;
 }
-
 
 /* ==========================================================================
    4. Navigation Bar Styling
@@ -117,20 +117,20 @@ p strong { /* Styling for bold text within paragraphs */
 
 .navbar {
   padding: 10px var(--body-padding); /* Use variable padding */
-  display: flex;                   /* Use flexbox for layout */
+  display: flex; /* Use flexbox for layout */
   background-color: var(--light-navy); /* Subtle contrast background */
   border-bottom: 1px solid var(--gryffindor-gold); /* Accent border */
-  position: sticky;                /* Make it stick to the top on scroll */
+  position: sticky; /* Make it stick to the top on scroll */
   top: 0;
-  z-index: 10;                     /* Ensure it stays above other content */
+  z-index: 10; /* Ensure it stays above other content */
 }
 
 .navbar .container {
-  display: flex;                   /* Flex for logo | nav | contact layout */
-  align-items: center;             /* Vertical alignment */
-  height: 55px;                    /* Fixed height */
-  padding: 0;                      /* Remove inner padding from standard .container */
-  gap: 20px;                       /* Space between logo and nav group */
+  display: flex; /* Flex for logo | nav | contact layout */
+  align-items: center; /* Vertical alignment */
+  height: 55px; /* Fixed height */
+  padding: 0; /* Remove inner padding from standard .container */
+  gap: 20px; /* Space between logo and nav group */
 }
 
 .navbar .logo {
@@ -138,65 +138,66 @@ p strong { /* Styling for bold text within paragraphs */
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-weight: 700;
-  color: var(--off-white);           /* Logo uses primary text color */
+  color: var(--off-white); /* Logo uses primary text color */
   text-decoration: none;
-  flex-shrink: 0;                  /* Prevent logo from shrinking */
-  transition: color 0.3s;          /* Smooth hover effect */
+  flex-shrink: 0; /* Prevent logo from shrinking */
+  transition: color 0.3s; /* Smooth hover effect */
 }
 /* Adding focus style along with hover */
-.navbar .logo:hover, .navbar .logo:focus {
-  color: var(--gryffindor-gold);     /* Highlight logo on hover/focus */
+.navbar .logo:hover,
+.navbar .logo:focus {
+  color: var(--gryffindor-gold); /* Highlight logo on hover/focus */
   text-decoration: none;
   outline: none;
 }
 
 /* --- Navigation Links --- */
 .navbar .nav-links {
-  display: flex;                   /* Arrange nav items horizontally */
+  display: flex; /* Arrange nav items horizontally */
   align-items: center;
-  margin-left: auto;               /* Push links (and contact icons) to the right */
-  list-style: none;                /* Remove default list bullets */
+  margin-left: auto; /* Push links (and contact icons) to the right */
+  list-style: none; /* Remove default list bullets */
   padding: 0;
-  margin: 0;                       /* Reset default margins */
+  margin: 0; /* Reset default margins */
 }
 
 .navbar .nav-links .nav-item {
-  position: relative;              /* Needed for the ::after underline */
+  position: relative; /* Needed for the ::after underline */
   display: inline-block;
-  margin: 0 12px;                 /* Horizontal spacing between items */
-  padding: 5px 0;                 /* Vertical padding for click area */
+  margin: 0 12px; /* Horizontal spacing between items */
+  padding: 5px 0; /* Vertical padding for click area */
   text-decoration: none;
-  color: var(--muted-off-white);     /* Muted color for non-active links */
+  color: var(--muted-off-white); /* Muted color for non-active links */
   transition: color 0.3s;
-  font-size: 0.95rem;              /* Slightly smaller font size */
+  font-size: 0.95rem; /* Slightly smaller font size */
 }
 
 /* Active state styling */
 .navbar .nav-links .nav-item.active {
-  font-weight: 700;              /* Bold active item */
-  color: var(--off-white);           /* Bright text color for active item */
+  font-weight: 700; /* Bold active item */
+  color: var(--off-white); /* Bright text color for active item */
 }
 
 /* Underline for active item */
 .navbar .nav-links .nav-item.active::after {
   content: '';
   position: absolute;
-  bottom: -2px;                  /* Position below the text */
+  bottom: -2px; /* Position below the text */
   left: 50%;
-  transform: translateX(-50%);  /* Center the underline */
-  width: 25px;                   /* Width of the underline */
+  transform: translateX(-50%); /* Center the underline */
+  width: 25px; /* Width of the underline */
   height: 2px;
   background-color: var(--gryffindor-red); /* Red accent for active underline */
 }
 
 /* Hover/Focus styling for nav items */
-.navbar .nav-links .nav-item:hover, .navbar .nav-links .nav-item:focus {
-  color: var(--gryffindor-gold);     /* Gold highlight on hover/focus */
+.navbar .nav-links .nav-item:hover,
+.navbar .nav-links .nav-item:focus {
+  color: var(--gryffindor-gold); /* Gold highlight on hover/focus */
   text-decoration: none;
   opacity: 1;
   outline: none;
 }
-
 
 /* ==========================================================================
    5. Homepage Specific Section Styling
@@ -213,69 +214,76 @@ p strong { /* Styling for bold text within paragraphs */
 .home-hero-container {
   display: flex;
   align-items: center;
-  gap: 50px;                      /* Space between text and image */
-  flex-wrap: wrap-reverse;          /* Stack image above text on wrap */
-  justify-content: center;         /* Center items when wrapped */
+  gap: 50px; /* Space between text and image */
+  flex-wrap: wrap-reverse; /* Stack image above text on wrap */
+  justify-content: center; /* Center items when wrapped */
 }
 
-.home-hero-container .text-wrapper { /* Container for text content */
-  flex: 1;                       /* Allows text block to grow */
-  min-width: 300px;              /* Minimum width before wrapping */
-  color: var(--off-white);         /* Ensure correct text color */
+.home-hero-container .text-wrapper {
+  /* Container for text content */
+  flex: 1; /* Allows text block to grow */
+  min-width: 300px; /* Minimum width before wrapping */
+  color: var(--off-white); /* Ensure correct text color */
 }
 
 /* Homepage Hero H1 Title */
 /* Using clamp for responsive font size: min, preferred (based on viewport), max */
-.hero .text-wrapper .title { /* Applied to the H1 within a .hero section */
+.hero .text-wrapper .title {
+  /* Applied to the H1 within a .hero section */
   font-size: clamp(2rem, 6vw, 3.2rem);
-  line-height: 1.2;              /* Tighter line height for large headings */
-  margin: 0 0 15px 0;           /* Reset top margin, add bottom margin */
+  line-height: 1.2; /* Tighter line height for large headings */
+  margin: 0 0 15px 0; /* Reset top margin, add bottom margin */
   color: var(--off-white);
   font-weight: 700;
 }
 /* Styling spans within the title if used for line breaks */
-.hero .text-wrapper .title span { display: block; }
+.hero .text-wrapper .title span {
+  display: block;
+}
 
 /* Homepage Hero Subtitle (second span in H1) */
 .highlight-subtitle {
-  color: var(--gryffindor-gold);   /* Gold accent color */
+  color: var(--gryffindor-gold); /* Gold accent color */
   font-size: clamp(1.5rem, 4.5vw, 2.2rem); /* Responsive font size */
-  font-weight: 600;            /* Slightly less bold than main title */
-  margin-top: 8px;               /* Space from main title */
+  font-weight: 600; /* Slightly less bold than main title */
+  margin-top: 8px; /* Space from main title */
   display: block;
 }
 
 /* Homepage Hero Description Text */
 .hero .text-wrapper .description {
   font-size: clamp(1rem, 2.5vw, 1.15rem); /* Responsive font size */
-  line-height: 1.7;              /* Good line height for reading */
-  color: var(--muted-off-white);     /* Use muted color */
-  max-width: 650px;              /* Limit line length */
-  margin-top: 25px;              /* Space below title/subtitle */
+  line-height: 1.7; /* Good line height for reading */
+  color: var(--muted-off-white); /* Use muted color */
+  max-width: 650px; /* Limit line length */
+  margin-top: 25px; /* Space below title/subtitle */
 }
 
 /* --- Call to Action (CTA) Buttons --- */
-.cta-wrapper { /* Container for buttons */
+.cta-wrapper {
+  /* Container for buttons */
   margin-top: 35px;
   display: flex;
-  gap: 15px;                    /* Space between buttons */
-  flex-wrap: wrap;              /* Allow buttons to wrap on smaller screens */
+  gap: 15px; /* Space between buttons */
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
 }
-.cta { /* Base CTA styling */
-  display: inline-block;         /* Correct display */
-  padding: 10px 24px;          /* Button padding */
+.cta {
+  /* Base CTA styling */
+  display: inline-block; /* Correct display */
+  padding: 10px 24px; /* Button padding */
   background-color: var(--gryffindor-red); /* Red background */
-  color: var(--off-white);         /* White text */
+  color: var(--off-white); /* White text */
   border: 1px solid var(--gryffindor-red); /* Matching border */
   text-decoration: none;
-  border-radius: 4px;            /* Subtle rounding */
-  font-weight: 600;            /* Bold text */
-  font-size: 0.95rem;            /* Button text size */
+  border-radius: 4px; /* Subtle rounding */
+  font-weight: 600; /* Bold text */
+  font-size: 0.95rem; /* Button text size */
   transition: all 0.25s ease-out; /* Smooth transitions for all properties */
-  cursor: pointer;               /* Indicate clickable */
+  cursor: pointer; /* Indicate clickable */
 }
 /* CTA Hover/Focus styles */
-.cta:hover, .cta:focus {
+.cta:hover,
+.cta:focus {
   background-color: transparent; /* Invert colors on hover */
   color: var(--gryffindor-red);
   transform: translateY(-3px); /* Slight lift effect */
@@ -289,23 +297,24 @@ p strong { /* Styling for bold text within paragraphs */
   background-color: transparent;
   color: var(--gryffindor-red);
 }
-.cta-secondary:hover, .cta-secondary:focus {
+.cta-secondary:hover,
+.cta-secondary:focus {
   background-color: rgba(174, 0, 1, 0.1); /* Very subtle red background */
   color: var(--gryffindor-red); /* Keep text red */
 }
 
 /* Homepage Hero Image */
 .hero-image-wrapper {
-  flex-shrink: 0;              /* Don't shrink image disproportionately */
+  flex-shrink: 0; /* Don't shrink image disproportionately */
   text-align: center;
-  padding: 5px;                  /* Padding around image */
+  padding: 5px; /* Padding around image */
 }
 .profile-picture-hero {
-  border-radius: 50%;          /* Circular */
+  border-radius: 50%; /* Circular */
   border: 3px solid var(--gryffindor-gold); /* Gold border */
   width: clamp(180px, 25vw, 250px); /* Responsive width */
-  height: clamp(180px, 25vw, 250px);/* Responsive height */
-  object-fit: cover;           /* Ensure image covers area without distortion */
+  height: clamp(180px, 25vw, 250px); /* Responsive height */
+  object-fit: cover; /* Ensure image covers area without distortion */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Depth shadow */
   background-color: var(--light-navy); /* Fallback color while loading */
 }
@@ -334,8 +343,8 @@ p strong { /* Styling for bold text within paragraphs */
   margin-top: 0;
   margin-bottom: 40px; /* Increased bottom margin */
   text-align: center;
-  position: relative;                 /* For underline pseudo-element */
-  padding-bottom: 10px;             /* Space for underline */
+  position: relative; /* For underline pseudo-element */
+  padding-bottom: 10px; /* Space for underline */
 }
 /* Decorative underline for section headings */
 .about-snippet-section h2::after,
@@ -343,46 +352,48 @@ p strong { /* Styling for bold text within paragraphs */
 .experience-highlight-section h2::after,
 .featured-projects-section h2::after,
 .seeking-section h2::after {
-   content: '';
-   position: absolute;
-   bottom: 0;
-   left: 50%;
-   transform: translateX(-50%);     /* Center the line */
-   width: 60px;                      /* Width of the underline */
-   height: 3px;
-   background-color: var(--gryffindor-gold); /* Use gold accent */
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%); /* Center the line */
+  width: 60px; /* Width of the underline */
+  height: 3px;
+  background-color: var(--gryffindor-gold); /* Use gold accent */
 }
 
 /* --- About Snippet Section --- */
 .about-snippet-section .about-content {
   max-width: 750px;
   margin: 0 auto;
-  text-align: left;                 /* Left align paragraph text */
+  text-align: left; /* Left align paragraph text */
 }
-.about-snippet-section p {           /* Override general paragraph style */
+.about-snippet-section p {
+  /* Override general paragraph style */
   color: var(--muted-off-white);
   line-height: 1.7;
   margin-bottom: 1.5em;
-  max-width: none;                  /* Allow full width within its container */
+  max-width: none; /* Allow full width within its container */
 }
 /* Styling for bold text within the snippet */
 .about-snippet-section p strong,
 .seeking-section p strong {
-  color: var(--gryffindor-gold);     /* Highlight key concepts */
+  color: var(--gryffindor-gold); /* Highlight key concepts */
   font-weight: 600;
 }
 /* Optional: Style for a text link (e.g., "Learn More ->") */
 .text-link {
-  color: var(--gryffindor-red);       /* Use red for secondary links */
+  color: var(--gryffindor-red); /* Use red for secondary links */
   font-weight: 600;
   display: inline-block;
   margin-top: 10px;
   text-decoration: none;
   transition: transform 0.2s ease-out;
 }
-.text-link:hover, .text-link:focus {
+.text-link:hover,
+.text-link:focus {
   text-decoration: underline;
-  transform: translateX(3px);     /* Subtle arrow-like movement */
+  transform: translateX(3px); /* Subtle arrow-like movement */
   outline: none;
 }
 
@@ -391,15 +402,17 @@ p strong { /* Styling for bold text within paragraphs */
   display: grid;
   /* Responsive grid: creates columns approx 200px wide, filling the space */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;                      /* Gap between skill category boxes */
+  gap: 30px; /* Gap between skill category boxes */
 }
-.skill-category { /* Individual skill box */
+.skill-category {
+  /* Individual skill box */
   background-color: var(--light-navy); /* Box background */
   padding: 20px;
-  border-radius: 8px;                 /* Rounded corners */
+  border-radius: 8px; /* Rounded corners */
   border: 1px solid rgba(212, 175, 55, 0.2); /* Subtle gold border */
 }
-.skill-category-title { /* H3 title within skill box */
+.skill-category-title {
+  /* H3 title within skill box */
   font-size: 1.1rem;
   color: var(--off-white);
   margin-top: 0;
@@ -408,86 +421,99 @@ p strong { /* Styling for bold text within paragraphs */
   padding-bottom: 10px;
 }
 /* Adjust TagList component specifically within skills */
-.skill-category .tags-wrapper { margin-top: 0; gap: 8px; }
+.skill-category .tags-wrapper {
+  margin-top: 0;
+  gap: 8px;
+}
 .skill-category .tags-wrapper .tags-container .tag-item {
-    background-color: var(--navy-blue); /* Darker tags for contrast */
-    border-color: var(--navy-blue);
-    font-size: 0.8rem;                /* Smaller tags */
+  background-color: var(--navy-blue); /* Darker tags for contrast */
+  border-color: var(--navy-blue);
+  font-size: 0.8rem; /* Smaller tags */
 }
 .skill-category .tags-wrapper .tags-container .tag-item:hover {
-    border-color: var(--gryffindor-gold);
-    background-color: var(--light-navy); /* Revert background */
-    color: var(--gryffindor-gold);      /* Highlight text */
+  border-color: var(--gryffindor-gold);
+  background-color: var(--light-navy); /* Revert background */
+  color: var(--gryffindor-gold); /* Highlight text */
 }
 
 /* --- Experience Highlight Section --- */
 .experience-highlights-grid {
-   display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-   gap: 25px;
-   max-width: 850px;                   /* Limit width */
-   margin: 0 auto;                     /* Center the grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  max-width: 850px; /* Limit width */
+  margin: 0 auto; /* Center the grid */
 }
-.experience-highlight-item { /* Individual experience box */
-   background-color: var(--light-navy);
-   padding: 20px;
-   border-radius: 6px;
-   text-align: left;                   /* Align text left */
+.experience-highlight-item {
+  /* Individual experience box */
+  background-color: var(--light-navy);
+  padding: 20px;
+  border-radius: 6px;
+  text-align: left; /* Align text left */
 }
-.experience-highlight-title { /* H3 title */
-   font-size: 1.15rem;
-   color: var(--off-white);
-   margin-top: 0;
-   margin-bottom: 10px;
+.experience-highlight-title {
+  /* H3 title */
+  font-size: 1.15rem;
+  color: var(--off-white);
+  margin-top: 0;
+  margin-bottom: 10px;
 }
-.experience-highlight-item p { /* Description */
-   font-size: 0.95rem;
-   color: var(--muted-off-white);
-   line-height: 1.6;
-   margin-bottom: 0;                   /* Remove default paragraph margin */
+.experience-highlight-item p {
+  /* Description */
+  font-size: 0.95rem;
+  color: var(--muted-off-white);
+  line-height: 1.6;
+  margin-bottom: 0; /* Remove default paragraph margin */
 }
 
 /* --- Featured Projects Section --- */
-.featured-projects-section { background-color: var(--navy-blue); } /* Could use primary bg */
+.featured-projects-section {
+  background-color: var(--navy-blue);
+} /* Could use primary bg */
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
 }
-.project-card { /* Individual project card */
+.project-card {
+  /* Individual project card */
   background-color: var(--light-navy); /* Card background */
   border-radius: 8px;
-  overflow: hidden;                 /* Keep image corners rounded */
+  overflow: hidden; /* Keep image corners rounded */
   display: flex;
-  flex-direction: column;           /* Stack image and content */
+  flex-direction: column; /* Stack image and content */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid rgba(212, 175, 55, 0.2); /* Subtle border */
 }
 /* Add subtle lift and shadow on hover */
 .project-card:hover {
-   transform: translateY(-5px);
-   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
-.project-image-placeholder { /* Area for project screenshot/visual */
+.project-image-placeholder {
+  /* Area for project screenshot/visual */
   background-color: var(--navy-blue); /* Dark placeholder color */
-  height: 180px;                  /* Fixed height for visual consistency */
-  display: flex;                  /* Used for centering text potentially */
+  height: 180px; /* Fixed height for visual consistency */
+  display: flex; /* Used for centering text potentially */
   align-items: center;
   justify-content: center;
 }
-.project-image-placeholder img { /* Styling for the actual image */
-   width: 100%;
-   height: 100%;
-   object-fit: cover;            /* Make image cover the area */
+.project-image-placeholder img {
+  /* Styling for the actual image */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Make image cover the area */
 }
-.project-card-content { /* Text content area */
+.project-card-content {
+  /* Text content area */
   padding: 20px;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;                  /* Allow content to take remaining space */
+  flex-grow: 1; /* Allow content to take remaining space */
 }
-.project-title { /* H3 title */
+.project-title {
+  /* H3 title */
   font-size: 1.25rem;
   color: var(--off-white);
   margin-top: 0;
@@ -498,57 +524,67 @@ p strong { /* Styling for bold text within paragraphs */
   color: var(--muted-off-white);
   line-height: 1.6;
   margin-bottom: 15px;
-  flex-grow: 1;                  /* Pushes links to the bottom */
+  flex-grow: 1; /* Pushes links to the bottom */
 }
 /* Ensure tags appear above the project links */
-.project-card .tags-wrapper { margin-top: auto; padding-bottom: 15px;}
+.project-card .tags-wrapper {
+  margin-top: auto;
+  padding-bottom: 15px;
+}
 
-.project-links { /* Container for GitHub/Live links */
+.project-links {
+  /* Container for GitHub/Live links */
   margin-top: 15px; /* Now controlled by description flex-grow */
   display: flex;
   gap: 15px;
 }
 .project-links a {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--gryffindor-gold); /* Consistent link color */
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gryffindor-gold); /* Consistent link color */
 }
-.project-links a:hover { color: var(--gryffindor-red); }
+.project-links a:hover {
+  color: var(--gryffindor-red);
+}
 
 /* --- Seeking Section --- */
-.seeking-section .container p { /* Style paragraph text in this section */
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    margin-bottom: 1.5em;
-    color: var(--muted-off-white);
-    line-height: 1.7;
+.seeking-section .container p {
+  /* Style paragraph text in this section */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: 1.5em;
+  color: var(--muted-off-white);
+  line-height: 1.7;
 }
-.seeking-section .cta-wrapper { /* Center the final CTAs */
+.seeking-section .cta-wrapper {
+  /* Center the final CTAs */
   justify-content: center;
   margin-top: 30px;
 }
 /* ===== END Homepage Section Styles ===== */
-
 
 /* ==========================================================================
    6. Experiences Page Specific Styling
    ========================================================================== */
 /* Note: Some generic .hero styles apply here too */
 
-.page-heading-container { /* Header for the Experiences page */
+.page-heading-container {
+  /* Header for the Experiences page */
   padding-top: 40px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--light-navy);
   margin-bottom: 40px;
 }
-.page-heading-container h1 { /* Page H1 title */
+.page-heading-container h1 {
+  /* Page H1 title */
   color: var(--off-white);
   font-size: clamp(2rem, 5vw, 2.5rem);
   margin-bottom: 10px;
 }
-.page-heading-container p { /* Subtitle/description */
+.page-heading-container p {
+  /* Subtitle/description */
   color: var(--muted-off-white);
   font-size: clamp(1rem, 2.5vw, 1.1rem);
   max-width: 600px;
@@ -559,153 +595,332 @@ p strong { /* Styling for bold text within paragraphs */
   padding-top: 30px;
   padding-bottom: 30px;
 }
-.job-details .title { /* Job H3 title */
+.job-details .title {
+  /* Job H3 title */
   font-size: clamp(1.5rem, 4vw, 1.8rem);
   margin-bottom: 15px;
   line-height: 1.3;
 }
-.job-details .title span:first-child { /* Company/Role */
-  display: block; color: var(--off-white);
+.job-details .title span:first-child {
+  /* Company/Role */
+  display: block;
+  color: var(--off-white);
 }
-.job-details .title span:last-child { /* Dates/Location */
-  font-size: 0.9rem; color: var(--muted-off-white); font-weight: normal; display: block; margin-top: 5px;
+.job-details .title span:last-child {
+  /* Dates/Location */
+  font-size: 0.9rem;
+  color: var(--muted-off-white);
+  font-weight: normal;
+  display: block;
+  margin-top: 5px;
 }
 /* Job description points */
 .job-details .sub-point {
-  font-size: 1rem; line-height: 1.7; color: var(--muted-off-white); margin-bottom: 0.8em; padding-left: 1.7em; position: relative; max-width: 750px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--muted-off-white);
+  margin-bottom: 0.8em;
+  padding-left: 1.7em;
+  position: relative;
+  max-width: 750px;
 }
-.job-details .sub-point::before { /* Custom bullet */
-  content: '▹'; color: var(--gryffindor-gold); position: absolute; left: 0; font-size: 1.3em; line-height: 1; top: 0.1em;
+.job-details .sub-point::before {
+  /* Custom bullet */
+  content: '▹';
+  color: var(--gryffindor-gold);
+  position: absolute;
+  left: 0;
+  font-size: 1.3em;
+  line-height: 1;
+  top: 0.1em;
 }
-.job-details .sub-point b { /* Action phrase */
-  color: var(--off-white); font-weight: 600;
+.job-details .sub-point b {
+  /* Action phrase */
+  color: var(--off-white);
+  font-weight: 600;
 }
 
 /* Awards Section */
-.awards-section { padding: 40px 0; }
-.awards-section .title { /* H2 "Awards & Achievements" */
-  text-align: center; margin-bottom: 40px; font-size: clamp(1.8rem, 5vw, 2.2rem);
+.awards-section {
+  padding: 40px 0;
 }
-.awards-list { list-style: none; padding-left: 0; max-width: 750px; margin: 0 auto; }
-.awards-list li { /* Individual award item */
-  color: var(--muted-off-white); margin-bottom: 1.8em; padding-left: 2.2em; position: relative; line-height: 1.7;
+.awards-section .title {
+  /* H2 "Awards & Achievements" */
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
 }
-.awards-list li::before { /* Trophy bullet */
-  content: '🏆'; position: absolute; left: 0; top: -2px; font-size: 1.2em;
+.awards-list {
+  list-style: none;
+  padding-left: 0;
+  max-width: 750px;
+  margin: 0 auto;
 }
-.awards-list li b { /* Award name */
-  color: var(--off-white); font-weight: 600; display: block; margin-bottom: 5px; font-size: 1.05em;
+.awards-list li {
+  /* Individual award item */
+  color: var(--muted-off-white);
+  margin-bottom: 1.8em;
+  padding-left: 2.2em;
+  position: relative;
+  line-height: 1.7;
+}
+.awards-list li::before {
+  /* Trophy bullet */
+  content: '🏆';
+  position: absolute;
+  left: 0;
+  top: -2px;
+  font-size: 1.2em;
+}
+.awards-list li b {
+  /* Award name */
+  color: var(--off-white);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.05em;
 }
 
 /* Education Section */
-.education-section { padding: 40px 0; }
-.education-section .title { /* H2 "Education" */
-  text-align: center; margin-bottom: 30px; font-size: clamp(1.8rem, 5vw, 2.2rem);
+.education-section {
+  padding: 40px 0;
 }
-.education-details { max-width: 750px; margin: 0 auto; text-align: center; }
-.education-details h3 { /* University */
-  color: var(--off-white); font-size: 1.3rem; margin-bottom: 5px;
+.education-section .title {
+  /* H2 "Education" */
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
 }
-.education-details p { /* Degree, Major, GPA */
-  color: var(--muted-off-white); margin-bottom: 6px; line-height: 1.6; font-size: 1rem;
+.education-details {
+  max-width: 750px;
+  margin: 0 auto;
+  text-align: center;
 }
-.education-details b { color: var(--off-white); } /* e.g., "Bachelor of Science" */
-.education-details i { /* Program/Minor name */
-    color: var(--gryffindor-gold); font-style: normal;
+.education-details h3 {
+  /* University */
+  color: var(--off-white);
+  font-size: 1.3rem;
+  margin-bottom: 5px;
 }
-.education-details .coursework { /* Coursework paragraph */
-  margin-top: 15px; font-size: 0.9rem; line-height: 1.5; color: var(--muted-off-white);
+.education-details p {
+  /* Degree, Major, GPA */
+  color: var(--muted-off-white);
+  margin-bottom: 6px;
+  line-height: 1.6;
+  font-size: 1rem;
 }
-.education-details .coursework b { /* "Relevant Coursework:" label */
-  color: var(--muted-off-white); font-weight: 600;
+.education-details b {
+  color: var(--off-white);
+} /* e.g., "Bachelor of Science" */
+.education-details i {
+  /* Program/Minor name */
+  color: var(--gryffindor-gold);
+  font-style: normal;
 }
-
+.education-details .coursework {
+  /* Coursework paragraph */
+  margin-top: 15px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--muted-off-white);
+}
+.education-details .coursework b {
+  /* "Relevant Coursework:" label */
+  color: var(--muted-off-white);
+  font-weight: 600;
+}
 
 /* ==========================================================================
    7. General Reusable Component Styles
    ========================================================================== */
 
 /* Highlight class - applies gold color */
-.hl { color: var(--gryffindor-gold); font-weight: 600; text-decoration: none; }
+.hl {
+  color: var(--gryffindor-gold);
+  font-weight: 600;
+  text-decoration: none;
+}
 
 /* Horizontal Rule Dividers */
-hr { border: none; height: 1px; background-color: var(--light-navy); margin: 40px 0; } /* Base HR */
-hr.subtle { background-color: rgba(23, 42, 69, 0.5); height: 1px; margin: 60px auto; width: 80%; } /* Homepage subtle divider */
-hr.break-section { width: 60%; min-width: 250px; margin: 70px auto; height: 1px; background-color: var(--light-navy); } /* Experience page divider */
-hr.break-section.double { height: 4px; border-top: 1px solid var(--light-navy); border-bottom: 1px solid var(--light-navy); background-color: transparent; margin: 80px auto; } /* Stronger visual break */
-hr.short { width: 80px; margin: 30px auto; height: 1px; } /* Small inline separator */
+hr {
+  border: none;
+  height: 1px;
+  background-color: var(--light-navy);
+  margin: 40px 0;
+} /* Base HR */
+hr.subtle {
+  background-color: rgba(23, 42, 69, 0.5);
+  height: 1px;
+  margin: 60px auto;
+  width: 80%;
+} /* Homepage subtle divider */
+hr.break-section {
+  width: 60%;
+  min-width: 250px;
+  margin: 70px auto;
+  height: 1px;
+  background-color: var(--light-navy);
+} /* Experience page divider */
+hr.break-section.double {
+  height: 4px;
+  border-top: 1px solid var(--light-navy);
+  border-bottom: 1px solid var(--light-navy);
+  background-color: transparent;
+  margin: 80px auto;
+} /* Stronger visual break */
+hr.short {
+  width: 80px;
+  margin: 30px auto;
+  height: 1px;
+} /* Small inline separator */
 
 /* Contact Icons Component Styling (Navbar Version) */
 .contact-wrapper {
-  display: flex; width: fit-content; margin-left: 10px; /* Space from nav links */
+  display: flex;
+  width: fit-content;
+  margin-left: 10px; /* Space from nav links */
 }
 .contact-wrapper .image-block-wrapper {
-  display: flex; gap: 15px; align-items: center; /* Consistent gap */
+  display: flex;
+  gap: 15px;
+  align-items: center; /* Consistent gap */
 }
 .contact-wrapper img {
-  filter: grayscale(1) brightness(1.8); width: 20px; height: 20px; opacity: 0.8; transition: all 0.2s ease-in-out;
+  filter: grayscale(1) brightness(1.8);
+  width: 20px;
+  height: 20px;
+  opacity: 0.8;
+  transition: all 0.2s ease-in-out;
 }
-.contact-wrapper a:hover img, .contact-wrapper a:focus img {
-  opacity: 1; filter: none; transform: scale(1.1); outline: none;
+.contact-wrapper a:hover img,
+.contact-wrapper a:focus img {
+  opacity: 1;
+  filter: none;
+  transform: scale(1.1);
+  outline: none;
 }
 
 /* External Link Component Style */
 a.external-link {
-  color: var(--gryffindor-gold); display: inline-flex; align-items: center; gap: 6px; font-size: inherit; /* Inherit surrounding font size */
+  color: var(--gryffindor-gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: inherit; /* Inherit surrounding font size */
 }
 a.external-link img {
-  width: 1em; height: 1em; /* Size relative to font size */ filter: grayscale(1) brightness(1.5); opacity: 0.7; transition: opacity 0.3s; display: inline-block; vertical-align: middle; /* Better alignment */
+  width: 1em;
+  height: 1em; /* Size relative to font size */
+  filter: grayscale(1) brightness(1.5);
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  display: inline-block;
+  vertical-align: middle; /* Better alignment */
 }
-a.external-link:hover img { opacity: 1; }
+a.external-link:hover img {
+  opacity: 1;
+}
 
 /* Tags List Component Style */
 .tags-wrapper {
-  display: grid; grid-template-columns: max-content auto; gap: 10px; margin-top: 25px; align-items: flex-start;
+  display: grid;
+  grid-template-columns: max-content auto;
+  gap: 10px;
+  margin-top: 25px;
+  align-items: flex-start;
 }
-.tags-wrapper.no-caption { display: block; margin-top: 15px; }
-.tags-wrapper .caption { /* "Key Tech:" label */
-  font-weight: 700; font-size: 0.9rem; color: var(--muted-off-white); padding-top: 5px; /* Vertical alignment */
+.tags-wrapper.no-caption {
+  display: block;
+  margin-top: 15px;
 }
-.tags-wrapper .tags-container { /* Container for the tags */
-  display: flex; flex-wrap: wrap; gap: 8px;
+.tags-wrapper .caption {
+  /* "Key Tech:" label */
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--muted-off-white);
+  padding-top: 5px; /* Vertical alignment */
 }
-.tags-wrapper .tags-container .tag-item { /* Individual tag style */
-  padding: 3px 12px; border: 1px solid var(--light-navy); border-radius: 15px; /* Rounded */ background-color: var(--light-navy); transition: all 0.2s ease-in-out; font-size: 0.8rem; color: var(--muted-off-white); text-decoration: none; cursor: default; /* Non-interactive tags */ white-space: nowrap; /* Prevent tags wrapping */
+.tags-wrapper .tags-container {
+  /* Container for the tags */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tags-wrapper .tags-container .tag-item {
+  /* Individual tag style */
+  padding: 3px 12px;
+  border: 1px solid var(--light-navy);
+  border-radius: 15px; /* Rounded */
+  background-color: var(--light-navy);
+  transition: all 0.2s ease-in-out;
+  font-size: 0.8rem;
+  color: var(--muted-off-white);
+  text-decoration: none;
+  cursor: default; /* Non-interactive tags */
+  white-space: nowrap; /* Prevent tags wrapping */
 }
 .tags-wrapper .tags-container .tag-item:hover {
-  border-color: var(--gryffindor-gold); background-color: rgba(212, 175, 55, 0.1); color: var(--gryffindor-gold);
+  border-color: var(--gryffindor-gold);
+  background-color: rgba(212, 175, 55, 0.1);
+  color: var(--gryffindor-gold);
 }
 
 /* PDF Download Floating Button */
 .get-pdf {
-  display: flex; align-items: center; justify-content: center; width: 55px; height: 55px; aspect-ratio: 1; border-radius: 50%; background-color: var(--gryffindor-red); position: fixed; bottom: 30px; right: 30px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); transition: all 0.3s; z-index: 20; /* Ensure it's above most content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--gryffindor-red);
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s;
+  z-index: 20; /* Ensure it's above most content */
 }
-.get-pdf:hover, .get-pdf:focus {
-  background-color: #c8102e; /* Slightly brighter red */ transform: scale(1.1); outline: none;
+.get-pdf:hover,
+.get-pdf:focus {
+  background-color: #c8102e; /* Slightly brighter red */
+  transform: scale(1.1);
+  outline: none;
 }
 .get-pdf > a {
-  display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
 }
-.get-pdf img { /* PDF Icon */
-  width: 28px; height: 28px; filter: grayscale(1) brightness(2.2); /* Make icon visible on red */
+.get-pdf img {
+  /* PDF Icon */
+  width: 28px;
+  height: 28px;
+  filter: grayscale(1) brightness(2.2); /* Make icon visible on red */
 }
-
 
 /* ==========================================================================
    8. Footer Styling
    ========================================================================== */
 .footer {
   padding: 25px var(--body-padding); /* Vertical and variable horizontal padding */
-  color: var(--muted-off-white);     /* Muted text color */
+  color: var(--muted-off-white); /* Muted text color */
   text-align: center;
-  font-size: 0.85rem;              /* Small font size */
+  font-size: 0.85rem; /* Small font size */
   border-top: 1px solid var(--light-navy); /* Subtle separator */
-  margin-top: 80px;                /* Space above footer */
+  margin-top: 80px; /* Space above footer */
 }
 /* Style links specifically within the footer */
-.footer a { color: var(--gryffindor-gold); }
-.footer a:hover { color: var(--gryffindor-red); }
-
+.footer a {
+  color: var(--gryffindor-gold);
+}
+.footer a:hover {
+  color: var(--gryffindor-red);
+}
 
 /* ==========================================================================
    9. Home Page Bottom Contact Section (Specific Styles)
@@ -715,36 +930,40 @@ a.external-link:hover img { opacity: 1; }
   padding: 60px var(--body-padding); /* Vertical and horizontal padding */
   text-align: center;
   background-color: var(--light-navy); /* Contrasting background */
-  margin-top: 60px;                /* Space above this section */
+  margin-top: 60px; /* Space above this section */
 }
-.contact-section .container { padding: 0 15px; } /* Standard container padding */
-.contact-section h2 { /* "Connect with Me" or similar H2 */
+.contact-section .container {
+  padding: 0 15px;
+} /* Standard container padding */
+.contact-section h2 {
+  /* "Connect with Me" or similar H2 */
   color: var(--off-white);
   margin-top: 0;
   margin-bottom: 30px;
   font-size: clamp(1.6rem, 4vw, 1.8rem); /* Responsive heading size */
 }
-.contact-links-footer { /* Wrapper for direct links (Email, LinkedIn, GitHub) */
+.contact-links-footer {
+  /* Wrapper for direct links (Email, LinkedIn, GitHub) */
   display: flex;
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
-  font-size: 1.1rem;               /* Larger font size for direct contact */
+  font-size: 1.1rem; /* Larger font size for direct contact */
 }
 .contact-links-footer a {
   color: var(--gryffindor-gold);
   font-weight: 600;
-  padding: 5px 10px;             /* Clickable area padding */
+  padding: 5px 10px; /* Clickable area padding */
   border-bottom: 2px solid transparent; /* Prepare for hover effect */
   transition: color 0.3s, border-color 0.3s;
 }
-.contact-links-footer a:hover, .contact-links-footer a:focus {
+.contact-links-footer a:hover,
+.contact-links-footer a:focus {
   color: var(--gryffindor-red);
   border-bottom-color: var(--gryffindor-red); /* Underline effect */
-  text-decoration: none;          /* Override default */
+  text-decoration: none; /* Override default */
   outline: none;
 }
-
 
 /* ==========================================================================
    10. Responsive Adjustments (Media Queries)
@@ -753,80 +972,193 @@ a.external-link:hover img { opacity: 1; }
 /* --- Tablet Styles (Screens <= 1024px) --- */
 @media only screen and (max-width: 1024px) {
   /* Adjust base padding for tablets */
-  :root { --body-padding: 40px; }
+  :root {
+    --body-padding: 40px;
+  }
   /* Slightly reduce base font size */
-  body { font-size: 1rem; }
+  body {
+    font-size: 1rem;
+  }
 
   /* Reduce padding for Navbar, Footer, Contact Section */
-  .navbar, .footer, .contact-section { padding-left: 20px; padding-right: 20px; }
+  .navbar,
+  .footer,
+  .contact-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
   /* Navbar adjustments */
-  .navbar .logo { font-size: 1.1rem; }
-  .navbar .container { gap: 15px; }
-  .navbar .nav-links .nav-item { margin-left: 10px; margin-right: 10px; font-size: 0.9rem; }
+  .navbar .logo {
+    font-size: 1.1rem;
+  }
+  .navbar .container {
+    gap: 15px;
+  }
+  .navbar .nav-links .nav-item {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 0.9rem;
+  }
 
   /* Homepage Hero text size adjustments */
-  .hero .text-wrapper .title { font-size: clamp(2rem, 5vw, 2.5rem); }
-  .highlight-subtitle { font-size: clamp(1.6rem, 4vw, 2rem); }
-  .hero .text-wrapper .description { font-size: 1rem; line-height: 1.7; }
+  .hero .text-wrapper .title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+  }
+  .highlight-subtitle {
+    font-size: clamp(1.6rem, 4vw, 2rem);
+  }
+  .hero .text-wrapper .description {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
 
   /* Experience page heading/title size adjustments */
-  .page-heading-container h1 { font-size: 2.2rem; }
-  .job-details .title { font-size: 1.6rem; }
-  .awards-section .title, .education-section .title { font-size: 2rem; }
-  .tags-wrapper { grid-template-columns: 1fr; gap: 8px; } /* Stack tags caption and items */
+  .page-heading-container h1 {
+    font-size: 2.2rem;
+  }
+  .job-details .title {
+    font-size: 1.6rem;
+  }
+  .awards-section .title,
+  .education-section .title {
+    font-size: 2rem;
+  }
+  .tags-wrapper {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  } /* Stack tags caption and items */
 
   /* About page grid (if exists) */
-  .about-profile-content { grid-template-columns: 1fr; gap: 30px; }
-  .about-profile-content .profile-picture { width: 180px; height: 180px; margin: 0 auto 20px auto; }
+  .about-profile-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .about-profile-content .profile-picture {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px auto;
+  }
 
   /* PDF Button position adjustment */
-  .get-pdf { width: 55px; height: 55px; bottom: 25px; right: 25px; }
-  .get-pdf img { width: 28px; height: 28px; }
+  .get-pdf {
+    width: 55px;
+    height: 55px;
+    bottom: 25px;
+    right: 25px;
+  }
+  .get-pdf img {
+    width: 28px;
+    height: 28px;
+  }
 
   /* Show mobile-only content */
-  .mobile-only { display: initial; }
+  .mobile-only {
+    display: initial;
+  }
 }
-
 
 /* --- Mobile Styles (Screens <= 768px) --- */
 @media only screen and (max-width: 768px) {
   /* Further reduce body padding */
-  :root { --body-padding: 20px; }
+  :root {
+    --body-padding: 20px;
+  }
 
   /* Navbar adjustments for small screens */
-  .navbar .nav-links { margin-left: 5px; gap: 0px; flex-grow: 1; justify-content: flex-end;} /* Push links right */
-  .navbar .nav-links .nav-item { margin-left: 8px; margin-right: 8px; font-size: 0.85rem; }
-  .navbar .logo { font-size: 1rem; letter-spacing: 1px; }
-  .contact-wrapper { display: none; } /* Hide contact icons in nav (assumed in footer/contact section) */
+  .navbar .nav-links {
+    margin-left: 5px;
+    gap: 0px;
+    flex-grow: 1;
+    justify-content: flex-end;
+  } /* Push links right */
+  .navbar .nav-links .nav-item {
+    margin-left: 8px;
+    margin-right: 8px;
+    font-size: 0.85rem;
+  }
+  .navbar .logo {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+  .contact-wrapper {
+    display: none;
+  } /* Hide contact icons in nav (assumed in footer/contact section) */
 
-   /* Homepage Hero adjustments: Center text, smaller image */
-  .home-hero-container { gap: 30px; text-align: center; }
-  .home-hero-container .text-wrapper { flex-basis: 100%; text-align: center; }
-  .profile-picture-hero { width: 160px; height: 160px; margin: 0 auto 30px auto; }
-  .cta-wrapper { justify-content: center; } /* Center buttons */
+  /* Homepage Hero adjustments: Center text, smaller image */
+  .home-hero-container {
+    gap: 30px;
+    text-align: center;
+  }
+  .home-hero-container .text-wrapper {
+    flex-basis: 100%;
+    text-align: center;
+  }
+  .profile-picture-hero {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 30px auto;
+  }
+  .cta-wrapper {
+    justify-content: center;
+  } /* Center buttons */
 
-   /* Experience page text size reductions */
-   .job-details .title { font-size: 1.4rem; }
-   .job-details .title span:last-child { font-size: 0.85rem; }
-   .job-details .sub-point { font-size: 0.9rem; line-height: 1.65; padding-left: 1.5em; }
+  /* Experience page text size reductions */
+  .job-details .title {
+    font-size: 1.4rem;
+  }
+  .job-details .title span:last-child {
+    font-size: 0.85rem;
+  }
+  .job-details .sub-point {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    padding-left: 1.5em;
+  }
 
-   /* Other Experience page section adjustments */
-    .awards-section .title, .education-section .title { font-size: 1.6rem; }
-    .awards-list li { font-size: 0.9rem; line-height: 1.6; }
-    .education-details p, .education-details h3 { font-size: 0.95rem; }
-    .education-details .coursework { font-size: 0.8rem; line-height: 1.4; }
+  /* Other Experience page section adjustments */
+  .awards-section .title,
+  .education-section .title {
+    font-size: 1.6rem;
+  }
+  .awards-list li {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .education-details p,
+  .education-details h3 {
+    font-size: 0.95rem;
+  }
+  .education-details .coursework {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
 
-   /* General paragraph line height */
-   p { line-height: 1.6; }
-   /* Footer adjustments */
-   .footer { font-size: 0.8rem; padding: 15px; }
-   .contact-links-footer { gap: 15px; font-size: 1rem; } /* Homepage contact links */
-   /* PDF Button adjustments */
-   .get-pdf { width: 50px; height: 50px; bottom: 20px; right: 20px; }
-   .get-pdf img { width: 25px; height: 25px; }
+  /* General paragraph line height */
+  p {
+    line-height: 1.6;
+  }
+  /* Footer adjustments */
+  .footer {
+    font-size: 0.8rem;
+    padding: 15px;
+  }
+  .contact-links-footer {
+    gap: 15px;
+    font-size: 1rem;
+  } /* Homepage contact links */
+  /* PDF Button adjustments */
+  .get-pdf {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+  .get-pdf img {
+    width: 25px;
+    height: 25px;
+  }
 }
-
 
 /* ==========================================================================
    11. Utility Classes

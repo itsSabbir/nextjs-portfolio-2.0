@@ -23,9 +23,9 @@ function ExternalLink({ href = '', title = '', text = '' }) {
   return (
     <a
       className="external-link" // Styled by .external-link in app.css
-      href={href}               // The target URL
-      title={title || text}     // Use explicit title, or fall back to link text for tooltip
-      target="_blank"           // Open link in a new browser tab/window
+      href={href} // The target URL
+      title={title || text} // Use explicit title, or fall back to link text for tooltip
+      target="_blank" // Open link in a new browser tab/window
       rel="noopener noreferrer" // Security enhancement for target="_blank" (use this instead of just 'noreferrer')
     >
       {/* Visible text part of the link */}
