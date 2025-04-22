@@ -1,6 +1,6 @@
 # Sabbir Hossain - Personal Portfolio Website (v2.0)
 
-![Next JS](https://img.shields.io/badge/Next.js-black?style=flat-square&logo=next.js&logoColor=white) ![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) ![CSS3](https://img.shields.io/badge/CSS%203-1572B6?style=flat-square&logo=css3&logoColor=white) ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=eslint&logoColor=white) ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=prettier&logoColor=black) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This repository holds the source code for my personal portfolio website, sabbir.ca. It showcases my skills, professional experience, and projects across Software Engineering, Data Science, Bioinformatics, and DevOps/SRE. The site is built using Next.js and React, featuring a clean, custom dark theme.
 
@@ -28,7 +28,7 @@ This repository holds the source code for my personal portfolio website, sabbir.
 This portfolio serves as my digital presence, offering a dynamic platform to detail my professional journey and technical background. It's intended for recruiters, collaborators, and anyone interested in my work at the intersection of software, data, and biology.
 
 The website highlights:
-*   My diverse experience in Full-Stack Development, Data Engineering, Bioinformatics analysis, Cloud Infrastructure (AWS), and DevOps principles.
+*   My diverse experience in Full-Stack Development, Data Engineering, Bioinformatics, Cloud Infrastructure (AWS), and DevOps principles.
 *   A detailed overview of my contributions and roles at Johns Hopkins University, Outlier, and the University of Toronto.
 *   Key projects with descriptions and relevant links.
 *   A custom dark theme designed for a professional look using a Navy Blue, Red, and Gold palette.
@@ -47,16 +47,15 @@ The website highlights:
 
 ## Technologies Used
 
-*   **Framework:** [Next.js](https://nextjs.org/) (v14+)
-*   **Library:** [React](https://reactjs.org/) (v18+)
-*   **Language:** [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) (ES6+)
+*   **Framework:** Next.js (v14+)
+*   **Library:** React (v18+)
+*   **Language:** JavaScript (ES6+)
 *   **Styling:** Plain CSS, CSS Variables, Flexbox, Grid, Media Queries
-*   **Code Quality:** [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)
-*   **Deployment:** [Vercel](https://vercel.com/)
+*   **Code Quality:** ESLint, Prettier
+*   **Deployment:** Vercel
 
 ## Project Structure
-
-```.
+```
 ├── components/ # Reusable React components
 ├── contexts/ # Original React Context setup (currently unused)
 ├── data/ # Project data source (projectsData.js)
@@ -73,7 +72,6 @@ The website highlights:
 ├── README.md # This file
 └── LICENSE # Project License
 ```
-
 
 ## Getting Started
 
