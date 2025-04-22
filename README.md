@@ -55,7 +55,7 @@ The website highlights:
 *   **Deployment:** Vercel
 
 ## Project Structure
-.
+```
 ├── components/ # Reusable React components
 ├── contexts/ # Original React Context setup (currently unused)
 ├── data/ # Project data source (projectsData.js)
@@ -71,7 +71,7 @@ The website highlights:
 ├── package.json # Dependencies and scripts
 ├── README.md # This file
 └── LICENSE # Project License
-
+```
 
 ## Getting Started
 
