@@ -1936,13 +1936,13 @@ footer,
 }
 
 /* ==========================================================================
-   23. Scroll to Top Button
+   23. Scroll to Top Button (Stacked ABOVE the PDF button)
    ========================================================================== */
 
 .scroll-top {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 100px; /* Moved up to avoid overlap */
+    right: 32px;   /* Aligned with the button below */
     width: 50px;
     height: 50px;
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
@@ -1951,12 +1951,12 @@ footer,
     color: white;
     font-size: 1.25rem;
     cursor: pointer;
-    display: none;
+    display: none; /* Hidden by default via JS */
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 20px var(--glow-red);
     transition: all var(--transition-base);
-    z-index: 50;
+    z-index: 49;
 }
 
 .scroll-top.visible {
@@ -2124,7 +2124,7 @@ a.external-link:hover img {
     color: var(--accent-secondary);
 }
 
-/* PDF Download Button */
+/* PDF Download Button (Bottom Right) */
 .get-pdf {
     display: flex;
     align-items: center;
@@ -2135,11 +2135,11 @@ a.external-link:hover img {
     border-radius: 50%;
     background-color: var(--accent-primary);
     position: fixed;
-    bottom: 30px;
+    bottom: 30px; /* Stays at the bottom */
     right: 30px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     transition: all 0.3s;
-    z-index: 20;
+    z-index: 50; /* High z-index */
 }
 
 .get-pdf:hover,

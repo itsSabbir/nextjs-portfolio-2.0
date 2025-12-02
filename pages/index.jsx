@@ -1,280 +1,433 @@
-/* eslint-disable max-len */
 // --- pages/index.jsx ---
-
-import Head from 'next/head';
-import Image from 'next/image';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
-
-import ExternalLink from '../components/ExternalLink';
-import RenderMarkdown from '../components/RenderMarkdown'; // Import the markdown renderer
-// Import reusable components
+import Image from 'next/image';
+import Layout from '../components/Layout';
+import ProjectCard from '../components/ProjectCard';
+import StatCard from '../components/StatCard';
 import TagList from '../components/TagList';
 
-const Home = () => {
-  // Placeholder data for featured projects - Replace with your actual selected projects later
-  const featuredProjects = [
-    {
-      title: 'Bioinformatics Full-Stack Platform (JHU)',
-      // Updated description using markdown-safe format (no ** here)
-      description: 'Architected an open-source platform processing 750TB+ multi-omics data using microservices.',
-      tags: ['Python', 'React', 'Docker', 'Kubernetes', 'AWS', 'ETL'],
-      imageUrl: '/placeholder-project1.png', // NEED to add this image to /public
-      repoUrl: null // Add real link later
-    },
-    {
-      title: 'AI Code Optimization & Backend (Outlier)',
-      description: 'Improved AI model efficiency and refactored APIs within a monolith-to-microservices migration.',
-      tags: ['Python', 'Java', 'FastAPI', 'Spring Boot', 'AWS Lambda', 'AI/ML'],
-      imageUrl: '/placeholder-project2.png', // NEED to add this image to /public
-      repoUrl: null
-    },
-    {
-      title: 'Programming Language Learning Hub',
-      description: 'Created and maintain an open-source educational platform reaching 1000+ developers globally.',
-      tags: ['React', 'Node.js', 'JavaScript', 'Community Mgt.', 'Open Source'],
-      imageUrl: '/placeholder-project3.png', // NEED to add this image to /public
-      repoUrl: 'https://github.com/itsSabbir/programming-language-learning-hub' // Add real link later
-    }
-  ];
+export default function Home() {
+  
+  // Fade-in Animation Logic
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px',
+    };
 
-  // Text content potentially using **bold** markdown
-  const heroDescription =
-    "I'm a Software Engineer driven by the challenge of building robust, scalable systems where code meets complex data, particularly in the **bioinformatics** domain. With deep interests spanning **Data Science**, **Cloud Architecture (AWS)**, **DevOps/SRE practices**, and **AI/ML**, I thrive on architecting full-stack applications, optimizing data pipelines, and automating workflows to deliver impactful results. I'm a lifelong learner committed to mastering new technologies and contributing to innovative projects.";
-  const aboutPara1 =
-    'My journey began with a deep dive into the intricacies of Bioinformatics and Computer Science at the University of Toronto. This foundation sparked a passion for using software engineering not just to solve technical puzzles, but to build tools that empower research and discovery. I bridge the gap between scientific requirements and scalable, maintainable code, constantly exploring areas like efficient algorithms, cloud-native patterns, and reliable deployment strategies.';
-  const aboutPara2 =
-    'I believe in **continuous learning** and actively engage with new frameworks, best practices (like TDD and SOLID), and the broader tech community (e.g., through open-source contributions).';
-  const seekingPara1 =
-    "Leveraging my expertise across the SDLC and DevOps/SRE principles, I'm actively seeking opportunities in **Software Engineering, Data Engineering, DevOps/SRE, or Data Science** roles where I can contribute to challenging projects, particularly those involving cloud technologies, distributed systems, AI/ML applications, or bioinformatics.";
-  const seekingPara2 =
-    "I'm adept at cross-functional collaboration, thrive in remote environments, and I'm ready to bring my skills and continuous learning mindset to your team.";
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    // Using React Fragment, ensures this component doesn't add an unnecessary wrapper div
-    <>
-      <Head>
-        <title>Sabbir Hossain | Software Engineer & Data Scientist | Bioinformatics</title>
-        <meta
-          name="description"
-          content="Sabbir Hossain's portfolio: A Software Engineer and Data Scientist specializing in bioinformatics, cloud (AWS), DevOps/SRE, AI/ML, and full-stack development."
-        />
-        <meta
-          name="keywords"
-          content="Sabbir Hossain, Portfolio, Software Engineer, Data Scientist, Bioinformatics, DevOps, SRE, Cloud, AWS, Kubernetes, Docker, Python, React, Next.js, Machine Learning, Data Engineering"
-        />
-      </Head>
+    <Layout>
+      {/* ===== HERO SECTION (ID: home) ===== */}
+      <section className="hero" id="home">
+        <div className="container">
+          <div className="hero-content">
+            {/* Badges */}
+            <div className="hero-badges">
+              <div className="hero-badge availability">
+                <div className="status-dot"></div>
+                <span>Available for Hire</span>
+              </div>
+              <div className="hero-badge">
+                <i className="fas fa-map-marker-alt"></i>
+                <span>Toronto, Canada</span>
+              </div>
+              <div className="hero-badge">
+                <i className="fas fa-plane"></i>
+                <span>Open to Relocation (USA)</span>
+              </div>
+            </div>
 
-      {/* === Section 1: Hero Introduction === */}
-      <section className="hero home-hero">
-        <div className="container home-hero-container">
-          <div className="text-wrapper w-full">
-            <h1 className="title">
-              <span>Sabbir Hossain</span>
-              <span className="highlight-subtitle">Engineering Solutions Across Software, Data & Biology</span>
+            {/* Work Authorization Cards */}
+            <div className="work-auth-container">
+              <div className="work-auth-card">
+                <div className="work-auth-header">
+                  <span className="flag-emoji">🇨🇦</span>
+                  <div className="work-auth-info">
+                    <h3>Canada</h3>
+                    <div className="work-auth-subtitle">Current Location</div>
+                  </div>
+                </div>
+                <div className="work-auth-details">
+                  <div className="work-auth-item">
+                    <i className="fas fa-check-circle"></i>
+                    <span>Authorized to work (No sponsorship needed)</span>
+                  </div>
+                  <div className="work-auth-item">
+                    <i className="fas fa-check-circle"></i>
+                    <span>Based in Toronto, ON</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="work-auth-card">
+                <div className="work-auth-header">
+                  <span className="flag-emoji">🇺🇸</span>
+                  <div className="work-auth-info">
+                    <h3>United States</h3>
+                    <div className="work-auth-subtitle">Open to Relocation</div>
+                  </div>
+                </div>
+                <div className="work-auth-details">
+                  <div className="work-auth-item">
+                    <i className="fas fa-check-circle"></i>
+                    <span>TN Visa eligible (No sponsorship required)</span>
+                  </div>
+                  <div className="work-auth-item">
+                    <i className="fas fa-check-circle"></i>
+                    <span>Open to H-1B / Green Card sponsorship</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="hero-greeting">
+              <i className="fas fa-hand-sparkles"></i> Hi, I'm
+            </div>
+
+            <h1 className="hero-title">
+              <span className="gradient-text">Sabbir Hossain</span>
             </h1>
-            {/* Use RenderMarkdown for the description */}
-            <RenderMarkdown className="description" text={heroDescription} />
-            <div className="cta-wrapper">
-              <Link href="/experiences" className="cta">
-                Explore Full Experience
-              </Link>
-              <Link href="/#featured-projects" className="cta cta-secondary">
-                View Featured Projects
-              </Link>
+
+            <p className="hero-subtitle">
+              <span className="highlight">Data Engineer</span> & <span className="highlight">Platform Architect</span> building scalable data infrastructure at Bell Canada. 
+              Passionate about distributed systems, platform engineering, and solving complex data challenges.
+            </p>
+
+            <div className="btn-group">
+              <a href="#contact" className="btn btn-primary">
+                <i className="fas fa-paper-plane"></i>
+                Get In Touch
+              </a>
+              <a href="#projects" className="btn btn-secondary">
+                <i className="fas fa-code"></i>
+                View My Work
+              </a>
+            </div>
+
+            <div className="social-links">
+              <a href="https://github.com/itssabbir" className="social-link" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <i className="fab fa-github"></i>
+              </a>
+              <a href="https://linkedin.com/in/itssabbir" className="social-link" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                <i className="fab fa-linkedin-in"></i>
+              </a>
+              <a href="mailto:hossain.sabbir17@gmail.com" className="social-link" title="Email">
+                <i className="fas fa-envelope"></i>
+              </a>
             </div>
           </div>
-          <div className="hero-image-wrapper">
-            {/* Corrected Image Path: Remove /public */}
-            <Image
-              src="/profile_pic.jpeg" // CORRECT path relative to public folder
-              alt="Sabbir Hossain - Professional Headshot"
-              width={250}
-              height={250}
-              priority
-              className="profile-picture-hero"
+        </div>
+      </section>
+
+      {/* ===== STATS SECTION ===== */}
+      <section className="section">
+        <div className="container">
+          <div className="stats-grid">
+            <StatCard icon="💼" value="2024" label="Joined Bell Canada" />
+            <StatCard icon="🎓" value="2024" label="UofT Graduate" />
+            <StatCard icon="⭐" value="3.96" label="Major GPA" />
+            <StatCard icon="📈" value="800%" label="Data Coverage ↑" />
+          </div>
+        </div>
+      </section>
+
+      {/* ===== ABOUT SECTION (ID: about) ===== */}
+      <section className="section" id="about">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-label">
+              <i className="fas fa-user-circle"></i> About Me
+            </div>
+            <h2 className="section-title">Who I Am</h2>
+            <p className="section-description">
+              A passionate engineer combining bioinformatics expertise with modern data engineering.
+            </p>
+          </div>
+
+          <div className="about-grid">
+            <div className="about-image fade-in">
+              <img src="/profile_pic.jpeg" alt="Sabbir Hossain" className="profile-img" />
+            </div>
+
+            <div className="about-content fade-in">
+              <div className="tldr-box">
+                <div className="tldr-header">
+                  <i className="fas fa-bolt"></i>
+                  <h4>TL;DR</h4>
+                </div>
+                <div className="tldr-content">
+                  <ul>
+                    <li>Data Engineer at Bell Canada (NTS Platform)</li>
+                    <li>UofT Graduate (3.96 Major GPA) in Bioinformatics & CS</li>
+                    <li>Expanded data coverage by 800%, optimized queries by 83%</li>
+                    <li>Expert in Python, SQL, distributed systems, cloud platforms</li>
+                    <li>Open to Staff/Principal-level platform engineering roles</li>
+                  </ul>
+                </div>
+              </div>
+
+              <h3>Building the Future of Data Infrastructure</h3>
+              <p>
+                I'm a Data Engineer at Bell Canada, where I architect and productionize mission-critical data pipelines 
+                on the Network Ticket Service (NTS) Platform. With a background in computational biology and bioinformatics 
+                from the University of Toronto, I bring a unique perspective to data engineering challenges.
+              </p>
+              <p>
+                My journey spans from working with massive genomics datasets (750+ TB) in research to building 
+                enterprise-scale data infrastructure. I'm passionate about platform engineering, distributed systems, 
+                and creating elegant solutions to complex technical problems.
+              </p>
+            </div>
+          </div>
+
+          <div className="interests-section fade-in">
+            <h3><i className="fas fa-heart"></i> What I Love</h3>
+            <div className="interests-grid">
+              <div className="interest-tile"><span className="interest-icon">∞</span><div className="interest-label">Mathematics</div></div>
+              <div className="interest-tile"><span className="interest-icon">💻</span><div className="interest-label">Coding</div></div>
+              <div className="interest-tile"><span className="interest-icon">🚀</span><div className="interest-label">Space</div></div>
+              <div className="interest-tile"><span className="interest-icon">🧬</span><div className="interest-label">Bioinformatics</div></div>
+              <div className="interest-tile"><span className="interest-icon">🍳</span><div className="interest-label">Cooking</div></div>
+              <div className="interest-tile"><span className="interest-icon">🛹</span><div className="interest-label">Longboarding</div></div>
+              <div className="interest-tile"><span className="interest-icon">📚</span><div className="interest-label">Reading</div></div>
+              <div className="interest-tile"><span className="interest-icon">🎮</span><div className="interest-label">Gaming</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== EXPERIENCE SECTION (ID: experience) ===== */}
+      <section className="section" id="experience">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-label"><i className="fas fa-briefcase"></i> Career Journey</div>
+            <h2 className="section-title">Experience</h2>
+            <p className="section-description">My professional journey in data engineering and research</p>
+          </div>
+
+          <div className="timeline">
+            {/* Bell Canada */}
+            <div className="timeline-item fade-in">
+              <div className="timeline-header">
+                <div>
+                  <h3 className="timeline-title">Data Engineer</h3>
+                  <div className="timeline-company">Bell Canada</div>
+                </div>
+                <div className="timeline-period"><i className="fas fa-calendar-alt"></i> Jun 2024 - Present</div>
+              </div>
+              <div className="timeline-description">
+                <p>Working on the Network Ticket Service (NTS) Platform, architecting and productionizing mission-critical data pipelines that power Bell's network operations.</p>
+                <ul>
+                  <li>Architected NTS data integration pipeline using Python, SAS DI, and SQL, serving as technical gatekeeper</li>
+                  <li>Resolved systemic data integrity issues, expanding valid record coverage from 8% to 75% (+800%)</li>
+                  <li>Optimized critical query performance: reduced runtime from 12 minutes to 2 minutes (83% improvement)</li>
+                  <li>Promoted to technical gatekeeper role within 3 months, reviewing all code changes for data quality</li>
+                  <li>Led MS Archway integration project, connecting enterprise data sources to NTS platform</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* JHU */}
+            <div className="timeline-item fade-in">
+              <div className="timeline-header">
+                <div>
+                  <h3 className="timeline-title">Junior Full Stack Software Engineer</h3>
+                  <div className="timeline-company">Johns Hopkins University (Remote)</div>
+                </div>
+                <div className="timeline-period"><i className="fas fa-calendar-alt"></i> Sept 2022 - Present</div>
+              </div>
+              <div className="timeline-description">
+                <p>Developing scalable bioinformatics platforms and analyzing multi-omics Big Data.</p>
+                <ul>
+                  <li>Spearheaded large-scale oncology research integrating 750+ TB of multi-omics Big Data.</li>
+                  <li>Architected open-source full-stack platform using Python, R, JS, Docker, and Kubernetes.</li>
+                  <li>Engineered ETL pipelines on HPC (Rockfish) using Python, SQL, and ML, cutting analysis time by 40%.</li>
+                  <li>Implemented automated data quality pipelines with TensorFlow and Scikit-learn.</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Outlier */}
+            <div className="timeline-item fade-in">
+              <div className="timeline-header">
+                <div>
+                  <h3 className="timeline-title">Backend Software Developer Intern</h3>
+                  <div className="timeline-company">Outlier (Remote)</div>
+                </div>
+                <div className="timeline-period"><i className="fas fa-calendar-alt"></i> Mar 2024 - Nov 2024</div>
+              </div>
+              <div className="timeline-description">
+                <p>Optimized AI-generated code and refactored APIs for microservices architecture.</p>
+                <ul>
+                  <li>Designed and deployed serverless functions (AWS Lambda) reducing infrastructure costs by 30%.</li>
+                  <li>Refactored GraphQL and RESTful APIs using Python (FastAPI) and Java (Spring Boot).</li>
+                  <li>Conducted rigorous evaluations of AI-generated code, improving model efficiency by 5%.</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* UofT Research */}
+            <div className="timeline-item fade-in">
+              <div className="timeline-header">
+                <div>
+                  <h3 className="timeline-title">Software Dev Research Assistant</h3>
+                  <div className="timeline-company">University of Toronto</div>
+                </div>
+                <div className="timeline-period"><i className="fas fa-calendar-alt"></i> Sept 2019 - Apr 2024</div>
+              </div>
+              <div className="timeline-description">
+                <ul>
+                  <li>Engineered full-stack bioinformatics applications, automating workflows saving 30+ hours weekly.</li>
+                  <li>Designed microservices architecture with GraphQL and RESTful APIs over SQL databases.</li>
+                  <li>Established DevOps infrastructure using Docker and Kubernetes for HPC deployments.</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Education */}
+            <div className="timeline-item fade-in">
+              <div className="timeline-header">
+                <div>
+                  <h3 className="timeline-title">Education</h3>
+                  <div className="timeline-company">University of Toronto</div>
+                </div>
+                <div className="timeline-period"><i className="fas fa-graduation-cap"></i> Graduated 2024</div>
+              </div>
+              <div className="timeline-description">
+                <p>B.Sc. (Honours) Computer Science, Bioinformatics & Computational Biology Specialist</p>
+                <ul>
+                  <li>Major GPA: 3.96/4.0 - Dean's List Scholar</li>
+                  <li>Focus: Data Structures, Algorithms, Distributed Systems, Cloud Computing, Machine Learning</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== PROJECTS SECTION (ID: projects) ===== */}
+      <section className="section" id="projects">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-label"><i className="fas fa-laptop-code"></i> Featured Work</div>
+            <h2 className="section-title">Projects</h2>
+            <p className="section-description">Showcasing technical expertise through real-world applications</p>
+          </div>
+
+          <div className="projects-grid">
+            <ProjectCard 
+              title="NTS Platform Pipeline"
+              description="Mission-critical data integration pipeline at Bell Canada using Python, SAS DI, and SQL. Expanded data coverage by 800%."
+              tags={['Python', 'SAS DI', 'SQL', 'ETL']}
+              icon="🔮"
+            />
+            <ProjectCard 
+              title="Anomaly Detection System"
+              description="Full-stack anomaly detection system built with React, Node.js, and PyTorch for time-series data analysis."
+              tags={['React', 'Node.js', 'PyTorch', 'ML']}
+              icon="🧬"
+              links={{ repo: 'https://github.com/itssabbir/anomaly-detection', demo: '#' }}
+            />
+            <ProjectCard 
+              title="Genomics Data Pipeline"
+              description="Distributed data processing pipeline for analyzing 750+ TB of genomics data using Spark and AWS."
+              tags={['Python', 'Spark', 'AWS', 'Bioinformatics']}
+              icon="🚀"
+              links={{ repo: 'https://github.com/itssabbir/genomics-pipeline' }}
+            />
+            <ProjectCard 
+              title="Real-time Analytics Dashboard"
+              description="Interactive dashboard for visualizing network performance metrics using React, D3.js, and WebSockets."
+              tags={['React', 'D3.js', 'WebSocket']}
+              icon="⚡"
             />
           </div>
         </div>
       </section>
 
-      {/* === Section 2: About Me Snippet === */}
-      <section className="about-snippet-section" id="about-me">
+      {/* ===== SKILLS SECTION (ID: skills) ===== */}
+      <section className="section" id="skills">
         <div className="container">
-          <h2>A Bit More About Me</h2>
-          <div className="about-content">
-            {/* Use RenderMarkdown for paragraphs */}
-            <RenderMarkdown className="" text={aboutPara1} />
-            <RenderMarkdown className="" text={aboutPara2} />
-            {/* <Link href="/about" className="text-link">Learn More About My Journey →</Link> */}
+          <div className="section-header">
+            <div className="section-label"><i className="fas fa-tools"></i> Technical Arsenal</div>
+            <h2 className="section-title">Core Skills</h2>
           </div>
-        </div>
-      </section>
 
-      <hr className="break-section subtle" />
-
-      {/* === Section 3: Skills Highlights === */}
-      <section className="skills-highlight-section" id="skills">
-        <div className="container">
-          <h2>Core Skills & Technologies</h2>
-          {/* The skills grid structure looks fine */}
           <div className="skills-grid">
-            <div className="skill-category">
-              <h3 className="skill-category-title">Languages & Data</h3>
-              <TagList tags={['Python', 'Java', 'R', 'JavaScript/TS', 'C/C++', 'SQL', 'Bash', 'HTML/CSS']} />
+            <div className="skill-category fade-in">
+              <div className="skill-category-header">
+                <div className="skill-category-icon"><i className="fas fa-code"></i></div>
+                <h3 className="skill-category-title">Languages</h3>
+              </div>
+              <div className="skill-list">
+                <span className="skill-item"><i className="devicon-python-plain colored"></i> Python</span>
+                <span className="skill-item"><i className="fas fa-database"></i> SQL</span>
+                <span className="skill-item"><i className="devicon-javascript-plain colored"></i> JavaScript</span>
+                <span className="skill-item"><i className="devicon-java-plain colored"></i> Java</span>
+                <span className="skill-item"><i className="devicon-c-plain colored"></i> C</span>
+              </div>
             </div>
-            <div className="skill-category">
-              <h3 className="skill-category-title">Cloud, DevOps & SRE</h3>
-              <TagList
-                tags={[
-                  'AWS (EC2, S3, Lambda, etc)',
-                  'Docker',
-                  'Kubernetes',
-                  'Terraform (IaC)',
-                  'CI/CD (Jenkins, GitActions)',
-                  'Linux',
-                  'Serverless',
-                  'Monitoring Basics'
-                ]}
-              />
+
+            <div className="skill-category fade-in">
+              <div className="skill-category-header">
+                <div className="skill-category-icon"><i className="fas fa-stream"></i></div>
+                <h3 className="skill-category-title">Data Engineering</h3>
+              </div>
+              <div className="skill-list">
+                <span className="skill-item"><i className="devicon-apache-plain"></i> Spark</span>
+                <span className="skill-item"><i className="devicon-apachekafka-plain colored"></i> Kafka</span>
+                <span className="skill-item"><i className="fas fa-wind"></i> Airflow</span>
+                <span className="skill-item"><i className="fas fa-exchange-alt"></i> ETL</span>
+              </div>
             </div>
-            <div className="skill-category">
-              <h3 className="skill-category-title">Frameworks & Databases</h3>
-              <TagList
-                tags={[
-                  'React',
-                  'Next.js',
-                  'Node.js',
-                  'FastAPI/Flask',
-                  'Spring Boot',
-                  'PostgreSQL',
-                  'MongoDB',
-                  'Redis',
-                  'REST APIs',
-                  'GraphQL'
-                ]}
-              />
-            </div>
-            <div className="skill-category">
-              <h3 className="skill-category-title">Concepts & Methodologies</h3>
-              <TagList
-                tags={[
-                  'Data Structures',
-                  'Algorithms',
-                  'OOP/SOLID',
-                  'TDD',
-                  'Microservices',
-                  'ETL Pipelines',
-                  'Agile/Scrum',
-                  'System Design',
-                  'Bioinformatics Analysis',
-                  'AI/ML Fundamentals'
-                ]}
-              />
+
+            <div className="skill-category fade-in">
+              <div className="skill-category-header">
+                <div className="skill-category-icon"><i className="fas fa-cloud"></i></div>
+                <h3 className="skill-category-title">Cloud & DevOps</h3>
+              </div>
+              <div className="skill-list">
+                <span className="skill-item"><i className="devicon-amazonwebservices-plain-wordmark colored"></i> AWS</span>
+                <span className="skill-item"><i className="devicon-docker-plain colored"></i> Docker</span>
+                <span className="skill-item"><i className="devicon-kubernetes-plain colored"></i> Kubernetes</span>
+                <span className="skill-item"><i className="devicon-terraform-plain colored"></i> Terraform</span>
+              </div>
             </div>
           </div>
-          {/* <div style={{ textAlign: 'center', marginTop: '30px' }}>
-                 <Link href="/skills" className="text-link">See Full Technical Inventory →</Link>
-               </div> */}
         </div>
       </section>
 
-      <hr className="break-section subtle" />
-
-      {/* === Section 4: Experience Highlights === */}
-      <section className="experience-highlight-section">
-        {/* This section seems fine, just renders text */}
+      {/* ===== CONTACT SECTION (ID: contact) ===== */}
+      <section className="section" id="contact">
         <div className="container">
-          <h2>Recent Experience</h2>
-          <div className="experience-highlights-grid">
-            <div className="experience-highlight-item">
-              <h3 className="experience-highlight-title">Full Stack SWE @ Johns Hopkins</h3>
-              <p>
-                Architecting open-source bioinformatics platforms & engineering large-scale (750TB+) multi-omics data
-                pipelines on HPC/Cloud.
-              </p>
-            </div>
-            <div className="experience-highlight-item">
-              <h3 className="experience-highlight-title">Backend SWE Intern @ Outlier</h3>
-              <p>
-                Optimizing AI-generated code, refactoring APIs for microservices, and contributing to serverless
-                function deployment.
-              </p>
+          <div className="contact-cta fade-in">
+            <h3>Let's Build Something Amazing</h3>
+            <p>I'm actively seeking opportunities in platform engineering and data infrastructure.</p>
+            <div className="btn-group" style={{ justifyContent: 'center' }}>
+              <a href="mailto:hossain.sabbir17@gmail.com" className="btn btn-primary">
+                <i className="fas fa-envelope"></i> Send Email
+              </a>
+              <a href="https://linkedin.com/in/itssabbir" className="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-linkedin-in"></i> LinkedIn
+              </a>
             </div>
           </div>
-          <div style={{ textAlign: 'center', marginTop: '30px' }}>
-            <Link href="/experiences" className="text-link">
-              View Detailed Experience Timeline →
-            </Link>
-          </div>
         </div>
       </section>
-
-      <hr className="break-section subtle" />
-
-      {/* === Section 5: Featured Projects === */}
-      <section className="featured-projects-section" id="featured-projects">
-        <div className="container">
-          <h2>Featured Projects</h2>
-          <div className="projects-grid">
-            {featuredProjects.map((project, index) => (
-              // The structure inside this map looks correct
-              <article key={index} className="project-card">
-                <div className="project-image-placeholder">
-                  {/* Use Next/Image for consistency/optimization if desired, but standard img is fine here */}
-                  <img
-                    src={project.imageUrl || '/placeholder-project-default.png'}
-                    alt={`${project.title} screenshot`}
-                  />
-                </div>
-                <div className="project-card-content">
-                  <h3 className="project-title">{project.title}</h3>
-                  {/* Use RenderMarkdown if project descriptions might use bold syntax */}
-                  <RenderMarkdown className="project-description" text={project.description} />
-                  <TagList caption="Key Tech:" tags={project.tags} />
-                  <div className="project-links">
-                    {project.repoUrl && <ExternalLink href={project.repoUrl} text="View Code" />}
-                    {project.repoUrl && project.liveUrl && <span style={{ margin: '0 5px' }}>|</span>}
-                    {project.liveUrl && <ExternalLink href={project.liveUrl} text="Live Demo" />}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-          {/* <div style={{ textAlign: 'center', marginTop: '30px' }}>
-               <Link href="/projects" className="text-link">Explore All Projects →</Link>
-            </div> */}
-        </div>
-      </section>
-
-      <hr className="break-section subtle" />
-
-      {/* === Section 6: Call to Action / Seeking === */}
-      <section className="seeking-section" id="connect">
-        <div className="container">
-          <h2>Let&apos;s Build Something Impactful!</h2>
-          {/* Use RenderMarkdown for paragraphs */}
-          <RenderMarkdown className="" text={seekingPara1} />
-          <RenderMarkdown className="" text={seekingPara2} />
-          <div className="cta-wrapper" style={{ justifyContent: 'center', marginTop: '30px' }}>
-            <a href="mailto:hossain.sabbir17@gmail.com" className="cta">
-              Contact via Email
-            </a>
-            {/* Ensure this PDF name EXACTLY matches the file in /public */}
-            <a href={'/1SabbirHossain.pdf'} target="_blank" rel="noopener noreferrer" className="cta cta-secondary">
-              View Resume (PDF)
-            </a>
-            <a
-              href="https://linkedin.com/in/itssabbir"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cta cta-secondary">
-              Connect on LinkedIn
-            </a>
-          </div>
-        </div>
-      </section>
-    </>
+    </Layout>
   );
-};
-
-export default Home;
+}
