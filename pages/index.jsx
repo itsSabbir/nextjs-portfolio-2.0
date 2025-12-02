@@ -143,7 +143,7 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <div className="stats-grid">
-            <StatCard icon="💼" value="2024" label="Joined Bell Canada" />
+            <StatCard icon="💼" value="2025" label="Joined Bell Canada" />
             <StatCard icon="🎓" value="2024" label="UofT Graduate" />
             <StatCard icon="⭐" value="3.96" label="Major GPA" />
             <StatCard icon="📈" value="800%" label="Data Coverage ↑" />
