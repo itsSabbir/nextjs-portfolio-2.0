@@ -178,11 +178,11 @@ export default function Home() {
                 </div>
                 <div className="tldr-content">
                   <ul>
-                    <li>Data Engineer at Bell Canada (NTS Platform)</li>
+                    <li>Data Engineer at Bell Canada (Data Engineering & Artificial Intelligence Team)</li>
                     <li>UofT Graduate (3.96 Major GPA) in Bioinformatics & CS</li>
                     <li>Expanded data coverage by 800%, optimized queries by 83%</li>
                     <li>Expert in Python, SQL, distributed systems, cloud platforms</li>
-                    <li>Open to Staff/Principal-level platform engineering roles</li>
+                    <li>Open to all Data, Software and Platform Engineering roles</li>
                   </ul>
                 </div>
               </div>
