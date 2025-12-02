@@ -1,11 +1,8 @@
 // --- pages/index.jsx ---
 import React, { useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import Layout from '../components/Layout';
+import Head from 'next/head';
 import ProjectCard from '../components/ProjectCard';
 import StatCard from '../components/StatCard';
-import TagList from '../components/TagList';
 
 export default function Home() {
   
@@ -30,7 +27,13 @@ export default function Home() {
   }, []);
 
   return (
-    <Layout>
+    <>
+      <Head>
+        <title>Sabbir Hossain | Data Engineer & Platform Architect</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Portfolio of Sabbir Hossain, Data Engineer & Platform Architect at Bell Canada." />
+      </Head>
+
       {/* ===== HERO SECTION (ID: home) ===== */}
       <section className="hero" id="home">
         <div className="container">
@@ -128,6 +131,9 @@ export default function Home() {
               <a href="mailto:hossain.sabbir17@gmail.com" className="social-link" title="Email">
                 <i className="fas fa-envelope"></i>
               </a>
+              <a href="/1SabbirHossain.pdf" className="social-link" title="Resume" target="_blank" rel="noopener noreferrer">
+                <i className="fas fa-file-alt"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -160,6 +166,7 @@ export default function Home() {
 
           <div className="about-grid">
             <div className="about-image fade-in">
+              {/* Ensure profile_pic.jpeg exists in /public */}
               <img src="/profile_pic.jpeg" alt="Sabbir Hossain" className="profile-img" />
             </div>
 
@@ -191,6 +198,11 @@ export default function Home() {
                 enterprise-scale data infrastructure. I'm passionate about platform engineering, distributed systems, 
                 and creating elegant solutions to complex technical problems.
               </p>
+              <p>
+                When I'm not architecting data pipelines, you'll find me exploring the intersections of mathematics, 
+                computer science, and the universe's mysteries—from philosophical depth to the elegance 
+                of algorithms and the wonder of space exploration.
+              </p>
             </div>
           </div>
 
@@ -205,6 +217,8 @@ export default function Home() {
               <div className="interest-tile"><span className="interest-icon">🛹</span><div className="interest-label">Longboarding</div></div>
               <div className="interest-tile"><span className="interest-icon">📚</span><div className="interest-label">Reading</div></div>
               <div className="interest-tile"><span className="interest-icon">🎮</span><div className="interest-label">Gaming</div></div>
+              <div className="interest-tile"><span className="interest-icon">🏃</span><div className="interest-label">Fitness</div></div>
+              <div className="interest-tile"><span className="interest-icon">🎵</span><div className="interest-label">Music</div></div>
             </div>
           </div>
         </div>
@@ -428,6 +442,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </Layout>
+    </>
   );
 }
