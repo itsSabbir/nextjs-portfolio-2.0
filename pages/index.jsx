@@ -360,7 +360,11 @@ export default function Home() {
               <StatCard 
                 icon={<i className="fas fa-fire" style={{ color: '#e25822' }}></i>}
                 value={`${streak}`} 
-                label="Current Streak" 
+                label={
+                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                    <i className="fab fa-github" style={{ fontSize: '1.1em' }}></i> GitHub Streak
+                  </span>
+                } 
               />
             </div>
           </div>
