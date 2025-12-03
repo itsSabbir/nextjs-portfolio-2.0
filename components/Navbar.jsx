@@ -5,22 +5,17 @@ import React, { useState } from 'react';
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
-  // One-page navigation links
   const navs = [
-    { text: 'Home', href: '#home', icon: 'fas fa-home' },
-    { text: 'About', href: '#about', icon: 'fas fa-user' },
-    { text: 'Experience', href: '#experience', icon: 'fas fa-briefcase' },
-    { text: 'Projects', href: '#projects', icon: 'fas fa-code' },
-    { text: 'Skills', href: '#skills', icon: 'fas fa-cogs' },
-    { text: 'Contact', href: '#contact', icon: 'fas fa-envelope' },
+    { text: 'Home', href: '/', icon: 'fas fa-home' },
+    { text: 'About', href: '/#about', icon: 'fas fa-user' },
+    // Updated to point to the detailed experiences page
+    { text: 'Experience', href: '/experiences', icon: 'fas fa-briefcase' },
+    { text: 'Projects', href: '/#projects', icon: 'fas fa-code' },
+    { text: 'Skills', href: '/#skills', icon: 'fas fa-cogs' },
+    { text: 'Contact', href: '/#contact', icon: 'fas fa-envelope' },
   ];
 
   return (
@@ -31,7 +26,6 @@ function Navbar() {
           <span className="logo-text">Sabbir Hossain</span>
         </Link>
 
-        {/* Mobile Menu Button */}
         <button 
           className="mobile-menu-btn" 
           onClick={toggleMobileMenu}
@@ -40,7 +34,6 @@ function Navbar() {
           <i className={`fas ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
         </button>
 
-        {/* Navigation Links */}
         <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
           {navs.map((nav) => (
             <li key={nav.text}>
