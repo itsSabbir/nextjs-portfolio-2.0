@@ -1,5 +1,5 @@
 // --- pages/index.jsx ---
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 // import Layout from '../components/Layout'; // REMOVED to prevent double header/footer
@@ -7,8 +7,45 @@ import ProjectCard from '../components/ProjectCard';
 import StatCard from '../components/StatCard';
 
 export default function Home() {
+  const [experience, setExperience] = useState({ research: "0.0", industry: "0.0" });
   
-  // Fade-in Animation Logic
+  // Advanced Experience Calculation
+  useEffect(() => {
+    const calculateDuration = (startDate, isOngoing = true) => {
+      const start = new Date(startDate);
+      const end = new Date(); // Always now for ongoing
+      
+      const diffTime = Math.abs(end - start);
+      const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25); 
+      return diffYears.toFixed(1); // Returns "5.5", "0.5", etc.
+    };
+
+    // 1. Research/Part-time (Sept 2019 - Present)
+    // You mentioned JHU is still ongoing part-time
+    const researchYears = calculateDuration('2019-09-01');
+
+    // 2. Industry/Full-time (June 2025 - Present)
+    // Note: Since June 2025 is in the future relative to "now" (2024), 
+    // this logic handles pre-start dates gracefully by showing 0.0 or small decimals.
+    // Assuming you want to show it as "Starting soon" or the calculated time if date passed.
+    const industryStart = new Date('2025-06-01');
+    const now = new Date();
+    let industryDisplay = "0.0";
+    
+    if (now >= industryStart) {
+      industryDisplay = calculateDuration('2025-06-01');
+    } else {
+      // If start date is in future, maybe show "Incoming" or 0
+      industryDisplay = "0.0"; 
+    }
+    
+    setExperience({ 
+      research: researchYears, 
+      industry: industryDisplay 
+    });
+  }, []);
+
+  // Fade-in Animation
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
@@ -28,6 +65,14 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+  // Custom Theme for GitHub Stats to match website transparently
+  // bg_color=00000000 (Transparent)
+  // title_color=ae0001 (Gryffindor Red)
+  // text_color=a8b2d1 (Muted Blue/Grey)
+  // icon_color=d4af37 (Gold)
+  // border_color=172a45 (Light Navy border)
+  const ghThemeParams = "&bg_color=00000000&title_color=ae0001&text_color=a8b2d1&icon_color=d4af37&border_color=172a45&hide_border=false";
+
   return (
     <>
       <Head>
@@ -36,12 +81,14 @@ export default function Home() {
         <meta name="description" content="Portfolio of Sabbir Hossain, Data Engineer & Platform Architect at Bell Canada." />
       </Head>
 
-      {/* ===== HERO & INTRO SECTION ===== */}
+      {/* ========================================= */}
+      {/* 1. INTRO (Hero)                           */}
+      {/* ========================================= */}
       <section className="hero" id="home" style={{ paddingTop: '120px', paddingBottom: '60px', textAlign: 'center' }}>
         <div className="container">
           <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             
-            {/* 1. Profile Picture (Center Stage) */}
+            {/* Profile Picture */}
             <div className="hero-image-wrapper fade-in" style={{ marginBottom: '2rem' }}>
               <img 
                 src="/profile_pic.jpeg" 
@@ -57,26 +104,26 @@ export default function Home() {
               />
             </div>
 
-            {/* 2. Greeting & Name */}
+            {/* Greeting */}
             <div className="hero-greeting fade-in" style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>
               <i className="fas fa-hand-sparkles" style={{ color: 'var(--accent-secondary)' }}></i> Hi, I&apos;m
             </div>
 
             <h1 className="hero-title fade-in" style={{ 
               marginBottom: '1rem', 
-              fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', // Responsive font size
+              fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', 
               lineHeight: '1.1'
             }}>
               <span className="gradient-text">Sabbir Hossain</span>
             </h1>
 
-            {/* 3. Subtitle */}
+            {/* Subtitle */}
             <p className="hero-subtitle fade-in" style={{ maxWidth: '800px', margin: '0 auto 2rem auto', fontSize: '1.2rem' }}>
               <span className="highlight">Data Engineer</span> & <span className="highlight">Platform Architect</span> building scalable data infrastructure at Bell Canada. 
               <br className="mobile-only" /> Passionate about distributed systems, platform engineering, and solving complex data challenges.
             </p>
 
-            {/* 4. Badges (Centered) */}
+            {/* Badges */}
             <div className="hero-badges fade-in" style={{ justifyContent: 'center', marginBottom: '2.5rem' }}>
               <div className="hero-badge availability">
                 <div className="status-dot"></div>
@@ -92,7 +139,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 5. CTA Buttons */}
+            {/* CTA Buttons */}
             <div className="btn-group fade-in" style={{ justifyContent: 'center', marginBottom: '2rem' }}>
               <a href="#contact" className="btn btn-primary">
                 <i className="fas fa-paper-plane"></i>
@@ -104,7 +151,7 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* 6. Social Links */}
+            {/* Social Links */}
             <div className="social-links fade-in" style={{ justifyContent: 'center' }}>
               <a href="https://github.com/itssabbir" className="social-link" target="_blank" rel="noopener noreferrer" title="GitHub">
                 <i className="fab fa-github"></i>
@@ -123,7 +170,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== ABOUT & TLDR SECTION ===== */}
+      {/* ========================================= */}
+      {/* 2. WHO I AM (About + TLDR)                */}
+      {/* ========================================= */}
       <section className="section" id="about" style={{ paddingTop: '0' }}>
         <div className="container">
           <div className="section-header fade-in">
@@ -131,8 +180,24 @@ export default function Home() {
           </div>
 
           <div className="about-content fade-in" style={{ maxWidth: '900px', margin: '0 auto' }}>
-            {/* TLDR Box - Centered */}
-            <div className="tldr-box" style={{ marginBottom: '3rem' }}>
+            
+            {/* Bio Text */}
+            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+              <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-secondary)' }}>Building the Future of Data Infrastructure</h3>
+              <p style={{ margin: '0 auto 1.5rem auto', maxWidth: '800px', textAlign: 'left' }}>
+                I&apos;m a Data Engineer at Bell Canada, where I architect and productionize mission-critical data pipelines 
+                on the Network Ticket Service (NTS) Platform. With a background in computational biology and bioinformatics 
+                from the University of Toronto, I bring a unique perspective to data engineering challenges.
+              </p>
+              <p style={{ margin: '0 auto 1.5rem auto', maxWidth: '800px', textAlign: 'left' }}>
+                My journey spans from working with massive genomics datasets (750+ TB) in research to building 
+                enterprise-scale data infrastructure. I&apos;m passionate about platform engineering, distributed systems, 
+                and creating elegant solutions to complex technical problems.
+              </p>
+            </div>
+
+            {/* TLDR Box */}
+            <div className="tldr-box" style={{ marginBottom: '2rem' }}>
               <div className="tldr-header" style={{ justifyContent: 'center' }}>
                 <i className="fas fa-bolt"></i>
                 <h4>TL;DR</h4>
@@ -148,40 +213,167 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Bio Text */}
-            <div style={{ textAlign: 'center' }}>
-              <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-secondary)' }}>Building the Future of Data Infrastructure</h3>
-              <p style={{ margin: '0 auto 1.5rem auto', maxWidth: '800px', textAlign: 'left' }}>
-                I&apos;m a Data Engineer at Bell Canada, where I architect and productionize mission-critical data pipelines 
-                on the Network Ticket Service (NTS) Platform. With a background in computational biology and bioinformatics 
-                from the University of Toronto, I bring a unique perspective to data engineering challenges.
-              </p>
-              <p style={{ margin: '0 auto 1.5rem auto', maxWidth: '800px', textAlign: 'left' }}>
-                My journey spans from working with massive genomics datasets (750+ TB) in research to building 
-                enterprise-scale data infrastructure. I&apos;m passionate about platform engineering, distributed systems, 
-                and creating elegant solutions to complex technical problems.
-              </p>
-            </div>
-          </div>
+            {/* Work Authorization Cards */}
+            <div className="work-auth-container fade-in" style={{ marginBottom: '3rem' }}>
+              <div className="work-auth-card">
+                <div className="work-auth-header">
+                  <span className="flag-emoji">🇨🇦</span>
+                  <div className="work-auth-info">
+                    <h3>Canada</h3>
+                    <div className="work-auth-subtitle">Current Location</div>
+                  </div>
+                </div>
+                <div className="work-auth-details">
+                  <div className="work-auth-item">
+                    <i className="fas fa-check-circle"></i>
+                    <span>Authorized to work (No sponsorship needed)</span>
+                  </div>
+                  <div className="work-auth-item">
+                    <i className="fas fa-check-circle"></i>
+                    <span>Based in Toronto, ON</span>
+                  </div>
+                </div>
+              </div>
 
-          {/* Interests Grid */}
-          <div className="interests-section fade-in" style={{ marginTop: '4rem' }}>
-            <h3><i className="fas fa-heart"></i> What I Love</h3>
-            <div className="interests-grid" style={{ maxWidth: '900px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '1rem' }}>
-              <div className="interest-tile"><span className="interest-icon">∞</span><div className="interest-label">Mathematics</div></div>
-              <div className="interest-tile"><span className="interest-icon">💻</span><div className="interest-label">Coding</div></div>
-              <div className="interest-tile"><span className="interest-icon">🚀</span><div className="interest-label">Space</div></div>
-              <div className="interest-tile"><span className="interest-icon">🧬</span><div className="interest-label">Bioinformatics</div></div>
-              <div className="interest-tile"><span className="interest-icon">🍳</span><div className="interest-label">Cooking</div></div>
-              <div className="interest-tile"><span className="interest-icon">📚</span><div className="interest-label">Reading</div></div>
-              <div className="interest-tile"><span className="interest-icon">🎮</span><div className="interest-label">Gaming</div></div>
-              <div className="interest-tile"><span className="interest-icon">🏃</span><div className="interest-label">Fitness</div></div>
+              <div className="work-auth-card">
+                <div className="work-auth-header">
+                  <span className="flag-emoji">🇺🇸</span>
+                  <div className="work-auth-info">
+                    <h3>United States</h3>
+                    <div className="work-auth-subtitle">Open to Relocation</div>
+                  </div>
+                </div>
+                <div className="work-auth-details">
+                  <div className="work-auth-item">
+                    <i className="fas fa-check-circle"></i>
+                    <span>TN Visa eligible (No sponsorship required)</span>
+                  </div>
+                  <div className="work-auth-item">
+                    <i className="fas fa-check-circle"></i>
+                    <span>Open to H-1B / Green Card sponsorship</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Interests Grid - Centered & Aligned */}
+            <div className="interests-section fade-in" style={{ marginTop: '4rem', textAlign: 'center' }}>
+              <h3><i className="fas fa-heart"></i> What I Love</h3>
+              <div className="interests-grid" style={{ 
+                maxWidth: '900px', 
+                margin: '0 auto', 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', 
+                gap: '1rem',
+                justifyItems: 'center' // Force tiles to center in their columns
+              }}>
+                {[
+                  { icon: "🧠", label: "Learning" },
+                  { icon: "∞", label: "Mathematics" },
+                  { icon: "💻", label: "Coding" },
+                  { icon: "🚀", label: "Space" },
+                  { icon: "🧬", label: "Bioinformatics" }, // Long word will now center
+                  { icon: "🤝", label: "Mentoring" },
+                  { icon: "🍳", label: "Cooking" },
+                  { icon: "📚", label: "Reading" },
+                  { icon: "🎮", label: "Gaming" },
+                  { icon: "🏃", label: "Fitness" }
+                ].map((item, index) => (
+                  <div key={index} className="interest-tile" style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '1.5rem 0.5rem', // Reduced side padding for long words
+                    width: '100%', // Ensure full width usage
+                    height: '100%'
+                  }}>
+                    <span className="interest-icon">{item.icon}</span>
+                    <div className="interest-label" style={{ 
+                      marginTop: '0.5rem',
+                      wordBreak: 'break-word', // Handle extremely long words
+                      hyphens: 'auto'
+                    }}>{item.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== EXPERIENCE HIGHLIGHTS SECTION ===== */}
+      {/* ========================================= */}
+      {/* 3. IMPACT & ACTIVITY (Stats)              */}
+      {/* ========================================= */}
+      <section className="section" style={{ paddingTop: '0', paddingBottom: '3rem' }}>
+        <div className="container">
+          <div className="section-header fade-in">
+            <h2 className="section-title">Impact & Activity</h2>
+          </div>
+
+          <div className="stats-grid fade-in" style={{ marginBottom: '3rem' }}>
+            {/* Stat 1: Research Experience */}
+            <StatCard 
+              icon="🔬" 
+              value={`${experience.research} Yrs`} 
+              label="Research & Dev" 
+            />
+            {/* Stat 2: High Volume Data */}
+            <StatCard 
+              icon="💾" 
+              value="750+ TB" 
+              label="Data Processed" 
+            />
+            {/* Stat 3: Performance Optimization */}
+            <StatCard 
+              icon="⚡" 
+              value="83%" 
+              label="Faster Queries" 
+            />
+            {/* Stat 4: Academic Excellence */}
+            <StatCard 
+              icon="🎓" 
+              value="3.96" 
+              label="Major GPA" 
+            />
+          </div>
+
+          {/* GitHub Activity Visuals - Themed to match website */}
+          <div className="fade-in" style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            gap: '1.5rem', 
+            flexWrap: 'wrap',
+            marginTop: '2rem'
+          }}>
+            {/* Streak Stats */}
+            <img 
+              src={`https://github-readme-streak-stats-eight-dun.vercel.app/?user=itsSabbir&count_private=true${ghThemeParams}`} 
+              alt="Sabbir's GitHub Streak" 
+              style={{ height: '180px', borderRadius: '4px', maxWidth: '100%', objectFit: 'contain' }}
+            />
+            
+            {/* General Stats */}
+            <img 
+              src={`https://sabbir-gh-stats.vercel.app/api?username=itsSabbir&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&locale=en${ghThemeParams}`} 
+              alt="Sabbir's GitHub Stats"
+              style={{ height: '180px', borderRadius: '4px', maxWidth: '100%', objectFit: 'contain' }} 
+            />
+            
+            {/* Top Languages */}
+            <img 
+              src={`https://sabbir-gh-stats.vercel.app/api/top-langs?username=itsSabbir&locale=en&hide_title=false&layout=compact&langs_count=8&count_private=true${ghThemeParams}`} 
+              alt="Top Languages"
+              style={{ height: '180px', borderRadius: '4px', maxWidth: '100%', objectFit: 'contain' }} 
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================= */}
+      {/* 4. EXPERIENCE HIGHLIGHTS                  */}
+      {/* ========================================= */}
       <section className="section" id="experience_preview">
         <div className="container">
           <div className="section-header">
@@ -230,7 +422,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* UofT Highlight (Replaces Outlier) */}
+            {/* UofT Highlight */}
             <div className="timeline-item fade-in">
               <div className="timeline-header">
                 <div>
@@ -251,7 +443,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== PROJECTS SECTION ===== */}
+      {/* ========================================= */}
+      {/* 5. PROJECTS SECTION                       */}
+      {/* ========================================= */}
       <section className="section" id="projects">
         <div className="container">
           <div className="section-header">
@@ -284,7 +478,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== CONTACT SECTION ===== */}
+      {/* ========================================= */}
+      {/* 6. CONTACT SECTION                        */}
+      {/* ========================================= */}
       <section className="section" id="contact">
         <div className="container">
           <div className="contact-cta fade-in">

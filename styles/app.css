@@ -1166,7 +1166,7 @@ nav a:hover::after {
 
 .work-auth-item {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     gap: var(--space-sm);
     color: var(--text-secondary);
     font-size: 0.9rem;
@@ -1204,7 +1204,7 @@ nav a:hover::after {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-3xl);
-    align-items: start;
+    align-items: flex-start;
     margin-bottom: var(--space-2xl);
 }
 
@@ -1402,7 +1402,7 @@ nav a:hover::after {
 .timeline-header {
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     margin-bottom: var(--space-md);
     flex-wrap: wrap;
     gap: var(--space-md);
@@ -1716,7 +1716,7 @@ nav a:hover::after {
 
 .contact-item {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     gap: var(--space-md);
     padding: var(--space-lg);
     background: rgba(255, 255, 255, 0.02);

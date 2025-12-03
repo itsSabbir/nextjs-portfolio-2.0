@@ -225,10 +225,4 @@ ProjectCard.propTypes = {
   className: PropTypes.string,
 };
 
-ProjectCard.defaultProps = {
-  tags: [],
-  links: {},
-  className: '',
-};
-
 export default ProjectCard;
