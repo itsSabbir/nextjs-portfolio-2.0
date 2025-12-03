@@ -22,9 +22,6 @@ const StatCard = ({ icon, value, label, className = '' }) => {
         textAlign: 'center',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease'
       }}
-      // Add hover effect via JS or rely on CSS class if it exists. 
-      // The .stat-card class in app.css handles basic layout, 
-      // but these inline styles ensure the "Glass" look matches the new cards.
     >
       <div className="stat-icon" style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>
         {icon}
@@ -59,7 +56,11 @@ StatCard.propTypes = {
     PropTypes.element,
   ]).isRequired,
   value: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  // Updated to accept Node (for icons) or String
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]).isRequired,
   className: PropTypes.string,
 };
 

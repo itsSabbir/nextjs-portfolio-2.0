@@ -158,9 +158,9 @@ const AnimatedBackground = () => {
 
   // Initialize symbols
   const initSymbols = useCallback((width, height) => {
-    // Increased density: reduced divisor from 40000 to 5000
+    // Increased density: reduced divisor from 40000 to 5000 (reverted back to original)
     // This creates significantly MORE particles per pixel area
-    const densityDivisor = 5000; 
+    const densityDivisor = 40000; 
     const calculatedCount = Math.floor((width * height) / densityDivisor);
     
     // Increased max cap to 50 (was 35) to allow for the "more" request

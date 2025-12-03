@@ -8,41 +8,61 @@ import StatCard from '../components/StatCard';
 
 export default function Home() {
   const [experience, setExperience] = useState({ research: "0.0", industry: "0.0" });
+  const [streak, setStreak] = useState(0);
   
-  // Advanced Experience Calculation
+  // Experience & Streak Calculations
   useEffect(() => {
-    const calculateDuration = (startDate, isOngoing = true) => {
+    // Updated helper to accept an optional endDate (defaults to now)
+    const calculateDuration = (startDate, endDate = new Date()) => {
       const start = new Date(startDate);
-      const end = new Date(); // Always now for ongoing
+      const end = endDate;
+      // Ensure we don't get negative time if start is in the future
+      if (start > end) return 0;
       
       const diffTime = Math.abs(end - start);
       const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25); 
-      return diffYears.toFixed(1); // Returns "5.5", "0.5", etc.
+      return diffYears;
     };
 
-    // 1. Research/Part-time (Sept 2019 - Present)
-    // You mentioned JHU is still ongoing part-time
-    const researchYears = calculateDuration('2019-09-01');
-
-    // 2. Industry/Full-time (June 2025 - Present)
-    // Note: Since June 2025 is in the future relative to "now" (2024), 
-    // this logic handles pre-start dates gracefully by showing 0.0 or small decimals.
-    // Assuming you want to show it as "Starting soon" or the calculated time if date passed.
-    const industryStart = new Date('2025-06-01');
     const now = new Date();
-    let industryDisplay = "0.0";
+
+    // 1. Research/Part-time (Sept 1, 2019 - May 31, 2025)
+    // "everything for the experience prior to 2025 may is part time"
+    const researchStart = '2019-09-01';
+    const partTimeCap = new Date('2025-05-31');
     
+    // If today is BEFORE the cap, count to today. If AFTER, cap it at May 2025.
+    const researchEndDate = now < partTimeCap ? now : partTimeCap;
+    const researchYears = calculateDuration(researchStart, researchEndDate);
+
+    // 2. Industry/Full-time (June 1, 2025 - Present)
+    // "anything after 2025 may can be considered full time"
+    const industryStartStr = '2025-06-01';
+    const industryStart = new Date(industryStartStr);
+    
+    let industryYears = 0;
     if (now >= industryStart) {
-      industryDisplay = calculateDuration('2025-06-01');
-    } else {
-      // If start date is in future, maybe show "Incoming" or 0
-      industryDisplay = "0.0"; 
+      industryYears = calculateDuration(industryStartStr, now);
     }
-    
+
+    // Update Experience State
     setExperience({ 
-      research: researchYears, 
-      industry: industryDisplay 
+      research: researchYears.toFixed(1), 
+      industry: industryYears.toFixed(1) 
     });
+    
+    // 3. Streak Calculation (May 16, 2024 - Present)
+    const streakStart = new Date('2024-05-16');
+    
+    // Reset hours to ensure full day calculation matches standard expectations
+    streakStart.setHours(0, 0, 0, 0);
+    now.setHours(0, 0, 0, 0);
+    
+    const diffTime = now - streakStart;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    
+    // Ensure we don't show negative days if system time is wonky
+    setStreak(Math.max(0, diffDays));
   }, []);
 
   // Fade-in Animation
@@ -64,14 +84,6 @@ export default function Home() {
 
     return () => observer.disconnect();
   }, []);
-
-  // Custom Theme for GitHub Stats to match website transparently
-  // bg_color=00000000 (Transparent)
-  // title_color=ae0001 (Gryffindor Red)
-  // text_color=a8b2d1 (Muted Blue/Grey)
-  // icon_color=d4af37 (Gold)
-  // border_color=172a45 (Light Navy border)
-  const ghThemeParams = "&bg_color=00000000&title_color=ae0001&text_color=a8b2d1&icon_color=d4af37&border_color=172a45&hide_border=false";
 
   return (
     <>
@@ -338,35 +350,19 @@ export default function Home() {
             />
           </div>
 
-          {/* GitHub Activity Visuals - Themed to match website */}
+          {/* Manual GitHub Streak Card */}
           <div className="fade-in" style={{ 
             display: 'flex', 
             justifyContent: 'center', 
-            alignItems: 'center', 
-            gap: '1.5rem', 
-            flexWrap: 'wrap',
-            marginTop: '2rem'
+            marginTop: '2rem' 
           }}>
-            {/* Streak Stats */}
-            <img 
-              src={`https://github-readme-streak-stats-eight-dun.vercel.app/?user=itsSabbir&count_private=true${ghThemeParams}`} 
-              alt="Sabbir's GitHub Streak" 
-              style={{ height: '180px', borderRadius: '4px', maxWidth: '100%', objectFit: 'contain' }}
-            />
-            
-            {/* General Stats */}
-            <img 
-              src={`https://sabbir-gh-stats.vercel.app/api?username=itsSabbir&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&locale=en${ghThemeParams}`} 
-              alt="Sabbir's GitHub Stats"
-              style={{ height: '180px', borderRadius: '4px', maxWidth: '100%', objectFit: 'contain' }} 
-            />
-            
-            {/* Top Languages */}
-            <img 
-              src={`https://sabbir-gh-stats.vercel.app/api/top-langs?username=itsSabbir&locale=en&hide_title=false&layout=compact&langs_count=8&count_private=true${ghThemeParams}`} 
-              alt="Top Languages"
-              style={{ height: '180px', borderRadius: '4px', maxWidth: '100%', objectFit: 'contain' }} 
-            />
+            <div style={{ maxWidth: '300px', width: '100%' }}>
+              <StatCard 
+                icon={<i className="fas fa-fire" style={{ color: '#e25822' }}></i>}
+                value={`${streak}`} 
+                label="Current Streak" 
+              />
+            </div>
           </div>
         </div>
       </section>
