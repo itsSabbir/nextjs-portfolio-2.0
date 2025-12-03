@@ -98,7 +98,16 @@ export default function Home() {
       {/* ========================================= */}
       <section className="hero" id="home" style={{ paddingTop: '120px', paddingBottom: '60px', textAlign: 'center' }}>
         <div className="container">
-          <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          {/* FIX APPLIED: Added 'margin: 0 auto' and 'width: 100%' 
+             This fixes the issue where the entire content block was stuck to the left on wide screens.
+          */}
+          <div className="hero-content" style={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center', 
+            width: '100%', 
+            margin: '0 auto' 
+          }}>
             
             {/* Profile Picture */}
             <div className="hero-image-wrapper fade-in" style={{ marginBottom: '2rem' }}>
@@ -116,9 +125,17 @@ export default function Home() {
               />
             </div>
 
-            {/* Greeting */}
-            <div className="hero-greeting fade-in" style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>
-              <i className="fas fa-hand-sparkles" style={{ color: 'var(--accent-secondary)' }}></i> Hi, I&apos;m
+            {/* FIX APPLIED: Flexbox centering for Icon + Text to fix baseline issues */}
+            <div className="hero-greeting fade-in" style={{ 
+              fontSize: '1.5rem', 
+              marginBottom: '0.5rem',
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              gap: '10px'
+            }}>
+              <i className="fas fa-hand-sparkles" style={{ color: 'var(--accent-secondary)' }}></i> 
+              <span>Hi, I&apos;m</span>
             </div>
 
             <h1 className="hero-title fade-in" style={{ 
@@ -135,8 +152,15 @@ export default function Home() {
               <br className="mobile-only" /> Passionate about distributed systems, platform engineering, and solving complex data challenges.
             </p>
 
-            {/* Badges */}
-            <div className="hero-badges fade-in" style={{ justifyContent: 'center', marginBottom: '2.5rem' }}>
+            {/* FIX APPLIED: Explicit flex properties to ensure badges are perfectly centered */}
+            <div className="hero-badges fade-in" style={{ 
+              display: 'flex', 
+              justifyContent: 'center', 
+              flexWrap: 'wrap', 
+              gap: '10px', 
+              marginBottom: '2.5rem',
+              width: '100%' 
+            }}>
               <div className="hero-badge availability">
                 <div className="status-dot"></div>
                 <span>Available for Hire</span>
@@ -208,8 +232,11 @@ export default function Home() {
               </p>
             </div>
 
-            {/* TLDR Box */}
-            <div className="tldr-box" style={{ marginBottom: '2rem' }}>
+            {/* TLDR Box 
+               FIX APPLIED: Added textAlign: 'center' to the container.
+               This forces the `inline-block` UL inside to center itself within the box.
+            */}
+            <div className="tldr-box" style={{ marginBottom: '2rem', textAlign: 'center' }}>
               <div className="tldr-header" style={{ justifyContent: 'center' }}>
                 <i className="fas fa-bolt"></i>
                 <h4>TL;DR</h4>
