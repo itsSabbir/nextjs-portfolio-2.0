@@ -98,9 +98,7 @@ export default function Home() {
       {/* ========================================= */}
       <section className="hero" id="home" style={{ paddingTop: '120px', paddingBottom: '60px', textAlign: 'center' }}>
         <div className="container">
-          {/* FIX APPLIED: Added 'margin: 0 auto' and 'width: 100%' 
-             This fixes the issue where the entire content block was stuck to the left on wide screens.
-          */}
+          {/* FIX: 'margin: 0 auto' forces the 900px box to the center of the 1200px container */}
           <div className="hero-content" style={{ 
             display: 'flex', 
             flexDirection: 'column', 
@@ -125,17 +123,18 @@ export default function Home() {
               />
             </div>
 
-            {/* FIX APPLIED: Flexbox centering for Icon + Text to fix baseline issues */}
+            {/* FIX: Greeting with Matching Emojis and Flex Centering */}
             <div className="hero-greeting fade-in" style={{ 
               fontSize: '1.5rem', 
               marginBottom: '0.5rem',
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
               gap: '10px'
             }}>
               <i className="fas fa-hand-sparkles" style={{ color: 'var(--accent-secondary)' }}></i> 
               <span>Hi, I&apos;m</span>
+              <i className="fas fa-hand-sparkles" style={{ color: 'var(--accent-secondary)' }}></i> 
             </div>
 
             <h1 className="hero-title fade-in" style={{ 
@@ -152,7 +151,7 @@ export default function Home() {
               <br className="mobile-only" /> Passionate about distributed systems, platform engineering, and solving complex data challenges.
             </p>
 
-            {/* FIX APPLIED: Explicit flex properties to ensure badges are perfectly centered */}
+            {/* FIX: Badges Flex Container */}
             <div className="hero-badges fade-in" style={{ 
               display: 'flex', 
               justifyContent: 'center', 
@@ -232,14 +231,18 @@ export default function Home() {
               </p>
             </div>
 
-            {/* TLDR Box 
-               FIX APPLIED: Added textAlign: 'center' to the container.
-               This forces the `inline-block` UL inside to center itself within the box.
-            */}
+            {/* FIX: TLDR Box Center Alignment & Matching Emojis */}
             <div className="tldr-box" style={{ marginBottom: '2rem', textAlign: 'center' }}>
-              <div className="tldr-header" style={{ justifyContent: 'center' }}>
-                <i className="fas fa-bolt"></i>
-                <h4>TL;DR</h4>
+              <div className="tldr-header" style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                gap: '12px',
+                marginBottom: '1rem'
+              }}>
+                <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
+                <h4 style={{ margin: 0 }}>TL;DR</h4>
+                <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
               </div>
               <div className="tldr-content">
                 <ul style={{ display: 'inline-block', textAlign: 'left' }}>
