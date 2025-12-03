@@ -12,11 +12,9 @@ export default function Home() {
   
   // Experience & Streak Calculations
   useEffect(() => {
-    // Updated helper to accept an optional endDate (defaults to now)
     const calculateDuration = (startDate, endDate = new Date()) => {
       const start = new Date(startDate);
       const end = endDate;
-      // Ensure we don't get negative time if start is in the future
       if (start > end) return 0;
       
       const diffTime = Math.abs(end - start);
@@ -26,17 +24,13 @@ export default function Home() {
 
     const now = new Date();
 
-    // 1. Research/Part-time (Sept 1, 2019 - May 31, 2025)
-    // "everything for the experience prior to 2025 may is part time"
+    // 1. Research/Part-time
     const researchStart = '2019-09-01';
     const partTimeCap = new Date('2025-05-31');
-    
-    // If today is BEFORE the cap, count to today. If AFTER, cap it at May 2025.
     const researchEndDate = now < partTimeCap ? now : partTimeCap;
     const researchYears = calculateDuration(researchStart, researchEndDate);
 
-    // 2. Industry/Full-time (June 1, 2025 - Present)
-    // "anything after 2025 may can be considered full time"
+    // 2. Industry/Full-time
     const industryStartStr = '2025-06-01';
     const industryStart = new Date(industryStartStr);
     
@@ -45,23 +39,17 @@ export default function Home() {
       industryYears = calculateDuration(industryStartStr, now);
     }
 
-    // Update Experience State
     setExperience({ 
       research: researchYears.toFixed(1), 
       industry: industryYears.toFixed(1) 
     });
     
-    // 3. Streak Calculation (May 16, 2024 - Present)
+    // 3. Streak Calculation
     const streakStart = new Date('2024-05-16');
-    
-    // Reset hours to ensure full day calculation matches standard expectations
     streakStart.setHours(0, 0, 0, 0);
     now.setHours(0, 0, 0, 0);
-    
     const diffTime = now - streakStart;
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    
-    // Ensure we don't show negative days if system time is wonky
     setStreak(Math.max(0, diffDays));
   }, []);
 
@@ -85,6 +73,63 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+  // --- Skills Data Configuration ---
+  const skillsCategories = [
+    {
+      title: "Languages",
+      icon: "fas fa-code",
+      skills: [
+        { name: "Python", icon: "devicon-python-plain colored" },
+        { name: "SQL", icon: "fas fa-database" },
+        { name: "Java", icon: "devicon-java-plain colored" },
+        { name: "JavaScript", icon: "devicon-javascript-plain colored" },
+        { name: "TypeScript", icon: "devicon-typescript-plain colored" },
+        { name: "R", icon: "devicon-r-plain colored" },
+        { name: "C++", icon: "devicon-cplusplus-plain colored" },
+        { name: "Bash", icon: "devicon-bash-plain" }
+      ]
+    },
+    {
+      title: "Data & ML",
+      icon: "fas fa-brain",
+      skills: [
+        { name: "Pandas", icon: "devicon-pandas-original colored" },
+        { name: "PyTorch", icon: "devicon-pytorch-plain colored" },
+        { name: "TensorFlow", icon: "devicon-tensorflow-original colored" },
+        { name: "Scikit-learn", icon: "devicon-python-plain" },
+        { name: "Apache Spark", icon: "devicon-apachespark-plain colored" },
+        { name: "Kafka", icon: "devicon-apachekafka-plain" },
+        { name: "Airflow", icon: "fas fa-wind" }
+      ]
+    },
+    {
+      title: "Cloud & DevOps",
+      icon: "fas fa-cloud",
+      skills: [
+        { name: "AWS", icon: "devicon-amazonwebservices-plain-wordmark colored" },
+        { name: "Docker", icon: "devicon-docker-plain colored" },
+        { name: "Kubernetes", icon: "devicon-kubernetes-plain colored" },
+        { name: "Terraform", icon: "devicon-terraform-plain colored" },
+        { name: "Jenkins", icon: "devicon-jenkins-plain colored" },
+        { name: "Git", icon: "devicon-git-plain colored" },
+        { name: "Linux", icon: "devicon-linux-plain" }
+      ]
+    },
+    {
+      title: "Web & Databases",
+      icon: "fas fa-layer-group",
+      skills: [
+        { name: "React", icon: "devicon-react-original colored" },
+        { name: "Next.js", icon: "devicon-nextjs-original" },
+        { name: "Node.js", icon: "devicon-nodejs-plain colored" },
+        { name: "PostgreSQL", icon: "devicon-postgresql-plain colored" },
+        { name: "MongoDB", icon: "devicon-mongodb-plain colored" },
+        { name: "Redis", icon: "devicon-redis-plain colored" },
+        { name: "GraphQL", icon: "devicon-graphql-plain colored" }
+      ]
+    }
+  ];
+
   return (
     <>
       <Head>
@@ -98,7 +143,6 @@ export default function Home() {
       {/* ========================================= */}
       <section className="hero" id="home" style={{ paddingTop: '120px', paddingBottom: '60px', textAlign: 'center' }}>
         <div className="container">
-          {/* FIX: 'margin: 0 auto' forces the 900px box to the center of the 1200px container */}
           <div className="hero-content" style={{ 
             display: 'flex', 
             flexDirection: 'column', 
@@ -123,13 +167,13 @@ export default function Home() {
               />
             </div>
 
-            {/* FIX: Greeting with Matching Emojis and Flex Centering */}
+            {/* Greeting */}
             <div className="hero-greeting fade-in" style={{ 
               fontSize: '1.5rem', 
               marginBottom: '0.5rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
               gap: '10px'
             }}>
               <i className="fas fa-hand-sparkles" style={{ color: 'var(--accent-secondary)' }}></i> 
@@ -151,7 +195,7 @@ export default function Home() {
               <br className="mobile-only" /> Passionate about distributed systems, platform engineering, and solving complex data challenges.
             </p>
 
-            {/* FIX: Badges Flex Container */}
+            {/* Badges */}
             <div className="hero-badges fade-in" style={{ 
               display: 'flex', 
               justifyContent: 'center', 
@@ -216,7 +260,6 @@ export default function Home() {
 
           <div className="about-content fade-in" style={{ maxWidth: '900px', margin: '0 auto' }}>
             
-            {/* Bio Text */}
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
               <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-secondary)' }}>Building the Future of Data Infrastructure</h3>
               <p style={{ margin: '0 auto 1.5rem auto', maxWidth: '800px', textAlign: 'left' }}>
@@ -231,7 +274,7 @@ export default function Home() {
               </p>
             </div>
 
-            {/* FIX: TLDR Box Center Alignment & Matching Emojis */}
+            {/* TLDR Box */}
             <div className="tldr-box" style={{ marginBottom: '2rem', textAlign: 'center' }}>
               <div className="tldr-header" style={{ 
                 display: 'flex', 
@@ -255,7 +298,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Work Authorization Cards */}
+            {/* Work Auth */}
             <div className="work-auth-container fade-in" style={{ marginBottom: '3rem' }}>
               <div className="work-auth-card">
                 <div className="work-auth-header">
@@ -298,7 +341,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Interests Grid - Centered & Aligned */}
+            {/* Interests Grid */}
             <div className="interests-section fade-in" style={{ marginTop: '4rem', textAlign: 'center' }}>
               <h3><i className="fas fa-heart"></i> What I Love</h3>
               <div className="interests-grid" style={{ 
@@ -307,14 +350,14 @@ export default function Home() {
                 display: 'grid', 
                 gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', 
                 gap: '1rem',
-                justifyItems: 'center' // Force tiles to center in their columns
+                justifyItems: 'center'
               }}>
                 {[
                   { icon: "🧠", label: "Learning" },
                   { icon: "∞", label: "Mathematics" },
                   { icon: "💻", label: "Coding" },
                   { icon: "🚀", label: "Space" },
-                  { icon: "🧬", label: "Bioinformatics" }, // Long word will now center
+                  { icon: "🧬", label: "Bioinformatics" },
                   { icon: "🤝", label: "Mentoring" },
                   { icon: "🍳", label: "Cooking" },
                   { icon: "📚", label: "Reading" },
@@ -326,14 +369,14 @@ export default function Home() {
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: '1.5rem 0.5rem', // Reduced side padding for long words
-                    width: '100%', // Ensure full width usage
+                    padding: '1.5rem 0.5rem',
+                    width: '100%',
                     height: '100%'
                   }}>
                     <span className="interest-icon">{item.icon}</span>
                     <div className="interest-label" style={{ 
                       marginTop: '0.5rem',
-                      wordBreak: 'break-word', // Handle extremely long words
+                      wordBreak: 'break-word',
                       hyphens: 'auto'
                     }}>{item.label}</div>
                   </div>
@@ -345,58 +388,38 @@ export default function Home() {
       </section>
 
       {/* ========================================= */}
-      {/* 3. IMPACT & ACTIVITY (Stats)              */}
+      {/* 3. SKILLS SECTION (Moved Here)            */}
       {/* ========================================= */}
-      <section className="section" style={{ paddingTop: '0', paddingBottom: '3rem' }}>
+      <section className="section" id="skills">
         <div className="container">
           <div className="section-header fade-in">
-            <h2 className="section-title">Impact & Activity</h2>
+            <div className="section-label"><i className="fas fa-cogs"></i> Technical Proficiency</div>
+            <h2 className="section-title">Skills & Tools</h2>
           </div>
 
-          <div className="stats-grid fade-in" style={{ marginBottom: '3rem' }}>
-            {/* Stat 1: Research Experience */}
-            <StatCard 
-              icon="🔬" 
-              value={`${experience.research} Yrs`} 
-              label="Research & Dev" 
-            />
-            {/* Stat 2: High Volume Data */}
-            <StatCard 
-              icon="💾" 
-              value="750+ TB" 
-              label="Data Processed" 
-            />
-            {/* Stat 3: Performance Optimization */}
-            <StatCard 
-              icon="⚡" 
-              value="83%" 
-              label="Faster Queries" 
-            />
-            {/* Stat 4: Academic Excellence */}
-            <StatCard 
-              icon="🎓" 
-              value="3.96" 
-              label="Major GPA" 
-            />
-          </div>
-
-          {/* Manual GitHub Streak Card */}
-          <div className="fade-in" style={{ 
-            display: 'flex', 
-            justifyContent: 'center', 
-            marginTop: '2rem' 
+          <div className="skills-grid fade-in" style={{ 
+            maxWidth: '1000px', 
+            margin: '0 auto',
+            justifyContent: 'center'
           }}>
-            <div style={{ maxWidth: '300px', width: '100%' }}>
-              <StatCard 
-                icon={<i className="fas fa-fire" style={{ color: '#e25822' }}></i>}
-                value={`${streak}`} 
-                label={
-                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                    <i className="fab fa-github" style={{ fontSize: '1.1em' }}></i> GitHub Streak
-                  </span>
-                } 
-              />
-            </div>
+            {skillsCategories.map((category, idx) => (
+              <div key={idx} className="skill-category" style={{ textAlign: 'center' }}>
+                <div className="skill-category-header" style={{ justifyContent: 'center' }}>
+                  <div className="skill-category-icon">
+                    <i className={category.icon}></i>
+                  </div>
+                  <h3 className="skill-category-title">{category.title}</h3>
+                </div>
+                <div className="skill-list" style={{ justifyContent: 'center' }}>
+                  {category.skills.map((skill, sIdx) => (
+                    <div key={sIdx} className="skill-item">
+                      <i className={skill.icon}></i>
+                      <span>{skill.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -413,8 +436,6 @@ export default function Home() {
           </div>
 
           <div className="timeline" style={{ maxWidth: '900px', margin: '0 auto' }}>
-            
-            {/* Bell Canada Highlight */}
             <div className="timeline-item fade-in">
               <div className="timeline-header">
                 <div>
@@ -435,7 +456,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* JHU Highlight */}
             <div className="timeline-item fade-in">
               <div className="timeline-header">
                 <div>
@@ -452,7 +472,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* UofT Highlight */}
             <div className="timeline-item fade-in">
               <div className="timeline-header">
                 <div>
@@ -468,7 +487,6 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -509,7 +527,43 @@ export default function Home() {
       </section>
 
       {/* ========================================= */}
-      {/* 6. CONTACT SECTION                        */}
+      {/* 6. IMPACT & ACTIVITY (Stats) - Moved Down */}
+      {/* ========================================= */}
+      <section className="section" style={{ paddingTop: '0', paddingBottom: '3rem' }}>
+        <div className="container">
+          <div className="section-header fade-in">
+            <h2 className="section-title">Impact & Activity</h2>
+          </div>
+
+          <div className="stats-grid fade-in" style={{ marginBottom: '3rem' }}>
+            <StatCard icon="🔬" value={`${experience.research} Yrs`} label="Research & Dev" />
+            <StatCard icon="💾" value="750+ TB" label="Data Processed" />
+            <StatCard icon="⚡" value="83%" label="Faster Queries" />
+            <StatCard icon="🎓" value="3.96" label="Major GPA" />
+          </div>
+
+          <div className="fade-in" style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            marginTop: '2rem' 
+          }}>
+            <div style={{ maxWidth: '300px', width: '100%' }}>
+              <StatCard 
+                icon={<i className="fas fa-fire" style={{ color: '#e25822' }}></i>}
+                value={`${streak}`} 
+                label={
+                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                    <i className="fab fa-github" style={{ fontSize: '1.1em' }}></i> GitHub Streak
+                  </span>
+                } 
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================= */}
+      {/* 7. CONTACT SECTION                        */}
       {/* ========================================= */}
       <section className="section" id="contact">
         <div className="container">
