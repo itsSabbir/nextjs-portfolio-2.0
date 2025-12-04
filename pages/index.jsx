@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-// import Layout from '../components/Layout'; // REMOVED to prevent double header/footer
 import ProjectCard from '../components/ProjectCard';
 import StatCard from '../components/StatCard';
 
@@ -127,8 +126,141 @@ export default function Home() {
         { name: "Redis", icon: "devicon-redis-plain colored" },
         { name: "GraphQL", icon: "devicon-graphql-plain colored" }
       ]
+    },
+    {
+      title: "Analytics & Visualization",
+      icon: "fas fa-chart-bar",
+      skills: [
+        { name: "D3.js", icon: "devicon-d3js-plain colored" },
+        { name: "Tableau", icon: "fas fa-chart-pie" },
+        { name: "Power BI", icon: "fas fa-chart-line" },
+        { name: "Jupyter", icon: "devicon-jupyter-plain colored" },
+        { name: "Excel", icon: "fas fa-file-excel" },
+        { name: "Confluence", icon: "devicon-confluence-plain colored" }
+      ]
+    },
+    {
+      title: "Methodology & Tools",
+      icon: "fas fa-tasks",
+      skills: [
+        { name: "Jira", icon: "devicon-jira-plain colored" },
+        { name: "Agile", icon: "fas fa-sync-alt" },
+        { name: "Scrum", icon: "fas fa-users" },
+        { name: "Kanban", icon: "fas fa-columns" },
+        { name: "CI/CD", icon: "fas fa-infinity" },
+        { name: "TDD", icon: "fas fa-vial" }
+      ]
     }
   ];
+
+  // --- Experience Data ---
+  const experiences = [
+    {
+      title: "Data Engineer",
+      company: "Bell Canada",
+      period: "Jun 2025 - Present",
+      description: "Architecting mission-critical data pipelines for the Network Ticket Service (NTS) Platform.",
+      highlights: [
+        "Expanded data coverage by 800% (1 to 9+ months) via root cause analysis",
+        "Optimized critical query runtime from 12 mins to 2 mins (83% reduction)",
+        "Recovered 28,000+ missing records through systematic data quality fixes"
+      ],
+      link: "/experiences#bell-canada"
+    },
+    {
+      title: "Bioinformatics Research Assistant",
+      company: "Johns Hopkins University",
+      period: "Sept 2022 - Present",
+      description: "Spearheading large-scale oncology research integrating 750+ TB of multi-omics data.",
+      highlights: [
+        "Contributed to discovery of 8 novel biomarkers",
+        "Reduced genomic analysis load times by 83%"
+      ],
+      link: "/experiences#johns-hopkins"
+    },
+    {
+      title: "Software Development Research Assistant",
+      company: "University of Toronto",
+      period: "Sept 2019 – Apr 2024",
+      description: "Engineered full-stack bioinformatics applications automating workflows.",
+      highlights: [
+        "Saved 30+ hours weekly across 7 research teams",
+        "Reduced environment setup time by 50%"
+      ],
+      link: "/experiences#u-of-t-research"
+    }
+  ];
+
+  // --- Projects Data ---
+  const projects = [
+    {
+      title: "NTS/MS Archway Pipeline",
+      description: "End-to-end ETL pipeline integrating 4 enterprise data sources into unified Control Plan reporting. 3-tier architecture processing 150,000+ records in ~20 minutes.",
+      tags: ['Python', 'SQL', 'SAS DI', 'Teradata', 'ETL'],
+      icon: "🔮",
+      company: "Bell Canada"
+    },
+    {
+      title: "Duration Calculation Engine",
+      description: "Stateful Python algorithm computing 3 distinct duration metrics measuring agent work cycles. Two-pass group-by propagation model with zero calculation defects.",
+      tags: ['Python', 'Pandas', 'Algorithm Design'],
+      icon: "⏱️",
+      company: "Bell Canada"
+    },
+    {
+      title: "Data Quality Recovery System",
+      description: "Full-stack RCA diagnosing systemic data integrity drift. Staged recasts correcting 78,000+ records, expanding analytical coverage by 800%.",
+      tags: ['SQL', 'Data Quality', 'Root Cause Analysis'],
+      icon: "🔍",
+      company: "Bell Canada"
+    },
+    {
+      title: "Microbiome Explorer",
+      description: "Interactive visualization platform for exploring microbial community data with taxonomic profiling, diversity analysis, and comparative metagenomics tools.",
+      tags: ['React', 'D3.js', 'Python', 'Bioinformatics'],
+      icon: "🦠",
+      links: { repo: 'https://github.com/itssabbir/microbiome-explorer' }
+    },
+    {
+      title: "Bioinformatics Platform",
+      description: "Open-source full-stack bioinformatics platform with interactive D3.js visualizations, R Shiny dashboards, and real-time WebSocket data streaming.",
+      tags: ['React', 'D3.js', 'R Shiny', 'Python', 'Docker'],
+      icon: "🧬",
+      links: { repo: 'https://github.com/itssabbir' },
+      company: "Johns Hopkins"
+    },
+    {
+      title: "Portfolio Website",
+      description: "This cyberpunk-inspired portfolio built with Next.js featuring animated backgrounds, custom cursor, and glassmorphism design.",
+      tags: ['Next.js', 'React', 'CSS', 'Canvas API'],
+      icon: "🚀",
+      links: { 
+        repo: 'https://github.com/itssabbir/itssabbir.github.io',
+        demo: 'https://itssabbir.github.io'
+      }
+    }
+  ];
+
+  // Reusable component for work auth checkmark items
+  const CheckItem = ({ children }) => (
+    <div style={{ 
+      display: 'flex', 
+      alignItems: 'flex-start',
+      gap: '10px',
+      lineHeight: '1.4',
+      textAlign: 'left'
+    }}>
+      <i 
+        className="fas fa-check-circle" 
+        style={{ 
+          color: 'var(--accent-secondary, #D4AF37)',
+          flexShrink: 0,
+          marginTop: '3px'
+        }}
+      ></i>
+      <span>{children}</span>
+    </div>
+  );
 
   return (
     <>
@@ -176,9 +308,7 @@ export default function Home() {
               justifyContent: 'center', 
               gap: '10px'
             }}>
-              <i className="fas fa-hand-sparkles" style={{ color: 'var(--accent-secondary)' }}></i> 
-              <span>Hi, I&apos;m</span>
-              <i className="fas fa-hand-sparkles" style={{ color: 'var(--accent-secondary)' }}></i> 
+              <span>👋 Hi, I&apos;m</span>
             </div>
 
             <h1 className="hero-title fade-in" style={{ 
@@ -191,7 +321,7 @@ export default function Home() {
 
             {/* Subtitle */}
             <p className="hero-subtitle fade-in" style={{ maxWidth: '800px', margin: '0 auto 2rem auto', fontSize: '1.2rem' }}>
-              <span className="highlight">Data Engineer</span> & <span className="highlight">Platform Architect</span> building scalable data infrastructure at Bell Canada. 
+              <span className="gradient-text">Data Engineer</span> & <span className="gradient-text">Platform Architect</span> building scalable data infrastructure at <span className="gradient-text">Bell Canada</span>. 
               <br className="mobile-only" /> Passionate about distributed systems, platform engineering, and solving complex data challenges.
             </p>
 
@@ -207,6 +337,9 @@ export default function Home() {
               <div className="hero-badge availability">
                 <div className="status-dot"></div>
                 <span>Available for Hire</span>
+              </div>
+              <div className="hero-badge">
+                <span>🇨🇦 Citizen</span>
               </div>
               <div className="hero-badge">
                 <i className="fas fa-map-marker-alt"></i>
@@ -289,7 +422,7 @@ export default function Home() {
               </div>
               <div className="tldr-content">
                 <ul style={{ display: 'inline-block', textAlign: 'left' }}>
-                  <li>Data Engineer at Bell Canada (NTS Platform)</li>
+                  <li>Data Engineer at Bell Canada Data Engineering and Artificial Intelligence Team</li>
                   <li>UofT Graduate (3.96 Major GPA) in Bioinformatics & CS</li>
                   <li>Expanded data coverage by 800%, optimized queries by 83%</li>
                   <li>Expert in Python, SQL, distributed systems, cloud platforms</li>
@@ -298,45 +431,117 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Work Auth */}
-            <div className="work-auth-container fade-in" style={{ marginBottom: '3rem' }}>
-              <div className="work-auth-card">
-                <div className="work-auth-header">
-                  <span className="flag-emoji">🇨🇦</span>
-                  <div className="work-auth-info">
-                    <h3>Canada</h3>
-                    <div className="work-auth-subtitle">Current Location</div>
-                  </div>
+            {/* Work Auth - CENTERED CONTENT */}
+            <div className="work-auth-container fade-in" style={{ 
+              display: 'flex', 
+              justifyContent: 'center', 
+              gap: '2rem', 
+              flexWrap: 'wrap',
+              marginBottom: '3rem' 
+            }}>
+              {/* Canada Card */}
+              <div className="work-auth-card" style={{
+                background: 'var(--glass-bg, rgba(15, 23, 42, 0.8))',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid var(--glass-border, rgba(212, 175, 55, 0.2))',
+                borderRadius: '16px',
+                padding: '2rem',
+                minWidth: '320px',
+                maxWidth: '400px',
+                flex: '1',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+              }}>
+                {/* Flag + Country Name Row */}
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  gap: '12px',
+                  marginBottom: '0.5rem'
+                }}>
+                  <span style={{ fontSize: '2rem' }}>🇨🇦</span>
+                  <h3 style={{ 
+                    margin: 0, 
+                    fontSize: '1.8rem', 
+                    color: 'var(--accent-secondary, #D4AF37)',
+                    fontWeight: '700'
+                  }}>Canada</h3>
                 </div>
-                <div className="work-auth-details">
-                  <div className="work-auth-item">
-                    <i className="fas fa-check-circle"></i>
-                    <span>Authorized to work (No sponsorship needed)</span>
-                  </div>
-                  <div className="work-auth-item">
-                    <i className="fas fa-check-circle"></i>
-                    <span>Based in Toronto, ON</span>
-                  </div>
+                
+                {/* Subtitle */}
+                <div style={{ 
+                  textAlign: 'center', 
+                  color: 'var(--text-secondary, #94a3b8)',
+                  fontSize: '0.95rem',
+                  marginBottom: '1.5rem'
+                }}>
+                  Current Location
+                </div>
+                
+                {/* Details - Centered container with left-aligned text */}
+                <div style={{ 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  gap: '0.75rem',
+                  width: 'fit-content'
+                }}>
+                  <CheckItem>Authorized to work (No sponsorship needed)</CheckItem>
+                  <CheckItem>Based in Toronto, ON</CheckItem>
                 </div>
               </div>
 
-              <div className="work-auth-card">
-                <div className="work-auth-header">
-                  <span className="flag-emoji">🇺🇸</span>
-                  <div className="work-auth-info">
-                    <h3>United States</h3>
-                    <div className="work-auth-subtitle">Open to Relocation</div>
-                  </div>
+              {/* United States Card */}
+              <div className="work-auth-card" style={{
+                background: 'var(--glass-bg, rgba(15, 23, 42, 0.8))',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid var(--glass-border, rgba(212, 175, 55, 0.2))',
+                borderRadius: '16px',
+                padding: '2rem',
+                minWidth: '320px',
+                maxWidth: '400px',
+                flex: '1',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+              }}>
+                {/* Flag + Country Name Row */}
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  gap: '12px',
+                  marginBottom: '0.5rem'
+                }}>
+                  <span style={{ fontSize: '2rem' }}>🇺🇸</span>
+                  <h3 style={{ 
+                    margin: 0, 
+                    fontSize: '1.8rem', 
+                    color: 'var(--accent-secondary, #D4AF37)',
+                    fontWeight: '700'
+                  }}>United States</h3>
                 </div>
-                <div className="work-auth-details">
-                  <div className="work-auth-item">
-                    <i className="fas fa-check-circle"></i>
-                    <span>TN Visa eligible (No sponsorship required)</span>
-                  </div>
-                  <div className="work-auth-item">
-                    <i className="fas fa-check-circle"></i>
-                    <span>Open to H-1B / Green Card sponsorship</span>
-                  </div>
+                
+                {/* Subtitle */}
+                <div style={{ 
+                  textAlign: 'center', 
+                  color: 'var(--text-secondary, #94a3b8)',
+                  fontSize: '0.95rem',
+                  marginBottom: '1.5rem'
+                }}>
+                  Open to Relocation
+                </div>
+                
+                {/* Details - Centered container with left-aligned text */}
+                <div style={{ 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  gap: '0.75rem',
+                  width: 'fit-content'
+                }}>
+                  <CheckItem>TN Visa eligible (No sponsorship required)</CheckItem>
+                  <CheckItem>Open to H-1B / Green Card sponsorship</CheckItem>
                 </div>
               </div>
             </div>
@@ -388,7 +593,7 @@ export default function Home() {
       </section>
 
       {/* ========================================= */}
-      {/* 3. SKILLS SECTION (Moved Here)            */}
+      {/* 3. SKILLS SECTION                         */}
       {/* ========================================= */}
       <section className="section" id="skills">
         <div className="container">
@@ -398,19 +603,47 @@ export default function Home() {
           </div>
 
           <div className="skills-grid fade-in" style={{ 
-            maxWidth: '1000px', 
+            maxWidth: '1100px', 
             margin: '0 auto',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '2rem',
             justifyContent: 'center'
           }}>
             {skillsCategories.map((category, idx) => (
-              <div key={idx} className="skill-category" style={{ textAlign: 'center' }}>
-                <div className="skill-category-header" style={{ justifyContent: 'center' }}>
-                  <div className="skill-category-icon">
+              <div key={idx} className="skill-category" style={{ 
+                textAlign: 'center',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+              }}>
+                {/* Header - properly centered */}
+                <div className="skill-category-header" style={{ 
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '10px',
+                  marginBottom: '1rem',
+                  width: '100%'
+                }}>
+                  <div className="skill-category-icon" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
                     <i className={category.icon}></i>
                   </div>
-                  <h3 className="skill-category-title">{category.title}</h3>
+                  <h3 className="skill-category-title" style={{ margin: 0 }}>{category.title}</h3>
                 </div>
-                <div className="skill-list" style={{ justifyContent: 'center' }}>
+                
+                {/* Skills list - centered */}
+                <div className="skill-list" style={{ 
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  width: '100%'
+                }}>
                   {category.skills.map((skill, sIdx) => (
                     <div key={sIdx} className="skill-item">
                       <i className={skill.icon}></i>
@@ -436,98 +669,108 @@ export default function Home() {
           </div>
 
           <div className="timeline" style={{ maxWidth: '900px', margin: '0 auto' }}>
-            <div className="timeline-item fade-in">
-              <div className="timeline-header">
-                <div>
-                  <h3 className="timeline-title">Data Engineer</h3>
-                  <div className="timeline-company">Bell Canada</div>
+            {experiences.map((exp, idx) => (
+              <div key={idx} className="timeline-item fade-in">
+                {/* Header: Title, Company, Date stacked */}
+                <div className="timeline-header" style={{ 
+                  display: 'flex', 
+                  flexDirection: 'column',
+                  gap: '0.25rem',
+                  marginBottom: '1rem'
+                }}>
+                  <h3 className="timeline-title" style={{ 
+                    margin: 0,
+                    fontSize: '1.75rem',
+                    fontWeight: '700',
+                    color: 'var(--text-primary, #f8fafc)'
+                  }}>
+                    {exp.title}
+                  </h3>
+                  <div className="timeline-company" style={{ 
+                    fontSize: '1.35rem',
+                    color: 'var(--accent-secondary, #D4AF37)',
+                    fontWeight: '600'
+                  }}>
+                    {exp.company}
+                  </div>
+                  <div className="timeline-period" style={{ 
+                    fontSize: '0.85rem',
+                    color: 'var(--text-secondary, #94a3b8)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px'
+                  }}>
+                    <i className="fas fa-calendar-alt"></i> {exp.period}
+                  </div>
                 </div>
-                <div className="timeline-period"><i className="fas fa-calendar-alt"></i> Jun 2025 - Present</div>
-              </div>
-              <div className="timeline-description">
-                <p>Architecting mission-critical data pipelines for the Network Ticket Service (NTS) Platform.</p>
-                <ul>
-                  <li>Expanded data coverage by 800% (1 to 9+ months) via root cause analysis.</li>
-                  <li>Optimized critical query runtime from 12 mins to 2 mins (83% reduction).</li>
-                </ul>
-                <Link href="/experiences#bell-canada" className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.8rem', marginTop: '1rem' }}>
-                  Read Full Details <i className="fas fa-arrow-right"></i>
-                </Link>
-              </div>
-            </div>
 
-            <div className="timeline-item fade-in">
-              <div className="timeline-header">
-                <div>
-                  <h3 className="timeline-title">Bioinformatics Software Development Research Assistant</h3>
-                  <div className="timeline-company">Johns Hopkins University</div>
+                <div className="timeline-description">
+                  <p style={{ marginBottom: '0.75rem' }}>{exp.description}</p>
+                  {exp.highlights && exp.highlights.length > 0 && (
+                    <ul style={{ marginBottom: '1rem' }}>
+                      {exp.highlights.map((highlight, hIdx) => (
+                        <li key={hIdx}>{highlight}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <Link href={exp.link} className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }}>
+                    Read Full Details <i className="fas fa-arrow-right"></i>
+                  </Link>
                 </div>
-                <div className="timeline-period"><i className="fas fa-calendar-alt"></i> Sept 2022 - Present</div>
               </div>
-              <div className="timeline-description">
-                <p>Spearheading large-scale oncology research integrating 750+ TB of multi-omics data.</p>
-                <Link href="/experiences#johns-hopkins" className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.8rem', marginTop: '1rem' }}>
-                  Read Full Details <i className="fas fa-arrow-right"></i>
-                </Link>
-              </div>
-            </div>
-
-            <div className="timeline-item fade-in">
-              <div className="timeline-header">
-                <div>
-                  <h3 className="timeline-title">Software Development Research Assistant</h3>
-                  <div className="timeline-company">University of Toronto</div>
-                </div>
-                <div className="timeline-period"><i className="fas fa-calendar-alt"></i> Sept 2019 – Apr 2024</div>
-              </div>
-              <div className="timeline-description">
-                <p>Engineered full-stack bioinformatics applications automating workflows to save 30+ hours weekly.</p>
-                <Link href="/experiences#u-of-t-research" className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.8rem', marginTop: '1rem' }}>
-                  Read Full Details <i className="fas fa-arrow-right"></i>
-                </Link>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ========================================= */}
-      {/* 5. PROJECTS SECTION                       */}
+      {/* 5. PROJECTS SECTION - @ ON NEW LINE       */}
       {/* ========================================= */}
       <section className="section" id="projects">
         <div className="container">
           <div className="section-header">
             <div className="section-label"><i className="fas fa-laptop-code"></i> Featured Work</div>
             <h2 className="section-title">Projects</h2>
+            <p className="section-description">Production systems and open-source tools I&apos;ve built</p>
           </div>
 
           <div className="projects-grid">
-            <ProjectCard 
-              title="NTS Platform Pipeline"
-              description="Mission-critical data integration pipeline at Bell Canada using Python, SAS DI, and SQL. Expanded data coverage by 800%."
-              tags={['Python', 'SAS DI', 'SQL', 'ETL']}
-              icon="🔮"
-            />
-            <ProjectCard 
-              title="Anomaly Detection System"
-              description="Full-stack anomaly detection system built with React, Node.js, and PyTorch for time-series data analysis."
-              tags={['React', 'Node.js', 'PyTorch', 'ML']}
-              icon="🧬"
-              links={{ repo: 'https://github.com/itssabbir/anomaly-detection' }}
-            />
-            <ProjectCard 
-              title="Genomics Data Pipeline"
-              description="Distributed data processing pipeline for analyzing 750+ TB of genomics data using Spark and AWS."
-              tags={['Python', 'Spark', 'AWS', 'Bioinformatics']}
-              icon="🚀"
-              links={{ repo: 'https://github.com/itssabbir/genomics-pipeline' }}
-            />
+            {projects.map((project, idx) => (
+              <ProjectCard 
+                key={idx}
+                title={
+                  project.company 
+                    ? <>
+                        {project.title}
+                        <span style={{ 
+                          display: 'block',
+                          fontSize: '0.9rem', 
+                          color: 'var(--accent-secondary, #D4AF37)',
+                          fontWeight: '500',
+                          marginTop: '0.25rem'
+                        }}>@ {project.company}</span>
+                      </>
+                    : project.title
+                }
+                description={project.description}
+                tags={project.tags}
+                icon={project.icon}
+                links={project.links}
+              />
+            ))}
+          </div>
+
+          {/* View All Projects Link */}
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <Link href="/projects" className="btn btn-secondary">
+              <i className="fas fa-th-large"></i> View All Projects
+            </Link>
           </div>
         </div>
       </section>
 
       {/* ========================================= */}
-      {/* 6. IMPACT & ACTIVITY (Stats) - Moved Down */}
+      {/* 6. IMPACT & ACTIVITY (Stats)              */}
       {/* ========================================= */}
       <section className="section" style={{ paddingTop: '0', paddingBottom: '3rem' }}>
         <div className="container">
