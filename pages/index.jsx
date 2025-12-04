@@ -84,7 +84,7 @@ export default function Home() {
         { name: "JavaScript", icon: "devicon-javascript-plain colored" },
         { name: "TypeScript", icon: "devicon-typescript-plain colored" },
         { name: "R", icon: "devicon-r-plain colored" },
-        { name: "C++", icon: "devicon-cplusplus-plain colored" },
+        { name: "C", icon: "devicon-c-plain colored" },
         { name: "Bash", icon: "devicon-bash-plain" }
       ]
     },
