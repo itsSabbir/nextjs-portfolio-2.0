@@ -361,6 +361,8 @@ export default function Home() {
                 <i className="fas fa-file-alt"></i>
                 View Full Experience
               </Link>
+
+              
             </div>
 
             {/* Social Links */}
@@ -665,7 +667,13 @@ export default function Home() {
           <div className="section-header">
             <div className="section-label"><i className="fas fa-briefcase"></i> Career Highlights</div>
             <h2 className="section-title">Experience</h2>
-            <p className="section-description">A snapshot of my professional journey. <Link href="/experiences" className="text-link">View Full Details →</Link></p>
+            <p className="section-description">A snapshot of my professional journey.</p>
+            {/* View All Experiences Link */}
+            <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <Link href="/experiences" className="btn btn-secondary">
+            <i className="fas fa-th-large"></i> View All Experiences
+            </Link>
+          </div>
           </div>
 
           <div className="timeline" style={{ maxWidth: '900px', margin: '0 auto' }}>
