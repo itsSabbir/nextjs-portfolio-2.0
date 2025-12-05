@@ -76,13 +76,6 @@ function Projects() {
       tags: ['Python', 'R', 'Spark', 'AWS', 'Machine Learning', 'HPC'],
       icon: "🔬",
       company: "Johns Hopkins"
-    },
-    {
-      title: "Anomaly Detection System",
-      description: "Automated data quality and anomaly detection pipelines integrating unsupervised ML (K-Means, DBSCAN) and rule-based heuristics. Integrated into ETL and CI/CD workflows to flag real-time anomalies, boosting data integrity by 30% across large datasets.",
-      tags: ['Python', 'Scikit-learn', 'TensorFlow', 'CI/CD'],
-      icon: "🎯",
-      company: "Johns Hopkins"
     }
   ];
 
@@ -96,25 +89,33 @@ function Projects() {
       links: { repo: 'https://github.com/itssabbir/microbiome-explorer' }
     },
     {
+      title: "Anomaly Detection System",
+      description: "Automated data quality and anomaly detection pipelines integrating unsupervised ML (K-Means, DBSCAN) and rule-based heuristics. Integrated into ETL and CI/CD workflows to flag real-time anomalies, boosting data integrity by 30% across large datasets.",
+      tags: ['Python', 'Scikit-learn', 'TensorFlow', 'CI/CD'],
+      icon: "🎯",
+      clinks: { 
+        repo: 'https://github.com/itsSabbir/anomaly-detection-system-2' }
+    },
+    {
       title: "Portfolio Website",
       description: "This cyberpunk-inspired portfolio built with Next.js featuring animated canvas backgrounds with floating symbols, custom cursor with lerp interpolation, glassmorphism design system, and responsive layout. Showcases projects, skills, and experience.",
       tags: ['Next.js', 'React', 'CSS', 'Canvas API', 'Animation'],
       icon: "🚀",
       links: { 
-        repo: 'https://github.com/itssabbir/itssabbir.github.io',
-        demo: 'https://itssabbir.github.io'
+        repo: 'https://github.com/itsSabbir/nextjs-portfolio-2.0',
+        demo: 'https://sabbir.ca'
       }
     },
     {
       title: "Algorithm Visualizer",
-      description: "Interactive web application for visualizing sorting algorithms, pathfinding algorithms, and data structures. Features step-by-step execution, speed controls, and custom input generation for educational purposes.",
+      description: "W.I.P. Interactive web application for visualizing sorting algorithms, pathfinding algorithms, and data structures. Features step-by-step execution, speed controls, and custom input generation for educational purposes.",
       tags: ['React', 'TypeScript', 'Algorithms', 'Education', 'Canvas'],
       icon: "📊",
       links: { repo: 'https://github.com/itssabbir' }
     },
     {
       title: "SQL Query Optimizer Tool",
-      description: "Command-line tool for analyzing SQL query execution plans and suggesting optimizations. Parses EXPLAIN output, identifies common anti-patterns, and recommends index strategies.",
+      description: "W.I.P. Command-line tool for analyzing SQL query execution plans and suggesting optimizations. Parses EXPLAIN output, identifies common anti-patterns, and recommends index strategies.",
       tags: ['Python', 'SQL', 'CLI', 'Performance'],
       icon: "🛠️",
       links: { repo: 'https://github.com/itssabbir' }
