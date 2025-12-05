@@ -1,8 +1,150 @@
 /* eslint-disable max-len */
 // --- pages/experiences.jsx ---
 import Head from 'next/head';
-// import Layout from '../components/Layout'; // REMOVED to prevent double header/footer
-import TagList from '../components/TagList';
+import Link from 'next/link';
+import React from 'react';
+
+// Tech icon mapping - matches the hero page skills
+const TECH_ICONS = {
+  // Languages
+  'python': 'devicon-python-plain colored',
+  'javascript': 'devicon-javascript-plain colored',
+  'typescript': 'devicon-typescript-plain colored',
+  'java': 'devicon-java-plain colored',
+  'c': 'devicon-c-plain colored',
+  'c++': 'devicon-cplusplus-plain colored',
+  'c/c++': 'devicon-cplusplus-plain colored',
+  'r': 'devicon-r-plain colored',
+  'bash': 'devicon-bash-plain',
+  'sql': 'fas fa-database',
+  'advanced sql': 'fas fa-database',
+  
+  // Data & ML
+  'pandas': 'devicon-pandas-original colored',
+  'pytorch': 'devicon-pytorch-plain colored',
+  'tensorflow': 'devicon-tensorflow-original colored',
+  'scikit-learn': 'devicon-python-plain',
+  'apache spark': 'devicon-apachespark-plain colored',
+  'kafka': 'devicon-apachekafka-plain',
+  'apache kafka': 'devicon-apachekafka-plain',
+  'airflow': 'fas fa-wind',
+  'apache airflow': 'fas fa-wind',
+  'machine learning': 'fas fa-brain',
+  'ml': 'fas fa-brain',
+  
+  // Cloud & DevOps
+  'aws': 'devicon-amazonwebservices-plain-wordmark colored',
+  'gcp': 'devicon-googlecloud-plain colored',
+  'docker': 'devicon-docker-plain colored',
+  'kubernetes': 'devicon-kubernetes-plain colored',
+  'terraform': 'devicon-terraform-plain colored',
+  'jenkins': 'devicon-jenkins-plain colored',
+  'git': 'devicon-git-plain colored',
+  'linux': 'devicon-linux-plain',
+  'ci/cd': 'fas fa-infinity',
+  
+  // Web & Databases
+  'react': 'devicon-react-original colored',
+  'next.js': 'devicon-nextjs-original',
+  'nextjs': 'devicon-nextjs-original',
+  'node.js': 'devicon-nodejs-plain colored',
+  'nodejs': 'devicon-nodejs-plain colored',
+  'postgresql': 'devicon-postgresql-plain colored',
+  'postgres': 'devicon-postgresql-plain colored',
+  'mysql': 'devicon-mysql-plain colored',
+  'mongodb': 'devicon-mongodb-plain colored',
+  'redis': 'devicon-redis-plain colored',
+  'graphql': 'devicon-graphql-plain colored',
+  'rest api': 'fas fa-plug',
+  
+  // Analytics & Visualization
+  'd3.js': 'devicon-d3js-plain colored',
+  'd3': 'devicon-d3js-plain colored',
+  'jupyter': 'devicon-jupyter-plain colored',
+  
+  // Tools & Methodologies
+  'jira': 'devicon-jira-plain colored',
+  'confluence': 'devicon-confluence-plain colored',
+  'confluence/jira': 'devicon-confluence-plain colored',
+  'agile': 'fas fa-sync-alt',
+  
+  // Data Engineering specific
+  'teradata': 'fas fa-database',
+  'sas di': 'fas fa-cogs',
+  'etl/elt': 'fas fa-exchange-alt',
+  'etl': 'fas fa-exchange-alt',
+  'data warehousing': 'fas fa-warehouse',
+  'root cause analysis': 'fas fa-search',
+  'performance tuning': 'fas fa-tachometer-alt',
+  'algorithm design': 'fas fa-project-diagram',
+  'data modeling': 'fas fa-sitemap',
+  'hpc': 'fas fa-server',
+  'microservices': 'fas fa-cubes',
+  'bioinformatics': 'fas fa-dna',
+  'genomics': 'fas fa-dna',
+};
+
+// Get icon class for a tech tag
+const getTechIcon = (tag) => {
+  const normalizedTag = tag.toLowerCase().trim();
+  return TECH_ICONS[normalizedTag] || null;
+};
+
+// Skill Tag Component with Icon
+const SkillTag = ({ tag }) => {
+  const iconClass = getTechIcon(tag);
+  
+  return (
+    <span className="skill-item" style={{ 
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      padding: '0.5rem 1rem',
+      background: 'rgba(255, 255, 255, 0.05)',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      borderRadius: '9999px',
+      color: 'var(--text-secondary)',
+      fontSize: '0.875rem',
+      fontWeight: '500',
+      transition: 'all 0.3s ease',
+      margin: '0.25rem'
+    }}>
+      {iconClass && <i className={iconClass} style={{ fontSize: '1.125rem' }} aria-hidden="true" />}
+      {tag}
+    </span>
+  );
+};
+
+// Skills List Component with Icons
+const SkillsList = ({ caption, tags }) => {
+  if (!tags || tags.length === 0) return null;
+  
+  return (
+    <div style={{ marginTop: '2rem' }}>
+      {caption && (
+        <span style={{ 
+          fontWeight: '700', 
+          fontSize: '0.9rem', 
+          color: 'var(--accent-secondary)',
+          display: 'block',
+          marginBottom: '1rem'
+        }}>
+          {caption}
+        </span>
+      )}
+      <div style={{ 
+        display: 'flex', 
+        flexWrap: 'wrap', 
+        gap: '0.5rem',
+        justifyContent: 'flex-start'
+      }}>
+        {tags.map((tag, index) => (
+          <SkillTag key={`${tag}-${index}`} tag={tag} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 function Experiences() {
   // This page compiles Sabbir's detailed professional background,
@@ -19,11 +161,18 @@ function Experiences() {
       
       {/* Page Header */}
       <div className="container page-heading-container" style={{ textAlign: 'center', marginBottom: '4rem', marginTop: '2rem' }}>
-        <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '1rem' }}>My Journey</h1>
-        <p style={{ margin: '0 auto', maxWidth: '700px' }}>
+        <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '1rem' }}>
+          <span className="gradient-text">My Journey</span>
+        </h1>
+        <p style={{ margin: '0 auto', maxWidth: '700px', color: 'var(--text-secondary)' }}>
           A timeline of my professional roles, research contributions, and key achievements.
         </p>
-        <hr className="break-section" />
+        <div style={{ marginTop: '1.5rem' }}>
+          <Link href="/" className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>
+            <i className="fas fa-arrow-left"></i> Back to Home
+          </Link>
+        </div>
+        <hr className="break-section" style={{ marginTop: '2rem' }} />
       </div>
 
       <section aria-labelledby="work-experience-heading">
@@ -37,8 +186,13 @@ function Experiences() {
             <div className="text-wrapper w-full">
               <h3 className="title" style={{ textAlign: 'center', marginBottom: '2rem' }}>
                 <span style={{ display: 'block', fontSize: '1.8rem', color: 'var(--accent-primary)' }}>Data Engineer</span>
-                <span style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>Bell Canada (Data Engineering & AI Team)</span>
-                <span style={{ display: 'block', fontSize: '1rem', marginTop: '0.5rem', color: 'var(--accent-secondary)' }}>Jun 2025 – Present | Remote</span>
+                <span style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>Bell Canada (Data Engineering & Artificial Intelligence Team)</span>
+                <span style={{ display: 'block', fontSize: '1rem', marginTop: '0.5rem', color: 'var(--accent-secondary)' }}>
+                  <i className="fas fa-calendar-alt" style={{ marginRight: '8px' }}></i>June 2025 – Present
+                </span>
+                <span style={{ display: 'block', fontSize: '0.9rem', marginTop: '0.25rem', color: 'var(--text-muted)' }}>
+                  <i className="fas fa-map-marker-alt" style={{ marginRight: '8px' }}></i>Toronto, Ontario, Canada (Remote)
+                </span>
               </h3>
               
               <div style={{ maxWidth: '850px', margin: '0 auto' }}>
@@ -72,8 +226,8 @@ function Experiences() {
               </div>
 
               <div style={{ maxWidth: '850px', margin: '2rem auto 0 auto' }}>
-                <TagList
-                  caption="Key Tech & Concepts:"
+                <SkillsList
+                  caption="Key Technologies & Concepts:"
                   tags={[
                     'Python', 
                     'SAS DI', 
@@ -106,7 +260,12 @@ function Experiences() {
               <h3 className="title" style={{ textAlign: 'center', marginBottom: '2rem' }}>
                 <span style={{ display: 'block', fontSize: '1.8rem', color: 'var(--accent-primary)' }}>Bioinformatics Software Development Research Assistant</span>
                 <span style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>Johns Hopkins University</span>
-                <span style={{ display: 'block', fontSize: '1rem', marginTop: '0.5rem', color: 'var(--accent-secondary)' }}>Sept 2022 – Present | Remote</span>
+                <span style={{ display: 'block', fontSize: '1rem', marginTop: '0.5rem', color: 'var(--accent-secondary)' }}>
+                  <i className="fas fa-calendar-alt" style={{ marginRight: '8px' }}></i>September 2022 – Present
+                </span>
+                <span style={{ display: 'block', fontSize: '0.9rem', marginTop: '0.25rem', color: 'var(--text-muted)' }}>
+                  <i className="fas fa-map-marker-alt" style={{ marginRight: '8px' }}></i>Baltimore, Maryland, United States (Remote)
+                </span>
               </h3>
               
               <div style={{ maxWidth: '850px', margin: '0 auto' }}>
@@ -146,8 +305,8 @@ function Experiences() {
               </div>
 
               <div style={{ maxWidth: '850px', margin: '2rem auto 0 auto' }}>
-                <TagList
-                  caption="Key Tech & Concepts:"
+                <SkillsList
+                  caption="Key Technologies & Concepts:"
                   tags={[
                     'Python', 'R', 'JavaScript', 'TypeScript', 'C', 'React', 'Next.js', 'D3.js', 'Microservices', 'Docker', 'Kubernetes', 'Redis', 'SQL', 'HPC', 'CI/CD', 'Machine Learning', 'TensorFlow', 'Scikit-learn', 'Pandas', 'REST API', 'GraphQL', 'AWS'
                   ]}
@@ -160,53 +319,6 @@ function Experiences() {
         <hr className="break-section" />
 
         {/* =================================== */}
-        {/* === Outlier (Commented Out) === */}
-        {/* =================================== */}
-        {/* <section className="hero job-details" id="outlier">
-          <div className="container">
-            <div className="text-wrapper w-full">
-              <h3 className="title" style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <span style={{ display: 'block', fontSize: '1.8rem', color: 'var(--accent-primary)' }}>Backend Software Developer Intern</span>
-                <span style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>Outlier</span>
-                <span style={{ display: 'block', fontSize: '1rem', marginTop: '0.5rem', color: 'var(--accent-secondary)' }}>Mar 2024 – Nov 2024 | Remote</span>
-              </h3>
-              
-              <div style={{ maxWidth: '850px', margin: '0 auto' }}>
-                <p className="sub-point">
-                  <b>Developed and optimized AI-generated code</b> using Python, Java, and C, enhancing model efficiency by 5% and reducing code errors by 10% through advanced data structures and algorithmic optimizations.
-                </p>
-                <p className="sub-point">
-                  <b>Designed and deployed serverless computing functions</b> using AWS Lambda and API Gateway, contributing to infrastructure cost reductions of 30% and optimized execution time for on-demand tasks.
-                </p>
-                <p className="sub-point">
-                  <b>Built and refactored GraphQL and RESTful APIs</b> with Python (FastAPI, Flask), Java (Spring Boot), and Node.js, implementing query batching, caching, and API Gateway integration. Refactored monolithic apps into microservices to enhance performance, scalability, and maintainability.
-                </p>
-                <p className="sub-point">
-                  <b>Collaborated on training generative AI models</b> in software engineering, data analysis, and machine learning; implemented unit and integration tests to ensure model reliability and validity.
-                </p>
-                <p className="sub-point">
-                  <b>Assisted in debugging and optimizing production code</b> under senior engineers' guidance, identifying bottlenecks and improving performance by 20%.
-                </p>
-                <p className="sub-point">
-                  <b>Conducted rigorous evaluations and enhancements of AI-generated code</b>, increasing AI model performance by 3% while ensuring strict adherence to industry standards and best practices.
-                </p>
-              </div>
-
-              <div style={{ maxWidth: '850px', margin: '2rem auto 0 auto' }}>
-                <TagList
-                  caption="Key Tech & Concepts:"
-                  tags={[
-                    'Python', 'Java', 'C', 'FastAPI', 'Flask', 'Spring Boot', 'Node.js', 'GraphQL', 'REST API', 'AWS Lambda', 'Microservices', 'Generative AI', 'Agile'
-                  ]}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-        <hr className="break-section" />
-        */}
-
-        {/* =================================== */}
         {/* === University of Toronto === */}
         {/* =================================== */}
         <section className="hero job-details" id="u-of-t-research">
@@ -215,7 +327,12 @@ function Experiences() {
               <h3 className="title" style={{ textAlign: 'center', marginBottom: '2rem' }}>
                 <span style={{ display: 'block', fontSize: '1.8rem', color: 'var(--accent-primary)' }}>Software Development Research Assistant</span>
                 <span style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>University of Toronto</span>
-                <span style={{ display: 'block', fontSize: '1rem', marginTop: '0.5rem', color: 'var(--accent-secondary)' }}>Sept 2019 - Apr 2024 | Hybrid</span>
+                <span style={{ display: 'block', fontSize: '1rem', marginTop: '0.5rem', color: 'var(--accent-secondary)' }}>
+                  <i className="fas fa-calendar-alt" style={{ marginRight: '8px' }}></i>September 2019 – April 2024
+                </span>
+                <span style={{ display: 'block', fontSize: '0.9rem', marginTop: '0.25rem', color: 'var(--text-muted)' }}>
+                  <i className="fas fa-map-marker-alt" style={{ marginRight: '8px' }}></i>Toronto, Ontario, Canada (Hybrid)
+                </span>
               </h3>
               
               <div style={{ maxWidth: '850px', margin: '0 auto' }}>
@@ -243,8 +360,8 @@ function Experiences() {
               </div>
 
               <div style={{ maxWidth: '850px', margin: '2rem auto 0 auto' }}>
-                <TagList
-                  caption="Key Tech & Concepts:"
+                <SkillsList
+                  caption="Key Technologies & Concepts:"
                   tags={[
                     'Python', 'R', 'C/C++', 'Java', 'Next.js', 'PostgreSQL', 'MySQL', 'GraphQL', 'Docker', 'Kubernetes', 'HPC', 'Bioinformatics', 'Genomics', 'Agile'
                   ]}
@@ -262,24 +379,380 @@ function Experiences() {
       {/* ========================== */}
       <section className="hero awards-section" id="awards">
         <div className="container">
-          <h2 className="title" style={{ textAlign: 'center' }}>Awards & Achievements</h2>
-          <ul className="awards-list" style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <li>
-              <b>Plenary Speaker, National Collegiate Research Conference (NCRC) - Harvard University (2024):</b> Selected as 1 of only 12 plenary speakers from over 5,000 national applicants. Delivered keynote on applying machine learning to integrate transcriptomics and proteomics for glioblastoma research.
-            </li>
-            <li>
-              <b>Best Detailed Oral Presentation - ABRCMS Conference (2023):</b> Awarded top presenter in the Computational and Systems Biology division (selected from 80 oral presenters; 3,500+ attendees). Recognized with $2,500 for travel and accommodation.
-            </li>
-            <li>
-              <b>Best Poster Presentation - ABRCMS Conference (2024):</b> Received top honors for graduate-level poster presentation (competed among 150+ graduate presenters). Presented research on advancing open-source bioinformatics platforms. Recognized with $2,500 for travel and accommodation.
-            </li>
-            <li>
-              <b>Poster Presentation - National Collegiate Research Conference (NCRC) - Harvard University (2024):</b> Presented research poster detailing computational approaches for cancer biomarker identification.
-            </li>
-            <li>
-              <b>Friends of Arts And Science Awards - University of Toronto (2022, 2023, 2024):</b> Received multiple awards recognizing academic excellence in both Computer Sciences and Physical & Life Sciences disciplines.
-            </li>
-          </ul>
+          <h2 className="title" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <span className="gradient-text">Awards & Achievements</span>
+          </h2>
+          
+          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+            
+            {/* Award Item Component */}
+            {/* Plenary Speaker - Harvard */}
+            <div className="award-item" style={{
+              background: 'var(--glass-bg)',
+              backdropFilter: 'var(--glass-blur)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '16px',
+              padding: '2rem',
+              marginBottom: '1.5rem',
+              transition: 'all 0.3s ease'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <span style={{ fontSize: '2rem', flexShrink: 0 }}>🎤</span>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ 
+                    color: 'var(--accent-secondary)', 
+                    fontSize: '1.25rem', 
+                    fontWeight: '700',
+                    marginBottom: '0.5rem',
+                    marginTop: 0
+                  }}>
+                    Plenary Speaker
+                  </h3>
+                  <p style={{ 
+                    color: 'var(--accent-primary)', 
+                    fontSize: '1rem', 
+                    fontWeight: '600',
+                    marginBottom: '0.5rem'
+                  }}>
+                    National Collegiate Research Conference (NCRC) — Harvard University
+                  </p>
+                  <div style={{ 
+                    display: 'flex', 
+                    gap: '1.5rem', 
+                    flexWrap: 'wrap',
+                    marginBottom: '1rem',
+                    fontSize: '0.9rem',
+                    color: 'var(--text-muted)'
+                  }}>
+                    <span><i className="fas fa-calendar-alt" style={{ marginRight: '6px' }}></i>2024</span>
+                    <span><i className="fas fa-map-marker-alt" style={{ marginRight: '6px' }}></i>Cambridge, Massachusetts, United States</span>
+                  </div>
+                  <p style={{ 
+                    color: 'var(--text-secondary)', 
+                    lineHeight: '1.7',
+                    margin: 0
+                  }}>
+                    Selected as 1 of only 12 plenary speakers from over 5,000 national applicants. Delivered keynote presentation on applying machine learning techniques to integrate transcriptomics and proteomics data for glioblastoma research.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Best Oral Presentation - ABRCMS 2023 */}
+            <div className="award-item" style={{
+              background: 'var(--glass-bg)',
+              backdropFilter: 'var(--glass-blur)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '16px',
+              padding: '2rem',
+              marginBottom: '1.5rem',
+              transition: 'all 0.3s ease'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <span style={{ fontSize: '2rem', flexShrink: 0 }}>🏆</span>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ 
+                    color: 'var(--accent-secondary)', 
+                    fontSize: '1.25rem', 
+                    fontWeight: '700',
+                    marginBottom: '0.5rem',
+                    marginTop: 0
+                  }}>
+                    Best Detailed Oral Presentation Award
+                  </h3>
+                  <p style={{ 
+                    color: 'var(--accent-primary)', 
+                    fontSize: '1rem', 
+                    fontWeight: '600',
+                    marginBottom: '0.5rem'
+                  }}>
+                    Annual Biomedical Research Conference for Minoritized Scientists (ABRCMS) — Computational and Systems Biology Division
+                  </p>
+                  <div style={{ 
+                    display: 'flex', 
+                    gap: '1.5rem', 
+                    flexWrap: 'wrap',
+                    marginBottom: '1rem',
+                    fontSize: '0.9rem',
+                    color: 'var(--text-muted)'
+                  }}>
+                    <span><i className="fas fa-calendar-alt" style={{ marginRight: '6px' }}></i>2023</span>
+                    <span><i className="fas fa-map-marker-alt" style={{ marginRight: '6px' }}></i>Phoenix, Arizona, United States</span>
+                    <span><i className="fas fa-award" style={{ marginRight: '6px' }}></i>$2,500 Travel Award</span>
+                  </div>
+                  <p style={{ 
+                    color: 'var(--text-secondary)', 
+                    lineHeight: '1.7',
+                    margin: 0
+                  }}>
+                    Awarded top presenter in the Computational and Systems Biology division, selected from 80 oral presenters at a conference with over 3,500 attendees. Recognized with a $2,500 award for travel and accommodation.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Best Poster Presentation - ABRCMS 2024 */}
+            <div className="award-item" style={{
+              background: 'var(--glass-bg)',
+              backdropFilter: 'var(--glass-blur)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '16px',
+              padding: '2rem',
+              marginBottom: '1.5rem',
+              transition: 'all 0.3s ease'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <span style={{ fontSize: '2rem', flexShrink: 0 }}>🏆</span>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ 
+                    color: 'var(--accent-secondary)', 
+                    fontSize: '1.25rem', 
+                    fontWeight: '700',
+                    marginBottom: '0.5rem',
+                    marginTop: 0
+                  }}>
+                    Best Poster Presentation Award
+                  </h3>
+                  <p style={{ 
+                    color: 'var(--accent-primary)', 
+                    fontSize: '1rem', 
+                    fontWeight: '600',
+                    marginBottom: '0.5rem'
+                  }}>
+                    Annual Biomedical Research Conference for Minoritized Scientists (ABRCMS) — Graduate Division
+                  </p>
+                  <div style={{ 
+                    display: 'flex', 
+                    gap: '1.5rem', 
+                    flexWrap: 'wrap',
+                    marginBottom: '1rem',
+                    fontSize: '0.9rem',
+                    color: 'var(--text-muted)'
+                  }}>
+                    <span><i className="fas fa-calendar-alt" style={{ marginRight: '6px' }}></i>2024</span>
+                    <span><i className="fas fa-map-marker-alt" style={{ marginRight: '6px' }}></i>Pittsburgh, Pennsylvania, United States</span>
+                    <span><i className="fas fa-award" style={{ marginRight: '6px' }}></i>$2,500 Travel Award</span>
+                  </div>
+                  <p style={{ 
+                    color: 'var(--text-secondary)', 
+                    lineHeight: '1.7',
+                    margin: 0
+                  }}>
+                    Received top honors for graduate-level poster presentation, competing among 150+ graduate presenters. Presented research on advancing open-source bioinformatics platforms. Recognized with a $2,500 award for travel and accommodation.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Poster Presentation - Harvard NCRC */}
+            <div className="award-item" style={{
+              background: 'var(--glass-bg)',
+              backdropFilter: 'var(--glass-blur)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '16px',
+              padding: '2rem',
+              marginBottom: '1.5rem',
+              transition: 'all 0.3s ease'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <span style={{ fontSize: '2rem', flexShrink: 0 }}>📜</span>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ 
+                    color: 'var(--accent-secondary)', 
+                    fontSize: '1.25rem', 
+                    fontWeight: '700',
+                    marginBottom: '0.5rem',
+                    marginTop: 0
+                  }}>
+                    Poster Presentation
+                  </h3>
+                  <p style={{ 
+                    color: 'var(--accent-primary)', 
+                    fontSize: '1rem', 
+                    fontWeight: '600',
+                    marginBottom: '0.5rem'
+                  }}>
+                    National Collegiate Research Conference (NCRC) — Harvard University
+                  </p>
+                  <div style={{ 
+                    display: 'flex', 
+                    gap: '1.5rem', 
+                    flexWrap: 'wrap',
+                    marginBottom: '1rem',
+                    fontSize: '0.9rem',
+                    color: 'var(--text-muted)'
+                  }}>
+                    <span><i className="fas fa-calendar-alt" style={{ marginRight: '6px' }}></i>2024</span>
+                    <span><i className="fas fa-map-marker-alt" style={{ marginRight: '6px' }}></i>Cambridge, Massachusetts, United States</span>
+                  </div>
+                  <p style={{ 
+                    color: 'var(--text-secondary)', 
+                    lineHeight: '1.7',
+                    margin: 0
+                  }}>
+                    Presented research poster detailing computational approaches for cancer biomarker identification using integrated multi-omics analysis and machine learning methodologies.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Friends of Arts and Science Award 2024 */}
+            <div className="award-item" style={{
+              background: 'var(--glass-bg)',
+              backdropFilter: 'var(--glass-blur)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '16px',
+              padding: '2rem',
+              marginBottom: '1.5rem',
+              transition: 'all 0.3s ease'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <span style={{ fontSize: '2rem', flexShrink: 0 }}>🎓</span>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ 
+                    color: 'var(--accent-secondary)', 
+                    fontSize: '1.25rem', 
+                    fontWeight: '700',
+                    marginBottom: '0.5rem',
+                    marginTop: 0
+                  }}>
+                    Friends of Arts and Science Award
+                  </h3>
+                  <p style={{ 
+                    color: 'var(--accent-primary)', 
+                    fontSize: '1rem', 
+                    fontWeight: '600',
+                    marginBottom: '0.5rem'
+                  }}>
+                    University of Toronto — Faculty of Arts & Science
+                  </p>
+                  <div style={{ 
+                    display: 'flex', 
+                    gap: '1.5rem', 
+                    flexWrap: 'wrap',
+                    marginBottom: '1rem',
+                    fontSize: '0.9rem',
+                    color: 'var(--text-muted)'
+                  }}>
+                    <span><i className="fas fa-calendar-alt" style={{ marginRight: '6px' }}></i>2024</span>
+                    <span><i className="fas fa-map-marker-alt" style={{ marginRight: '6px' }}></i>Toronto, Ontario, Canada</span>
+                  </div>
+                  <p style={{ 
+                    color: 'var(--text-secondary)', 
+                    lineHeight: '1.7',
+                    margin: 0
+                  }}>
+                    Awarded for academic excellence in Computer Sciences and Physical & Life Sciences disciplines during the 2023-2024 academic year.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Friends of Arts and Science Award 2023 */}
+            <div className="award-item" style={{
+              background: 'var(--glass-bg)',
+              backdropFilter: 'var(--glass-blur)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '16px',
+              padding: '2rem',
+              marginBottom: '1.5rem',
+              transition: 'all 0.3s ease'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <span style={{ fontSize: '2rem', flexShrink: 0 }}>🎓</span>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ 
+                    color: 'var(--accent-secondary)', 
+                    fontSize: '1.25rem', 
+                    fontWeight: '700',
+                    marginBottom: '0.5rem',
+                    marginTop: 0
+                  }}>
+                    Friends of Arts and Science Award
+                  </h3>
+                  <p style={{ 
+                    color: 'var(--accent-primary)', 
+                    fontSize: '1rem', 
+                    fontWeight: '600',
+                    marginBottom: '0.5rem'
+                  }}>
+                    University of Toronto — Faculty of Arts & Science
+                  </p>
+                  <div style={{ 
+                    display: 'flex', 
+                    gap: '1.5rem', 
+                    flexWrap: 'wrap',
+                    marginBottom: '1rem',
+                    fontSize: '0.9rem',
+                    color: 'var(--text-muted)'
+                  }}>
+                    <span><i className="fas fa-calendar-alt" style={{ marginRight: '6px' }}></i>2023</span>
+                    <span><i className="fas fa-map-marker-alt" style={{ marginRight: '6px' }}></i>Toronto, Ontario, Canada</span>
+                  </div>
+                  <p style={{ 
+                    color: 'var(--text-secondary)', 
+                    lineHeight: '1.7',
+                    margin: 0
+                  }}>
+                    Awarded for academic excellence in Computer Sciences and Physical & Life Sciences disciplines during the 2022-2023 academic year.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Friends of Arts and Science Award 2022 */}
+            <div className="award-item" style={{
+              background: 'var(--glass-bg)',
+              backdropFilter: 'var(--glass-blur)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '16px',
+              padding: '2rem',
+              marginBottom: '1.5rem',
+              transition: 'all 0.3s ease'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <span style={{ fontSize: '2rem', flexShrink: 0 }}>🎓</span>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ 
+                    color: 'var(--accent-secondary)', 
+                    fontSize: '1.25rem', 
+                    fontWeight: '700',
+                    marginBottom: '0.5rem',
+                    marginTop: 0
+                  }}>
+                    Friends of Arts and Science Award
+                  </h3>
+                  <p style={{ 
+                    color: 'var(--accent-primary)', 
+                    fontSize: '1rem', 
+                    fontWeight: '600',
+                    marginBottom: '0.5rem'
+                  }}>
+                    University of Toronto — Faculty of Arts & Science
+                  </p>
+                  <div style={{ 
+                    display: 'flex', 
+                    gap: '1.5rem', 
+                    flexWrap: 'wrap',
+                    marginBottom: '1rem',
+                    fontSize: '0.9rem',
+                    color: 'var(--text-muted)'
+                  }}>
+                    <span><i className="fas fa-calendar-alt" style={{ marginRight: '6px' }}></i>2022</span>
+                    <span><i className="fas fa-map-marker-alt" style={{ marginRight: '6px' }}></i>Toronto, Ontario, Canada</span>
+                  </div>
+                  <p style={{ 
+                    color: 'var(--text-secondary)', 
+                    lineHeight: '1.7',
+                    margin: 0
+                  }}>
+                    Awarded for academic excellence in Computer Sciences and Physical & Life Sciences disciplines during the 2021-2022 academic year.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -290,28 +763,428 @@ function Experiences() {
       {/* ========================== */}
       <section className="hero education-section" id="education">
         <div className="container">
-          <h2 className="title" style={{ textAlign: 'center' }}>Education</h2>
-          <div className="education-details" style={{ maxWidth: '750px', margin: '0 auto' }}>
-            <h3 style={{ marginBottom: '0.2em', textAlign: 'left' }}>University of Toronto</h3>
-            <p style={{ fontStyle: 'italic', color: 'var(--muted-off-white)', marginTop: '0', marginBottom: '1.5em', fontSize: '0.95rem', textAlign: 'left' }}>
-              St. George Campus
-            </p>
-
-            <div className="degree-info" style={{ textAlign: 'left', marginBottom: '1em' }}>
-              <p style={{ margin: '0.1em 0' }}><b>Bachelor of Science (Honours)</b></p>
-              <p style={{ margin: '0.1em 0', fontSize: '0.9em', color: 'var(--muted-off-white)' }}>Graduated June 2024</p>
+          <h2 className="title" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <span className="gradient-text">Education</span>
+          </h2>
+          
+          <div style={{ 
+            maxWidth: '900px', 
+            margin: '0 auto',
+            background: 'var(--glass-bg)',
+            backdropFilter: 'var(--glass-blur)',
+            border: '1px solid var(--glass-border)',
+            borderRadius: '16px',
+            padding: '2.5rem'
+          }}>
+            {/* University Header */}
+            <div style={{ 
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '2rem'
+            }}>
+              <h3 style={{ 
+                fontSize: '1.8rem', 
+                color: 'var(--accent-primary)',
+                marginBottom: '0.25rem',
+                marginTop: 0,
+                textAlign: 'center'
+              }}>
+                University of Toronto
+              </h3>
+              <p style={{ 
+                fontStyle: 'italic', 
+                color: 'var(--text-muted)', 
+                marginTop: '0', 
+                marginBottom: '0',
+                fontSize: '1rem',
+                textAlign: 'center'
+              }}>
+                St. George Campus
+              </p>
+              <div style={{ 
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                color: 'var(--text-muted)', 
+                marginTop: '0.5rem',
+                fontSize: '0.9rem'
+              }}>
+                <i className="fas fa-map-marker-alt"></i>
+                <span>Toronto, Ontario, Canada</span>
+              </div>
             </div>
 
-            <div className="program-details" style={{ textAlign: 'left', marginBottom: '1em' }}>
-              <p style={{ margin: '0.3em 0' }}><i>Specialist: Computer Science, Bioinformatics & Computational Biology</i></p>
-              <p style={{ margin: '0.3em 0' }}><i>Minor: Immunology</i></p>
+            {/* Degree Info */}
+            <div style={{ 
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '2rem',
+              paddingBottom: '2rem',
+              borderBottom: '1px solid var(--glass-border)'
+            }}>
+              <p style={{ 
+                margin: '0.5rem 0',
+                fontSize: '1.25rem',
+                fontWeight: '700',
+                color: 'var(--text-primary)',
+                textAlign: 'center'
+              }}>
+                Bachelor of Science (Honours)
+              </p>
+              <div style={{ 
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                margin: '0.5rem 0', 
+                fontSize: '0.95rem', 
+                color: 'var(--text-muted)'
+              }}>
+                <i className="fas fa-graduation-cap"></i>
+                <span>Graduated June 2024</span>
+              </div>
             </div>
 
-            <p style={{ textAlign: 'left', marginBottom: '2em' }}>Major GPA: 3.96 / 4.0</p>
+            {/* Program Details */}
+            <div style={{ 
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              marginBottom: '2rem',
+              paddingBottom: '2rem',
+              borderBottom: '1px solid var(--glass-border)'
+            }}>
+              <div style={{ 
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                margin: '0.75rem 0',
+                fontSize: '1.1rem',
+                color: 'var(--accent-secondary)',
+                fontWeight: '600'
+              }}>
+                <i className="fas fa-star"></i>
+                <span>Specialist: Computer Science, Bioinformatics & Computational Biology</span>
+              </div>
+              <div style={{ 
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                margin: '0.75rem 0',
+                fontSize: '1rem',
+                color: 'var(--text-secondary)'
+              }}>
+                <i className="fas fa-bookmark"></i>
+                <span>Minor: Immunology</span>
+              </div>
+              <p style={{ 
+                margin: '1.5rem 0 0 0',
+                fontSize: '1.5rem',
+                fontWeight: '700',
+                background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textAlign: 'center'
+              }}>
+                Major GPA: 3.96 / 4.0
+              </p>
+            </div>
 
-            <p className="coursework" style={{ textAlign: 'left', margin: '0' }}>
-              <b>Relevant Coursework:</b> Data Structures & Analysis (CSC263), Software Design (CSC207), Systems Programming (CSC209), Algorithm Design & Analysis (CSC373), Computability & Complexity (Theory), Operating Systems, Database Systems, Machine Learning Principles, Distributed Systems Design, Cloud Computing Concepts, Computer Networks, Mathematical Reasoning for CS (CSC165), Applied Bioinformatics (BCB410), Systems Biology (BCB420), Core Bioinformatics (BCH441/BCB410), Calculus, Statistics & Probability, Advanced Project Courses (BCB330Y1/BCB430Y1 - Omics Integration & ML for Protein Interaction).
-            </p>
+            {/* Relevant Coursework */}
+            <div>
+              <h4 style={{ 
+                color: 'var(--accent-secondary)', 
+                marginBottom: '1.5rem',
+                fontSize: '1.1rem',
+                fontWeight: '700',
+                textAlign: 'center',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '10px'
+              }}>
+                <i className="fas fa-book"></i>
+                <span>Relevant Coursework</span>
+              </h4>
+              
+              {/* Computer Science */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                <h5 style={{ 
+                  color: 'var(--accent-primary)', 
+                  fontSize: '0.95rem', 
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  marginTop: 0
+                }}>
+                  Computer Science
+                </h5>
+                <ul style={{ 
+                  listStyle: 'none', 
+                  padding: 0, 
+                  margin: 0,
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                  gap: '0.5rem'
+                }}>
+                  {[
+                    { code: 'CSC108H1', name: 'Introduction to Computer Programming' },
+                    { code: 'CSC148H1', name: 'Introduction to Computer Science' },
+                    { code: 'CSC165H1', name: 'Mathematical Expression and Reasoning for Computer Science' },
+                    { code: 'CSC207H1', name: 'Software Design' },
+                    { code: 'CSC209H1', name: 'Software Tools and Systems Programming' },
+                    { code: 'CSC236H1', name: 'Introduction to the Theory of Computation' },
+                    { code: 'CSC263H1', name: 'Data Structures and Analysis' },
+                    { code: 'CSC373H1', name: 'Algorithm Design and Analysis' },
+                    { code: 'CSC384H1', name: 'Introduction to Artificial Intelligence' }
+                  ].map((course, idx) => (
+                    <li key={idx} style={{ 
+                      color: 'var(--text-secondary)',
+                      fontSize: '0.9rem',
+                      padding: '0.5rem 0.75rem',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      borderRadius: '8px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}>
+                      <i className="fas fa-chevron-right" style={{ color: 'var(--accent-primary)', fontSize: '0.7rem', flexShrink: 0 }}></i>
+                      <span><strong style={{ color: 'var(--accent-secondary)' }}>{course.code}</strong> — {course.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Bioinformatics & Computational Biology */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                <h5 style={{ 
+                  color: 'var(--accent-primary)', 
+                  fontSize: '0.95rem', 
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  marginTop: 0
+                }}>
+                  Bioinformatics & Computational Biology
+                </h5>
+                <ul style={{ 
+                  listStyle: 'none', 
+                  padding: 0, 
+                  margin: 0,
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                  gap: '0.5rem'
+                }}>
+                  {[
+                    { code: 'BCH441H1', name: 'Bioinformatics' },
+                    { code: 'BCB410H1', name: 'Applied Bioinformatics' },
+                    { code: 'BCB420H1', name: 'Computational Systems Biology' },
+                    { code: 'BCB330Y1', name: 'Bioinformatics Research Project' },
+                    { code: 'BCB430Y1', name: 'Advanced Bioinformatics Research Project' },
+                    { code: 'CSB352H1', name: 'Bioinformatic Methods' }
+                  ].map((course, idx) => (
+                    <li key={idx} style={{ 
+                      color: 'var(--text-secondary)',
+                      fontSize: '0.9rem',
+                      padding: '0.5rem 0.75rem',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      borderRadius: '8px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}>
+                      <i className="fas fa-chevron-right" style={{ color: 'var(--accent-primary)', fontSize: '0.7rem', flexShrink: 0 }}></i>
+                      <span><strong style={{ color: 'var(--accent-secondary)' }}>{course.code}</strong> — {course.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Statistics & Probability */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                <h5 style={{ 
+                  color: 'var(--accent-primary)', 
+                  fontSize: '0.95rem', 
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  marginTop: 0
+                }}>
+                  Statistics & Probability
+                </h5>
+                <ul style={{ 
+                  listStyle: 'none', 
+                  padding: 0, 
+                  margin: 0,
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                  gap: '0.5rem'
+                }}>
+                  {[
+                    { code: 'STA247H1', name: 'Probability with Computer Applications' },
+                    { code: 'STA237H1', name: 'Probability, Statistics and Data Analysis I' }
+                  ].map((course, idx) => (
+                    <li key={idx} style={{ 
+                      color: 'var(--text-secondary)',
+                      fontSize: '0.9rem',
+                      padding: '0.5rem 0.75rem',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      borderRadius: '8px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}>
+                      <i className="fas fa-chevron-right" style={{ color: 'var(--accent-primary)', fontSize: '0.7rem', flexShrink: 0 }}></i>
+                      <span><strong style={{ color: 'var(--accent-secondary)' }}>{course.code}</strong> — {course.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Mathematics */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                <h5 style={{ 
+                  color: 'var(--accent-primary)', 
+                  fontSize: '0.95rem', 
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  marginTop: 0
+                }}>
+                  Mathematics
+                </h5>
+                <ul style={{ 
+                  listStyle: 'none', 
+                  padding: 0, 
+                  margin: 0,
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                  gap: '0.5rem'
+                }}>
+                  {[
+                    { code: 'MAT135H1', name: 'Calculus I (A)' },
+                    { code: 'MAT136H1', name: 'Calculus I (B)' }
+                  ].map((course, idx) => (
+                    <li key={idx} style={{ 
+                      color: 'var(--text-secondary)',
+                      fontSize: '0.9rem',
+                      padding: '0.5rem 0.75rem',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      borderRadius: '8px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}>
+                      <i className="fas fa-chevron-right" style={{ color: 'var(--accent-primary)', fontSize: '0.7rem', flexShrink: 0 }}></i>
+                      <span><strong style={{ color: 'var(--accent-secondary)' }}>{course.code}</strong> — {course.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Biochemistry */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                <h5 style={{ 
+                  color: 'var(--accent-primary)', 
+                  fontSize: '0.95rem', 
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  marginTop: 0
+                }}>
+                  Biochemistry
+                </h5>
+                <ul style={{ 
+                  listStyle: 'none', 
+                  padding: 0, 
+                  margin: 0,
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                  gap: '0.5rem'
+                }}>
+                  {[
+                    { code: 'BCH210H1', name: 'Biochemistry I: Proteins, Lipids and Metabolism' },
+                    { code: 'BCH311H1', name: 'Biochemistry II: Nucleic Acids and Biological Information Flow' }
+                  ].map((course, idx) => (
+                    <li key={idx} style={{ 
+                      color: 'var(--text-secondary)',
+                      fontSize: '0.9rem',
+                      padding: '0.5rem 0.75rem',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      borderRadius: '8px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}>
+                      <i className="fas fa-chevron-right" style={{ color: 'var(--accent-primary)', fontSize: '0.7rem', flexShrink: 0 }}></i>
+                      <span><strong style={{ color: 'var(--accent-secondary)' }}>{course.code}</strong> — {course.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Immunology (Minor) */}
+              <div>
+                <h5 style={{ 
+                  color: 'var(--accent-primary)', 
+                  fontSize: '0.95rem', 
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  marginTop: 0
+                }}>
+                  Immunology (Minor)
+                </h5>
+                <ul style={{ 
+                  listStyle: 'none', 
+                  padding: 0, 
+                  margin: 0,
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                  gap: '0.5rem'
+                }}>
+                  {[
+                    { code: 'IMM250H1', name: 'The Immune System and Infectious Disease' },
+                    { code: 'IMM340H1', name: 'Fundamental Immunology' },
+                    { code: 'IMM350H1', name: 'The Immune System in Action' }
+                  ].map((course, idx) => (
+                    <li key={idx} style={{ 
+                      color: 'var(--text-secondary)',
+                      fontSize: '0.9rem',
+                      padding: '0.5rem 0.75rem',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      borderRadius: '8px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}>
+                      <i className="fas fa-chevron-right" style={{ color: 'var(--accent-primary)', fontSize: '0.7rem', flexShrink: 0 }}></i>
+                      <span><strong style={{ color: 'var(--accent-secondary)' }}>{course.code}</strong> — {course.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="section" style={{ paddingBottom: '4rem', paddingTop: '2rem' }}>
+        <div className="container">
+          <div className="contact-cta fade-in">
+            <h3>Interested in Working Together?</h3>
+            <p>I'm actively seeking opportunities in data engineering, platform engineering, and software development.</p>
+            <div className="btn-group" style={{ justifyContent: 'center' }}>
+              <Link href="/" className="btn btn-secondary">
+                <i className="fas fa-home"></i> Back to Home
+              </Link>
+              <a href="mailto:hossain.sabbir17@gmail.com" className="btn btn-primary">
+                <i className="fas fa-envelope"></i> Get In Touch
+              </a>
+            </div>
           </div>
         </div>
       </section>

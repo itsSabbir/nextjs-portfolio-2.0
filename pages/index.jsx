@@ -153,28 +153,33 @@ export default function Home() {
     }
   ];
 
-  // --- Experience Data ---
-  const experiences = [
+  // --- Industry Experience Data ---
+  const industryExperiences = [
     {
       title: "Data Engineer",
       company: "Bell Canada",
       period: "Jun 2025 - Present",
-      description: "Architecting mission-critical data pipelines for the Network Ticket Service (NTS) Platform.",
+      description: "Building and owning the NTS/MS Archway data pipeline for Bell's Network Ticket Service platform, under the  Bell Business Markets umbrella serving enterprise and small business customers.",
       highlights: [
-        "Expanded data coverage by 800% (1 to 9+ months) via root cause analysis",
-        "Optimized critical query runtime from 12 mins to 2 mins (83% reduction)",
-        "Recovered 28,000+ missing records through systematic data quality fixes"
+        "Expanded analytical coverage from 1 to 9+ months through systematic root cause analysis",
+        "Recovered 28,000+ missing records by diagnosing upstream data integrity drift",
+        "Consolidated 4 enterprise data sources into a unified reporting layer"
       ],
       link: "/experiences#bell-canada"
-    },
+    }
+  ];
+
+  // --- Research Experience Data ---
+  const researchExperiences = [
     {
       title: "Bioinformatics Research Assistant",
       company: "Johns Hopkins University",
       period: "Sept 2022 - Present",
-      description: "Spearheading large-scale oncology research integrating 750+ TB of multi-omics data.",
+      description: "Cross-institutional oncology research integrating 750+ TB of multi-omics data across 3 cancer types. This role grew out of my work at UofT.",
       highlights: [
-        "Contributed to discovery of 8 novel biomarkers",
-        "Reduced genomic analysis load times by 83%"
+        "Selected as 1 of 12 plenary speakers from 5,000+ applicants at Harvard NCRC",
+        "Won Best Oral Presentation at ABRCMS 2023 and Best Poster at ABRCMS 2024",
+        "Contributed to identification of 8 novel biomarker candidates"
       ],
       link: "/experiences#johns-hopkins"
     },
@@ -182,10 +187,10 @@ export default function Home() {
       title: "Software Development Research Assistant",
       company: "University of Toronto",
       period: "Sept 2019 – Apr 2024",
-      description: "Engineered full-stack bioinformatics applications automating workflows.",
+      description: "Where my research career began. Built full-stack bioinformatics platforms automating workflows across 7 wet lab teams, which led to the Johns Hopkins collaboration.",
       highlights: [
-        "Saved 30+ hours weekly across 7 research teams",
-        "Reduced environment setup time by 50%"
+        "Eliminated 30+ hours of manual work weekly for researchers",
+        "Created containerized environments that cut onboarding from days to hours"
       ],
       link: "/experiences#u-of-t-research"
     }
@@ -319,10 +324,9 @@ export default function Home() {
               <span className="gradient-text">Sabbir Hossain</span>
             </h1>
 
-            {/* Subtitle */}
             <p className="hero-subtitle fade-in" style={{ maxWidth: '800px', margin: '0 auto 2rem auto', fontSize: '1.2rem' }}>
-              <span className="gradient-text">Data Engineer</span> & <span className="gradient-text">Platform Architect</span> building scalable data infrastructure at <span className="gradient-text">Bell Canada</span>. 
-              <br className="mobile-only" /> Passionate about distributed systems, platform engineering, and solving complex data challenges.
+              <span className="gradient-text">Data Engineer</span> at <span className="gradient-text">Bell Canada</span> (Bell Business Markets) building scalable data infrastructure. 
+              <br className="mobile-only" /> Former bioinformatics researcher at <span className="gradient-text">Johns Hopkins</span> and <span className="gradient-text">University of Toronto</span>. I like hard problems and clean solutions.
             </p>
 
             {/* Badges */}
@@ -359,10 +363,12 @@ export default function Home() {
               </a>
               <Link href="/experiences" className="btn btn-secondary">
                 <i className="fas fa-file-alt"></i>
-                View Full Experience
+                Full Experience
               </Link>
-
-              
+              <Link href="/projects" className="btn btn-secondary">
+                <i className="fas fa-laptop-code"></i>
+                My Projects
+              </Link>
             </div>
 
             {/* Social Links */}
@@ -396,20 +402,27 @@ export default function Home() {
           <div className="about-content fade-in" style={{ maxWidth: '900px', margin: '0 auto' }}>
             
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-              <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-secondary)' }}>Building the Future of Data Infrastructure</h3>
+              <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-secondary)' }}>Data Engineer with a Research Background</h3>
               <p style={{ margin: '0 auto 1.5rem auto', maxWidth: '800px', textAlign: 'left' }}>
-                I&apos;m a Data Engineer at Bell Canada, where I architect and productionize mission-critical data pipelines 
-                on the Network Ticket Service (NTS) Platform. With a background in computational biology and bioinformatics 
-                from the University of Toronto, I bring a unique perspective to data engineering challenges.
+                I&apos;m a <span className="gradient-text">Data Engineer</span> at <span className="gradient-text">Bell Canada</span> under the <span className="gradient-text">Bell Business Markets (BBM) </span> division, within the <span className="gradient-text">Data Engineering and Artificial Intelligence Team (DE/AI) </span>
+                where I architect and productionize mission-critical data pipelines on the Network Ticket Service (NTS) Platform. Before going full-time in industry, 
+                I spent 5+ years in computational biology research. I graduated from the <span className="gradient-text">University of Toronto</span> (St. George Campus) 
+                with a 3.96 major GPA in <span className="gradient-text">Bioinformatics</span> and <span className="gradient-text">Computer Science</span>.
               </p>
               <p style={{ margin: '0 auto 1.5rem auto', maxWidth: '800px', textAlign: 'left' }}>
-                My journey spans from working with massive genomics datasets (750+ TB) in research to building 
-                enterprise-scale data infrastructure. I&apos;m passionate about platform engineering, distributed systems, 
-                and creating elegant solutions to complex technical problems.
+                My research at <span className="gradient-text">UofT</span> led me to cross-institutional work with <span className="gradient-text">Johns Hopkins</span>, 
+                and eventually to present at <span className="gradient-text">Harvard</span> — where I was selected as 1 of 12 plenary speakers from 5,000+ applicants. 
+                I won best presentation awards at ABRCMS in back-to-back years. Along the way, I processed 750+ TB of multi-omics data and realized that 
+                <span className="gradient-text"> data engineering</span> is where I belong — building the infrastructure that makes insights possible.
+              </p>
+              <p style={{ margin: '0 auto 1.5rem auto', maxWidth: '800px', textAlign: 'left' }}>
+                Data engineering sits at the intersection of software engineering and data science, and I love that. I care about distributed systems, 
+                platform engineering, data infrastructure, and creating elegant solutions to complex technical problems. Now I apply that same rigor 
+                from research to building enterprise-scale systems.
               </p>
             </div>
 
-            {/* TLDR Box */}
+            {/* TL;DR BOX */}
             <div className="tldr-box" style={{ marginBottom: '2rem', textAlign: 'center' }}>
               <div className="tldr-header" style={{ 
                 display: 'flex', 
@@ -424,11 +437,11 @@ export default function Home() {
               </div>
               <div className="tldr-content">
                 <ul style={{ display: 'inline-block', textAlign: 'left' }}>
-                  <li>Data Engineer at Bell Canada Data Engineering and Artificial Intelligence Team</li>
-                  <li>UofT Graduate (3.96 Major GPA) in Bioinformatics & CS</li>
-                  <li>Expanded data coverage by 800%, optimized queries by 83%</li>
-                  <li>Expert in Python, SQL, distributed systems, cloud platforms</li>
-                  <li>Open to Data, Software and Platform Engineering roles</li>
+                  <li>Data Engineer at Bell Canada (Data Engineering & Artificial Intelligence Team), building production ETLs and owning end-to-end analytical systems — dashboards, visualization layers, and business-critical insights on the NTS platforms.</li>
+                  <li>University of Toronto Honours BSc (3.96 Major GPA) — CS + Bioinformatics Specialist</li>
+                  <li>Harvard plenary speaker (1 of 12 from 5,000+ applicants)</li>
+                  <li>5+ years research across University of Toronto and Johns Hopkins</li>
+                  <li>Looking for Data, Platform, or Software Engineering roles</li>
                 </ul>
               </div>
             </div>
@@ -660,79 +673,197 @@ export default function Home() {
       </section>
 
       {/* ========================================= */}
-      {/* 4. EXPERIENCE HIGHLIGHTS                  */}
+      {/* 4. EXPERIENCE HIGHLIGHTS - SPLIT          */}
       {/* ========================================= */}
       <section className="section" id="experience_preview">
         <div className="container">
           <div className="section-header">
             <div className="section-label"><i className="fas fa-briefcase"></i> Career Highlights</div>
             <h2 className="section-title">Experience</h2>
-            <p className="section-description">A snapshot of my professional journey.</p>
+            <p className="section-description">Industry and research roles that shaped how I think about data.</p>
             {/* View All Experiences Link */}
             <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
-            <Link href="/experiences" className="btn btn-secondary">
-            <i className="fas fa-th-large"></i> View All Experiences
-            </Link>
-          </div>
+              <Link href="/experiences" className="btn btn-secondary">
+                <i className="fas fa-th-large"></i> View All Experiences
+              </Link>
+            </div>
           </div>
 
-          <div className="timeline" style={{ maxWidth: '900px', margin: '0 auto' }}>
-            {experiences.map((exp, idx) => (
-              <div key={idx} className="timeline-item fade-in">
-                {/* Header: Title, Company, Date stacked */}
-                <div className="timeline-header" style={{ 
-                  display: 'flex', 
-                  flexDirection: 'column',
-                  gap: '0.25rem',
-                  marginBottom: '1rem'
-                }}>
-                  <h3 className="timeline-title" style={{ 
-                    margin: 0,
-                    fontSize: '1.75rem',
-                    fontWeight: '700',
-                    color: 'var(--text-primary, #f8fafc)'
+          {/* Industry Experience */}
+          <div style={{ maxWidth: '900px', margin: '0 auto 3rem auto' }}>
+            <h3 className="fade-in" style={{ 
+              color: 'var(--accent-primary)', 
+              marginBottom: '1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              fontSize: '1.4rem'
+            }}>
+              <i className="fas fa-building"></i> Industry
+            </h3>
+            <div className="timeline">
+              {industryExperiences.map((exp, idx) => (
+                <div key={idx} className="timeline-item fade-in">
+                  <div className="timeline-header" style={{ 
+                    display: 'flex', 
+                    flexDirection: 'column',
+                    gap: '0.25rem',
+                    marginBottom: '1rem'
                   }}>
-                    {exp.title}
-                  </h3>
-                  <div className="timeline-company" style={{ 
-                    fontSize: '1.35rem',
-                    color: 'var(--accent-secondary, #D4AF37)',
-                    fontWeight: '600'
-                  }}>
-                    {exp.company}
+                    <h3 className="timeline-title" style={{ 
+                      margin: 0,
+                      fontSize: '1.75rem',
+                      fontWeight: '700',
+                      color: 'var(--text-primary, #f8fafc)'
+                    }}>
+                      {exp.title}
+                    </h3>
+                    <div className="timeline-company" style={{ 
+                      fontSize: '1.35rem',
+                      color: 'var(--accent-secondary, #D4AF37)',
+                      fontWeight: '600'
+                    }}>
+                      {exp.company}
+                    </div>
+                    <div className="timeline-period" style={{ 
+                      fontSize: '0.85rem',
+                      color: 'var(--text-secondary, #94a3b8)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px'
+                    }}>
+                      <i className="fas fa-calendar-alt"></i> {exp.period}
+                    </div>
                   </div>
-                  <div className="timeline-period" style={{ 
-                    fontSize: '0.85rem',
-                    color: 'var(--text-secondary, #94a3b8)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px'
-                  }}>
-                    <i className="fas fa-calendar-alt"></i> {exp.period}
-                  </div>
-                </div>
 
-                <div className="timeline-description">
-                  <p style={{ marginBottom: '0.75rem' }}>{exp.description}</p>
-                  {exp.highlights && exp.highlights.length > 0 && (
-                    <ul style={{ marginBottom: '1rem' }}>
-                      {exp.highlights.map((highlight, hIdx) => (
-                        <li key={hIdx}>{highlight}</li>
-                      ))}
-                    </ul>
-                  )}
-                  <Link href={exp.link} className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }}>
-                    Read Full Details <i className="fas fa-arrow-right"></i>
-                  </Link>
+                  <div className="timeline-description">
+                    <p style={{ marginBottom: '0.75rem' }}>{exp.description}</p>
+                    {exp.highlights && exp.highlights.length > 0 && (
+                      <ul style={{ marginBottom: '1rem' }}>
+                        {exp.highlights.map((highlight, hIdx) => (
+                          <li key={hIdx}>{highlight}</li>
+                        ))}
+                      </ul>
+                    )}
+                    <Link href={exp.link} className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }}>
+                      Read Full Details <i className="fas fa-arrow-right"></i>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Research Experience */}
+          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <h3 className="fade-in" style={{ 
+              color: 'var(--accent-primary)', 
+              marginBottom: '1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              fontSize: '1.4rem'
+            }}>
+              <i className="fas fa-flask"></i> Research
+            </h3>
+            <div className="timeline">
+              {researchExperiences.map((exp, idx) => (
+                <div key={idx} className="timeline-item fade-in">
+                  <div className="timeline-header" style={{ 
+                    display: 'flex', 
+                    flexDirection: 'column',
+                    gap: '0.25rem',
+                    marginBottom: '1rem'
+                  }}>
+                    <h3 className="timeline-title" style={{ 
+                      margin: 0,
+                      fontSize: '1.75rem',
+                      fontWeight: '700',
+                      color: 'var(--text-primary, #f8fafc)'
+                    }}>
+                      {exp.title}
+                    </h3>
+                    <div className="timeline-company" style={{ 
+                      fontSize: '1.35rem',
+                      color: 'var(--accent-secondary, #D4AF37)',
+                      fontWeight: '600'
+                    }}>
+                      {exp.company}
+                    </div>
+                    <div className="timeline-period" style={{ 
+                      fontSize: '0.85rem',
+                      color: 'var(--text-secondary, #94a3b8)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px'
+                    }}>
+                      <i className="fas fa-calendar-alt"></i> {exp.period}
+                    </div>
+                  </div>
+
+                  <div className="timeline-description">
+                    <p style={{ marginBottom: '0.75rem' }}>{exp.description}</p>
+                    {exp.highlights && exp.highlights.length > 0 && (
+                      <ul style={{ marginBottom: '1rem' }}>
+                        {exp.highlights.map((highlight, hIdx) => (
+                          <li key={hIdx}>{highlight}</li>
+                        ))}
+                      </ul>
+                    )}
+                    <Link href={exp.link} className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }}>
+                      Read Full Details <i className="fas fa-arrow-right"></i>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ========================================= */}
-      {/* 5. PROJECTS SECTION - @ ON NEW LINE       */}
+      {/* 5. IMPACT & ACTIVITY (Stats)              */}
+      {/* ========================================= */}
+      <section className="section" style={{ paddingTop: '0', paddingBottom: '3rem' }}>
+        <div className="container">
+          <div className="section-header fade-in">
+            <h2 className="section-title">Impact & Activity</h2>
+          </div>
+
+          {/* Unified Container: Using Flexbox to center the odd-numbered card automatically */}
+          <div className="stats-grid fade-in" style={{ 
+            display: 'flex', 
+            flexWrap: 'wrap', 
+            justifyContent: 'center', 
+            gap: '1.5rem', // Consistent spacing
+            marginBottom: '3rem' 
+          }}>
+            
+            {/* Original 6 Cards */}
+            <StatCard icon="🏢" value={`${experience.industry} Yrs`} label="Industry Experience" />
+            <StatCard icon="🔬" value="5+" label="Years in Research" />
+            <StatCard icon="💾" value="750+ TB" label="Data Processed" />
+            <StatCard icon="🎤" value="4" label="Conference Presentations" />
+            <StatCard icon="🏆" value="3" label="Presentation Awards" />
+            <StatCard icon="🎓" value="3.96" label="Major GPA" />
+
+            {/* GitHub Card - Moved inside the grid */}
+            <StatCard 
+              icon={<i className="fas fa-fire" style={{ color: '#e25822' }}></i>}
+              value={`${streak}`} 
+              label={
+                <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                  <i className="fab fa-github" style={{ fontSize: '1.1em' }}></i> GitHub Streak
+                </span>
+              } 
+            />
+            
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================= */}
+      {/* 6. PROJECTS SECTION                       */}
       {/* ========================================= */}
       <section className="section" id="projects">
         <div className="container">
@@ -778,49 +909,13 @@ export default function Home() {
       </section>
 
       {/* ========================================= */}
-      {/* 6. IMPACT & ACTIVITY (Stats)              */}
-      {/* ========================================= */}
-      <section className="section" style={{ paddingTop: '0', paddingBottom: '3rem' }}>
-        <div className="container">
-          <div className="section-header fade-in">
-            <h2 className="section-title">Impact & Activity</h2>
-          </div>
-
-          <div className="stats-grid fade-in" style={{ marginBottom: '3rem' }}>
-            <StatCard icon="🔬" value={`${experience.research} Yrs`} label="Research & Dev" />
-            <StatCard icon="💾" value="750+ TB" label="Data Processed" />
-            <StatCard icon="⚡" value="83%" label="Faster Queries" />
-            <StatCard icon="🎓" value="3.96" label="Major GPA" />
-          </div>
-
-          <div className="fade-in" style={{ 
-            display: 'flex', 
-            justifyContent: 'center', 
-            marginTop: '2rem' 
-          }}>
-            <div style={{ maxWidth: '300px', width: '100%' }}>
-              <StatCard 
-                icon={<i className="fas fa-fire" style={{ color: '#e25822' }}></i>}
-                value={`${streak}`} 
-                label={
-                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                    <i className="fab fa-github" style={{ fontSize: '1.1em' }}></i> GitHub Streak
-                  </span>
-                } 
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================= */}
       {/* 7. CONTACT SECTION                        */}
       {/* ========================================= */}
       <section className="section" id="contact">
         <div className="container">
           <div className="contact-cta fade-in">
-            <h3>Let&apos;s Build Something Amazing</h3>
-            <p>I&apos;m actively seeking opportunities in platform engineering and data infrastructure.</p>
+            <h3>Let&apos;s Build Something Together</h3>
+            <p>Looking for my next opportunity in data engineering or platform engineering.</p>
             <div className="btn-group" style={{ justifyContent: 'center' }}>
               <a href="mailto:hossain.sabbir17@gmail.com" className="btn btn-primary">
                 <i className="fas fa-envelope"></i> Send Email
