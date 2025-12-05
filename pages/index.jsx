@@ -6,48 +6,43 @@ import ProjectCard from '../components/ProjectCard';
 import StatCard from '../components/StatCard';
 
 export default function Home() {
-  const [experience, setExperience] = useState({ research: "0.0", industry: "0.0" });
+  const [totalExperience, setTotalExperience] = useState({ years: 0, months: 0 });
   const [streak, setStreak] = useState(0);
   
   // Experience & Streak Calculations
   useEffect(() => {
-    const calculateDuration = (startDate, endDate = new Date()) => {
-      const start = new Date(startDate);
-      const end = endDate;
-      if (start > end) return 0;
-      
-      const diffTime = Math.abs(end - start);
-      const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25); 
-      return diffYears;
-    };
-
     const now = new Date();
 
-    // 1. Research/Part-time
-    const researchStart = '2019-09-01';
-    const partTimeCap = new Date('2025-05-31');
-    const researchEndDate = now < partTimeCap ? now : partTimeCap;
-    const researchYears = calculateDuration(researchStart, researchEndDate);
-
-    // 2. Industry/Full-time
-    const industryStartStr = '2025-06-01';
-    const industryStart = new Date(industryStartStr);
+    // Combined Experience Calculation
+    // Research: Sept 2019 - May 2025 (capped)
+    // Industry: June 2025 - Present
+    const researchStart = new Date('2019-09-01');
+    const industryStart = new Date('2025-06-01');
     
-    let industryYears = 0;
+    // Calculate research duration (capped at May 2025)
+    const researchEnd = new Date('2025-05-31');
+    const researchMs = researchEnd - researchStart;
+    
+    // Calculate industry duration (from June 2025 to now)
+    let industryMs = 0;
     if (now >= industryStart) {
-      industryYears = calculateDuration(industryStartStr, now);
+      industryMs = now - industryStart;
     }
-
-    setExperience({ 
-      research: researchYears.toFixed(1), 
-      industry: industryYears.toFixed(1) 
-    });
     
-    // 3. Streak Calculation
+    // Total experience in months
+    const totalMs = researchMs + industryMs;
+    const totalMonths = Math.floor(totalMs / (1000 * 60 * 60 * 24 * 30.44));
+    const years = Math.floor(totalMonths / 12);
+    const months = totalMonths % 12;
+    
+    setTotalExperience({ years, months });
+    
+    // Streak Calculation
     const streakStart = new Date('2024-05-16');
     streakStart.setHours(0, 0, 0, 0);
-    now.setHours(0, 0, 0, 0);
-    const diffTime = now - streakStart;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const diffTime = today - streakStart;
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     setStreak(Math.max(0, diffDays));
   }, []);
@@ -159,7 +154,7 @@ export default function Home() {
       title: "Data Engineer",
       company: "Bell Canada",
       period: "Jun 2025 - Present",
-      description: "Building and owning the NTS/MS Archway data pipeline for Bell's Network Ticket Service platform, under the  Bell Business Markets umbrella serving enterprise and small business customers.",
+      description: "Building and owning the NTS/MS Archway data pipeline for Bell's Network Ticket Service platform, under the Bell Business Markets umbrella serving enterprise and small business customers.",
       highlights: [
         "Expanded analytical coverage from 1 to 9+ months through systematic root cause analysis",
         "Recovered 28,000+ missing records by diagnosing upstream data integrity drift",
@@ -270,9 +265,9 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Sabbir Hossain | Data Engineer & Platform Architect</title>
+        <title>Sabbir Hossain | Data Engineer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Portfolio of Sabbir Hossain, Data Engineer & Platform Architect at Bell Canada." />
+        <meta name="description" content="Portfolio of Sabbir Hossain, Data Engineer at Bell Canada with research background from Johns Hopkins and University of Toronto." />
       </Head>
 
       {/* ========================================= */}
@@ -325,8 +320,8 @@ export default function Home() {
             </h1>
 
             <p className="hero-subtitle fade-in" style={{ maxWidth: '800px', margin: '0 auto 2rem auto', fontSize: '1.2rem' }}>
-              <span className="gradient-text">Data Engineer</span> at <span className="gradient-text">Bell Canada</span> (Bell Business Markets) building scalable data infrastructure. 
-              <br className="mobile-only" /> Former bioinformatics researcher at <span className="gradient-text">Johns Hopkins</span> and <span className="gradient-text">University of Toronto</span>. I like hard problems and clean solutions.
+              <span className="gradient-text">Data Engineer</span> at <span className="gradient-text">Bell Canada</span> building scalable data infrastructure. 
+              <br className="mobile-only" /> Former bioinformatics researcher at <span className="gradient-text">Johns Hopkins</span> and <span className="gradient-text">University of Toronto</span>. Harvard speaker, back-to-back ABRCMS award winner.
             </p>
 
             {/* Badges */}
@@ -401,8 +396,35 @@ export default function Home() {
 
           <div className="about-content fade-in" style={{ maxWidth: '900px', margin: '0 auto' }}>
             
+            {/* Intro Paragraph */}
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
               <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-secondary)' }}>Data Engineer with a Research Background</h3>
+              {/* TL;DR BOX */}
+            <div className="tldr-box" style={{ marginBottom: '2rem', textAlign: 'center' }}>
+              <div className="tldr-header" style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                gap: '12px',
+                marginBottom: '1rem'
+              }}>
+                <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
+                <h4 style={{ margin: 0 }}>TL;DR</h4>
+                <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
+              </div>
+              <div className="tldr-content">
+                <ul style={{ display: 'inline-block', textAlign: 'left' }}>
+                  <li>Data Engineer at Bell Canada (BBM — DE/AI), owning production ETLs and analytical systems on NTS — a multi-team, cross-functional platform</li>
+                  <li>Build and maintain data infrastructure, dashboards, visualization layers, and business-critical insights used by multiple internal teams</li>
+                  <li>University of Toronto Honours BSc (3.96 Major GPA) — CS + Bioinformatics Specialist</li>
+                  <li>Harvard plenary speaker (1 of 12 from 5,000+ applicants)</li>
+                  <li> ABRCMS Best Detailed Oral & Best Poster Award Winner (top researcher in division)</li>
+                  <li>5+ years research across University of Toronto and Johns Hopkins</li>
+                  <li>Looking for Data, Platform, or Software Engineering roles</li>
+                </ul>
+              </div>
+            </div>
+
               <p style={{ margin: '0 auto 1.5rem auto', maxWidth: '800px', textAlign: 'left' }}>
                 I&apos;m a <span className="gradient-text">Data Engineer</span> at <span className="gradient-text">Bell Canada</span> under the <span className="gradient-text">Bell Business Markets (BBM) </span> division, within the <span className="gradient-text">Data Engineering and Artificial Intelligence Team (DE/AI) </span>
                 where I architect and productionize mission-critical data pipelines on the Network Ticket Service (NTS) Platform. Before going full-time in industry, 
@@ -420,30 +442,6 @@ export default function Home() {
                 platform engineering, data infrastructure, and creating elegant solutions to complex technical problems. Now I apply that same rigor 
                 from research to building enterprise-scale systems.
               </p>
-            </div>
-
-            {/* TL;DR BOX */}
-            <div className="tldr-box" style={{ marginBottom: '2rem', textAlign: 'center' }}>
-              <div className="tldr-header" style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center', 
-                gap: '12px',
-                marginBottom: '1rem'
-              }}>
-                <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
-                <h4 style={{ margin: 0 }}>TL;DR</h4>
-                <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
-              </div>
-              <div className="tldr-content">
-                <ul style={{ display: 'inline-block', textAlign: 'left' }}>
-                  <li>Data Engineer at Bell Canada (Data Engineering & Artificial Intelligence Team), building production ETLs and owning end-to-end analytical systems — dashboards, visualization layers, and business-critical insights on the NTS platforms.</li>
-                  <li>University of Toronto Honours BSc (3.96 Major GPA) — CS + Bioinformatics Specialist</li>
-                  <li>Harvard plenary speaker (1 of 12 from 5,000+ applicants)</li>
-                  <li>5+ years research across University of Toronto and Johns Hopkins</li>
-                  <li>Looking for Data, Platform, or Software Engineering roles</li>
-                </ul>
-              </div>
             </div>
 
             {/* Work Auth - CENTERED CONTENT */}
@@ -502,8 +500,9 @@ export default function Home() {
                   gap: '0.75rem',
                   width: 'fit-content'
                 }}>
-                  <CheckItem>Authorized to work (No sponsorship needed)</CheckItem>
+                  <CheckItem>🇨🇦 Citizen</CheckItem>
                   <CheckItem>Based in Toronto, ON</CheckItem>
+                  <CheckItem>NEXUS Card Holder</CheckItem>
                 </div>
               </div>
 
@@ -555,7 +554,7 @@ export default function Home() {
                   gap: '0.75rem',
                   width: 'fit-content'
                 }}>
-                  <CheckItem>TN Visa eligible (No sponsorship required)</CheckItem>
+                  <CheckItem>TN Visa eligible (No sponsorship or $$$ required)</CheckItem>
                   <CheckItem>Open to H-1B / Green Card sponsorship</CheckItem>
                 </div>
               </div>
@@ -835,19 +834,23 @@ export default function Home() {
             display: 'flex', 
             flexWrap: 'wrap', 
             justifyContent: 'center', 
-            gap: '1.5rem', // Consistent spacing
+            gap: '1.5rem',
             marginBottom: '3rem' 
           }}>
             
-            {/* Original 6 Cards */}
-            <StatCard icon="🏢" value={`${experience.industry} Yrs`} label="Industry Experience" />
-            <StatCard icon="🔬" value="5+" label="Years in Research" />
+            {/* Combined Experience Tile */}
+            <StatCard 
+              icon="📊" 
+              value={`${totalExperience.years} yrs ${totalExperience.months} mo`} 
+              label="Research + Industry" 
+            />
             <StatCard icon="💾" value="750+ TB" label="Data Processed" />
             <StatCard icon="🎤" value="4" label="Conference Presentations" />
             <StatCard icon="🏆" value="3" label="Presentation Awards" />
             <StatCard icon="🎓" value="3.96" label="Major GPA" />
+            <StatCard icon="🏛️" value="3" label="Institutions" />
 
-            {/* GitHub Card - Moved inside the grid */}
+            {/* GitHub Card */}
             <StatCard 
               icon={<i className="fas fa-fire" style={{ color: '#e25822' }}></i>}
               value={`${streak}`} 
