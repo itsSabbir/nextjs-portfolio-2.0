@@ -175,6 +175,254 @@ function Experiences() {
         <hr className="break-section" style={{ marginTop: '2rem' }} />
       </div>
 
+      {/* ========================== */}
+      {/* Executive Summary / TL;DR  */}
+      {/* ========================== */}
+      <section className="hero" id="summary" style={{ paddingTop: '0', paddingBottom: '2rem' }}>
+        <div className="container">
+          <div style={{ 
+            maxWidth: '950px', 
+            margin: '0 auto',
+            background: 'linear-gradient(135deg, rgba(174, 0, 1, 0.08), rgba(212, 175, 55, 0.08))',
+            border: '1px solid var(--accent-primary)',
+            borderRadius: '16px',
+            padding: '2.5rem',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            {/* Decorative corner accent */}
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              width: '100px',
+              height: '100px',
+              background: 'linear-gradient(135deg, transparent 50%, rgba(212, 175, 55, 0.1) 50%)',
+              borderRadius: '0 16px 0 0'
+            }} />
+            
+            {/* Header */}
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center',
+              gap: '12px',
+              marginBottom: '1.5rem'
+            }}>
+              <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
+              <h2 style={{ 
+                margin: 0, 
+                fontSize: '1.5rem',
+                fontWeight: '700',
+                color: 'var(--accent-primary)'
+              }}>Executive Summary</h2>
+              <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
+            </div>
+
+            {/* Summary Grid */}
+            <div style={{ 
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '1.5rem',
+              marginBottom: '1.5rem'
+            }}>
+              {/* Current Role */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                borderRadius: '12px',
+                padding: '1.25rem',
+                borderLeft: '3px solid var(--accent-primary)'
+              }}>
+                <div style={{ 
+                  fontSize: '0.75rem', 
+                  textTransform: 'uppercase', 
+                  letterSpacing: '0.1em',
+                  color: 'var(--accent-secondary)',
+                  marginBottom: '0.5rem',
+                  fontWeight: '600'
+                }}>Current Role</div>
+                <div style={{ color: 'var(--text-primary)', fontWeight: '600', fontSize: '1.1rem' }}>
+                  Data Engineer @ Bell Canada
+                </div>
+                <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.25rem' }}>
+                  BBM Division • DE/AI Team • NTS Platform Owner
+                </div>
+              </div>
+
+              {/* Research Background */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                borderRadius: '12px',
+                padding: '1.25rem',
+                borderLeft: '3px solid var(--accent-secondary)'
+              }}>
+                <div style={{ 
+                  fontSize: '0.75rem', 
+                  textTransform: 'uppercase', 
+                  letterSpacing: '0.1em',
+                  color: 'var(--accent-secondary)',
+                  marginBottom: '0.5rem',
+                  fontWeight: '600'
+                }}>Research Background</div>
+                <div style={{ color: 'var(--text-primary)', fontWeight: '600', fontSize: '1.1rem' }}>
+                  5+ Years Across 3 Institutions
+                </div>
+                <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.25rem' }}>
+                  Johns Hopkins • University of Toronto • 750+ TB Data
+                </div>
+              </div>
+
+              {/* Education */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                borderRadius: '12px',
+                padding: '1.25rem',
+                borderLeft: '3px solid var(--accent-primary)'
+              }}>
+                <div style={{ 
+                  fontSize: '0.75rem', 
+                  textTransform: 'uppercase', 
+                  letterSpacing: '0.1em',
+                  color: 'var(--accent-secondary)',
+                  marginBottom: '0.5rem',
+                  fontWeight: '600'
+                }}>Education</div>
+                <div style={{ color: 'var(--text-primary)', fontWeight: '600', fontSize: '1.1rem' }}>
+                  UofT Honours BSc • 3.96 GPA
+                </div>
+                <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.25rem' }}>
+                  CS + Bioinformatics Specialist • Immunology Minor
+                </div>
+              </div>
+            </div>
+
+            {/* Key Achievements - Horizontal Pills */}
+            <div style={{ marginBottom: '1.5rem' }}>
+              <div style={{ 
+                fontSize: '0.75rem', 
+                textTransform: 'uppercase', 
+                letterSpacing: '0.1em',
+                color: 'var(--accent-secondary)',
+                marginBottom: '0.75rem',
+                fontWeight: '600',
+                textAlign: 'center'
+              }}>Notable Achievements</div>
+              <div style={{ 
+                display: 'flex', 
+                flexWrap: 'wrap', 
+                gap: '0.75rem',
+                justifyContent: 'center'
+              }}>
+                {[
+                  { icon: '🎤', text: 'Harvard Plenary Speaker (1 of 12 / 5,000+)' },
+                  { icon: '🏆', text: 'ABRCMS Best Oral 2023' },
+                  { icon: '🏆', text: 'ABRCMS Best Poster 2024' },
+                  { icon: '📊', text: '78K+ Records Recovered' },
+                  { icon: '⚡', text: '83% Query Optimization' },
+                  { icon: '🧬', text: '8 Novel Biomarkers' }
+                ].map((item, idx) => (
+                  <span key={idx} style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '0.5rem 1rem',
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '9999px',
+                    color: 'var(--text-secondary)',
+                    fontSize: '0.85rem',
+                    fontWeight: '500',
+                    whiteSpace: 'nowrap'
+                  }}>
+                    <span>{item.icon}</span>
+                    <span>{item.text}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Core Competencies */}
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.02)',
+              borderRadius: '12px',
+              padding: '1.25rem',
+              textAlign: 'center'
+            }}>
+              <div style={{ 
+                fontSize: '0.75rem', 
+                textTransform: 'uppercase', 
+                letterSpacing: '0.1em',
+                color: 'var(--accent-secondary)',
+                marginBottom: '0.75rem',
+                fontWeight: '600'
+              }}>Core Competencies</div>
+              <div style={{ 
+                color: 'var(--text-secondary)', 
+                fontSize: '0.95rem',
+                lineHeight: '1.8'
+              }}>
+                <span style={{ color: 'var(--text-primary)', fontWeight: '600' }}>Data Engineering</span> • ETL/ELT Pipelines • Data Warehousing • SQL Optimization • 
+                <span style={{ color: 'var(--text-primary)', fontWeight: '600' }}> Python</span> • Distributed Systems • 
+                <span style={{ color: 'var(--text-primary)', fontWeight: '600' }}> Cloud (AWS/GCP)</span> • CI/CD • 
+                <span style={{ color: 'var(--text-primary)', fontWeight: '600' }}> Machine Learning</span> • Research & Documentation
+              </div>
+            </div>
+
+            {/* Bottom CTA */}
+            <div style={{ 
+              marginTop: '1.5rem', 
+              textAlign: 'center',
+              paddingTop: '1.25rem',
+              borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+            }}>
+              <p style={{ 
+                margin: '0 0 1rem 0', 
+                color: 'var(--text-secondary)',
+                fontSize: '0.95rem'
+              }}>
+                <i className="fas fa-search" style={{ marginRight: '8px', color: 'var(--accent-secondary)' }}></i>
+                Seeking <span style={{ color: 'var(--accent-secondary)', fontWeight: '600' }}>Data Engineering</span>, 
+                <span style={{ color: 'var(--accent-secondary)', fontWeight: '600' }}> Platform Engineering</span>, or 
+                <span style={{ color: 'var(--accent-secondary)', fontWeight: '600' }}> Software Engineering</span> roles
+              </p>
+              <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <span style={{ 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '6px',
+                  color: 'var(--text-muted)',
+                  fontSize: '0.85rem'
+                }}>
+                  <span>🇨🇦</span> Canadian Citizen
+                </span>
+                <span style={{ color: 'var(--text-muted)' }}>•</span>
+                <span style={{ 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '6px',
+                  color: 'var(--text-muted)',
+                  fontSize: '0.85rem'
+                }}>
+                  <span>🇺🇸</span> TN Visa Eligible (No Sponsorship Required)
+                </span>
+                <span style={{ color: 'var(--text-muted)' }}>•</span>
+                <span style={{ 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '6px',
+                  color: 'var(--text-muted)',
+                  fontSize: '0.85rem'
+                }}>
+                  <i className="fas fa-plane" style={{ fontSize: '0.75rem' }}></i> Open to Relocation
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr className="break-section" style={{ marginTop: '1rem', marginBottom: '2rem' }} />
+
       <section aria-labelledby="work-experience-heading">
         <h2 id="work-experience-heading" className="sr-only">Work Experience</h2>
 
@@ -194,6 +442,113 @@ function Experiences() {
                   <i className="fas fa-map-marker-alt" style={{ marginRight: '8px' }}></i>Toronto, Ontario, Canada (Remote)
                 </span>
               </h3>
+
+              {/* Impact Summary Box */}
+              <div style={{ 
+                maxWidth: '850px', 
+                margin: '0 auto 2rem auto',
+                background: 'linear-gradient(135deg, rgba(174, 0, 1, 0.06), rgba(212, 175, 55, 0.06))',
+                border: '1px solid rgba(212, 175, 55, 0.3)',
+                borderRadius: '12px',
+                padding: '1.5rem'
+              }}>
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '8px',
+                  marginBottom: '1rem',
+                  paddingBottom: '0.75rem',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1rem' }}></i>
+                  <span style={{ 
+                    fontSize: '0.85rem', 
+                    fontWeight: '700', 
+                    textTransform: 'uppercase', 
+                    letterSpacing: '0.1em',
+                    color: 'var(--accent-secondary)'
+                  }}>Impact at a Glance</span>
+                </div>
+                
+                <p style={{ 
+                  color: 'var(--text-secondary)', 
+                  fontSize: '1rem', 
+                  lineHeight: '1.6',
+                  margin: '0 0 1rem 0'
+                }}>
+                  <strong style={{ color: 'var(--text-primary)' }}>Primary owner of the Network Ticket Service (NTS) data pipeline</strong> — a mission-critical ETL system integrating 4 enterprise data sources (SmartPath API, Maximo, IPACT, LDAP) into unified analytical reporting for Bell Business Markets.
+                </p>
+
+                <div style={{ 
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+                  gap: '0.75rem'
+                }}>
+                  {[
+                    { metric: '78,000+', label: 'Records Recovered', icon: '📊' },
+                    { metric: '+800%', label: 'Coverage Expansion', icon: '📈' },
+                    { metric: '83%', label: 'Query Optimization', icon: '⚡' },
+                    { metric: '3 mo', label: 'To Technical Gatekeeper', icon: '🎯' }
+                  ].map((item, idx) => (
+                    <div key={idx} style={{
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      borderRadius: '8px',
+                      padding: '0.75rem',
+                      textAlign: 'center'
+                    }}>
+                      <div style={{ fontSize: '1.25rem', marginBottom: '0.25rem' }}>{item.icon}</div>
+                      <div style={{ 
+                        fontSize: '1.25rem', 
+                        fontWeight: '700',
+                        color: 'var(--accent-primary)',
+                        lineHeight: '1.2'
+                      }}>{item.metric}</div>
+                      <div style={{ 
+                        fontSize: '0.75rem', 
+                        color: 'var(--text-muted)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em'
+                      }}>{item.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ 
+                  marginTop: '1rem',
+                  paddingTop: '1rem',
+                  borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <div style={{ 
+                    fontSize: '0.8rem', 
+                    color: 'var(--text-muted)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    marginBottom: '0.5rem'
+                  }}>Key Contributions</div>
+                  <div style={{ 
+                    display: 'flex', 
+                    flexWrap: 'wrap', 
+                    gap: '0.5rem' 
+                  }}>
+                    {[
+                      'Full-stack RCA & data recovery',
+                      'Query performance re-architecture',
+                      'Stateful sessionization algorithm',
+                      'Data warehouse design standards',
+                      'Proof-based documentation methodology'
+                    ].map((item, idx) => (
+                      <span key={idx} style={{
+                        padding: '0.35rem 0.75rem',
+                        background: 'rgba(174, 0, 1, 0.1)',
+                        border: '1px solid rgba(174, 0, 1, 0.3)',
+                        borderRadius: '9999px',
+                        fontSize: '0.8rem',
+                        color: 'var(--text-secondary)'
+                      }}>{item}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
               
               <div style={{ maxWidth: '850px', margin: '0 auto' }}>
                 <p className="sub-point">
@@ -267,6 +622,140 @@ function Experiences() {
                   <i className="fas fa-map-marker-alt" style={{ marginRight: '8px' }}></i>Baltimore, Maryland, United States (Remote)
                 </span>
               </h3>
+
+              {/* Impact Summary Box */}
+              <div style={{ 
+                maxWidth: '850px', 
+                margin: '0 auto 2rem auto',
+                background: 'linear-gradient(135deg, rgba(174, 0, 1, 0.06), rgba(212, 175, 55, 0.06))',
+                border: '1px solid rgba(212, 175, 55, 0.3)',
+                borderRadius: '12px',
+                padding: '1.5rem'
+              }}>
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '8px',
+                  marginBottom: '1rem',
+                  paddingBottom: '0.75rem',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1rem' }}></i>
+                  <span style={{ 
+                    fontSize: '0.85rem', 
+                    fontWeight: '700', 
+                    textTransform: 'uppercase', 
+                    letterSpacing: '0.1em',
+                    color: 'var(--accent-secondary)'
+                  }}>Impact at a Glance</span>
+                </div>
+                
+                <p style={{ 
+                  color: 'var(--text-secondary)', 
+                  fontSize: '1rem', 
+                  lineHeight: '1.6',
+                  margin: '0 0 1rem 0'
+                }}>
+                  <strong style={{ color: 'var(--text-primary)' }}>Cross-institutional oncology research</strong> integrating 750+ TB of multi-omics data across 3 cancer types. Built and maintain an open-source bioinformatics platform used by 100+ global researchers. This role grew from my foundational work at University of Toronto.
+                </p>
+
+                <div style={{ 
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+                  gap: '0.75rem'
+                }}>
+                  {[
+                    { metric: '750+ TB', label: 'Data Integrated', icon: '💾' },
+                    { metric: '8', label: 'Novel Biomarkers', icon: '🧬' },
+                    { metric: '83%', label: 'Load Time Reduction', icon: '⚡' },
+                    { metric: '100+', label: 'Global Researchers', icon: '🌍' }
+                  ].map((item, idx) => (
+                    <div key={idx} style={{
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      borderRadius: '8px',
+                      padding: '0.75rem',
+                      textAlign: 'center'
+                    }}>
+                      <div style={{ fontSize: '1.25rem', marginBottom: '0.25rem' }}>{item.icon}</div>
+                      <div style={{ 
+                        fontSize: '1.25rem', 
+                        fontWeight: '700',
+                        color: 'var(--accent-primary)',
+                        lineHeight: '1.2'
+                      }}>{item.metric}</div>
+                      <div style={{ 
+                        fontSize: '0.75rem', 
+                        color: 'var(--text-muted)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em'
+                      }}>{item.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Recognition Banner */}
+                <div style={{ 
+                  marginTop: '1rem',
+                  padding: '0.75rem 1rem',
+                  background: 'rgba(212, 175, 55, 0.1)',
+                  border: '1px solid rgba(212, 175, 55, 0.3)',
+                  borderRadius: '8px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1rem',
+                  flexWrap: 'wrap',
+                  justifyContent: 'center'
+                }}>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                    <strong style={{ color: 'var(--accent-secondary)' }}>🎤 Harvard NCRC Plenary Speaker</strong> (1 of 12 from 5,000+)
+                  </span>
+                  <span style={{ color: 'var(--text-muted)' }}>•</span>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                    <strong style={{ color: 'var(--accent-secondary)' }}>🏆 ABRCMS Best Oral 2023</strong>
+                  </span>
+                  <span style={{ color: 'var(--text-muted)' }}>•</span>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                    <strong style={{ color: 'var(--accent-secondary)' }}>🏆 ABRCMS Best Poster 2024</strong>
+                  </span>
+                </div>
+
+                <div style={{ 
+                  marginTop: '1rem',
+                  paddingTop: '1rem',
+                  borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <div style={{ 
+                    fontSize: '0.8rem', 
+                    color: 'var(--text-muted)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    marginBottom: '0.5rem'
+                  }}>Key Contributions</div>
+                  <div style={{ 
+                    display: 'flex', 
+                    flexWrap: 'wrap', 
+                    gap: '0.5rem' 
+                  }}>
+                    {[
+                      'Full-stack bioinformatics platform',
+                      'ML pipelines (SVM-RFE, Random Forests)',
+                      'HPC infrastructure integration',
+                      'Real-time data visualization',
+                      'Microservices architecture',
+                      '35+ page research manuscript'
+                    ].map((item, idx) => (
+                      <span key={idx} style={{
+                        padding: '0.35rem 0.75rem',
+                        background: 'rgba(174, 0, 1, 0.1)',
+                        border: '1px solid rgba(174, 0, 1, 0.3)',
+                        borderRadius: '9999px',
+                        fontSize: '0.8rem',
+                        color: 'var(--text-secondary)'
+                      }}>{item}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
               
               <div style={{ maxWidth: '850px', margin: '0 auto' }}>
                 <p className="sub-point">
@@ -334,6 +823,113 @@ function Experiences() {
                   <i className="fas fa-map-marker-alt" style={{ marginRight: '8px' }}></i>Toronto, Ontario, Canada (Hybrid)
                 </span>
               </h3>
+
+              {/* Impact Summary Box */}
+              <div style={{ 
+                maxWidth: '850px', 
+                margin: '0 auto 2rem auto',
+                background: 'linear-gradient(135deg, rgba(174, 0, 1, 0.06), rgba(212, 175, 55, 0.06))',
+                border: '1px solid rgba(212, 175, 55, 0.3)',
+                borderRadius: '12px',
+                padding: '1.5rem'
+              }}>
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '8px',
+                  marginBottom: '1rem',
+                  paddingBottom: '0.75rem',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1rem' }}></i>
+                  <span style={{ 
+                    fontSize: '0.85rem', 
+                    fontWeight: '700', 
+                    textTransform: 'uppercase', 
+                    letterSpacing: '0.1em',
+                    color: 'var(--accent-secondary)'
+                  }}>Impact at a Glance</span>
+                </div>
+                
+                <p style={{ 
+                  color: 'var(--text-secondary)', 
+                  fontSize: '1rem', 
+                  lineHeight: '1.6',
+                  margin: '0 0 1rem 0'
+                }}>
+                  <strong style={{ color: 'var(--text-primary)' }}>Where my research career began.</strong> Built full-stack bioinformatics applications automating workflows across 7 wet lab research teams. This foundational work led to the cross-institutional collaboration with Johns Hopkins University.
+                </p>
+
+                <div style={{ 
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+                  gap: '0.75rem'
+                }}>
+                  {[
+                    { metric: '30+', label: 'Hours Saved Weekly', icon: '⏱️' },
+                    { metric: '7', label: 'Research Teams', icon: '👥' },
+                    { metric: '50%', label: 'Setup Time Reduction', icon: '🚀' },
+                    { metric: '45%', label: 'UI Render Improvement', icon: '⚡' }
+                  ].map((item, idx) => (
+                    <div key={idx} style={{
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      borderRadius: '8px',
+                      padding: '0.75rem',
+                      textAlign: 'center'
+                    }}>
+                      <div style={{ fontSize: '1.25rem', marginBottom: '0.25rem' }}>{item.icon}</div>
+                      <div style={{ 
+                        fontSize: '1.25rem', 
+                        fontWeight: '700',
+                        color: 'var(--accent-primary)',
+                        lineHeight: '1.2'
+                      }}>{item.metric}</div>
+                      <div style={{ 
+                        fontSize: '0.75rem', 
+                        color: 'var(--text-muted)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em'
+                      }}>{item.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ 
+                  marginTop: '1rem',
+                  paddingTop: '1rem',
+                  borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <div style={{ 
+                    fontSize: '0.8rem', 
+                    color: 'var(--text-muted)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    marginBottom: '0.5rem'
+                  }}>Key Contributions</div>
+                  <div style={{ 
+                    display: 'flex', 
+                    flexWrap: 'wrap', 
+                    gap: '0.5rem' 
+                  }}>
+                    {[
+                      'Multi-language development (Python, R, C++, Java)',
+                      'Microservices & GraphQL APIs',
+                      'Docker/Kubernetes DevOps',
+                      'Molecular modeling & 3D analysis',
+                      'Agile methodology adoption'
+                    ].map((item, idx) => (
+                      <span key={idx} style={{
+                        padding: '0.35rem 0.75rem',
+                        background: 'rgba(174, 0, 1, 0.1)',
+                        border: '1px solid rgba(174, 0, 1, 0.3)',
+                        borderRadius: '9999px',
+                        fontSize: '0.8rem',
+                        color: 'var(--text-secondary)'
+                      }}>{item}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
               
               <div style={{ maxWidth: '850px', margin: '0 auto' }}>
                 <p className="sub-point">
