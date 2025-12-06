@@ -283,8 +283,10 @@ export default function Home() {
             margin: '0 auto' 
           }}>
             
-            {/* Profile Picture */}
+            {/* Profile Picture with Shooting Stars */}
             <div className="hero-image-wrapper fade-in" style={{ marginBottom: '2rem' }}>
+              
+              {/* The Image */}
               <img 
                 src="/profile_pic.jpeg" 
                 alt="Sabbir Hossain" 
@@ -294,9 +296,25 @@ export default function Home() {
                   height: '220px', 
                   borderRadius: '50%', 
                   border: '4px solid var(--accent-secondary)',
-                  boxShadow: '0 10px 40px var(--glow-gold)'
+                  boxShadow: '0 10px 40px var(--glow-gold)',
+                  position: 'relative', 
+                  zIndex: 2,
+                  background: '#000' // Prevents seeing stars through transparent parts of image if any
                 }} 
               />
+
+              {/* The Stars Loop */}
+              {/* Generates 12 stars, rotates them 30 degrees apart (360 / 12) */}
+              {[...Array(12)].map((_, i) => (
+                <div 
+                  key={i} 
+                  className="star-particle"
+                  style={{ '--angle': `${i * 30}deg` }}
+                >
+                  ✦
+                </div>
+              ))}
+              
             </div>
 
             {/* Greeting */}
@@ -399,32 +417,6 @@ export default function Home() {
             {/* Intro Paragraph */}
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
               <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-secondary)' }}>Data Engineer with a Research Background</h3>
-              
-              {/* TL;DR BOX */}
-              <div className="tldr-box" style={{ marginBottom: '2rem', textAlign: 'center' }}>
-                <div className="tldr-header" style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  gap: '12px',
-                  marginBottom: '1rem'
-                }}>
-                  <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
-                  <h4 style={{ margin: 0 }}>TL;DR</h4>
-                  <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
-                </div>
-                <div className="tldr-content">
-                  <ul style={{ display: 'inline-block', textAlign: 'left' }}>
-                    <li>Data Engineer at Bell Canada (BBM — DE/AI), owning production ETLs and analytical systems on NTS — a multi-team, cross-functional platform</li>
-                    <li>Build and maintain data infrastructure, dashboards, visualization layers, and business-critical insights used by multiple internal teams</li>
-                    <li>University of Toronto Honours BSc (3.96 Major GPA) — CS + Bioinformatics Specialist</li>
-                    <li>Harvard plenary speaker (1 of 12 from 5,000+ applicants)</li>
-                    <li> ABRCMS Best Detailed Oral & Best Poster Award Winner (top researcher in division)</li>
-                    <li>5+ years research across University of Toronto and Johns Hopkins</li>
-                    <li>Looking for Data, Platform, or Software Engineering roles</li>
-                  </ul>
-                </div>
-              </div>
 
               {/* ========================================= */}
               {/* EXECUTIVE SUMMARY SECTION                 */}
@@ -690,6 +682,32 @@ export default function Home() {
                 </div>
               </div>
               {/* END EXECUTIVE SUMMARY */}
+
+              {/* TL;DR BOX */}
+              <div className="tldr-box" style={{ marginBottom: '2rem', textAlign: 'center' }}>
+                <div className="tldr-header" style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  gap: '12px',
+                  marginBottom: '1rem'
+                }}>
+                  <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
+                  <h4 style={{ margin: 0 }}>TL;DR</h4>
+                  <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
+                </div>
+                <div className="tldr-content">
+                  <ul style={{ display: 'inline-block', textAlign: 'left' }}>
+                    <li>Data Engineer at Bell Canada (BBM — DE/AI), owning production ETLs and analytical systems on NTS — a multi-team, cross-functional platform</li>
+                    <li>Build and maintain data infrastructure, dashboards, visualization layers, and business-critical insights used by multiple internal teams</li>
+                    <li>University of Toronto Honours BSc (3.96 Major GPA) — CS + Bioinformatics Specialist</li>
+                    <li>Harvard plenary speaker (1 of 12 from 5,000+ applicants)</li>
+                    <li> ABRCMS Best Detailed Oral & Best Poster Award Winner (top researcher in division)</li>
+                    <li>5+ years research across University of Toronto and Johns Hopkins</li>
+                    <li>Looking for Data, Platform, or Software Engineering roles</li>
+                  </ul>
+                </div>
+              </div>
 
               <p style={{ margin: '0 auto 1.5rem auto', maxWidth: '800px', textAlign: 'left' }}>
                 I&apos;m a <span className="gradient-text">Data Engineer</span> at <span className="gradient-text">Bell Canada</span> under the <span className="gradient-text">Bell Business Markets (BBM) </span> division, within the <span className="gradient-text">Data Engineering and Artificial Intelligence Team (DE/AI) </span>
@@ -1196,6 +1214,42 @@ export default function Home() {
           </div>
         </div>
       </section>
+    {/* ========================================= */}
+      {/* 8. STYLES (Add this at the bottom)        */}
+      {/* ========================================= */}
+      <style jsx>{`
+        .hero-image-wrapper {
+          position: relative; /* Anchors the stars */
+          display: inline-block;
+          z-index: 1;
+        }
+
+        .star-particle {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 20px;
+          height: 20px;
+          font-size: 24px;
+          color: var(--accent-secondary, #D4AF37);
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
+          z-index: -1; /* Puts stars behind the image */
+          transform: translate(-50%, -50%) scale(0);
+        }
+
+        /* The Animation Trigger */
+        .hero-image-wrapper:hover .star-particle {
+          opacity: 1;
+          /* 1. Center the star
+             2. Rotate it to its assigned angle
+             3. Push it outward (160px)
+             4. Scale it up
+          */
+          transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-160px) scale(1);
+        }
+      `}</style>
     </>
   );
 }
