@@ -64,15 +64,15 @@ function Projects() {
     },
     {
       title: "Bioinformatics Platform",
-      description: "Open-source full-stack bioinformatics platform following SOLID principles and microservices architecture. Features interactive D3.js visualizations, R Shiny dashboards, and real-time WebSocket data streaming. Reduced genomic analysis load times by 83% and increased platform adoption across 100+ global researchers.",
+      description: "Open-source full-stack bioinformatics platform following SOLID principles and microservices architecture. Features interactive D3.js visualizations, R Shiny dashboards, and real-time WebSocket data streaming. Reduced genomic analysis load times by 83% and increased platform adoption across 100+ global researchers. Private deployment at Johns Hopkins.",
       tags: ['React', 'D3.js', 'R Shiny', 'Python', 'Docker', 'Microservices'],
       icon: "🧬",
-      links: { repo: 'https://github.com/itssabbir' },
+      links: { repo: 'https://github.com/itsSabbir' },
       company: "Johns Hopkins"
     },
     {
       title: "Multi-Omics Data Pipeline",
-      description: "Scalable data processing pipeline integrating 750+ TB of multi-omics Big Data from DISQOVER, ENCODE, PCAWG, PRIDE, and TCGA. Implemented ML models (SVM-RFE, Random Forests) on HPC infrastructure contributing to discovery of 8 novel biomarkers and accelerating validation timelines by 40%.",
+      description: "Scalable data processing pipeline integrating 750+ TB of multi-omics Big Data from DISQOVER, ENCODE, PCAWG, PRIDE, and TCGA. Implemented ML models (SVM-RFE, Random Forests) on HPC infrastructure contributing to discovery of 8 novel biomarkers and accelerating validation timelines by 40%. Private deployment at Johns Hopkins.",
       tags: ['Python', 'R', 'Spark', 'AWS', 'Machine Learning', 'HPC'],
       icon: "🔬",
       company: "Johns Hopkins"
@@ -86,7 +86,7 @@ function Projects() {
       description: "Interactive visualization platform for exploring microbial community data with taxonomic profiling, diversity analysis, and comparative metagenomics tools. Built with React frontend and Python backend for processing 16S rRNA sequencing data.",
       tags: ['React', 'D3.js', 'Python', 'Bioinformatics', 'Data Visualization'],
       icon: "🦠",
-      links: { repo: 'https://github.com/itssabbir/microbiome-explorer' }
+      links: { repo: 'https://github.com/itsSabbir/MicrobiomeExplorer' }
     },
     {
       title: "Anomaly Detection System",
