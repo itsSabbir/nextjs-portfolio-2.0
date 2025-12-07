@@ -66,8 +66,9 @@ The website highlights:
 ├── public/ # Static assets (images, resume PDF, icons)
 ├── styles/ # CSS styles (app.css)
 │ └── app.css
-├── .eslintrc.js # ESLint configuration
+├── eslint.config.mjs # ESLint 9 flat configuration
 ├── .gitignore # Git ignore rules
+├── scripts/ # Utility scripts
 ├── next.config.mjs # Next.js configuration
 ├── package.json # Dependencies and scripts
 ├── README.md # This file
@@ -115,6 +116,23 @@ To run this project locally:
     npm run build
     ```
     This performs linting and creates an optimized build in the `.next` folder.
+
+### Exporting to a New Repository
+
+If you want to start a fresh repository with this codebase (e.g., `nextjs_portfolio_v3` or `sabbir_hossain_portfolio`), use the helper script:
+
+```bash
+# Default target: ../nextjs_portfolio_v3
+./scripts/export-to-new-repo.sh
+
+# Custom target directory
+./scripts/export-to-new-repo.sh ../sabbir_hossain_portfolio
+
+# Custom target directory plus package name (requires jq)
+./scripts/export-to-new-repo.sh ../sabbir_hossain_portfolio sabbir_hossain_portfolio
+```
+
+The script copies the project (excluding build artifacts and `node_modules`), initializes a new `main` branch, and creates an initial commit in the new location.
 
 ## Deployment
 
