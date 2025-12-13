@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import ProjectCard from '../components/ProjectCard';
 import StatCard from '../components/StatCard';
+import { CA, US } from "country-flag-icons/react/3x2";
 
 export default function Home() {
   const [totalExperience, setTotalExperience] = useState({ years: 0, months: 0 });
@@ -13,31 +14,28 @@ export default function Home() {
   useEffect(() => {
     const now = new Date();
 
-    // Combined Experience Calculation
-    // Research: Sept 2019 - May 2025 (capped)
-    // Industry: June 2025 - Present
-    const researchStart = new Date('2019-09-01');
-    const industryStart = new Date('2025-06-01');
+    // 1. Fixed Base Experience (Research/Previous)
+    const baseYears = 3; 
+
+    // 2. Bell Canada Experience (Dynamic)
+    // Adjusted to May 2025 to match your "7 months" count (May -> Dec = 7 months)
+    const bellStart = new Date('2025-05-01'); 
     
-    // Calculate research duration (capped at May 2025)
-    const researchEnd = new Date('2025-05-31');
-    const researchMs = researchEnd - researchStart;
-    
-    // Calculate industry duration (from June 2025 to now)
-    let industryMs = 0;
-    if (now >= industryStart) {
-      industryMs = now - industryStart;
+    // Calculate months passed at Bell
+    let bellMonths = 0;
+    if (now >= bellStart) {
+      bellMonths = (now.getFullYear() - bellStart.getFullYear()) * 12 + (now.getMonth() - bellStart.getMonth());
     }
+
+    // 3. Total Combined Experience
+    const totalMonths = (baseYears * 12) + bellMonths;
     
-    // Total experience in months
-    const totalMs = researchMs + industryMs;
-    const totalMonths = Math.floor(totalMs / (1000 * 60 * 60 * 24 * 30.44));
     const years = Math.floor(totalMonths / 12);
     const months = totalMonths % 12;
-    
+
     setTotalExperience({ years, months });
-    
-    // Streak Calculation
+
+    // Streak Calculation (Unchanged)
     const streakStart = new Date('2024-05-16');
     streakStart.setHours(0, 0, 0, 0);
     const today = new Date();
@@ -67,11 +65,58 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+
+  // Custom Tech Category Icons
+const CategoryIcon = ({ type, size = 40 }) => {
+  const color = "var(--accent-secondary)"; // Uses your Gold accent color
+  
+  const icons = {
+    languages: (
+      <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="16 18 22 12 16 6"></polyline>
+        <polyline points="8 6 2 12 8 18"></polyline>
+      </svg>
+    ),
+    data: (
+      <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+    ),
+    cloud: (
+      <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+      </svg>
+    ),
+    web: (
+      <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+        <polyline points="2 17 12 22 22 17"></polyline>
+        <polyline points="2 12 12 17 22 12"></polyline>
+      </svg>
+    ),
+    analytics: (
+      <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10"></line>
+        <line x1="12" y1="20" x2="12" y2="4"></line>
+        <line x1="6" y1="20" x2="6" y2="14"></line>
+      </svg>
+    ),
+    tools: (
+      <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+      </svg>
+    )
+  };
+
+  return icons[type] || null;
+};
+
   // --- Skills Data Configuration ---
   const skillsCategories = [
     {
+      id: "languages", // Matches CategoryIcon key
       title: "Languages",
-      icon: "fas fa-code",
       skills: [
         { name: "Python", icon: "devicon-python-plain colored" },
         { name: "SQL", icon: "fas fa-database" },
@@ -84,8 +129,8 @@ export default function Home() {
       ]
     },
     {
+      id: "data",
       title: "Data & ML",
-      icon: "fas fa-brain",
       skills: [
         { name: "Pandas", icon: "devicon-pandas-original colored" },
         { name: "PyTorch", icon: "devicon-pytorch-plain colored" },
@@ -97,8 +142,8 @@ export default function Home() {
       ]
     },
     {
+      id: "cloud",
       title: "Cloud & DevOps",
-      icon: "fas fa-cloud",
       skills: [
         { name: "AWS", icon: "devicon-amazonwebservices-plain-wordmark colored" },
         { name: "Docker", icon: "devicon-docker-plain colored" },
@@ -110,8 +155,8 @@ export default function Home() {
       ]
     },
     {
+      id: "web",
       title: "Web & Databases",
-      icon: "fas fa-layer-group",
       skills: [
         { name: "React", icon: "devicon-react-original colored" },
         { name: "Next.js", icon: "devicon-nextjs-original" },
@@ -123,8 +168,8 @@ export default function Home() {
       ]
     },
     {
+      id: "analytics",
       title: "Analytics & Visualization",
-      icon: "fas fa-chart-bar",
       skills: [
         { name: "D3.js", icon: "devicon-d3js-plain colored" },
         { name: "Tableau", icon: "fas fa-chart-pie" },
@@ -135,8 +180,8 @@ export default function Home() {
       ]
     },
     {
+      id: "tools",
       title: "Methodology & Tools",
-      icon: "fas fa-tasks",
       skills: [
         { name: "Jira", icon: "devicon-jira-plain colored" },
         { name: "Agile", icon: "fas fa-sync-alt" },
@@ -241,24 +286,49 @@ export default function Home() {
     }
   ];
 
+  // Reusable component for country flags
+  const FlagIcon = ({ country, height = 18 }) => {
+    const map = { canada: CA, usa: US };
+    const Cmp = map[country];
+    if (!Cmp) return null;
+
+    return (
+      <Cmp
+        style={{
+          height,
+          width: "auto",
+          display: "inline-block",
+          verticalAlign: "middle",
+          transform: "translateY(1px)",
+        }}
+      />
+    );
+  };
+
+
+
+
+
   // Reusable component for work auth checkmark items
   const CheckItem = ({ children }) => (
     <div style={{ 
       display: 'flex', 
       alignItems: 'flex-start',
-      gap: '10px',
-      lineHeight: '1.4',
-      textAlign: 'left'
+      gap: '12px',
+      lineHeight: '1.5',
+      textAlign: 'left',
+      fontSize: '1.05rem'
     }}>
       <i 
         className="fas fa-check-circle" 
         style={{ 
           color: 'var(--accent-secondary, #D4AF37)',
           flexShrink: 0,
-          marginTop: '3px'
+          marginTop: '4px',
+          fontSize: '1.1rem'
         }}
       ></i>
-      <span>{children}</span>
+      <span style={{ color: 'var(--text-primary, #f1f5f9)' }}>{children}</span>
     </div>
   );
 
@@ -299,12 +369,11 @@ export default function Home() {
                   boxShadow: '0 10px 40px var(--glow-gold)',
                   position: 'relative', 
                   zIndex: 2,
-                  background: '#000' // Prevents seeing stars through transparent parts of image if any
+                  background: '#000'
                 }} 
               />
 
               {/* The Stars Loop */}
-              {/* Generates 12 stars, rotates them 30 degrees apart (360 / 12) */}
               {[...Array(12)].map((_, i) => (
                 <div 
                   key={i} 
@@ -319,7 +388,7 @@ export default function Home() {
 
             {/* Greeting */}
             <div className="hero-greeting fade-in" style={{ 
-              fontSize: '1.5rem', 
+              fontSize: '1.6rem', 
               marginBottom: '0.5rem',
               display: 'flex', 
               alignItems: 'center', 
@@ -337,7 +406,7 @@ export default function Home() {
               <span className="gradient-text">Sabbir Hossain</span>
             </h1>
 
-            <p className="hero-subtitle fade-in" style={{ maxWidth: '800px', margin: '0 auto 2rem auto', fontSize: '1.2rem' }}>
+            <p className="hero-subtitle fade-in" style={{ maxWidth: '800px', margin: '0 auto 2rem auto', fontSize: '1.3rem', lineHeight: '1.7' }}>
               <span className="gradient-text">Data Engineer</span> at <span className="gradient-text">Bell Canada</span> building scalable data infrastructure. 
               <br className="mobile-only" /> Former bioinformatics researcher at <span className="gradient-text">Johns Hopkins</span> and <span className="gradient-text">University of Toronto</span>. Harvard NCRC Plenary Speaker, back-to-back ASM ABRCMS award winner.
             </p>
@@ -347,25 +416,75 @@ export default function Home() {
               display: 'flex', 
               justifyContent: 'center', 
               flexWrap: 'wrap', 
-              gap: '10px', 
+              gap: '12px', 
               marginBottom: '2.5rem',
               width: '100%' 
             }}>
-              <div className="hero-badge availability">
-                <div className="status-dot"></div>
+              
+              {/* Badge 1: Availability (Green/Gold theme) */}
+              <div className="hero-badge availability" style={{ 
+                fontSize: '1rem', 
+                padding: '0.6rem 1.2rem',
+                border: '1px solid rgba(34, 197, 94, 0.5)', // Greenish border
+                background: 'rgba(34, 197, 94, 0.1)',       // Subtle green bg
+                color: '#e2e8f0',                            // Light text
+                borderRadius: '50px',
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '8px'
+              }}>
+                <div className="status-dot" style={{ background: '#22c55e', boxShadow: '0 0 8px #22c55e' }}></div>
                 <span>Available for Hire</span>
               </div>
-              <div className="hero-badge">
-                <span>🇨🇦 Citizen</span>
+
+              {/* Badge 2: Canadian Citizen (Red Icon, White Text) */}
+              <div className="hero-badge" style={{ 
+                fontSize: '1rem', 
+                padding: '0.6rem 1.2rem', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '8px',
+                border: '1px solid rgba(255, 255, 255, 0.2)', // Subtle white border
+                background: 'rgba(255, 255, 255, 0.05)',      // Very light glass bg
+                color: '#f8fafc',                             // Bright White Text
+                borderRadius: '50px'
+              }}>
+                <FlagIcon country="canada" size={20} />
+                <span>Canadian Citizen</span>
               </div>
-              <div className="hero-badge">
-                <i className="fas fa-map-marker-alt"></i>
+
+              {/* Badge 3: Location (Gold Icon, White Text) */}
+              <div className="hero-badge" style={{ 
+                fontSize: '1rem', 
+                padding: '0.6rem 1.2rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                background: 'rgba(255, 255, 255, 0.05)',
+                color: '#f8fafc',                             // Bright White Text
+                borderRadius: '50px'
+              }}>
+                <i className="fas fa-map-marker-alt" style={{ color: '#D4AF37' }}></i> {/* Gold Icon */}
                 <span>Toronto, Canada</span>
               </div>
-              <div className="hero-badge">
-                <i className="fas fa-plane"></i>
-                <span>Open to Relocation (USA)</span>
+
+              {/* Badge 4: Relocation (Blue/Gold Icon, White Text) */}
+              <div className="hero-badge" style={{ 
+                fontSize: '1rem', 
+                padding: '0.6rem 1.2rem', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '8px',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                background: 'rgba(255, 255, 255, 0.05)',
+                color: '#f8fafc',                             // Bright White Text
+                borderRadius: '50px'
+              }}>
+                <i className="fas fa-plane" style={{ color: '#D4AF37' }}></i> {/* Gold Icon */}
+                <span>Open to USA Relocation</span>
               </div>
+
             </div>
 
             {/* CTA Buttons */}
@@ -416,7 +535,7 @@ export default function Home() {
             
             {/* Intro Paragraph */}
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-              <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-secondary)' }}>Data Engineer with a Research Background</h3>
+              <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-secondary)', fontSize: '1.6rem' }}>Data Engineer with a Research Background</h3>
 
               {/* ========================================= */}
               {/* EXECUTIVE SUMMARY SECTION                 */}
@@ -427,7 +546,7 @@ export default function Home() {
                 background: 'linear-gradient(135deg, rgba(174, 0, 1, 0.08), rgba(212, 175, 55, 0.08))',
                 border: '1px solid rgba(212, 175, 55, 0.3)',
                 borderRadius: '16px',
-                padding: '2rem',
+                padding: '2.5rem',
                 position: 'relative',
                 overflow: 'hidden',
                 textAlign: 'center'
@@ -448,14 +567,14 @@ export default function Home() {
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center',
-                  gap: '10px',
-                  marginBottom: '1.5rem',
-                  paddingBottom: '1rem',
+                  gap: '12px',
+                  marginBottom: '1.75rem',
+                  paddingBottom: '1.25rem',
                   borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
                 }}>
-                  <i className="fas fa-chart-line" style={{ color: 'var(--accent-secondary)', fontSize: '1.25rem' }}></i>
+                  <i className="fas fa-chart-line" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
                   <span style={{ 
-                    fontSize: '1rem', 
+                    fontSize: '1.2rem', 
                     fontWeight: '700', 
                     textTransform: 'uppercase', 
                     letterSpacing: '0.15em',
@@ -467,37 +586,37 @@ export default function Home() {
                 <div style={{ 
                   display: 'grid',
                   gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                  gap: '1.5rem',
-                  marginBottom: '2rem',
+                  gap: '1.75rem',
+                  marginBottom: '2.25rem',
                   textAlign: 'center'
                 }}>
                   {/* Current Role */}
                   <div style={{
                     background: 'rgba(255, 255, 255, 0.03)',
                     borderRadius: '12px',
-                    padding: '1.25rem',
-                    borderLeft: '3px solid var(--accent-primary)',
+                    padding: '1.5rem',
+                    borderLeft: '4px solid var(--accent-primary)',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center'
                   }}>
                     <div style={{ 
-                      fontSize: '0.75rem', 
+                      fontSize: '0.85rem', 
                       textTransform: 'uppercase', 
                       letterSpacing: '0.1em',
                       color: 'var(--text-muted)',
-                      marginBottom: '0.5rem'
+                      marginBottom: '0.6rem'
                     }}>Current Role</div>
                     <div style={{ 
-                      fontSize: '1.1rem', 
+                      fontSize: '1.25rem', 
                       fontWeight: '600',
                       color: 'var(--text-primary)',
-                      marginBottom: '0.25rem'
+                      marginBottom: '0.35rem'
                     }}>Data Engineer @ Bell Canada</div>
                     <div style={{ 
-                      fontSize: '0.85rem', 
+                      fontSize: '1rem', 
                       color: 'var(--text-secondary)',
-                      lineHeight: '1.4'
+                      lineHeight: '1.5'
                     }}>BBM Division • DE/AI Team • NTS Platform Owner</div>
                   </div>
 
@@ -505,29 +624,29 @@ export default function Home() {
                   <div style={{
                     background: 'rgba(255, 255, 255, 0.03)',
                     borderRadius: '12px',
-                    padding: '1.25rem',
-                    borderLeft: '3px solid var(--accent-secondary)',
+                    padding: '1.5rem',
+                    borderLeft: '4px solid var(--accent-secondary)',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center'
                   }}>
                     <div style={{ 
-                      fontSize: '0.75rem', 
+                      fontSize: '0.85rem', 
                       textTransform: 'uppercase', 
                       letterSpacing: '0.1em',
                       color: 'var(--text-muted)',
-                      marginBottom: '0.5rem'
+                      marginBottom: '0.6rem'
                     }}>Research Background</div>
                     <div style={{ 
-                      fontSize: '1.1rem', 
+                      fontSize: '1.25rem', 
                       fontWeight: '600',
                       color: 'var(--text-primary)',
-                      marginBottom: '0.25rem'
-                    }}>5+ Years Across 3 Institutions</div>
+                      marginBottom: '0.35rem'
+                    }}>3+ Years Across 3 Institutions</div>
                     <div style={{ 
-                      fontSize: '0.85rem', 
+                      fontSize: '1rem', 
                       color: 'var(--text-secondary)',
-                      lineHeight: '1.4'
+                      lineHeight: '1.5'
                     }}>Johns Hopkins • UofT • 750+ TB Multi-Omics Data</div>
                   </div>
 
@@ -535,46 +654,46 @@ export default function Home() {
                   <div style={{
                     background: 'rgba(255, 255, 255, 0.03)',
                     borderRadius: '12px',
-                    padding: '1.25rem',
-                    borderLeft: '3px solid var(--accent-primary)',
+                    padding: '1.5rem',
+                    borderLeft: '4px solid var(--accent-primary)',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center'
                   }}>
                     <div style={{ 
-                      fontSize: '0.75rem', 
+                      fontSize: '0.85rem', 
                       textTransform: 'uppercase', 
                       letterSpacing: '0.1em',
                       color: 'var(--text-muted)',
-                      marginBottom: '0.5rem'
+                      marginBottom: '0.6rem'
                     }}>Education</div>
                     <div style={{ 
-                      fontSize: '1.1rem', 
+                      fontSize: '1.25rem', 
                       fontWeight: '600',
                       color: 'var(--text-primary)',
-                      marginBottom: '0.25rem'
+                      marginBottom: '0.35rem'
                     }}>UofT Honours BSc • 3.96 GPA</div>
                     <div style={{ 
-                      fontSize: '0.85rem', 
+                      fontSize: '1rem', 
                       color: 'var(--text-secondary)',
-                      lineHeight: '1.4'
+                      lineHeight: '1.5'
                     }}>CS + Bioinformatics Specialist • Immunology Minor</div>
                   </div>
                 </div>
 
                 {/* Notable Achievements */}
-                <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+                <div style={{ marginBottom: '1.75rem', textAlign: 'center' }}>
                   <div style={{ 
-                    fontSize: '0.8rem', 
+                    fontSize: '0.9rem', 
                     textTransform: 'uppercase', 
                     letterSpacing: '0.1em',
                     color: 'var(--text-muted)',
-                    marginBottom: '0.75rem'
+                    marginBottom: '1rem'
                   }}>Notable Achievements</div>
                   <div style={{ 
                     display: 'flex', 
                     flexWrap: 'wrap', 
-                    gap: '0.5rem',
+                    gap: '0.6rem',
                     justifyContent: 'center'
                   }}>
                     {[
@@ -588,16 +707,16 @@ export default function Home() {
                       <span key={idx} style={{
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '6px',
-                        padding: '0.5rem 0.85rem',
+                        gap: '8px',
+                        padding: '0.6rem 1rem',
                         background: 'rgba(212, 175, 55, 0.1)',
                         border: '1px solid rgba(212, 175, 55, 0.3)',
                         borderRadius: '9999px',
-                        fontSize: '0.85rem',
+                        fontSize: '0.95rem',
                         color: 'var(--text-secondary)',
                         whiteSpace: 'nowrap'
                       }}>
-                        <span>{item.icon}</span>
+                        <span style={{ fontSize: '1.1rem' }}>{item.icon}</span>
                         <span style={{ fontWeight: '600', color: 'var(--text-primary)' }}>{item.label}</span>
                       </span>
                     ))}
@@ -605,18 +724,18 @@ export default function Home() {
                 </div>
 
                 {/* Core Competencies */}
-                <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+                <div style={{ marginBottom: '1.75rem', textAlign: 'center' }}>
                   <div style={{ 
-                    fontSize: '0.8rem', 
+                    fontSize: '0.9rem', 
                     textTransform: 'uppercase', 
                     letterSpacing: '0.1em',
                     color: 'var(--text-muted)',
-                    marginBottom: '0.75rem'
+                    marginBottom: '1rem'
                   }}>Core Competencies</div>
                   <div style={{ 
                     display: 'flex', 
                     flexWrap: 'wrap', 
-                    gap: '0.4rem',
+                    gap: '0.5rem',
                     justifyContent: 'center'
                   }}>
                     {[
@@ -625,11 +744,11 @@ export default function Home() {
                       'Cloud (AWS/GCP)', 'CI/CD', 'Machine Learning', 'Research & Documentation'
                     ].map((skill, idx) => (
                       <span key={idx} style={{
-                        padding: '0.35rem 0.7rem',
+                        padding: '0.45rem 0.85rem',
                         background: 'rgba(174, 0, 1, 0.1)',
                         border: '1px solid rgba(174, 0, 1, 0.25)',
                         borderRadius: '6px',
-                        fontSize: '0.8rem',
+                        fontSize: '0.9rem',
                         color: 'var(--text-secondary)'
                       }}>{skill}</span>
                     ))}
@@ -641,87 +760,100 @@ export default function Home() {
                   background: 'rgba(212, 175, 55, 0.08)',
                   border: '1px solid rgba(212, 175, 55, 0.25)',
                   borderRadius: '10px',
-                  padding: '1rem 1.5rem',
+                  padding: '1.25rem 1.75rem',
                   textAlign: 'center'
                 }}>
                   <div style={{ 
                     display: 'flex', 
                     alignItems: 'center', 
                     justifyContent: 'center',
-                    gap: '8px',
-                    marginBottom: '0.5rem'
+                    gap: '10px',
+                    marginBottom: '0.6rem'
                   }}>
                     <div style={{
-                      width: '8px',
-                      height: '8px',
+                      width: '10px',
+                      height: '10px',
                       borderRadius: '50%',
                       background: '#22c55e',
                       boxShadow: '0 0 8px #22c55e',
                       animation: 'pulse 2s infinite'
                     }}></div>
                     <span style={{ 
-                      fontSize: '0.85rem',
+                      fontSize: '1rem',
                       fontWeight: '600',
                       color: 'var(--accent-secondary)'
                     }}>Actively Seeking Opportunities</span>
                   </div>
                   <div style={{ 
-                    fontSize: '0.9rem', 
+                    fontSize: '1.05rem', 
                     color: 'var(--text-secondary)',
-                    lineHeight: '1.5'
+                    lineHeight: '1.6'
                   }}>
                     <strong style={{ color: 'var(--text-primary)' }}>Target Roles:</strong> Data Engineering • Platform Engineering • Software Engineering
                   </div>
                   <div style={{ 
-                    fontSize: '0.85rem', 
+                    fontSize: '1rem', 
                     color: 'var(--text-muted)',
-                    marginTop: '0.5rem'
+                    marginTop: '0.6rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    flexWrap: 'wrap'
                   }}>
-                    🇨🇦 Canadian Citizen • 🇺🇸 TN Visa Eligible (No Sponsorship Required) • Open to Relocation
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                      <FlagIcon country="canada" size={18} /> Canadian Citizen
+                    </span>
+                    <span>•</span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                      <FlagIcon country="usa" size={18} /> TN Visa Eligible (No Sponsorship Required)
+                    </span>
+                    <span>•</span>
+                    <span>Open to Relocation</span>
                   </div>
                 </div>
               </div>
               {/* END EXECUTIVE SUMMARY */}
 
               {/* TL;DR BOX */}
-              <div className="tldr-box" style={{ marginBottom: '2rem', textAlign: 'center' }}>
+              <div className="tldr-box" style={{ marginBottom: '2.5rem', textAlign: 'center' }}>
                 <div className="tldr-header" style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center', 
                   gap: '12px',
-                  marginBottom: '1rem'
+                  marginBottom: '1.25rem'
                 }}>
-                  <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
-                  <h4 style={{ margin: 0 }}>TL;DR</h4>
-                  <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.5rem' }}></i>
+                  <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.75rem' }}></i>
+                  <h4 style={{ margin: 0, fontSize: '1.4rem' }}>TL;DR</h4>
+                  <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1.75rem' }}></i>
                 </div>
-                <div className="tldr-content">
+                <div className="tldr-content" style={{ fontSize: '1.1rem', lineHeight: '1.7' }}>
                   <ul style={{ display: 'inline-block', textAlign: 'left' }}>
                     <li>Data Engineer at Bell Canada (BBM — DE/AI), owning production ETLs and analytical systems on NTS — a multi-team, cross-functional platform</li>
                     <li>Build and maintain data infrastructure, dashboards, visualization layers, and business-critical insights used by multiple internal teams</li>
                     <li>University of Toronto Honours BSc (3.96 Major GPA) — CS + Bioinformatics Specialist</li>
                     <li>Harvard plenary speaker (1 of 12 from 5,000+ applicants)</li>
-                    <li> ABRCMS Best Detailed Oral & Best Poster Award Winner (top researcher in division)</li>
-                    <li>5+ years research across University of Toronto and Johns Hopkins</li>
+                    <li>ABRCMS Best Detailed Oral & Best Poster Award Winner (top researcher in division)</li>
+                    <li>3+ years research across University of Toronto and Johns Hopkins</li>
                     <li>Looking for Data, Platform, or Software Engineering roles</li>
                   </ul>
                 </div>
               </div>
 
-              <p style={{ margin: '0 auto 1.5rem auto', maxWidth: '800px', textAlign: 'left' }}>
+              <p style={{ margin: '0 auto 1.75rem auto', maxWidth: '800px', textAlign: 'left', fontSize: '1.15rem', lineHeight: '1.8' }}>
                 I&apos;m a <span className="gradient-text">Data Engineer</span> at <span className="gradient-text">Bell Canada</span> under the <span className="gradient-text">Bell Business Markets (BBM) </span> division, within the <span className="gradient-text">Data Engineering and Artificial Intelligence Team (DE/AI) </span>
                 where I architect and productionize mission-critical data pipelines on the Network Ticket Service (NTS) Platform. Before going full-time in industry, 
-                I spent 5+ years in computational biology research. I graduated from the <span className="gradient-text">University of Toronto</span> (St. George Campus) 
+                I spent 3+ years in computational biology research. I graduated from the <span className="gradient-text">University of Toronto</span> (St. George Campus) 
                 with a 3.96 major GPA in <span className="gradient-text">Bioinformatics</span> and <span className="gradient-text">Computer Science</span>.
               </p>
-              <p style={{ margin: '0 auto 1.5rem auto', maxWidth: '800px', textAlign: 'left' }}>
+              <p style={{ margin: '0 auto 1.75rem auto', maxWidth: '800px', textAlign: 'left', fontSize: '1.15rem', lineHeight: '1.8' }}>
                 My research at <span className="gradient-text">UofT</span> led me to cross-institutional work with <span className="gradient-text">Johns Hopkins</span>, 
                 and eventually to present at <span className="gradient-text">Harvard</span> — where I was selected as 1 of 12 plenary speakers from 5,000+ applicants. 
                 I won best presentation awards at ABRCMS in back-to-back years. Along the way, I processed 750+ TB of multi-omics data and realized that 
                 <span className="gradient-text"> data engineering</span> is where I belong — building the infrastructure that makes insights possible.
               </p>
-              <p style={{ margin: '0 auto 1.5rem auto', maxWidth: '800px', textAlign: 'left' }}>
+              <p style={{ margin: '0 auto 1.75rem auto', maxWidth: '800px', textAlign: 'left', fontSize: '1.15rem', lineHeight: '1.8' }}>
                 Data engineering sits at the intersection of software engineering and data science, and I love that. I care about distributed systems, 
                 platform engineering, data infrastructure, and creating elegant solutions to complex technical problems. Now I apply that same rigor 
                 from research to building enterprise-scale systems.
@@ -736,32 +868,47 @@ export default function Home() {
               flexWrap: 'wrap',
               marginBottom: '3rem' 
             }}>
-              {/* Canada Card */}
+              {/* Canada Card - Gold Halo Effect */}
               <div className="work-auth-card" style={{
-                background: 'var(--glass-bg, rgba(15, 23, 42, 0.8))',
+                background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(15, 23, 42, 0.95) 50%, rgba(212, 175, 55, 0.08) 100%)',
                 backdropFilter: 'blur(10px)',
-                border: '1px solid var(--glass-border, rgba(212, 175, 55, 0.2))',
+                border: '2px solid rgba(212, 175, 55, 0.4)',
                 borderRadius: '16px',
-                padding: '2rem',
-                minWidth: '320px',
-                maxWidth: '400px',
+                padding: '2.25rem',
+                minWidth: '340px',
+                maxWidth: '420px',
                 flex: '1',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center'
+                alignItems: 'center',
+                boxShadow: '0 0 40px rgba(212, 175, 55, 0.2), inset 0 0 60px rgba(212, 175, 55, 0.05)',
+                position: 'relative',
+                overflow: 'hidden'
               }}>
+                {/* Decorative glow orb */}
+                <div style={{
+                  position: 'absolute',
+                  top: '-30px',
+                  right: '-30px',
+                  width: '120px',
+                  height: '120px',
+                  background: 'radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%)',
+                  borderRadius: '50%',
+                  pointerEvents: 'none'
+                }}></div>
+                
                 {/* Flag + Country Name Row */}
                 <div style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center',
-                  gap: '12px',
-                  marginBottom: '0.5rem'
+                  gap: '14px',
+                  marginBottom: '0.6rem'
                 }}>
-                  <span style={{ fontSize: '2rem' }}>🇨🇦</span>
+                  <FlagIcon country="canada" size={36} />
                   <h3 style={{ 
                     margin: 0, 
-                    fontSize: '1.8rem', 
+                    fontSize: '2rem', 
                     color: 'var(--accent-secondary, #D4AF37)',
                     fontWeight: '700'
                   }}>Canada</h3>
@@ -770,52 +917,78 @@ export default function Home() {
                 {/* Subtitle */}
                 <div style={{ 
                   textAlign: 'center', 
-                  color: 'var(--text-secondary, #94a3b8)',
-                  fontSize: '0.95rem',
-                  marginBottom: '1.5rem'
+                  color: 'var(--text-primary, #f1f5f9)',
+                  fontSize: '1.1rem',
+                  marginBottom: '1.75rem',
+                  fontWeight: '500'
                 }}>
                   Current Location
                 </div>
                 
-                {/* Details - Centered container with left-aligned text */}
+                {/* Details */}
                 <div style={{ 
                   display: 'flex', 
                   flexDirection: 'column', 
-                  gap: '0.75rem',
+                  gap: '1rem',
                   width: 'fit-content'
                 }}>
-                  <CheckItem>🇨🇦 Citizen</CheckItem>
+                  <CheckItem>Canadian Citizen</CheckItem>
                   <CheckItem>Based in Toronto, ON</CheckItem>
                   <CheckItem>NEXUS Card Holder</CheckItem>
                 </div>
               </div>
 
-              {/* United States Card */}
+              {/* United States Card - Gold-Red Halo Effect */}
               <div className="work-auth-card" style={{
-                background: 'var(--glass-bg, rgba(15, 23, 42, 0.8))',
+                background: 'linear-gradient(135deg, rgba(174, 0, 1, 0.12) 0%, rgba(15, 23, 42, 0.95) 40%, rgba(212, 175, 55, 0.1) 100%)',
                 backdropFilter: 'blur(10px)',
-                border: '1px solid var(--glass-border, rgba(212, 175, 55, 0.2))',
+                border: '2px solid rgba(212, 175, 55, 0.35)',
                 borderRadius: '16px',
-                padding: '2rem',
-                minWidth: '320px',
-                maxWidth: '400px',
+                padding: '2.25rem',
+                minWidth: '340px',
+                maxWidth: '420px',
                 flex: '1',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center'
+                alignItems: 'center',
+                boxShadow: '0 0 40px rgba(174, 0, 1, 0.15), 0 0 60px rgba(212, 175, 55, 0.1), inset 0 0 60px rgba(212, 175, 55, 0.03)',
+                position: 'relative',
+                overflow: 'hidden'
               }}>
+                {/* Decorative glow orbs */}
+                <div style={{
+                  position: 'absolute',
+                  top: '-20px',
+                  left: '-20px',
+                  width: '100px',
+                  height: '100px',
+                  background: 'radial-gradient(circle, rgba(174, 0, 1, 0.25) 0%, transparent 70%)',
+                  borderRadius: '50%',
+                  pointerEvents: 'none'
+                }}></div>
+                <div style={{
+                  position: 'absolute',
+                  bottom: '-30px',
+                  right: '-30px',
+                  width: '120px',
+                  height: '120px',
+                  background: 'radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%)',
+                  borderRadius: '50%',
+                  pointerEvents: 'none'
+                }}></div>
+                
                 {/* Flag + Country Name Row */}
                 <div style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center',
-                  gap: '12px',
-                  marginBottom: '0.5rem'
+                  gap: '14px',
+                  marginBottom: '0.6rem'
                 }}>
-                  <span style={{ fontSize: '2rem' }}>🇺🇸</span>
+                  <FlagIcon country="usa" size={36} />
                   <h3 style={{ 
                     margin: 0, 
-                    fontSize: '1.8rem', 
+                    fontSize: '2rem', 
                     color: 'var(--accent-secondary, #D4AF37)',
                     fontWeight: '700'
                   }}>United States</h3>
@@ -824,21 +997,22 @@ export default function Home() {
                 {/* Subtitle */}
                 <div style={{ 
                   textAlign: 'center', 
-                  color: 'var(--text-secondary, #94a3b8)',
-                  fontSize: '0.95rem',
-                  marginBottom: '1.5rem'
+                  color: 'var(--text-primary, #f1f5f9)',
+                  fontSize: '1.1rem',
+                  marginBottom: '1.75rem',
+                  fontWeight: '500'
                 }}>
                   Open to Relocation
                 </div>
                 
-                {/* Details - Centered container with left-aligned text */}
+                {/* Details */}
                 <div style={{ 
                   display: 'flex', 
                   flexDirection: 'column', 
-                  gap: '0.75rem',
+                  gap: '1rem',
                   width: 'fit-content'
                 }}>
-                  <CheckItem>TN Visa eligible (No sponsorship or $$$ required)</CheckItem>
+                  <CheckItem>TN Visa eligible (No sponsorship required)</CheckItem>
                   <CheckItem>Open to H-1B / Green Card sponsorship</CheckItem>
                 </div>
               </div>
@@ -846,7 +1020,7 @@ export default function Home() {
 
             {/* Interests Grid */}
             <div className="interests-section fade-in" style={{ marginTop: '4rem', textAlign: 'center' }}>
-              <h3><i className="fas fa-heart"></i> What I Love</h3>
+              <h3 style={{ fontSize: '1.5rem' }}><i className="fas fa-heart"></i> What I Love</h3>
               <div className="interests-grid" style={{ 
                 maxWidth: '900px', 
                 margin: '0 auto', 
@@ -880,7 +1054,8 @@ export default function Home() {
                     <div className="interest-label" style={{ 
                       marginTop: '0.5rem',
                       wordBreak: 'break-word',
-                      hyphens: 'auto'
+                      hyphens: 'auto',
+                      fontSize: '1rem'
                     }}>{item.label}</div>
                   </div>
                 ))}
@@ -896,62 +1071,67 @@ export default function Home() {
       <section className="section" id="skills">
         <div className="container">
           <div className="section-header fade-in">
-            <div className="section-label"><i className="fas fa-cogs"></i> Technical Proficiency</div>
+            <div className="section-label" style={{ fontSize: '1rem' }}><i className="fas fa-cogs"></i> Technical Proficiency</div>
             <h2 className="section-title">Skills & Tools</h2>
           </div>
 
           <div className="skills-grid fade-in" style={{ 
-            maxWidth: '1100px', 
-            margin: '0 auto',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '2rem',
-            justifyContent: 'center'
-          }}>
-            {skillsCategories.map((category, idx) => (
-              <div key={idx} className="skill-category" style={{ 
-                textAlign: 'center',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center'
-              }}>
-                {/* Header - properly centered */}
-                <div className="skill-category-header" style={{ 
+              maxWidth: '1100px', 
+              margin: '0 auto',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '2rem',
+              justifyContent: 'center'
+            }}>
+              {skillsCategories.map((category, idx) => (
+                <div key={idx} className="skill-category" style={{ 
+                  textAlign: 'center',
                   display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '10px',
-                  marginBottom: '1rem',
-                  width: '100%'
+                  flexDirection: 'column',
+                  alignItems: 'center'
                 }}>
-                  <div className="skill-category-icon" style={{
+                  {/* Header with Custom Icon */}
+                  <div className="skill-category-header" style={{ 
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    gap: '12px',
+                    marginBottom: '1rem',
+                    width: '100%'
                   }}>
-                    <i className={category.icon}></i>
-                  </div>
-                  <h3 className="skill-category-title" style={{ margin: 0 }}>{category.title}</h3>
-                </div>
-                
-                {/* Skills list - centered */}
-                <div className="skill-list" style={{ 
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  justifyContent: 'center',
-                  gap: '0.5rem',
-                  width: '100%'
-                }}>
-                  {category.skills.map((skill, sIdx) => (
-                    <div key={sIdx} className="skill-item">
-                      <i className={skill.icon}></i>
-                      <span>{skill.name}</span>
+                    <div className="skill-category-icon" style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      // Optional: Add a subtle glow behind the new vector icons
+                      filter: 'drop-shadow(0 0 5px rgba(212, 175, 55, 0.3))' 
+                    }}>
+                      {/* UPDATED: Using the new CategoryIcon component */}
+                      <CategoryIcon type={category.id} size={32} />
                     </div>
-                  ))}
+                    <h3 className="skill-category-title" style={{ margin: 0, fontSize: '1.25rem' }}>
+                        {category.title}
+                    </h3>
+                  </div>
+                  
+                  {/* Skills list (Unchanged) */}
+                  <div className="skill-list" style={{ 
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    width: '100%'
+                  }}>
+                    {category.skills.map((skill, sIdx) => (
+                      <div key={sIdx} className="skill-item">
+                        <i className={skill.icon}></i>
+                        <span>{skill.name}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
         </div>
       </section>
 
@@ -960,75 +1140,108 @@ export default function Home() {
       {/* ========================================= */}
       <section className="section" id="experience_preview">
         <div className="container">
-          <div className="section-header">
-            <div className="section-label"><i className="fas fa-briefcase"></i> Career Highlights</div>
-            <h2 className="section-title">Experience</h2>
-            <p className="section-description">Industry and research roles that shaped how I think about data.</p>
+          <div className="section-header fade-in">
+            <div className="section-label" style={{ 
+              fontSize: '1.15rem', 
+              marginBottom: '0.75rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '10px'
+            }}>
+              <i className="fas fa-briefcase"></i> 
+              <span>Career Highlights</span>
+            </div>
+            <h2 className="section-title" style={{ fontSize: 'clamp(2rem, 5vw, 2.75rem)' }}>Experience</h2>
+            <p className="section-description" style={{ fontSize: '1.2rem', marginTop: '1rem', lineHeight: '1.6' }}>
+              Industry and research roles that shaped how I think about data. From building enterprise-scale pipelines at Bell Canada 
+              to processing 750+ TB of multi-omics data across top research institutions.
+            </p>
             {/* View All Experiences Link */}
-            <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
-              <Link href="/experiences" className="btn btn-secondary">
+            <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+              <Link href="/experiences" className="btn btn-secondary" style={{ fontSize: '1.05rem', padding: '0.75rem 1.5rem' }}>
                 <i className="fas fa-th-large"></i> View All Experiences
               </Link>
             </div>
           </div>
 
           {/* Industry Experience */}
-          <div style={{ maxWidth: '900px', margin: '0 auto 3rem auto' }}>
+          <div style={{ maxWidth: '900px', margin: '2.5rem auto 3rem auto' }}>
             <h3 className="fade-in" style={{ 
               color: 'var(--accent-primary)', 
-              marginBottom: '1.5rem',
+              marginBottom: '1.75rem',
               display: 'flex',
               alignItems: 'center',
-              gap: '10px',
-              fontSize: '1.4rem'
+              gap: '12px',
+              fontSize: '1.6rem'
             }}>
               <i className="fas fa-building"></i> Industry
             </h3>
             <div className="timeline">
               {industryExperiences.map((exp, idx) => (
-                <div key={idx} className="timeline-item fade-in">
+                <div key={idx} className="timeline-item fade-in" style={{
+                  background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(15, 23, 42, 0.95) 30%, rgba(174, 0, 1, 0.06) 100%)',
+                  border: '1px solid rgba(212, 175, 55, 0.3)',
+                  boxShadow: '0 0 30px rgba(212, 175, 55, 0.1)',
+                  padding: '2rem',
+                  borderRadius: '12px',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}>
+                  {/* Decorative glow */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '-20px',
+                    right: '-20px',
+                    width: '100px',
+                    height: '100px',
+                    background: 'radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%)',
+                    borderRadius: '50%',
+                    pointerEvents: 'none'
+                  }}></div>
+                  
                   <div className="timeline-header" style={{ 
                     display: 'flex', 
                     flexDirection: 'column',
-                    gap: '0.25rem',
-                    marginBottom: '1rem'
+                    gap: '0.35rem',
+                    marginBottom: '1.25rem'
                   }}>
                     <h3 className="timeline-title" style={{ 
                       margin: 0,
-                      fontSize: '1.75rem',
+                      fontSize: '1.9rem',
                       fontWeight: '700',
                       color: 'var(--text-primary, #f8fafc)'
                     }}>
                       {exp.title}
                     </h3>
                     <div className="timeline-company" style={{ 
-                      fontSize: '1.35rem',
+                      fontSize: '1.5rem',
                       color: 'var(--accent-secondary, #D4AF37)',
                       fontWeight: '600'
                     }}>
                       {exp.company}
                     </div>
                     <div className="timeline-period" style={{ 
-                      fontSize: '0.85rem',
+                      fontSize: '1rem',
                       color: 'var(--text-secondary, #94a3b8)',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '6px'
+                      gap: '8px'
                     }}>
                       <i className="fas fa-calendar-alt"></i> {exp.period}
                     </div>
                   </div>
 
-                  <div className="timeline-description">
-                    <p style={{ marginBottom: '0.75rem' }}>{exp.description}</p>
+                  <div className="timeline-description" style={{ fontSize: '1.1rem', lineHeight: '1.7' }}>
+                    <p style={{ marginBottom: '1rem' }}>{exp.description}</p>
                     {exp.highlights && exp.highlights.length > 0 && (
-                      <ul style={{ marginBottom: '1rem' }}>
+                      <ul style={{ marginBottom: '1.25rem' }}>
                         {exp.highlights.map((highlight, hIdx) => (
-                          <li key={hIdx}>{highlight}</li>
+                          <li key={hIdx} style={{ marginBottom: '0.5rem' }}>{highlight}</li>
                         ))}
                       </ul>
                     )}
-                    <Link href={exp.link} className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }}>
+                    <Link href={exp.link} className="btn btn-secondary" style={{ padding: '0.6rem 1.25rem', fontSize: '0.95rem' }}>
                       Read Full Details <i className="fas fa-arrow-right"></i>
                     </Link>
                   </div>
@@ -1041,59 +1254,85 @@ export default function Home() {
           <div style={{ maxWidth: '900px', margin: '0 auto' }}>
             <h3 className="fade-in" style={{ 
               color: 'var(--accent-primary)', 
-              marginBottom: '1.5rem',
+              marginBottom: '1.75rem',
               display: 'flex',
               alignItems: 'center',
-              gap: '10px',
-              fontSize: '1.4rem'
+              gap: '12px',
+              fontSize: '1.6rem'
             }}>
               <i className="fas fa-flask"></i> Research
             </h3>
-            <div className="timeline">
+            <div className="timeline" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {researchExperiences.map((exp, idx) => (
-                <div key={idx} className="timeline-item fade-in">
+                <div key={idx} className="timeline-item fade-in" style={{
+                  // CHANGED: Removed ternary (idx === 0) so ALL items get the gradient
+                  background: 'linear-gradient(135deg, rgba(174, 0, 1, 0.1) 0%, rgba(15, 23, 42, 0.95) 35%, rgba(212, 175, 55, 0.08) 100%)',
+                  
+                  // CHANGED: Always apply the gold border
+                  border: '1px solid rgba(212, 175, 55, 0.25)',
+                  
+                  // CHANGED: Always apply the glow
+                  boxShadow: '0 0 25px rgba(174, 0, 1, 0.1), 0 0 40px rgba(212, 175, 55, 0.08)',
+                  
+                  padding: '2rem',
+                  borderRadius: '12px',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}>
+                  {/* CHANGED: Removed {idx === 0 &&} check so all items get the corner orb */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '-15px',
+                    left: '-15px',
+                    width: '80px',
+                    height: '80px',
+                    background: 'radial-gradient(circle, rgba(174, 0, 1, 0.2) 0%, transparent 70%)',
+                    borderRadius: '50%',
+                    pointerEvents: 'none'
+                  }}></div>
+                  
                   <div className="timeline-header" style={{ 
                     display: 'flex', 
                     flexDirection: 'column',
-                    gap: '0.25rem',
-                    marginBottom: '1rem'
+                    gap: '0.35rem',
+                    marginBottom: '1.25rem'
                   }}>
                     <h3 className="timeline-title" style={{ 
                       margin: 0,
-                      fontSize: '1.75rem',
+                      fontSize: '1.9rem',
                       fontWeight: '700',
                       color: 'var(--text-primary, #f8fafc)'
                     }}>
                       {exp.title}
                     </h3>
                     <div className="timeline-company" style={{ 
-                      fontSize: '1.35rem',
+                      fontSize: '1.5rem',
                       color: 'var(--accent-secondary, #D4AF37)',
                       fontWeight: '600'
                     }}>
                       {exp.company}
                     </div>
                     <div className="timeline-period" style={{ 
-                      fontSize: '0.85rem',
+                      fontSize: '1rem',
                       color: 'var(--text-secondary, #94a3b8)',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '6px'
+                      gap: '8px'
                     }}>
                       <i className="fas fa-calendar-alt"></i> {exp.period}
                     </div>
                   </div>
 
-                  <div className="timeline-description">
-                    <p style={{ marginBottom: '0.75rem' }}>{exp.description}</p>
+                  <div className="timeline-description" style={{ fontSize: '1.1rem', lineHeight: '1.7' }}>
+                    <p style={{ marginBottom: '1rem' }}>{exp.description}</p>
                     {exp.highlights && exp.highlights.length > 0 && (
-                      <ul style={{ marginBottom: '1rem' }}>
+                      <ul style={{ marginBottom: '1.25rem' }}>
                         {exp.highlights.map((highlight, hIdx) => (
-                          <li key={hIdx}>{highlight}</li>
+                          <li key={hIdx} style={{ marginBottom: '0.5rem' }}>{highlight}</li>
                         ))}
                       </ul>
                     )}
-                    <Link href={exp.link} className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }}>
+                    <Link href={exp.link} className="btn btn-secondary" style={{ padding: '0.6rem 1.25rem', fontSize: '0.95rem' }}>
                       Read Full Details <i className="fas fa-arrow-right"></i>
                     </Link>
                   </div>
@@ -1113,7 +1352,7 @@ export default function Home() {
             <h2 className="section-title">Impact & Activity</h2>
           </div>
 
-          {/* Unified Container: Using Flexbox to center the odd-numbered card automatically */}
+          {/* Stats Grid */}
           <div className="stats-grid fade-in" style={{ 
             display: 'flex', 
             flexWrap: 'wrap', 
@@ -1154,10 +1393,10 @@ export default function Home() {
       {/* ========================================= */}
       <section className="section" id="projects">
         <div className="container">
-          <div className="section-header">
-            <div className="section-label"><i className="fas fa-laptop-code"></i> Featured Work</div>
+          <div className="section-header fade-in">
+            <div className="section-label" style={{ fontSize: '1rem' }}><i className="fas fa-laptop-code"></i> Featured Work</div>
             <h2 className="section-title">Projects</h2>
-            <p className="section-description">Production systems and open-source tools I&apos;ve built</p>
+            <p className="section-description" style={{ fontSize: '1.15rem' }}>Production systems and open-source tools I&apos;ve built</p>
           </div>
 
           <div className="projects-grid">
@@ -1170,7 +1409,7 @@ export default function Home() {
                         {project.title}
                         <span style={{ 
                           display: 'block',
-                          fontSize: '0.9rem', 
+                          fontSize: '1rem', 
                           color: 'var(--accent-secondary, #D4AF37)',
                           fontWeight: '500',
                           marginTop: '0.25rem'
@@ -1201,8 +1440,8 @@ export default function Home() {
       <section className="section" id="contact">
         <div className="container">
           <div className="contact-cta fade-in">
-            <h3>Let&apos;s Build Something Together</h3>
-            <p>Looking for my next opportunity in data engineering or platform engineering.</p>
+            <h3 style={{ fontSize: '1.8rem' }}>Let&apos;s Build Something Together</h3>
+            <p style={{ fontSize: '1.15rem' }}>Looking for my next opportunity in data engineering or platform engineering.</p>
             <div className="btn-group" style={{ justifyContent: 'center' }}>
               <a href="mailto:hossain.sabbir17@gmail.com" className="btn btn-primary">
                 <i className="fas fa-envelope"></i> Send Email
@@ -1214,12 +1453,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-    {/* ========================================= */}
-      {/* 8. STYLES (Add this at the bottom)        */}
+
+      {/* ========================================= */}
+      {/* 8. STYLES                                 */}
       {/* ========================================= */}
       <style jsx>{`
         .hero-image-wrapper {
-          position: relative; /* Anchors the stars */
+          position: relative;
           display: inline-block;
           z-index: 1;
         }
@@ -1234,20 +1474,20 @@ export default function Home() {
           color: var(--accent-secondary, #D4AF37);
           opacity: 0;
           pointer-events: none;
-          transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
-          z-index: -1; /* Puts stars behind the image */
+          transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          z-index: -1;
           transform: translate(-50%, -50%) scale(0);
         }
 
-        /* The Animation Trigger */
         .hero-image-wrapper:hover .star-particle {
           opacity: 1;
-          /* 1. Center the star
-             2. Rotate it to its assigned angle
-             3. Push it outward (160px)
-             4. Scale it up
-          */
           transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-160px) scale(1);
+        }
+        
+        .timeline {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
         }
       `}</style>
     </>
