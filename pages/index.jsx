@@ -1398,7 +1398,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
             <h2 className="section-title">Projects</h2>
             <p className="section-description" style={{ fontSize: '1.15rem' }}>Production systems and open-source tools I&apos;ve built</p>
           </div>
-
+          
           <div className="projects-grid">
             {projects.map((project, idx) => (
               <ProjectCard 
