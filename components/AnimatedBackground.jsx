@@ -280,18 +280,6 @@ const AnimatedBackground = () => {
       <div className="bg-gradient bg-gradient-3" />
       
       {/* Canvas for floating symbols */}
-      <canvas
-        ref={canvasRef}
-        id="background-canvas"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          pointerEvents: 'none',
-        }}
-      />
     </div>
   );
 };
