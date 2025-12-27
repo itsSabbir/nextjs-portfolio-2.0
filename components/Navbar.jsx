@@ -4,55 +4,92 @@ import React, { useState } from 'react';
 
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeTooltip, setActiveTooltip] = useState(null);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   const navs = [
-    { text: 'Home', href: '/', icon: 'fas fa-home' },
-    { text: 'About', href: '/#about', icon: 'fas fa-user' },
-    { text: 'Experience', href: '/experiences', icon: 'fas fa-briefcase' },
-    { text: 'Projects', href: '/#projects', icon: 'fas fa-code' },
-    { text: 'Skills', href: '/#skills', icon: 'fas fa-cogs' },
-    { text: 'Contact', href: '/#contact', icon: 'fas fa-envelope' },
+    { text: 'About', href: '/#about', icon: 'fas fa-user', tooltip: 'The person behind the code' },
+    { text: 'Experience', href: '/experiences', icon: 'fas fa-briefcase', tooltip: 'Where I\'ve been, what I\'ve built' },
+    { text: 'Projects', href: '/#projects', icon: 'fas fa-code', tooltip: 'Ideas made real' },
+    { text: 'Skills', href: '/#skills', icon: 'fas fa-cogs', tooltip: 'Tools of the trade' },
+    { text: 'Contact', href: '/#contact', icon: 'fas fa-envelope', tooltip: 'Let\'s start something' },
   ];
+
+  const Tooltip = ({ text, isVisible }) => {
+    if (!isVisible) return null;
+    
+    return (
+      <div style={{
+        position: 'absolute',
+        top: '100%',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        marginTop: '12px',
+        padding: '10px 16px',
+        background: 'rgba(23, 42, 69, 0.95)',
+        backdropFilter: 'blur(20px)',
+        border: '1px solid rgba(212, 175, 55, 0.3)',
+        borderRadius: '8px',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.1)',
+        whiteSpace: 'nowrap',
+        zIndex: 1000,
+        animation: 'fadeIn 0.2s ease'
+      }}>
+        {/* Arrow */}
+        <div style={{
+          position: 'absolute',
+          top: '-6px',
+          left: '50%',
+          transform: 'translateX(-50%) rotate(45deg)',
+          width: '12px',
+          height: '12px',
+          background: 'rgba(23, 42, 69, 0.95)',
+          border: '1px solid rgba(212, 175, 55, 0.3)',
+          borderRight: 'none',
+          borderBottom: 'none'
+        }} />
+        
+        <span style={{
+          color: '#f5f5f5',
+          fontSize: '0.9rem',
+          fontWeight: '500'
+        }}>
+          {text}
+        </span>
+      </div>
+    );
+  };
 
   return (
     <nav className="navbar">
       <div className="container">
-        <Link href="/" className="logo" onClick={closeMobileMenu}>
-          {/* Fancy Sigma Logo with gradient background and glow */}
+        <Link 
+          href="/" 
+          className="logo" 
+          onClick={closeMobileMenu}
+          onMouseEnter={() => setActiveTooltip('logo')}
+          onMouseLeave={() => setActiveTooltip(null)}
+          style={{ position: 'relative' }}
+        >
           <div className="logo-icon" style={{
-            background: 'linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-primary) 100%)',
-            backgroundSize: '200% 200%',
-            animation: 'gradientShift 3s ease infinite',
-            boxShadow: '0 0 20px var(--glow-gold), 0 0 40px var(--glow-red), inset 0 0 20px rgba(255,255,255,0.1)',
-            border: '2px solid var(--accent-secondary)',
-            position: 'relative',
-            overflow: 'hidden'
+            background: 'rgba(212, 175, 55, 0.1)',
+            border: '1px solid var(--accent-secondary)',
+            boxShadow: '0 0 15px rgba(212, 175, 55, 0.2)',
+            transition: 'all 0.3s ease'
           }}>
-            {/* Inner glow effect */}
             <span style={{
-              position: 'relative',
-              zIndex: 2,
-              textShadow: '0 0 10px rgba(255,255,255,0.8), 0 0 20px var(--accent-secondary)',
-              fontWeight: '800',
+              color: 'var(--accent-secondary)',
+              fontWeight: '700',
               fontSize: '1.4rem'
             }}>
               Σ
             </span>
-            {/* Shimmer overlay */}
-            <div style={{
-              position: 'absolute',
-              top: 0,
-              left: '-100%',
-              width: '100%',
-              height: '100%',
-              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
-              animation: 'shimmer 2s infinite'
-            }} />
           </div>
           <span className="logo-text">Sabbir Hossain</span>
+          
+          <Tooltip text="Back to the beginning" isVisible={activeTooltip === 'logo'} />
         </Link>
 
         <button 
@@ -65,21 +102,28 @@ function Navbar() {
 
         <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
           {navs.map((nav) => (
-            <li key={nav.text}>
-              <Link href={nav.href} className="nav-item" onClick={closeMobileMenu}>
+            <li key={nav.text} style={{ position: 'relative' }}>
+              <Link 
+                href={nav.href} 
+                className="nav-item" 
+                onClick={closeMobileMenu}
+                onMouseEnter={() => setActiveTooltip(nav.text)}
+                onMouseLeave={() => setActiveTooltip(null)}
+              >
                 <i className={nav.icon} style={{ marginRight: '8px' }}></i>
                 {nav.text}
               </Link>
+              
+              <Tooltip text={nav.tooltip} isVisible={activeTooltip === nav.text} />
             </li>
           ))}
         </ul>
       </div>
       
-      {/* Add the shimmer animation keyframe via style tag */}
       <style jsx>{`
-        @keyframes shimmer {
-          0% { left: -100%; }
-          100% { left: 100%; }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateX(-50%) translateY(-5px); }
+          to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
       `}</style>
     </nav>

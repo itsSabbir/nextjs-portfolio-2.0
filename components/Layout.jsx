@@ -1,6 +1,5 @@
 // --- components/Layout.jsx ---
 import Head from 'next/head';
-import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -38,8 +37,11 @@ function Layout({ children, title, description }) {
         
         {/* Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
+        {/* NOTE: Ensure you have the FontAwesome link here or in _document.js 
+           otherwise your icons won't show.
+        */}
       </Head>
 
       {/* Global Background & Cursor */}
@@ -59,21 +61,21 @@ function Layout({ children, title, description }) {
         className={`scroll-top ${showScrollTop ? 'visible' : ''}`} 
         onClick={scrollToTop}
         aria-label="Scroll to top"
+        title="Back to top"
       >
         <i className="fas fa-arrow-up"></i>
       </button>
 
-      {/* PDF Floating Button */}
-      <div className="get-pdf">
-        <a
-          href="/1SabbirHossain.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Download Resume (PDF)"
-        >
-          <Image src="/pdf-icon.svg" alt="PDF" width={25} height={25} />
-        </a>
-      </div>
+      {/* PDF Floating Button - FIXED BELOW */}
+      <a 
+        href="/1SabbirHossain.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="get-pdf"
+        title="Grab my resume"
+      >
+        <i className="fas fa-file-pdf"></i>
+      </a>
     </>
   );
 }
