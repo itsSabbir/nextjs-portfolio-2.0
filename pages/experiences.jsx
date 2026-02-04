@@ -35,6 +35,8 @@ const TECH_ICONS = {
   // Cloud & DevOps
   'aws': 'devicon-amazonwebservices-plain-wordmark colored',
   'gcp': 'devicon-googlecloud-plain colored',
+  'bigquery': 'devicon-googlecloud-plain colored',
+  'cloud composer': 'devicon-googlecloud-plain colored',
   'docker': 'devicon-docker-plain colored',
   'kubernetes': 'devicon-kubernetes-plain colored',
   'terraform': 'devicon-terraform-plain colored',
@@ -61,6 +63,7 @@ const TECH_ICONS = {
   'd3.js': 'devicon-d3js-plain colored',
   'd3': 'devicon-d3js-plain colored',
   'jupyter': 'devicon-jupyter-plain colored',
+  'microstrategy': 'fas fa-chart-bar',
   
   // Tools & Methodologies
   'jira': 'devicon-jira-plain colored',
@@ -78,10 +81,20 @@ const TECH_ICONS = {
   'performance tuning': 'fas fa-tachometer-alt',
   'algorithm design': 'fas fa-project-diagram',
   'data modeling': 'fas fa-sitemap',
+  'dimensional modeling': 'fas fa-sitemap',
+  'snowflake schema': 'fas fa-snowflake',
   'hpc': 'fas fa-server',
   'microservices': 'fas fa-cubes',
   'bioinformatics': 'fas fa-dna',
   'genomics': 'fas fa-dna',
+  'orchestration': 'fas fa-wind',
+  'dag': 'fas fa-project-diagram',
+  'data quality': 'fas fa-check-double',
+  'observability': 'fas fa-eye',
+  'stakeholder management': 'fas fa-users',
+  'documentation': 'fas fa-file-alt',
+  'production ownership': 'fas fa-shield-alt',
+  'ldap': 'fas fa-address-book',
 };
 
 // Get icon class for a tech tag
@@ -155,7 +168,7 @@ function Experiences() {
         <title>Experience & Achievements | Sabbir Hossain</title>
         <meta
           name="description"
-          content="Detailed professional journey of Sabbir Hossain, including roles in software engineering, data science, bioinformatics research, key achievements, awards, and education from the University of Toronto."
+          content="Detailed professional journey of Sabbir Hossain, including roles in data platform engineering, data engineering, bioinformatics research, key achievements, awards, and education from the University of Toronto."
         />
       </Head>
       
@@ -178,17 +191,17 @@ function Experiences() {
       <section aria-labelledby="work-experience-heading">
         <h2 id="work-experience-heading" className="sr-only">Work Experience</h2>
 
-        {/* ========================== */}
-        {/* === Bell Canada (Full) === */}
-        {/* ========================== */}
-        <section className="hero job-details" id="bell-canada">
+        {/* ======================================== */}
+        {/* === Bell Canada - Data Platform Engineer === */}
+        {/* ======================================== */}
+        <section className="hero job-details" id="bell-platform-engineer">
           <div className="container">
             <div className="text-wrapper w-full">
               <h3 className="title" style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <span style={{ display: 'block', fontSize: '1.8rem', color: 'var(--accent-primary)' }}>Data Engineer</span>
+                <span style={{ display: 'block', fontSize: '1.8rem', color: 'var(--accent-primary)' }}>Data Platform Engineer</span>
                 <span style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>Bell Canada (Data Engineering & Artificial Intelligence Team)</span>
                 <span style={{ display: 'block', fontSize: '1rem', marginTop: '0.5rem', color: 'var(--accent-secondary)' }}>
-                  <i className="fas fa-calendar-alt" style={{ marginRight: '8px' }}></i>June 2025 – Present
+                  <i className="fas fa-calendar-alt" style={{ marginRight: '8px' }}></i>December 2025 – Present
                 </span>
                 <span style={{ display: 'block', fontSize: '0.9rem', marginTop: '0.25rem', color: 'var(--text-muted)' }}>
                   <i className="fas fa-map-marker-alt" style={{ marginRight: '8px' }}></i>Toronto, Ontario, Canada (Remote)
@@ -228,7 +241,7 @@ function Experiences() {
                   lineHeight: '1.6',
                   margin: '0 0 1rem 0'
                 }}>
-                  <strong style={{ color: 'var(--text-primary)' }}>Primary owner of the Network Ticket Service (NTS) data pipeline</strong> — a mission-critical ETL system integrating 4 enterprise data sources (SmartPath API, Maximo, IPACT, LDAP) into unified analytical reporting for Bell Business Markets.
+                  <strong style={{ color: 'var(--text-primary)' }}>Promoted after 6 months to lead enterprise analytics platform delivery.</strong> Now owning the full 78-attribute MicroStrategy analytics platform integrating four operational systems, making architectural decisions, and serving as the canonical source of institutional knowledge across three domains during leadership transition.
                 </p>
 
                 <div style={{ 
@@ -237,10 +250,10 @@ function Experiences() {
                   gap: '0.75rem'
                 }}>
                   {[
-                    { metric: '78,000+', label: 'Records Recovered', icon: '📊' },
-                    { metric: '+800%', label: 'Coverage Expansion', icon: '📈' },
-                    { metric: '83%', label: 'Query Optimization', icon: '⚡' },
-                    { metric: '3 mo', label: 'To Technical Gatekeeper', icon: '🎯' }
+                    { metric: '78', label: 'Attributes Delivered', icon: '📊' },
+                    { metric: '4', label: 'Systems Integrated', icon: '🔗' },
+                    { metric: '12', label: 'Pipelines Maintained', icon: '🔧' },
+                    { metric: '3', label: 'Domains Owned', icon: '🎯' }
                   ].map((item, idx) => (
                     <div key={idx} style={{
                       background: 'rgba(255, 255, 255, 0.03)',
@@ -283,6 +296,203 @@ function Experiences() {
                     gap: '0.5rem' 
                   }}>
                     {[
+                      'Enterprise analytics platform delivery',
+                      'Architectural decision-making',
+                      'Production system ownership',
+                      'Cross-domain technical investigation',
+                      'Engineering workflow governance',
+                      'Cloud migration preparation'
+                    ].map((item, idx) => (
+                      <span key={idx} style={{
+                        padding: '0.35rem 0.75rem',
+                        background: 'rgba(174, 0, 1, 0.1)',
+                        border: '1px solid rgba(174, 0, 1, 0.3)',
+                        borderRadius: '9999px',
+                        fontSize: '0.8rem',
+                        color: 'var(--text-secondary)'
+                      }}>{item}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              <div style={{ maxWidth: '850px', margin: '0 auto' }}>
+                <p className="sub-point">
+                  <b>Shipped a 78-attribute analytics platform in MicroStrategy (business intelligence platform)</b> integrating four operational systems: operations API (SmartPath), asset management (Maximo), billing (IPACT), and directory services (LDAP). Built derived metrics, conditional formatting, and cross-filter interactivity; deployed to production with director sign-off via a structured Dev to Pre-Prod to Prod migration pipeline.
+                </p>
+                <p className="sub-point">
+                  <b>Reduced build cost and risk through strategic architectural decision-making</b> by choosing a SQL view over a physical fact table for joining event and request data with calculated duration metrics. Blocked out-of-scope integration requests and expanded the design from 13 columns to 78 attributes to eliminate recurring ad hoc request cycles.
+                </p>
+                <p className="sub-point">
+                  <b>Maintained 12 dependent data pipelines as backup owner</b> for the production operations API (SmartPath) during a company-wide code embargo. Diagnosed and resolved critical ETL failures in error staging tables and business intelligence metric misconfigurations under time pressure without senior engineer availability.
+                </p>
+                <p className="sub-point">
+                  <b>Ramped from zero domain knowledge to full system comprehension within 2 weeks</b> for a five-system data pipeline spanning Salesforce to billing to operations (CS Attack pipeline). Built a repeatable metadata discovery method using the Teradata system catalog (DBC.Columns) to locate target fields, validate source table population rates, and confirm join feasibility with evidence.
+                </p>
+                <p className="sub-point">
+                  <b>Co-authored the team engineering workflow standard</b>, formalizing separation of Investigation (feasibility analysis, validation) and Implementation (code, test, deploy) phases. Established tracking protocols, stakeholder scope boundaries, and a mandatory front door ticket process for budget accountability.
+                </p>
+                <p className="sub-point">
+                  <b>Became the canonical source of institutional knowledge across three domains</b> (NTS, SmartPath, CS Attack) during a leadership transition. Refactored team documentation into an Executive Summary plus Technical Appendix format and established a Visual-First methodology for director-level reporting.
+                </p>
+                <p className="sub-point">
+                  <b>Supporting Q1 2026 migration to Google Cloud Platform (GCP) and BigQuery</b>, contributing to the architectural pivot from legacy Teradata wide tables to a snowflake schema design pattern. Preparing a pipeline refactoring roadmap from SAS Data Integration Studio (legacy ETL tool) to cloud-native orchestration using directed acyclic graphs (DAGs) on Cloud Composer.
+                </p>
+              </div>
+
+              <div style={{ maxWidth: '850px', margin: '2rem auto 0 auto' }}>
+                <SkillsList
+                  caption="Key Technologies & Concepts:"
+                  tags={[
+                    'MicroStrategy',
+                    'SQL', 
+                    'Teradata',
+                    'Data Modeling',
+                    'Dimensional Modeling',
+                    'Snowflake Schema',
+                    'ETL',
+                    'Orchestration',
+                    'DAG',
+                    'Cloud Composer',
+                    'BigQuery',
+                    'GCP',
+                    'Data Quality',
+                    'Observability',
+                    'Stakeholder Management',
+                    'Documentation',
+                    'Production Ownership'
+                  ]}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr className="break-section" />
+
+        {/* ======================================== */}
+        {/* === Bell Canada - Data Engineer ======== */}
+        {/* ======================================== */}
+        <section className="hero job-details" id="bell-data-engineer">
+          <div className="container">
+            <div className="text-wrapper w-full">
+              <h3 className="title" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <span style={{ display: 'block', fontSize: '1.8rem', color: 'var(--accent-primary)' }}>Data Engineer</span>
+                <span style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>Bell Canada (Data Engineering & Artificial Intelligence Team)</span>
+                <span style={{ display: 'block', fontSize: '1rem', marginTop: '0.5rem', color: 'var(--accent-secondary)' }}>
+                  <i className="fas fa-calendar-alt" style={{ marginRight: '8px' }}></i>June 2025 – November 2025
+                </span>
+                <span style={{ display: 'block', fontSize: '0.9rem', marginTop: '0.25rem', color: 'var(--text-muted)' }}>
+                  <i className="fas fa-map-marker-alt" style={{ marginRight: '8px' }}></i>Toronto, Ontario, Canada (Remote)
+                </span>
+              </h3>
+
+              {/* Impact Summary Box */}
+              <div style={{ 
+                maxWidth: '850px', 
+                margin: '0 auto 2rem auto',
+                background: 'linear-gradient(135deg, rgba(174, 0, 1, 0.06), rgba(212, 175, 55, 0.06))',
+                border: '1px solid rgba(212, 175, 55, 0.3)',
+                borderRadius: '12px',
+                padding: '1.5rem'
+              }}>
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '8px',
+                  marginBottom: '1rem',
+                  paddingBottom: '0.75rem',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1rem' }}></i>
+                  <span style={{ 
+                    fontSize: '0.85rem', 
+                    fontWeight: '700', 
+                    textTransform: 'uppercase', 
+                    letterSpacing: '0.1em',
+                    color: 'var(--accent-secondary)'
+                  }}>Impact at a Glance</span>
+                </div>
+                
+                <p style={{ 
+                  color: 'var(--text-secondary)', 
+                  fontSize: '1rem', 
+                  lineHeight: '1.6',
+                  margin: '0 0 1rem 0'
+                }}>
+                  <strong style={{ color: 'var(--text-primary)' }}>Primary owner of the Network Ticket Service (NTS) data pipeline</strong> — a mission-critical ETL system integrating 4 enterprise data sources (SmartPath API, Maximo, IPACT, LDAP) into unified analytical reporting for Bell Business Markets. Promoted to Data Platform Engineer after 6 months.
+                </p>
+
+                <div style={{ 
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+                  gap: '0.75rem'
+                }}>
+                  {[
+                    { metric: '78,000+', label: 'Records Recovered', icon: '📊' },
+                    { metric: '+800%', label: 'Coverage Expansion', icon: '📈' },
+                    { metric: '83%', label: 'Query Optimization', icon: '⚡' },
+                    { metric: '3 mo', label: 'To Technical Gatekeeper', icon: '🎯' }
+                  ].map((item, idx) => (
+                    <div key={idx} style={{
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      borderRadius: '8px',
+                      padding: '0.75rem',
+                      textAlign: 'center'
+                    }}>
+                      <div style={{ fontSize: '1.25rem', marginBottom: '0.25rem' }}>{item.icon}</div>
+                      <div style={{ 
+                        fontSize: '1.25rem', 
+                        fontWeight: '700',
+                        color: 'var(--accent-primary)',
+                        lineHeight: '1.2'
+                      }}>{item.metric}</div>
+                      <div style={{ 
+                        fontSize: '0.75rem', 
+                        color: 'var(--text-muted)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em'
+                      }}>{item.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Promotion Banner */}
+                <div style={{ 
+                  marginTop: '1rem',
+                  padding: '0.75rem 1rem',
+                  background: 'rgba(34, 197, 94, 0.1)',
+                  border: '1px solid rgba(34, 197, 94, 0.3)',
+                  borderRadius: '8px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1rem',
+                  flexWrap: 'wrap',
+                  justifyContent: 'center'
+                }}>
+                  <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                    <strong style={{ color: '#22c55e' }}>🚀 Promoted to Data Platform Engineer</strong> after 6 months
+                  </span>
+                </div>
+
+                <div style={{ 
+                  marginTop: '1rem',
+                  paddingTop: '1rem',
+                  borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <div style={{ 
+                    fontSize: '0.8rem', 
+                    color: 'var(--text-muted)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    marginBottom: '0.5rem'
+                  }}>Key Contributions</div>
+                  <div style={{ 
+                    display: 'flex', 
+                    flexWrap: 'wrap', 
+                    gap: '0.5rem' 
+                  }}>
+                    {[
                       'Full-stack RCA & data recovery',
                       'Query performance re-architecture',
                       'Stateful sessionization algorithm',
@@ -304,31 +514,37 @@ function Experiences() {
               
               <div style={{ maxWidth: '850px', margin: '0 auto' }}>
                 <p className="sub-point">
-                  <b>Architected and productionized the mission-critical Network Ticket Service (NTS) data pipeline</b> using Python, SAS DI, and advanced SQL. Integrated disparate operational systems (Maximo, SmartPath API event streams) into a Teradata analytical warehouse through multi-stage ETL workflows, schema-versioned loads, and enforceable data contracts across DEV/QA/PROD environments.
+                  <b>Built and productionized the mission-critical Network Ticket Service (NTS) data pipeline</b> on Teradata using a three-tier ETL and ELT architecture: staging, warehouse, and analysis layers. Integrated four operational systems including REST API event streams, legacy enterprise resource planning (ERP), billing, and directory services (LDAP) using Python and SAS Data Integration, enforcing data contracts and Kimball-style dimensional modeling patterns transferable to Snowflake, BigQuery, and Amazon Redshift.
                 </p>
                 <p className="sub-point">
-                  <b>Diagnosed and resolved systemic data integrity drift</b> in the NTS pipeline by conducting a full-stack Root Cause Analysis (RCA) to correct a misaligned filtration invariant. Established an ongoing historical data recovery program and executed three staged recasts correcting over 78,000 high-complexity edge-case records, expanding analytical coverage from 1 to 9+ months (+800%) and raising ticket match accuracy to the highest level since system inception.
+                  <b>Built a stateful sessionization algorithm in Python</b> to fix event sequencing defects, refactoring a flawed sequential method into a robust two-pass group-by propagation model. Achieved deterministic mapping across distributed agent sessions by identifying anchor events and backfilling request identifiers to preceding and succeeding events.
                 </p>
                 <p className="sub-point">
-                  <b>Re-architected a critical performance anti-pattern</b> by replacing a direct join to a 23-million-row live table with a pre-aggregated static reference design. This optimization reduced query runtime from 12 minutes to 2 minutes (83% improvement) and stabilized nightly SLA compliance.
+                  <b>Reduced query latency by 83% (12 minutes to 2 minutes)</b> on a join over 23 million rows by replacing dynamic runtime computation with a materialized pre-aggregation layer. Eliminated production timeouts and stabilized nightly SLA compliance through query optimization and static reference architecture.
                 </p>
                 <p className="sub-point">
-                  <b>Engineered a stateful Python algorithm for duration capture and sessionization</b>, refactoring a flawed sequential method into a robust two-pass group-by propagation model. Correctly propagated <code>request_id</code> across event sequences, achieving zero calculation defects in QA validation.
+                  <b>Expanded analytical coverage by 800% (1 month to 9+ months)</b> by running a full root cause analysis (RCA) on a hardcoded 30-day lookback filter causing systemic data drift. Executed a historical recovery program recasting 28,000+ and 50,000+ records, raising ticket match accuracy to the highest level since system inception.
                 </p>
                 <p className="sub-point">
-                  <b>Instituted rigorous data-warehouse design standards</b> by implementing composite UPSERT keys (request_id, ticket_number, CI_number), applying COALESCE/UPPER/TRIM hygiene for joins, and enforcing pre-aggregation patterns for idempotent loads—eliminating data inflation and preserving model granularity.
+                  <b>Fixed historical attribution defects</b> by implementing slowly changing dimension Type 2 (SCD Type 2) temporal joins on creation date to resolve employee hierarchy changes against directory services data. Replaced volatile login identifiers with a stable natural key (agent email) to preserve data lineage integrity for historical reporting.
                 </p>
                 <p className="sub-point">
-                  <b>Standardized KPI logic</b> by isolating all CASE-based derivations in a dedicated calculations extraction layer. Improved maintainability, ensured business-ready metrics, and accelerated peer reviews through clear separation of transformation vs. analytics code.
+                  <b>Prevented duplicate data during retries</b> by enforcing idempotency and atomic writes via composite upsert keys (request, ticket, and configuration item identifiers). Applied COALESCE, UPPER, and TRIM sanitization for all join conditions and enforced pre-aggregation patterns, preserving model granularity across development, quality assurance, and production environments.
                 </p>
                 <p className="sub-point">
-                  <b>Promoted to Technical Gatekeeper for the NTS data domain</b> within 3 months. Lead stakeholder meetings, peer code reviews, and architectural audits (defensive coding, modularization) to ensure high-quality production deployments.
+                  <b>Refactored monolithic SQL into modular clean and calculate transformation stages</b>, a pattern analogous to dbt staging and marts. Created a unified view abstraction layer merging legacy and modern structures, enabling zero-downtime migration for downstream business intelligence consumers and accelerating peer reviews through clear separation of transformation and analytics code.
                 </p>
                 <p className="sub-point">
-                  <b>Established a rigorous proof-based problem-solving methodology</b>, authoring end-to-end validation and architecture documentation (ERD, DFD, count-by-stage proofs) in Confluence and Jira. This approach de-risked complex implementations, ensured reproducible data flows, and became the team standard for knowledge transfer.
+                  <b>Built a Python and Apache Airflow observability module</b> with configuration-driven validation checks orchestrated via DAG modules across 12+ pipelines. Reduced debugging time by 60% and prevented 15+ monthly data quality incidents through automated schema validation, anomaly detection, and threshold alerting for critical SLAs.
                 </p>
                 <p className="sub-point">
-                  <b>Initiated structured cross-training in Apache Airflow and GCP</b> orchestration concepts to support future pipeline automation and cloud migration initiatives.
+                  <b>Promoted to Technical Gatekeeper within 3 months</b> to govern the domain by enforcing defensive coding standards. Authored end-to-end validation documents including entity relationship diagrams (ERDs), data flow diagrams, and count-by-stage proofs, establishing the team standard for peer review and knowledge transfer.
+                </p>
+                <p className="sub-point">
+                  <b>Led requirements gathering and technical feasibility assessments</b> for new data pipeline initiatives. Translated business needs into technical architectures and implementation roadmaps by facilitating cross-functional alignment sessions with stakeholders to define scope, deliverables, and success metrics.
+                </p>
+                <p className="sub-point">
+                  <b>Built visualizations and presented pipeline performance and data quality metrics</b> to directors, team leads, and business intelligence analysts. Drove buy-in for platform modernization initiatives through data-driven executive reporting.
                 </p>
               </div>
 
@@ -337,18 +553,22 @@ function Experiences() {
                   caption="Key Technologies & Concepts:"
                   tags={[
                     'Python', 
+                    'SQL', 
                     'SAS DI', 
-                    'Advanced SQL', 
                     'Teradata', 
                     'ETL/ELT', 
                     'Data Warehousing', 
+                    'Dimensional Modeling',
+                    'SCD Type 2',
                     'Root Cause Analysis', 
                     'Performance Tuning', 
                     'Algorithm Design', 
-                    'Data Modeling', 
-                    'Confluence/Jira', 
-                    'Apache Airflow', 
-                    'GCP'
+                    'Data Modeling',
+                    'Apache Airflow',
+                    'DAG',
+                    'Data Quality',
+                    'Observability',
+                    'Confluence/Jira'
                   ]}
                 />
               </div>
@@ -511,37 +731,31 @@ function Experiences() {
               
               <div style={{ maxWidth: '850px', margin: '0 auto' }}>
                 <p className="sub-point">
-                  <b>Spearhead large-scale oncology research projects</b> by integrating 750+ TB of multi-omics Big Data from sources such as DISQOVER, ENCODE, PCAWG, PRIDE, and TCGA. Develop data-driven pipelines in Python, R, and C, contributing to the discovery of 8 novel biomarkers, accelerating validation timelines by 40%, and advancing oncology insights.
+                  <b>Reduced analysis load times by 83%</b> through optimized caching on a full-stack bioinformatics platform supporting more than 100 global researchers. Built the platform using Python, R, JavaScript, and C with microservices architecture, SOLID principles, and Docker containerization.
                 </p>
                 <p className="sub-point">
-                  <b>Architect and maintain an open-source full stack bioinformatics platform</b> following SOLID principles and microservices architecture, utilizing Python, R, JavaScript, and C with containerization (Docker, Kubernetes). Designed optimized caching strategies, reducing genomic and proteomic analysis load times by 83% and increasing platform adoption across 100+ global researchers.
+                  <b>Engineered scalable ETL pipelines processing over 750 terabytes of multi-omics data</b> on high-performance computing (HPC) clusters. Accelerated biomarker discovery by 40% and reduced analysis time by 40% using Python, R, SQL, and machine learning models including Support Vector Machine Recursive Feature Elimination (SVM-RFE) and Random Forest.
                 </p>
                 <p className="sub-point">
-                  <b>Engineer scalable data processing pipelines</b> using advanced data structures and algorithms, integrating SQL-based ETL workflows with machine learning models (SVM-RFE, Random Forests) on HPC infrastructure (Rockfish). Leverage scientific computing libraries (MaxQuant, Bioconductor, NumPy, SciPy) to cut genomic analysis time by 40% and boost prediction accuracy by 20%.
+                  <b>Improved data integrity by 30%</b> by implementing automated data quality checks and anomaly detection using unsupervised machine learning (K-Means, DBSCAN) with TensorFlow within continuous integration and continuous deployment (CI/CD) pipelines. Validated biomarker analysis software using TensorFlow, Keras, and Scikit-learn.
                 </p>
                 <p className="sub-point">
-                  <b>Devise automated data quality and anomaly detection pipelines</b> by integrating unsupervised ML (K-Means, DBSCAN) and rule-based heuristics using Python, scikit-learn and TensorFlow. Integrated these into ETL and CI/CD workflows to flag real-time anomalies, boosting data integrity by 30% across large datasets.
+                  <b>Built interactive data visualization dashboards</b> for molecular modeling and educational use using Shiny, React, and D3.js. Improved usability and accessibility for researchers working with complex genomic datasets.
                 </p>
                 <p className="sub-point">
-                  <b>Develop interactive data visualization portals</b> using React, Next.js, TypeScript, D3.js, and R Shiny, improving data accessibility and user engagement by 56% through optimized rendering, virtual DOM updates, and real-time WebSockets-based data streaming.
+                  <b>Developed and optimized REST and GraphQL APIs</b> to support real-time data access and model simulations across research modules. Enabled seamless integration between data processing pipelines and frontend applications.
                 </p>
                 <p className="sub-point">
-                  <b>Implement frontend performance optimizations</b> using Next.js SSR, code splitting, and lazy loading, improving page load speeds by 40% and enhancing large-scale data visualization rendering.
+                  <b>Configured AWS environments</b> including Amazon Elastic Compute Cloud (EC2) and Amazon Simple Storage Service (S3) and automated testing and deployment workflows with GitHub Actions. Improved reliability and collaboration across development teams through CI/CD automation.
                 </p>
                 <p className="sub-point">
-                  <b>Enhance API performance</b> by implementing GraphQL and RESTful API optimizations, introducing API Gateway, query batching, caching, and load balancing, reducing backend request latency by 35%.
+                  <b>Applied secure data management and governance practices</b> to ensure compliance with institutional privacy and research ethics standards. Maintained data lineage documentation for audit trails.
                 </p>
                 <p className="sub-point">
-                  <b>Develop and deploy fault-tolerant microservices-based infrastructures</b> integrating Python, C, and Java, unifying HPC workloads with AWS (S3, EC2, Lambda, DynamoDB) for high-throughput sequencing.
+                  <b>Collaborated with cross-functional experts</b> including oncologists and statisticians to align computational workflows with research goals. Mentored peers on high-performance computing, reproducible software practices, and batch processing patterns.
                 </p>
                 <p className="sub-point">
-                  <b>Integrate OAuth/Auth0 authentication</b> for secure role-based access control (RBAC) across multi-institutional collaborations, ensuring strict data security compliance.
-                </p>
-                <p className="sub-point">
-                  <b>Apply Test-Driven Development (TDD) principles,</b> maintaining 95%+ test coverage and automating CI/CD pipelines (Git, Jenkins, Docker), increasing deployment reliability and reducing release cycles.
-                </p>
-                <p className="sub-point">
-                  <b>Author a 35+ page research manuscript</b> featuring interactive R Shiny and D3.js data visualizations, published on GitHub and Zenodo to underscore reproducibility and transparency in data science projects.
+                  <b>Authored a 35+ page research manuscript</b> featuring interactive R Shiny and D3.js data visualizations, published on GitHub and Zenodo to underscore reproducibility and transparency in data science projects.
                 </p>
               </div>
 
@@ -685,25 +899,19 @@ function Experiences() {
               
               <div style={{ maxWidth: '850px', margin: '0 auto' }}>
                 <p className="sub-point">
-                  <b>Engineered multiple full-stack bioinformatics applications</b> using Python, R, C, C++, and Java, automating workflows that saved 30+ hours weekly and enhancing lab efficiency across 7 research teams. Applied object-oriented programming (OOP) methodologies to improve oncology, genomics, and protein structure-function analysis.
+                  <b>Reduced analysis effort by more than 30 hours per week across 7 research teams</b> by engineering full-stack bioinformatics platforms. Built automation using Python, R, C, and Java with object-oriented programming patterns to streamline lab workflows.
                 </p>
                 <p className="sub-point">
-                  <b>Designed and integrated a microservices architecture</b> with GraphQL and RESTful APIs, adhering to SOLID design principles, and incorporating SQL (PostgreSQL, MySQL) databases to manage structured bioinformatics data from public repositories (EBI, NCBI). Optimized query performance through batch processing workflows, reducing API response times by 20% and improving data retrieval efficiency by 25%.
+                  <b>Owned the full software development life cycle (SDLC)</b> including requirements, architecture, implementation, testing, deployment, and maintenance. Translated multidisciplinary research requirements into production-grade software solutions.
                 </p>
                 <p className="sub-point">
-                  <b>Established and maintained DevOps infrastructure</b> using Docker for containerization and Kubernetes for orchestration, reducing environment setup time by 50% and enabling seamless deployment across high-performance computing (HPC) clusters for resource-intensive computations.
+                  <b>Cut setup and configuration time by 50%</b> by implementing Docker-based DevOps workflows to eliminate environment drift. Enabled reproducible and scalable computation across research environments.
                 </p>
                 <p className="sub-point">
-                  <b>Developed frontend optimization strategies</b> using Next.js, Tailwind CSS, and WebAssembly, reducing UI render times by 45% and improving real-time data visualization responsiveness.
+                  <b>Improved user interface render times by 45%</b> for large genomic datasets by optimizing data visualization performance in Next.js and Tailwind CSS. Enhanced research usability through frontend performance tuning.
                 </p>
                 <p className="sub-point">
-                  <b>Specialized in molecular modeling and 3D structural analysis</b> using UCSF ChimeraX, Python, C++, and Shell scripting to automate biomolecular structure processing. Implemented parallelized computations, improving protein structure analysis accuracy by 20%.
-                </p>
-                <p className="sub-point">
-                  <b>Applied Agile methodologies (Scrum/Kanban)</b> to enhance team collaboration, ensuring scalable system architecture, reliable deployments, and continuous integration/delivery (CI/CD) practices.
-                </p>
-                <p className="sub-point">
-                  <b>Conducted advanced bioinformatics analyses,</b> including gene set enrichment analysis, mutation impact studies, and predictive modeling using Python and R, contributing to cutting-edge oncology research.
+                  <b>Led Agile Scrum adoption and mentored a team of 5 junior developers.</b> Increased throughput and strengthened cross-team collaboration through structured sprint planning and retrospectives.
                 </p>
               </div>
 
@@ -1524,7 +1732,7 @@ function Experiences() {
         <div className="container">
           <div className="contact-cta fade-in">
             <h3>Interested in Working Together?</h3>
-            <p>I'm actively seeking opportunities in data engineering, platform engineering, and software development.</p>
+            <p>I'm actively seeking opportunities in data platform engineering, data engineering, and software development.</p>
             <div className="btn-group" style={{ justifyContent: 'center' }}>
               <Link href="/" className="btn btn-secondary">
                 <i className="fas fa-home"></i> Back to Home

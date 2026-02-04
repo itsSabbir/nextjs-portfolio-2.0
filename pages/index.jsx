@@ -18,8 +18,8 @@ export default function Home() {
     const baseYears = 3; 
 
     // 2. Bell Canada Experience (Dynamic)
-    // Adjusted to May 2025 to match your "7 months" count (May -> Dec = 7 months)
-    const bellStart = new Date('2025-05-01'); 
+    // Started June 2025 (Data Engineer), promoted Dec 2025 (Data Platform Engineer)
+    const bellStart = new Date('2025-06-01'); 
     
     // Calculate months passed at Bell
     let bellMonths = 0;
@@ -146,10 +146,11 @@ const CategoryIcon = ({ type, size = 40 }) => {
       title: "Cloud & DevOps",
       skills: [
         { name: "AWS", icon: "devicon-amazonwebservices-plain-wordmark colored" },
+        { name: "GCP", icon: "devicon-googlecloud-plain colored" },
+        { name: "BigQuery", icon: "devicon-googlecloud-plain colored" },
         { name: "Docker", icon: "devicon-docker-plain colored" },
         { name: "Kubernetes", icon: "devicon-kubernetes-plain colored" },
         { name: "Terraform", icon: "devicon-terraform-plain colored" },
-        { name: "Jenkins", icon: "devicon-jenkins-plain colored" },
         { name: "Git", icon: "devicon-git-plain colored" },
         { name: "Linux", icon: "devicon-linux-plain" }
       ]
@@ -171,12 +172,12 @@ const CategoryIcon = ({ type, size = 40 }) => {
       id: "analytics",
       title: "Analytics & Visualization",
       skills: [
+        { name: "MicroStrategy", icon: "fas fa-chart-bar" },
         { name: "D3.js", icon: "devicon-d3js-plain colored" },
         { name: "Tableau", icon: "fas fa-chart-pie" },
         { name: "Power BI", icon: "fas fa-chart-line" },
         { name: "Jupyter", icon: "devicon-jupyter-plain colored" },
-        { name: "Excel", icon: "fas fa-file-excel" },
-        { name: "Confluence", icon: "devicon-confluence-plain colored" }
+        { name: "Excel", icon: "fas fa-file-excel" }
       ]
     },
     {
@@ -184,6 +185,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
       title: "Methodology & Tools",
       skills: [
         { name: "Jira", icon: "devicon-jira-plain colored" },
+        { name: "Confluence", icon: "devicon-confluence-plain colored" },
         { name: "Agile", icon: "fas fa-sync-alt" },
         { name: "Scrum", icon: "fas fa-users" },
         { name: "Kanban", icon: "fas fa-columns" },
@@ -196,16 +198,28 @@ const CategoryIcon = ({ type, size = 40 }) => {
   // --- Industry Experience Data ---
   const industryExperiences = [
     {
+      title: "Data Platform Engineer",
+      company: "Bell Canada",
+      period: "Dec 2025 - Present",
+      description: "Promoted to Data Platform Engineer, now owning the full analytics platform delivery including a 78-attribute MicroStrategy dashboard integrating four operational systems. Leading architectural decisions, production system ownership, and cross-domain technical investigations.",
+      highlights: [
+        "Shipped 78-attribute analytics platform with director sign-off via structured Dev→Pre-Prod→Prod pipeline",
+        "Maintained 12 dependent data pipelines as backup owner during company-wide code embargo",
+        "Became canonical source of institutional knowledge across 3 domains during leadership transition"
+      ],
+      link: "/experiences#bell-platform-engineer"
+    },
+    {
       title: "Data Engineer",
       company: "Bell Canada",
-      period: "Jun 2025 - Present",
-      description: "Building and owning the NTS/MS Archway data pipeline for Bell's Network Ticket Service platform, under the Bell Business Markets umbrella serving enterprise and small business customers.",
+      period: "Jun 2025 - Nov 2025",
+      description: "Built and owned the NTS/MS Archway data pipeline for Bell's Network Ticket Service platform. Architected mission-critical ETL systems integrating four enterprise data sources into unified analytical reporting.",
       highlights: [
         "Expanded analytical coverage from 1 to 9+ months through systematic root cause analysis",
         "Recovered 28,000+ missing records by diagnosing upstream data integrity drift",
-        "Consolidated 4 enterprise data sources into a unified reporting layer"
+        "Promoted to Technical Gatekeeper within 3 months"
       ],
-      link: "/experiences#bell-canada"
+      link: "/experiences#bell-data-engineer"
     }
   ];
 
@@ -239,6 +253,13 @@ const CategoryIcon = ({ type, size = 40 }) => {
   // --- Projects Data ---
   const projects = [
     {
+      title: "Enterprise Analytics Platform",
+      description: "78-attribute MicroStrategy analytics platform integrating SmartPath, Maximo, IPACT, and LDAP. Built derived metrics, conditional formatting, and cross-filter interactivity deployed via structured migration pipeline.",
+      tags: ['MicroStrategy', 'SQL', 'Data Modeling', 'ETL'],
+      icon: "📊",
+      company: "Bell Canada"
+    },
+    {
       title: "NTS/MS Archway Pipeline",
       description: "End-to-end ETL pipeline integrating 4 enterprise data sources into unified Control Plan reporting. 3-tier architecture processing 150,000+ records in ~20 minutes.",
       tags: ['Python', 'SQL', 'SAS DI', 'Teradata', 'ETL'],
@@ -258,13 +279,6 @@ const CategoryIcon = ({ type, size = 40 }) => {
       tags: ['SQL', 'Data Quality', 'Root Cause Analysis'],
       icon: "🔍",
       company: "Bell Canada"
-    },
-    {
-      title: "Microbiome Explorer",
-      description: "Interactive visualization platform for exploring microbial community data with taxonomic profiling, diversity analysis, and comparative metagenomics tools.",
-      tags: ['React', 'D3.js', 'Python', 'Bioinformatics'],
-      icon: "🦠",
-      links: { repo: 'https://github.com/itsSabbir/MicrobiomeExplorer' }
     },
     {
       title: "Bioinformatics Platform",
@@ -335,9 +349,9 @@ const CategoryIcon = ({ type, size = 40 }) => {
   return (
     <>
       <Head>
-        <title>Sabbir Hossain | Data Engineer</title>
+        <title>Sabbir Hossain | Data Platform Engineer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Portfolio of Sabbir Hossain, Data Engineer at Bell Canada with research background from Johns Hopkins and University of Toronto." />
+        <meta name="description" content="Portfolio of Sabbir Hossain, Data Platform Engineer at Bell Canada with research background from Johns Hopkins and University of Toronto." />
       </Head>
 
       {/* ========================================= */}
@@ -407,7 +421,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
             </h1>
 
             <p className="hero-subtitle fade-in" style={{ maxWidth: '800px', margin: '0 auto 2rem auto', fontSize: '1.3rem', lineHeight: '1.7' }}>
-              <span className="gradient-text">Data Engineer</span> at <span className="gradient-text">Bell Canada</span> building scalable data infrastructure. 
+              <span className="gradient-text">Data Platform Engineer</span> at <span className="gradient-text">Bell Canada</span> building scalable analytics infrastructure. 
               <br className="mobile-only" /> Former bioinformatics researcher at <span className="gradient-text">Johns Hopkins</span> and <span className="gradient-text">University of Toronto</span>. Harvard NCRC Plenary Speaker, back-to-back ASM ABRCMS award winner.
             </p>
 
@@ -535,7 +549,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
             
             {/* Intro Paragraph */}
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-              <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-secondary)', fontSize: '1.6rem' }}>Data Engineer with a Research Background</h3>
+              <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-secondary)', fontSize: '1.6rem' }}>Data Platform Engineer with a Research Background</h3>
 
               {/* ========================================= */}
               {/* EXECUTIVE SUMMARY SECTION                 */}
@@ -612,12 +626,12 @@ const CategoryIcon = ({ type, size = 40 }) => {
                       fontWeight: '600',
                       color: 'var(--text-primary)',
                       marginBottom: '0.35rem'
-                    }}>Data Engineer @ Bell Canada</div>
+                    }}>Data Platform Engineer @ Bell</div>
                     <div style={{ 
                       fontSize: '1rem', 
                       color: 'var(--text-secondary)',
                       lineHeight: '1.5'
-                    }}>BBM Division • DE/AI Team • NTS Platform Owner</div>
+                    }}>BBM Division • DE/AI Team • Platform Owner</div>
                   </div>
 
                   {/* Research Background */}
@@ -697,11 +711,12 @@ const CategoryIcon = ({ type, size = 40 }) => {
                     justifyContent: 'center'
                   }}>
                     {[
+                      { label: 'Promoted in 6 Months', detail: 'Bell Canada', icon: '🚀' },
                       { label: 'Harvard Plenary Speaker', detail: '1 of 12 / 5,000+', icon: '🎤' },
                       { label: 'ABRCMS Best Oral', detail: '2023', icon: '🏆' },
                       { label: 'ABRCMS Best Poster', detail: '2024', icon: '🏆' },
-                      { label: '78K+ Records Recovered', detail: 'Bell Canada', icon: '📊' },
-                      { label: '83% Query Optimization', detail: 'Performance', icon: '⚡' },
+                      { label: '78-Attribute Platform', detail: 'MicroStrategy', icon: '📊' },
+                      { label: '78K+ Records Recovered', detail: 'Data Quality', icon: '🔍' },
                       { label: '8 Novel Biomarkers', detail: 'Research', icon: '🧬' }
                     ].map((item, idx) => (
                       <span key={idx} style={{
@@ -739,9 +754,9 @@ const CategoryIcon = ({ type, size = 40 }) => {
                     justifyContent: 'center'
                   }}>
                     {[
-                      'Data Engineering', 'ETL/ELT Pipelines', 'Data Warehousing', 
-                      'SQL Optimization', 'Python', 'Distributed Systems',
-                      'Cloud (AWS/GCP)', 'CI/CD', 'Machine Learning', 'Research & Documentation'
+                      'Data Platform Engineering', 'ETL/ELT Pipelines', 'Data Warehousing', 
+                      'SQL Optimization', 'Python', 'Dimensional Modeling',
+                      'Cloud (AWS/GCP)', 'CI/CD', 'Machine Learning', 'Technical Leadership'
                     ].map((skill, idx) => (
                       <span key={idx} style={{
                         padding: '0.45rem 0.85rem',
@@ -789,7 +804,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
                     color: 'var(--text-secondary)',
                     lineHeight: '1.6'
                   }}>
-                    <strong style={{ color: 'var(--text-primary)' }}>Target Roles:</strong> Data Engineering • Platform Engineering • Software Engineering
+                    <strong style={{ color: 'var(--text-primary)' }}>Target Roles:</strong> Data Platform Engineering • Data Engineering • Software Engineering
                   </div>
                   <div style={{ 
                     fontSize: '1rem', 
@@ -830,20 +845,21 @@ const CategoryIcon = ({ type, size = 40 }) => {
                 </div>
                 <div className="tldr-content" style={{ fontSize: '1.1rem', lineHeight: '1.7' }}>
                   <ul style={{ display: 'inline-block', textAlign: 'left' }}>
-                    <li>Data Engineer at Bell Canada (BBM — DE/AI), owning production ETLs and analytical systems on NTS — a multi-team, cross-functional platform</li>
-                    <li>Build and maintain data infrastructure, dashboards, visualization layers, and business-critical insights used by multiple internal teams</li>
+                    <li>Data Platform Engineer at Bell Canada (BBM — DE/AI), promoted after 6 months</li>
+                    <li>Own enterprise analytics platform delivery: 78-attribute MicroStrategy dashboard integrating 4 operational systems</li>
+                    <li>Built and maintain data infrastructure, dashboards, and business-critical pipelines used by multiple internal teams</li>
                     <li>University of Toronto Honours BSc (3.96 Major GPA) — CS + Bioinformatics Specialist</li>
                     <li>Harvard plenary speaker (1 of 12 from 5,000+ applicants)</li>
                     <li>ABRCMS Best Detailed Oral & Best Poster Award Winner (top researcher in division)</li>
                     <li>3+ years research across University of Toronto and Johns Hopkins</li>
-                    <li>Looking for Data, Platform, or Software Engineering roles</li>
+                    <li>Looking for Data Platform, Data Engineering, or Software Engineering roles</li>
                   </ul>
                 </div>
               </div>
 
               <p style={{ margin: '0 auto 1.75rem auto', maxWidth: '800px', textAlign: 'left', fontSize: '1.15rem', lineHeight: '1.8' }}>
-                I&apos;m a <span className="gradient-text">Data Engineer</span> at <span className="gradient-text">Bell Canada</span> under the <span className="gradient-text">Bell Business Markets (BBM) </span> division, within the <span className="gradient-text">Data Engineering and Artificial Intelligence Team (DE/AI) </span>
-                where I architect and productionize mission-critical data pipelines on the Network Ticket Service (NTS) Platform. Before going full-time in industry, 
+                I&apos;m a <span className="gradient-text">Data Platform Engineer</span> at <span className="gradient-text">Bell Canada</span> under the <span className="gradient-text">Bell Business Markets (BBM) </span> division, within the <span className="gradient-text">Data Engineering and Artificial Intelligence Team (DE/AI)</span>. 
+                I was promoted after 6 months from Data Engineer to lead enterprise analytics platform delivery, shipping a 78-attribute MicroStrategy dashboard with director sign-off. Before going full-time in industry, 
                 I spent 3+ years in computational biology research. I graduated from the <span className="gradient-text">University of Toronto</span> (St. George Campus) 
                 with a 3.96 major GPA in <span className="gradient-text">Bioinformatics</span> and <span className="gradient-text">Computer Science</span>.
               </p>
@@ -851,12 +867,12 @@ const CategoryIcon = ({ type, size = 40 }) => {
                 My research at <span className="gradient-text">UofT</span> led me to cross-institutional work with <span className="gradient-text">Johns Hopkins</span>, 
                 and eventually to present at <span className="gradient-text">Harvard</span> — where I was selected as 1 of 12 plenary speakers from 5,000+ applicants. 
                 I won best presentation awards at ABRCMS in back-to-back years. Along the way, I processed 750+ TB of multi-omics data and realized that 
-                <span className="gradient-text"> data engineering</span> is where I belong — building the infrastructure that makes insights possible.
+                <span className="gradient-text"> data platform engineering</span> is where I belong — building the infrastructure that makes insights possible.
               </p>
               <p style={{ margin: '0 auto 1.75rem auto', maxWidth: '800px', textAlign: 'left', fontSize: '1.15rem', lineHeight: '1.8' }}>
-                Data engineering sits at the intersection of software engineering and data science, and I love that. I care about distributed systems, 
-                platform engineering, data infrastructure, and creating elegant solutions to complex technical problems. Now I apply that same rigor 
-                from research to building enterprise-scale systems.
+                Data platform engineering sits at the intersection of software engineering, data engineering, and systems architecture, and I love that. I care about distributed systems, 
+                platform reliability, data infrastructure, and creating elegant solutions to complex technical problems. Now I apply that same rigor 
+                from research to building enterprise-scale analytics systems.
               </p>
             </div>
 
@@ -1154,7 +1170,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
             </div>
             <h2 className="section-title" style={{ fontSize: 'clamp(2rem, 5vw, 2.75rem)' }}>Experience</h2>
             <p className="section-description" style={{ fontSize: '1.2rem', marginTop: '1rem', lineHeight: '1.6' }}>
-              Industry and research roles that shaped how I think about data. From building enterprise-scale pipelines at Bell Canada 
+              Industry and research roles that shaped how I think about data. From building enterprise-scale analytics platforms at Bell Canada 
               to processing 750+ TB of multi-omics data across top research institutions.
             </p>
             {/* View All Experiences Link */}
@@ -1177,7 +1193,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
             }}>
               <i className="fas fa-building"></i> Industry
             </h3>
-            <div className="timeline">
+            <div className="timeline" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {industryExperiences.map((exp, idx) => (
                 <div key={idx} className="timeline-item fade-in" style={{
                   background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(15, 23, 42, 0.95) 30%, rgba(174, 0, 1, 0.06) 100%)',
@@ -1441,7 +1457,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
         <div className="container">
           <div className="contact-cta fade-in">
             <h3 style={{ fontSize: '1.8rem' }}>Let&apos;s Build Something Together</h3>
-            <p style={{ fontSize: '1.15rem' }}>Looking for my next opportunity in data engineering or platform engineering.</p>
+            <p style={{ fontSize: '1.15rem' }}>Looking for my next opportunity in data platform engineering or data engineering.</p>
             <div className="btn-group" style={{ justifyContent: 'center' }}>
               <a href="mailto:hossain.sabbir17@gmail.com" className="btn btn-primary">
                 <i className="fas fa-envelope"></i> Send Email
