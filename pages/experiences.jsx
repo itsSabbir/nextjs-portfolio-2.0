@@ -345,7 +345,12 @@ function Experiences() {
                   caption="Key Technologies & Concepts:"
                   tags={[
                     'MicroStrategy',
+                    'Python', 
                     'SQL', 
+                    'SAS DI', 
+                    'Teradata', 
+                    'ETL/ELT', 
+                    'Data Warehousing',
                     'Teradata',
                     'Data Modeling',
                     'Dimensional Modeling',
