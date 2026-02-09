@@ -192,16 +192,16 @@ function Experiences() {
         <h2 id="work-experience-heading" className="sr-only">Work Experience</h2>
 
         {/* ======================================== */}
-        {/* === Bell Canada - Data Platform Engineer === */}
+        {/* === Bell Canada - Data Engineer ======== */}
         {/* ======================================== */}
-        <section className="hero job-details" id="bell-platform-engineer">
+        <section className="hero job-details" id="bell-data-engineer">
           <div className="container">
             <div className="text-wrapper w-full">
               <h3 className="title" style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <span style={{ display: 'block', fontSize: '1.8rem', color: 'var(--accent-primary)' }}>Data Platform Engineer</span>
+                <span style={{ display: 'block', fontSize: '1.8rem', color: 'var(--accent-primary)' }}>Data Engineer</span>
                 <span style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>Bell Canada (Data Engineering & Artificial Intelligence Team)</span>
                 <span style={{ display: 'block', fontSize: '1rem', marginTop: '0.5rem', color: 'var(--accent-secondary)' }}>
-                  <i className="fas fa-calendar-alt" style={{ marginRight: '8px' }}></i>December 2025 – Present
+                  <i className="fas fa-calendar-alt" style={{ marginRight: '8px' }}></i>June 2025 – Present
                 </span>
                 <span style={{ display: 'block', fontSize: '0.9rem', marginTop: '0.25rem', color: 'var(--text-muted)' }}>
                   <i className="fas fa-map-marker-alt" style={{ marginRight: '8px' }}></i>Toronto, Ontario, Canada (Remote)
@@ -241,7 +241,7 @@ function Experiences() {
                   lineHeight: '1.6',
                   margin: '0 0 1rem 0'
                 }}>
-                  <strong style={{ color: 'var(--text-primary)' }}>Promoted after 6 months to lead enterprise analytics platform delivery.</strong> Now owning the full 78-attribute MicroStrategy analytics platform integrating four operational systems, making architectural decisions, and serving as the canonical source of institutional knowledge across three domains during leadership transition.
+                  <strong style={{ color: 'var(--text-primary)' }}>Primary owner of the Network Ticket Service (NTS) data pipeline</strong> — a mission-critical ETL system integrating 4 enterprise data sources (SmartPath API, Maximo, IPACT, LDAP) into unified analytical reporting for Bell Business Markets. Expanded scope to include enterprise analytics platform delivery, cross-domain investigations, and production system ownership.
                 </p>
 
                 <div style={{ 
@@ -251,9 +251,9 @@ function Experiences() {
                 }}>
                   {[
                     { metric: '78', label: 'Attributes Delivered', icon: '📊' },
-                    { metric: '4', label: 'Systems Integrated', icon: '🔗' },
-                    { metric: '12', label: 'Pipelines Maintained', icon: '🔧' },
-                    { metric: '3', label: 'Domains Owned', icon: '🎯' }
+                    { metric: '78,000+', label: 'Records Recovered', icon: '🔄' },
+                    { metric: '83%', label: 'Query Optimization', icon: '⚡' },
+                    { metric: '12', label: 'Pipelines Maintained', icon: '🔧' }
                   ].map((item, idx) => (
                     <div key={idx} style={{
                       background: 'rgba(255, 255, 255, 0.03)',
@@ -277,6 +277,7 @@ function Experiences() {
                     </div>
                   ))}
                 </div>
+
 
                 <div style={{ 
                   marginTop: '1rem',
@@ -297,211 +298,11 @@ function Experiences() {
                   }}>
                     {[
                       'Enterprise analytics platform delivery',
-                      'Architectural decision-making',
-                      'Production system ownership',
-                      'Cross-domain technical investigation',
-                      'Engineering workflow governance',
-                      'Cloud migration preparation'
-                    ].map((item, idx) => (
-                      <span key={idx} style={{
-                        padding: '0.35rem 0.75rem',
-                        background: 'rgba(174, 0, 1, 0.1)',
-                        border: '1px solid rgba(174, 0, 1, 0.3)',
-                        borderRadius: '9999px',
-                        fontSize: '0.8rem',
-                        color: 'var(--text-secondary)'
-                      }}>{item}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              
-              <div style={{ maxWidth: '850px', margin: '0 auto' }}>
-                <p className="sub-point">
-                  <b>Shipped a 78-attribute analytics platform in MicroStrategy (business intelligence platform)</b> integrating four operational systems: operations API (SmartPath), asset management (Maximo), billing (IPACT), and directory services (LDAP). Built derived metrics, conditional formatting, and cross-filter interactivity; deployed to production with director sign-off via a structured Dev to Pre-Prod to Prod migration pipeline.
-                </p>
-                <p className="sub-point">
-                  <b>Reduced build cost and risk through strategic architectural decision-making</b> by choosing a SQL view over a physical fact table for joining event and request data with calculated duration metrics. Blocked out-of-scope integration requests and expanded the design from 13 columns to 78 attributes to eliminate recurring ad hoc request cycles.
-                </p>
-                <p className="sub-point">
-                  <b>Maintained 12 dependent data pipelines as backup owner</b> for the production operations API (SmartPath) during a company-wide code embargo. Diagnosed and resolved critical ETL failures in error staging tables and business intelligence metric misconfigurations under time pressure without senior engineer availability.
-                </p>
-                <p className="sub-point">
-                  <b>Ramped from zero domain knowledge to full system comprehension within 2 weeks</b> for a five-system data pipeline spanning Salesforce to billing to operations (CS Attack pipeline). Built a repeatable metadata discovery method using the Teradata system catalog (DBC.Columns) to locate target fields, validate source table population rates, and confirm join feasibility with evidence.
-                </p>
-                <p className="sub-point">
-                  <b>Co-authored the team engineering workflow standard</b>, formalizing separation of Investigation (feasibility analysis, validation) and Implementation (code, test, deploy) phases. Established tracking protocols, stakeholder scope boundaries, and a mandatory front door ticket process for budget accountability.
-                </p>
-                <p className="sub-point">
-                  <b>Became the canonical source of institutional knowledge across three domains</b> (NTS, SmartPath, CS Attack) during a leadership transition. Refactored team documentation into an Executive Summary plus Technical Appendix format and established a Visual-First methodology for director-level reporting.
-                </p>
-                <p className="sub-point">
-                  <b>Supporting Q1 2026 migration to Google Cloud Platform (GCP) and BigQuery</b>, contributing to the architectural pivot from legacy Teradata wide tables to a snowflake schema design pattern. Preparing a pipeline refactoring roadmap from SAS Data Integration Studio (legacy ETL tool) to cloud-native orchestration using directed acyclic graphs (DAGs) on Cloud Composer.
-                </p>
-              </div>
-
-              <div style={{ maxWidth: '850px', margin: '2rem auto 0 auto' }}>
-                <SkillsList
-                  caption="Key Technologies & Concepts:"
-                  tags={[
-                    'MicroStrategy',
-                    'Python', 
-                    'SQL', 
-                    'SAS DI', 
-                    'Teradata',
-                    'Data Warehousing',
-                    'Teradata',
-                    'Data Modeling',
-                    'Dimensional Modeling',
-                    'Snowflake Schema',
-                    'ETL',
-                    'Orchestration',
-                    'DAG',
-                    'Cloud Composer',
-                    'BigQuery',
-                    'GCP',
-                    'Data Quality',
-                    'Observability',
-                    'Stakeholder Management',
-                    'Documentation',
-                    'Production Ownership'
-                  ]}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <hr className="break-section" />
-
-        {/* ======================================== */}
-        {/* === Bell Canada - Data Engineer ======== */}
-        {/* ======================================== */}
-        <section className="hero job-details" id="bell-data-engineer">
-          <div className="container">
-            <div className="text-wrapper w-full">
-              <h3 className="title" style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <span style={{ display: 'block', fontSize: '1.8rem', color: 'var(--accent-primary)' }}>Data Engineer</span>
-                <span style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>Bell Canada (Data Engineering & Artificial Intelligence Team)</span>
-                <span style={{ display: 'block', fontSize: '1rem', marginTop: '0.5rem', color: 'var(--accent-secondary)' }}>
-                  <i className="fas fa-calendar-alt" style={{ marginRight: '8px' }}></i>June 2025 – November 2025
-                </span>
-                <span style={{ display: 'block', fontSize: '0.9rem', marginTop: '0.25rem', color: 'var(--text-muted)' }}>
-                  <i className="fas fa-map-marker-alt" style={{ marginRight: '8px' }}></i>Toronto, Ontario, Canada (Remote)
-                </span>
-              </h3>
-
-              {/* Impact Summary Box */}
-              <div style={{ 
-                maxWidth: '850px', 
-                margin: '0 auto 2rem auto',
-                background: 'linear-gradient(135deg, rgba(174, 0, 1, 0.06), rgba(212, 175, 55, 0.06))',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
-                borderRadius: '12px',
-                padding: '1.5rem'
-              }}>
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '8px',
-                  marginBottom: '1rem',
-                  paddingBottom: '0.75rem',
-                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
-                }}>
-                  <i className="fas fa-bolt" style={{ color: 'var(--accent-secondary)', fontSize: '1rem' }}></i>
-                  <span style={{ 
-                    fontSize: '0.85rem', 
-                    fontWeight: '700', 
-                    textTransform: 'uppercase', 
-                    letterSpacing: '0.1em',
-                    color: 'var(--accent-secondary)'
-                  }}>Impact at a Glance</span>
-                </div>
-                
-                <p style={{ 
-                  color: 'var(--text-secondary)', 
-                  fontSize: '1rem', 
-                  lineHeight: '1.6',
-                  margin: '0 0 1rem 0'
-                }}>
-                  <strong style={{ color: 'var(--text-primary)' }}>Primary owner of the Network Ticket Service (NTS) data pipeline</strong> — a mission-critical ETL system integrating 4 enterprise data sources (SmartPath API, Maximo, IPACT, LDAP) into unified analytical reporting for Bell Business Markets. Promoted to Data Platform Engineer after 6 months.
-                </p>
-
-                <div style={{ 
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-                  gap: '0.75rem'
-                }}>
-                  {[
-                    { metric: '78,000+', label: 'Records Recovered', icon: '📊' },
-                    { metric: '+800%', label: 'Coverage Expansion', icon: '📈' },
-                    { metric: '83%', label: 'Query Optimization', icon: '⚡' },
-                    { metric: '3 mo', label: 'To Technical Gatekeeper', icon: '🎯' }
-                  ].map((item, idx) => (
-                    <div key={idx} style={{
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      borderRadius: '8px',
-                      padding: '0.75rem',
-                      textAlign: 'center'
-                    }}>
-                      <div style={{ fontSize: '1.25rem', marginBottom: '0.25rem' }}>{item.icon}</div>
-                      <div style={{ 
-                        fontSize: '1.25rem', 
-                        fontWeight: '700',
-                        color: 'var(--accent-primary)',
-                        lineHeight: '1.2'
-                      }}>{item.metric}</div>
-                      <div style={{ 
-                        fontSize: '0.75rem', 
-                        color: 'var(--text-muted)',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.05em'
-                      }}>{item.label}</div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Promotion Banner */}
-                <div style={{ 
-                  marginTop: '1rem',
-                  padding: '0.75rem 1rem',
-                  background: 'rgba(34, 197, 94, 0.1)',
-                  border: '1px solid rgba(34, 197, 94, 0.3)',
-                  borderRadius: '8px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '1rem',
-                  flexWrap: 'wrap',
-                  justifyContent: 'center'
-                }}>
-                  <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                    <strong style={{ color: '#22c55e' }}>🚀 Promoted to Data Platform Engineer</strong> after 6 months
-                  </span>
-                </div>
-
-                <div style={{ 
-                  marginTop: '1rem',
-                  paddingTop: '1rem',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.1)'
-                }}>
-                  <div style={{ 
-                    fontSize: '0.8rem', 
-                    color: 'var(--text-muted)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
-                    marginBottom: '0.5rem'
-                  }}>Key Contributions</div>
-                  <div style={{ 
-                    display: 'flex', 
-                    flexWrap: 'wrap', 
-                    gap: '0.5rem' 
-                  }}>
-                    {[
                       'Full-stack RCA & data recovery',
                       'Query performance re-architecture',
-                      'Stateful sessionization algorithm',
-                      'Data warehouse design standards',
-                      'Proof-based documentation methodology'
+                      'Cross-domain technical investigation',
+                      'Production system ownership',
+                      'Cloud migration preparation'
                     ].map((item, idx) => (
                       <span key={idx} style={{
                         padding: '0.35rem 0.75rem',
@@ -550,6 +351,41 @@ function Experiences() {
                 <p className="sub-point">
                   <b>Built visualizations and presented pipeline performance and data quality metrics</b> to directors, team leads, and business intelligence analysts. Drove buy-in for platform modernization initiatives through data-driven executive reporting.
                 </p>
+
+                {/* Expanded Scope Achievements */}
+                <h4 style={{ 
+                  marginTop: '2rem', 
+                  marginBottom: '1rem', 
+                  color: 'var(--accent-secondary)',
+                  fontSize: '1.1rem',
+                  borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+                  paddingTop: '1.5rem'
+                }}>
+                  <i className="fas fa-level-up-alt" style={{ marginRight: '8px' }}></i>
+                  Expanded Scope: Platform Delivery & Cross-Domain Ownership
+                </h4>
+
+                <p className="sub-point">
+                  <b>Shipped a 78-attribute analytics platform in MicroStrategy (business intelligence platform)</b> integrating four operational systems: operations API (SmartPath), asset management (Maximo), billing (IPACT), and directory services (LDAP). Built derived metrics, conditional formatting, and cross-filter interactivity; deployed to production with director sign-off via a structured Dev to Pre-Prod to Prod migration pipeline.
+                </p>
+                <p className="sub-point">
+                  <b>Reduced build cost and risk through strategic architectural decision-making</b> by choosing a SQL view over a physical fact table for joining event and request data with calculated duration metrics. Blocked out-of-scope integration requests and expanded the design from 13 columns to 78 attributes to eliminate recurring ad hoc request cycles.
+                </p>
+                <p className="sub-point">
+                  <b>Maintained 12 dependent data pipelines as backup owner</b> for the production operations API (SmartPath) during a company-wide code embargo. Diagnosed and resolved critical ETL failures in error staging tables and business intelligence metric misconfigurations under time pressure without senior engineer availability.
+                </p>
+                <p className="sub-point">
+                  <b>Ramped from zero domain knowledge to full system comprehension within 2 weeks</b> for a five-system data pipeline spanning Salesforce to billing to operations (CS Attack pipeline). Built a repeatable metadata discovery method using the Teradata system catalog (DBC.Columns) to locate target fields, validate source table population rates, and confirm join feasibility with evidence.
+                </p>
+                <p className="sub-point">
+                  <b>Co-authored the team engineering workflow standard</b>, formalizing separation of Investigation (feasibility analysis, validation) and Implementation (code, test, deploy) phases. Established tracking protocols, stakeholder scope boundaries, and a mandatory front door ticket process for budget accountability.
+                </p>
+                <p className="sub-point">
+                  <b>Became the canonical source of institutional knowledge across three domains</b> (NTS, SmartPath, CS Attack) during a leadership transition. Refactored team documentation into an Executive Summary plus Technical Appendix format and established a Visual-First methodology for director-level reporting.
+                </p>
+                <p className="sub-point">
+                  <b>Supporting Q1 2026 migration to Google Cloud Platform (GCP) and BigQuery</b>, contributing to the architectural pivot from legacy Teradata wide tables to a snowflake schema design pattern. Preparing a pipeline refactoring roadmap from SAS Data Integration Studio (legacy ETL tool) to cloud-native orchestration using directed acyclic graphs (DAGs) on Cloud Composer.
+                </p>
               </div>
 
               <div style={{ maxWidth: '850px', margin: '2rem auto 0 auto' }}>
@@ -563,15 +399,22 @@ function Experiences() {
                     'ETL/ELT', 
                     'Data Warehousing', 
                     'Dimensional Modeling',
+                    'Snowflake Schema',
                     'SCD Type 2',
                     'Root Cause Analysis', 
                     'Performance Tuning', 
                     'Algorithm Design', 
                     'Data Modeling',
+                    'MicroStrategy',
                     'Apache Airflow',
                     'DAG',
+                    'Cloud Composer',
+                    'BigQuery',
+                    'GCP',
                     'Data Quality',
                     'Observability',
+                    'Production Ownership',
+                    'Stakeholder Management',
                     'Confluence/Jira'
                   ]}
                 />

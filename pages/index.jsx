@@ -18,7 +18,7 @@ export default function Home() {
     const baseYears = 3; 
 
     // 2. Bell Canada Experience (Dynamic)
-    // Started June 2025 (Data Engineer), promoted Dec 2025 (Data Platform Engineer)
+    // Started June 2025 as Data Engineer
     const bellStart = new Date('2025-06-01'); 
     
     // Calculate months passed at Bell
@@ -198,26 +198,14 @@ const CategoryIcon = ({ type, size = 40 }) => {
   // --- Industry Experience Data ---
   const industryExperiences = [
     {
-      title: "Data Platform Engineer",
-      company: "Bell Canada",
-      period: "Dec 2025 - Present",
-      description: "Promoted to Data Platform Engineer, now owning the full analytics platform delivery including a 78-attribute MicroStrategy dashboard integrating four operational systems. Leading architectural decisions, production system ownership, and cross-domain technical investigations.",
-      highlights: [
-        "Shipped 78-attribute analytics platform with director sign-off via structured Dev→Pre-Prod→Prod pipeline",
-        "Maintained 12 dependent data pipelines as backup owner during company-wide code embargo",
-        "Became canonical source of institutional knowledge across 3 domains during leadership transition"
-      ],
-      link: "/experiences#bell-platform-engineer"
-    },
-    {
       title: "Data Engineer",
       company: "Bell Canada",
-      period: "Jun 2025 - Nov 2025",
-      description: "Built and owned the NTS/MS Archway data pipeline for Bell's Network Ticket Service platform. Architected mission-critical ETL systems integrating four enterprise data sources into unified analytical reporting.",
+      period: "Jun 2025 - Present",
+      description: "Building and owning enterprise data pipelines for Bell's Network Ticket Service platform. Architected mission-critical ETL systems integrating four enterprise data sources into unified analytical reporting, with expanded scope into platform delivery and cross-domain investigations.",
       highlights: [
-        "Expanded analytical coverage from 1 to 9+ months through systematic root cause analysis",
-        "Recovered 28,000+ missing records by diagnosing upstream data integrity drift",
-        "Promoted to Technical Gatekeeper within 3 months"
+        "Shipped 78-attribute analytics platform integrating 4 operational systems with director sign-off",
+        "Expanded analytical coverage from 1 to 9+ months, recovering 78,000+ records",
+        "Promoted to Technical Gatekeeper within 3 months; backup owner for 12 production pipelines"
       ],
       link: "/experiences#bell-data-engineer"
     }
@@ -349,9 +337,9 @@ const CategoryIcon = ({ type, size = 40 }) => {
   return (
     <>
       <Head>
-        <title>Sabbir Hossain | Data Platform Engineer</title>
+        <title>Sabbir Hossain | Data Engineer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Portfolio of Sabbir Hossain, Data Platform Engineer at Bell Canada with research background from Johns Hopkins and University of Toronto." />
+        <meta name="description" content="Portfolio of Sabbir Hossain, Data Engineer at Bell Canada with research background from Johns Hopkins and University of Toronto." />
       </Head>
 
       {/* ========================================= */}
@@ -421,7 +409,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
             </h1>
 
             <p className="hero-subtitle fade-in" style={{ maxWidth: '800px', margin: '0 auto 2rem auto', fontSize: '1.3rem', lineHeight: '1.7' }}>
-              <span className="gradient-text">Data Platform Engineer</span> at <span className="gradient-text">Bell Canada</span> building scalable analytics infrastructure. 
+              <span className="gradient-text">Data Engineer</span> at <span className="gradient-text">Bell Canada</span> building scalable analytics infrastructure. 
               <br className="mobile-only" /> Former bioinformatics researcher at <span className="gradient-text">Johns Hopkins</span> and <span className="gradient-text">University of Toronto</span>. Harvard NCRC Plenary Speaker, back-to-back ASM ABRCMS award winner.
             </p>
 
@@ -549,7 +537,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
             
             {/* Intro Paragraph */}
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-              <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-secondary)', fontSize: '1.6rem' }}>Data Platform Engineer with a Research Background</h3>
+              <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-secondary)', fontSize: '1.6rem' }}>Data Engineer with a Research Background</h3>
 
               {/* ========================================= */}
               {/* EXECUTIVE SUMMARY SECTION                 */}
@@ -626,7 +614,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
                       fontWeight: '600',
                       color: 'var(--text-primary)',
                       marginBottom: '0.35rem'
-                    }}>Data Platform Engineer @ Bell</div>
+                    }}>Data Engineer @ Bell</div>
                     <div style={{ 
                       fontSize: '1rem', 
                       color: 'var(--text-secondary)',
@@ -711,7 +699,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
                     justifyContent: 'center'
                   }}>
                     {[
-                      { label: 'Promoted in 6 Months', detail: 'Bell Canada', icon: '🚀' },
+                      { label: 'Expanded Scope', detail: 'Bell Canada', icon: '📈' },
                       { label: 'Harvard Plenary Speaker', detail: '1 of 12 / 5,000+', icon: '🎤' },
                       { label: 'ABRCMS Best Oral', detail: '2023', icon: '🏆' },
                       { label: 'ABRCMS Best Poster', detail: '2024', icon: '🏆' },
@@ -754,7 +742,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
                     justifyContent: 'center'
                   }}>
                     {[
-                      'Data Platform Engineering', 'ETL/ELT Pipelines', 'Data Warehousing', 
+                      'Data Engineering', 'ETL/ELT Pipelines', 'Data Warehousing', 
                       'SQL Optimization', 'Python', 'Dimensional Modeling',
                       'Cloud (AWS/GCP)', 'CI/CD', 'Machine Learning', 'Technical Leadership'
                     ].map((skill, idx) => (
@@ -804,7 +792,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
                     color: 'var(--text-secondary)',
                     lineHeight: '1.6'
                   }}>
-                    <strong style={{ color: 'var(--text-primary)' }}>Target Roles:</strong> Data Platform Engineering • Data Engineering • Software Engineering
+                    <strong style={{ color: 'var(--text-primary)' }}>Target Roles:</strong> Data Engineering • Data Platform Engineering • Software Engineering
                   </div>
                   <div style={{ 
                     fontSize: '1rem', 
@@ -845,7 +833,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
                 </div>
                 <div className="tldr-content" style={{ fontSize: '1.1rem', lineHeight: '1.7' }}>
                   <ul style={{ display: 'inline-block', textAlign: 'left' }}>
-                    <li>Data Platform Engineer at Bell Canada (BBM — DE/AI), promoted after 6 months</li>
+                    <li>Data Engineer at Bell Canada (BBM — DE/AI) with expanded platform ownership</li>
                     <li>Own enterprise analytics platform delivery: 78-attribute MicroStrategy dashboard integrating 4 operational systems</li>
                     <li>Built and maintain data infrastructure, dashboards, and business-critical pipelines used by multiple internal teams</li>
                     <li>University of Toronto Honours BSc (3.96 Major GPA) — CS + Bioinformatics Specialist</li>
@@ -858,8 +846,8 @@ const CategoryIcon = ({ type, size = 40 }) => {
               </div>
 
               <p style={{ margin: '0 auto 1.75rem auto', maxWidth: '800px', textAlign: 'left', fontSize: '1.15rem', lineHeight: '1.8' }}>
-                I&apos;m a <span className="gradient-text">Data Platform Engineer</span> at <span className="gradient-text">Bell Canada</span> under the <span className="gradient-text">Bell Business Markets (BBM) </span> division, within the <span className="gradient-text">Data Engineering and Artificial Intelligence Team (DE/AI)</span>. 
-                I was promoted after 6 months from Data Engineer to lead enterprise analytics platform delivery, shipping a 78-attribute MicroStrategy dashboard with director sign-off. Before going full-time in industry, 
+                I&apos;m a <span className="gradient-text">Data Engineer</span> at <span className="gradient-text">Bell Canada</span> under the <span className="gradient-text">Bell Business Markets (BBM) </span> division, within the <span className="gradient-text">Data Engineering and Artificial Intelligence Team (DE/AI)</span>. 
+                My scope has expanded to include enterprise analytics platform delivery, shipping a 78-attribute MicroStrategy dashboard with director sign-off. Before going full-time in industry, 
                 I spent 3+ years in computational biology research. I graduated from the <span className="gradient-text">University of Toronto</span> (St. George Campus) 
                 with a 3.96 major GPA in <span className="gradient-text">Bioinformatics</span> and <span className="gradient-text">Computer Science</span>.
               </p>
