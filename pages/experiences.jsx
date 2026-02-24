@@ -229,47 +229,39 @@ const scrollToId = (id) => {
  */
 const TabsNav = ({ activeTab, onChange }) => {
   return (
-    <div className="tabsShell" role="tablist" aria-label="Experience page sections">
-      <div className="tabsRow">
-        {TABS.map((t) => {
-          const isActive = activeTab === t.key;
-          return (
-            <button
-              key={t.key}
-              type="button"
-              role="tab"
-              aria-selected={isActive}
-              className={`tabBtn ${isActive ? 'active' : ''}`}
-              onClick={() => onChange(t.key)}
-            >
-              {t.label}
-            </button>
-          );
-        })}
-      </div>
+    <div className="tabsBar" role="tablist" aria-label="Experience page sections">
+      {TABS.map((t) => {
+        const isActive = activeTab === t.key;
+        return (
+          <button
+            key={t.key}
+            type="button"
+            role="tab"
+            aria-selected={isActive}
+            className={`tabBtn ${isActive ? 'active' : ''}`}
+            onClick={() => onChange(t.key)}
+          >
+            {t.label}
+          </button>
+        );
+      })}
 
       <style jsx>{`
-        .tabsShell {
+        .tabsBar {
           max-width: 900px;
-          margin: 1.25rem auto 1rem auto;
-
-          /* Optional: make it feel like navigation */
-          position: sticky;
-          top: 16px;
-          z-index: 50;
-
-          backdrop-filter: blur(10px);
-          background: rgba(10, 18, 34, 0.55);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 14px;
-          padding: 0.75rem 1rem;
-        }
-
-        .tabsRow {
+          margin: 1.25rem auto 1.25rem auto;
           display: flex;
           justify-content: center;
           gap: 1.25rem;
           flex-wrap: wrap;
+
+          /* this is what removes the floaty look */
+          background: transparent;
+          border: none;
+          padding: 0;
+
+          /* optional: gives it a clean “nav bar” baseline */
+          border-bottom: 1px solid rgba(255, 255, 255, 0.10);
         }
 
         .tabBtn {
@@ -277,11 +269,11 @@ const TabsNav = ({ activeTab, onChange }) => {
           border: none;
           background: transparent;
 
-          padding: 0.65rem 0.25rem;
+          padding: 0.85rem 0.25rem;
           font-size: 0.95rem;
-          font-weight: 700;
-          color: var(--text-muted);
+          font-weight: 750;
 
+          color: var(--text-muted);
           border-bottom: 2px solid transparent;
           transition: color 160ms ease, border-color 160ms ease;
         }
@@ -292,7 +284,7 @@ const TabsNav = ({ activeTab, onChange }) => {
 
         .tabBtn.active {
           color: var(--text-primary);
-          border-bottom-color: rgba(212, 175, 55, 0.9);
+          border-bottom-color: rgba(212, 175, 55, 0.95);
         }
       `}</style>
     </div>
