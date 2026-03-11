@@ -220,7 +220,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
       description: "Cross-institutional oncology research integrating 750+ TB of multi-omics data across 3 cancer types. This role grew out of my work at UofT.",
       highlights: [
         "Selected as 1 of 12 plenary speakers from 5,000+ applicants at Harvard NCRC",
-        "Won Best Oral Presentation at ABRCMS 2023 and Best Poster at ABRCMS 2024",
+        "Received the Oral Presentation Award at ABRCMS 2023 and the Poster Presentation Award at ABRCMS 2024",
         "Contributed to identification of 8 novel biomarker candidates"
       ],
       link: "/experiences#johns-hopkins"
@@ -701,8 +701,8 @@ const CategoryIcon = ({ type, size = 40 }) => {
                     {[
                       { label: 'Expanded Scope', detail: 'Bell Canada', icon: '📈' },
                       { label: 'Harvard Plenary Speaker', detail: '1 of 12 / 5,000+', icon: '🎤' },
-                      { label: 'ABRCMS Best Oral', detail: '2023', icon: '🏆' },
-                      { label: 'ABRCMS Best Poster', detail: '2024', icon: '🏆' },
+                      { label: 'ABRCMS Oral Presentation Award', detail: '2023', icon: '🏆' },
+                      { label: 'ABRCMS Poster Presentation Award', detail: '2024', icon: '🏆' },
                       { label: '78-Attribute Platform', detail: 'MicroStrategy', icon: '📊' },
                       { label: '78K+ Records Recovered', detail: 'Data Quality', icon: '🔍' },
                       { label: '8 Novel Biomarkers', detail: 'Research', icon: '🧬' }
@@ -838,7 +838,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
                     <li>Built and maintain data infrastructure, dashboards, and business-critical pipelines used by multiple internal teams</li>
                     <li>University of Toronto Honours BSc (3.96 Major GPA) — CS + Bioinformatics Specialist</li>
                     <li>Harvard plenary speaker (1 of 12 from 5,000+ applicants)</li>
-                    <li>ABRCMS Best Detailed Oral & Best Poster Award Winner (top researcher in division)</li>
+                    <li>Recipient of ABRCMS Oral Presentation and Poster Presentation awards (top researcher in division)</li>
                     <li>3+ years research across University of Toronto and Johns Hopkins</li>
                     <li>Looking for Data Platform, Data Engineering, or Software Engineering roles</li>
                   </ul>
@@ -854,7 +854,7 @@ const CategoryIcon = ({ type, size = 40 }) => {
               <p style={{ margin: '0 auto 1.75rem auto', maxWidth: '800px', textAlign: 'left', fontSize: '1.15rem', lineHeight: '1.8' }}>
                 My research at <span className="gradient-text">UofT</span> led me to cross-institutional work with <span className="gradient-text">Johns Hopkins</span>, 
                 and eventually to present at <span className="gradient-text">Harvard</span> — where I was selected as 1 of 12 plenary speakers from 5,000+ applicants. 
-                I won best presentation awards at ABRCMS in back-to-back years. Along the way, I processed 750+ TB of multi-omics data and realized that 
+                I received oral and poster presentation awards at ABRCMS in back-to-back years. Along the way, I processed 750+ TB of multi-omics data and realized that 
                 <span className="gradient-text"> data platform engineering</span> is where I belong — building the infrastructure that makes insights possible.
               </p>
               <p style={{ margin: '0 auto 1.75rem auto', maxWidth: '800px', textAlign: 'left', fontSize: '1.15rem', lineHeight: '1.8' }}>

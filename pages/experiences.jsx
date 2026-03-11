@@ -911,11 +911,11 @@ function Experiences() {
                     </span>
                     <span style={{ color: 'var(--text-muted)' }}>•</span>
                     <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                      <strong style={{ color: 'var(--accent-secondary)' }}>🏆 ABRCMS Best Oral 2023</strong>
+                      <strong style={{ color: 'var(--accent-secondary)' }}>🏆 ABRCMS Oral Presentation Award 2023</strong>
                     </span>
                     <span style={{ color: 'var(--text-muted)' }}>•</span>
                     <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                      <strong style={{ color: 'var(--accent-secondary)' }}>🏆 ABRCMS Best Poster 2024</strong>
+                      <strong style={{ color: 'var(--accent-secondary)' }}>🏆 ABRCMS Poster Presentation Award 2024</strong>
                     </span>
                   </div>
 
@@ -1322,7 +1322,7 @@ function Experiences() {
                 </div>
               </div>
 
-              {/* Best Oral Presentation - ABRCMS 2023 */}
+              {/* Oral Presentation - ABRCMS 2023 */}
               <div
                 className="award-item"
                 style={{
@@ -1347,7 +1347,7 @@ function Experiences() {
                         marginTop: 0,
                       }}
                     >
-                      Best Detailed Oral Presentation Award
+                      Oral Presentation Award
                     </h3>
                     <p
                       style={{
@@ -1387,7 +1387,7 @@ function Experiences() {
                 </div>
               </div>
 
-              {/* Best Poster Presentation - ABRCMS 2024 */}
+              {/* Poster Presentation - ABRCMS 2024 */}
               <div
                 className="award-item"
                 style={{
@@ -1412,7 +1412,7 @@ function Experiences() {
                         marginTop: 0,
                       }}
                     >
-                      Best Poster Presentation Award
+                      Poster Presentation Award
                     </h3>
                     <p
                       style={{
