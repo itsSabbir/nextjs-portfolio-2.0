@@ -137,9 +137,10 @@ function Projects() {
                 fontWeight: '500',
                 marginTop: '0.25rem'
               }}>@ {project.company}</span>
-            </>
+            </> 
           : project.title
       }
+      titleText={project.title}
       description={project.description}
       tags={project.tags}
       icon={project.icon}

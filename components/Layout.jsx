@@ -30,10 +30,10 @@ function Layout({ children, title, description }) {
   return (
     <>
       <Head>
-        <title>{title || "Sabbir Hossain | Data Engineer & Platform Architect"}</title>
+        <title>{title || "Sabbir Hossain | Data Engineer"}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Sabbir Hossain" />
-        <meta name="description" content={description || "Portfolio of Sabbir Hossain, Data Engineer & Platform Architect."} />
+        <meta name="description" content={description || "Portfolio of Sabbir Hossain, Data Engineer."} />
         
         {/* Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

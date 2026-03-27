@@ -7,36 +7,54 @@ import StatCard from '../components/StatCard';
 import { CA, US } from 'country-flag-icons/react/3x2';
 
 export default function Home() {
-  const [totalExperience, setTotalExperience] = useState({ years: 0, months: 0 });
+  const [industryExperience, setIndustryExperience] = useState({ years: 0, months: 0 });
+  const [preIndustryExperience, setPreIndustryExperience] = useState({ years: 0, months: 0 });
   const [streak, setStreak] = useState(0);
+
+  const formatExperienceDuration = ({ years, months }) => {
+    const parts = [];
+
+    if (years > 0) {
+      parts.push(`${years} yr${years === 1 ? '' : 's'}`);
+    }
+
+    if (months > 0 || parts.length === 0) {
+      parts.push(`${months} mo`);
+    }
+
+    return parts.join(' ');
+  };
 
   // Experience & Streak Calculations
   useEffect(() => {
     const now = new Date();
+    const bellStart = new Date(2025, 5, 1);
+    const preIndustryStart = new Date(2019, 8, 1);
+    const preIndustryEnd = new Date(bellStart);
+    preIndustryEnd.setDate(0);
 
-    // 1. Fixed Base Experience (Research/Previous)
-    const baseYears = 3;
+    const calculateInclusiveMonthSpan = (start, end) => {
+      if (end < start) {
+        return 0;
+      }
 
-    // 2. Bell Canada Experience (Dynamic)
-    // Started June 2025 as Data Engineer
-    const bellStart = new Date('2025-06-01');
+      return (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth()) + 1;
+    };
 
-    // Calculate months passed at Bell
-    let bellMonths = 0;
-    if (now >= bellStart) {
-      bellMonths = (now.getFullYear() - bellStart.getFullYear()) * 12 + (now.getMonth() - bellStart.getMonth());
-    }
+    const toDuration = (totalMonths) => ({
+      years: Math.floor(totalMonths / 12),
+      months: totalMonths % 12
+    });
 
-    // 3. Total Combined Experience
-    const totalMonths = baseYears * 12 + bellMonths;
+    // Use inclusive calendar-month spans for display while keeping the two buckets non-overlapping.
+    const industryMonths = calculateInclusiveMonthSpan(bellStart, now);
+    const preIndustryMonths = calculateInclusiveMonthSpan(preIndustryStart, preIndustryEnd);
 
-    const years = Math.floor(totalMonths / 12);
-    const months = totalMonths % 12;
-
-    setTotalExperience({ years, months });
+    setIndustryExperience(toDuration(industryMonths));
+    setPreIndustryExperience(toDuration(preIndustryMonths));
 
     // Streak Calculation (Unchanged)
-    const streakStart = new Date('2024-05-16');
+    const streakStart = new Date(2024, 4, 16);
     streakStart.setHours(0, 0, 0, 0);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -268,7 +286,7 @@ export default function Home() {
   // --- Research Experience Data ---
   const researchExperiences = [
     {
-      title: 'Bioinformatics Research Assistant',
+      title: 'Bioinformatics Software Development Research Assistant',
       company: 'Johns Hopkins University',
       period: 'Sept 2022 - Present',
       description:
@@ -734,7 +752,7 @@ export default function Home() {
                         lineHeight: '1.5'
                       }}
                     >
-                      BBM Division • DE/AI Team • Platform Owner
+                      BBM Division • DE/AI Team • Pipelines, Reporting, and Analytics Delivery
                     </div>
                   </div>
 
@@ -769,7 +787,7 @@ export default function Home() {
                         marginBottom: '0.35rem'
                       }}
                     >
-                      3+ Years Across 3 Institutions
+                      Nearly 6 Years Pre-Industry
                     </div>
                     <div
                       style={{
@@ -778,7 +796,7 @@ export default function Home() {
                         lineHeight: '1.5'
                       }}
                     >
-                      Johns Hopkins • UofT • 750+ TB Multi-Omics Data
+                      UofT + Johns Hopkins • Research/Software Engineering • 750+ TB Multi-Omics Data
                     </div>
                   </div>
 
@@ -1022,9 +1040,9 @@ export default function Home() {
                 </div>
                 <div className="tldr-content" style={{ fontSize: '1.1rem', lineHeight: '1.7' }}>
                   <ul style={{ display: 'inline-block', textAlign: 'left' }}>
-                    <li>Data Engineer at Bell Canada (BBM — DE/AI) with expanded platform ownership</li>
+                    <li>Data Engineer at Bell Canada (BBM — DE/AI) working across pipelines, reporting, and analytics delivery</li>
                     <li>
-                      Own enterprise analytics platform delivery: 78-attribute MicroStrategy dashboard integrating 4
+                      Delivered enterprise analytics reporting: 78-attribute MicroStrategy dashboard integrating 4
                       operational systems
                     </li>
                     <li>
@@ -1036,7 +1054,7 @@ export default function Home() {
                     <li>
                       Recipient of ABRCMS Oral Presentation and Poster Presentation awards (top researcher in division)
                     </li>
-                    <li>3+ years research across University of Toronto and Johns Hopkins</li>
+                    <li>Nearly 6 years of pre-industry research and software/data engineering experience</li>
                     <li>Looking for Data Platform, Data Engineering, or Software Engineering roles</li>
                   </ul>
                 </div>
@@ -1056,8 +1074,10 @@ export default function Home() {
                 <span className="gradient-text">Bell Business Markets (BBM) </span> division, within the{' '}
                 <span className="gradient-text">Data Engineering and Artificial Intelligence Team (DE/AI)</span>. My
                 scope has expanded to include enterprise analytics platform delivery, shipping a 78-attribute
-                MicroStrategy dashboard with director sign-off. Before going full-time in industry, I spent 3+ years in
-                computational biology research. I graduated from the{' '}
+                MicroStrategy dashboard with director sign-off. I have about 1 year of full-time industry experience,
+                backed by nearly 6 years of pre-industry research and software/data engineering experience across the{' '}
+                <span className="gradient-text">University of Toronto</span> and{' '}
+                <span className="gradient-text">Johns Hopkins</span>. I graduated from the{' '}
                 <span className="gradient-text">University of Toronto</span> (St. George Campus) with a 3.96 major GPA
                 in <span className="gradient-text">Bioinformatics</span> and{' '}
                 <span className="gradient-text">Computer Science</span>.
@@ -1089,9 +1109,9 @@ export default function Home() {
                 }}
               >
                 Data platform engineering sits at the intersection of software engineering, data engineering, and
-                systems architecture, and I love that. I care about distributed systems, platform reliability, data
-                infrastructure, and creating elegant solutions to complex technical problems. Now I apply that same
-                rigor from research to building enterprise-scale analytics systems.
+                systems architecture. I&apos;m most interested in distributed systems, platform reliability, data
+                infrastructure, and clear solutions to complex technical problems. Now I apply that same rigor from
+                research to building enterprise-scale analytics systems.
               </p>
             </div>
 
@@ -1413,8 +1433,8 @@ export default function Home() {
               Experience
             </h2>
             <p className="section-description" style={{ fontSize: '1.2rem', marginTop: '1rem', lineHeight: '1.6' }}>
-              Industry and research roles that shaped how I think about data. From building enterprise-scale analytics
-              platforms at Bell Canada to processing 750+ TB of multi-omics data across top research institutions.
+              About 1 year of full-time industry experience at Bell Canada, backed by nearly 6 years of pre-industry
+              research and software/data engineering experience across the University of Toronto and Johns Hopkins.
             </p>
             {/* View All Experiences Link */}
             <div style={{ textAlign: 'center', marginTop: '2rem' }}>
@@ -1441,7 +1461,7 @@ export default function Home() {
                 fontSize: '1.6rem'
               }}
             >
-              <i className="fas fa-building"></i> Industry
+              <i className="fas fa-building"></i> Full-Time Industry
             </h3>
             <div className="timeline" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {industryExperiences.map((exp, idx) => (
@@ -1535,7 +1555,7 @@ export default function Home() {
                 fontSize: '1.6rem'
               }}
             >
-              <i className="fas fa-flask"></i> Research
+              <i className="fas fa-flask"></i> Pre-Industry Research &amp; Engineering
             </h3>
             <div className="timeline" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {researchExperiences.map((exp, idx) => (
@@ -1638,11 +1658,16 @@ export default function Home() {
               marginBottom: '3rem'
             }}
           >
-            {/* Combined Experience Tile */}
+            {/* Experience Tiles */}
             <StatCard
               icon="📊"
-              value={`${totalExperience.years} yrs ${totalExperience.months} mo`}
-              label="Research + Industry"
+              value={formatExperienceDuration(industryExperience)}
+              label="Full-Time Industry"
+            />
+            <StatCard
+              icon="🧪"
+              value={formatExperienceDuration(preIndustryExperience)}
+              label="Pre-Industry Research + Eng."
             />
             <StatCard icon="💾" value="750+ TB" label="Data Processed" />
             <StatCard icon="🎤" value="4" label="Conference Presentations" />
@@ -1703,6 +1728,7 @@ export default function Home() {
                     project.title
                   )
                 }
+                titleText={project.title}
                 description={project.description}
                 tags={project.tags}
                 icon={project.icon}

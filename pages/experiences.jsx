@@ -182,8 +182,16 @@ const TAB_CONFIG = {
     show: { experience: true, awards: true, education: true },
     toc: [
       { id: 'bell-data-engineer', label: 'Bell Canada: Data Engineer', icon: 'fas fa-building' },
-      { id: 'johns-hopkins', label: 'Johns Hopkins: Research Assistant', icon: 'fas fa-flask' },
-      { id: 'u-of-t-research', label: 'University of Toronto: Research Assistant', icon: 'fas fa-university' },
+      {
+        id: 'johns-hopkins',
+        label: 'Johns Hopkins: Software Development Research Assistant',
+        icon: 'fas fa-flask'
+      },
+      {
+        id: 'u-of-t-research',
+        label: 'University of Toronto: Software Development Research Assistant',
+        icon: 'fas fa-university'
+      },
       { id: 'awards', label: 'Awards & Achievements', icon: 'fas fa-award' },
       { id: 'education', label: 'Education', icon: 'fas fa-graduation-cap' }
     ]
@@ -192,8 +200,16 @@ const TAB_CONFIG = {
     show: { experience: true, awards: false, education: false },
     toc: [
       { id: 'bell-data-engineer', label: 'Bell Canada: Data Engineer', icon: 'fas fa-building' },
-      { id: 'johns-hopkins', label: 'Johns Hopkins: Research Assistant', icon: 'fas fa-flask' },
-      { id: 'u-of-t-research', label: 'University of Toronto: Research Assistant', icon: 'fas fa-university' }
+      {
+        id: 'johns-hopkins',
+        label: 'Johns Hopkins: Software Development Research Assistant',
+        icon: 'fas fa-flask'
+      },
+      {
+        id: 'u-of-t-research',
+        label: 'University of Toronto: Software Development Research Assistant',
+        icon: 'fas fa-university'
+      }
     ]
   },
   awards: {
@@ -453,7 +469,8 @@ function Experiences() {
           <span className="gradient-text">My Journey</span>
         </h1>
         <p style={{ margin: '0 auto', maxWidth: '700px', color: 'var(--text-secondary)' }}>
-          A timeline of my professional roles, research contributions, and key achievements.
+          About 1 year of full-time industry experience, backed by nearly 6 years of pre-industry research and
+          software/data engineering experience.
         </p>
         <div style={{ marginTop: '1.5rem' }}>
           <Link href="/" className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>

@@ -13,8 +13,7 @@ function Footer() {
           <div className="footer-brand">
             <h3>Sabbir Hossain</h3>
             <p>
-              Data Engineer & Platform Architect passionate about building scalable systems 
-              and solving complex infrastructure challenges.
+              Data Engineer focused on building reliable data systems and solving complex technical problems.
             </p>
             <div className="footer-social">
               <a href="https://github.com/itssabbir" className="social-link" target="_blank" rel="noopener noreferrer">
@@ -57,7 +56,7 @@ function Footer() {
             © {current_year} Sabbir Hossain. All rights reserved.
           </div>
           <div className="footer-tagline">
-            <i className="fas fa-code"></i> Engineered with precision // Designed with passion
+            <i className="fas fa-code"></i> Engineered with precision // Designed with intent
           </div>
         </div>
       </div>

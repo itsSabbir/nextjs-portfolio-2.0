@@ -10,7 +10,8 @@ import PropTypes from 'prop-types';
  * - Tech stack tags with automatic icon mapping
  * - Links footer (demo/repo)
  * 
- * @param {string} title - Project title
+ * @param {string|React.ReactNode} title - Project title
+ * @param {string} titleText - Plain-text project title for accessible labels
  * @param {string} description - Project description
  * @param {string[]} tags - Array of technology names
  * @param {string|React.ReactNode} icon - Emoji or React element for project icon
@@ -148,6 +149,7 @@ TechTag.propTypes = {
 
 const ProjectCard = ({ 
   title, 
+  titleText,
   description, 
   tags = [], 
   icon, 
@@ -156,6 +158,7 @@ const ProjectCard = ({
 }) => {
   const { demo, repo } = links;
   const hasLinks = demo || repo;
+  const accessibleTitle = titleText || (typeof title === 'string' ? title : 'project');
 
   return (
     <div className={`project-card fade-in ${className}`.trim()}>
@@ -189,7 +192,7 @@ const ProjectCard = ({
               href={repo} 
               target="_blank" 
               rel="noopener noreferrer"
-              aria-label={`View ${title} source code on GitHub`}
+              aria-label={`View ${accessibleTitle} source code on GitHub`}
             >
               <i className="fab fa-github" aria-hidden="true" /> Code
             </a>
@@ -199,7 +202,7 @@ const ProjectCard = ({
               href={demo} 
               target="_blank" 
               rel="noopener noreferrer"
-              aria-label={`View ${title} live demo`}
+              aria-label={`View ${accessibleTitle} live demo`}
             >
               <i className="fas fa-external-link-alt" aria-hidden="true" /> Live Demo
             </a>
@@ -211,7 +214,11 @@ const ProjectCard = ({
 };
 
 ProjectCard.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]).isRequired,
+  titleText: PropTypes.string,
   description: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(PropTypes.string),
   icon: PropTypes.oneOfType([
