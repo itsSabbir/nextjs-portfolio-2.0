@@ -167,6 +167,228 @@ const SkillsList = ({ caption, tags }) => {
   );
 };
 
+const COURSE_CALENDAR_BASE_URL = 'https://artsci.calendar.utoronto.ca/course/';
+const ARCHIVED_CALENDARS_URL = 'https://artsci.calendar.utoronto.ca/archived-calendars';
+
+const getCourseCalendarUrl = (code) => `${COURSE_CALENDAR_BASE_URL}${code.toLowerCase()}`;
+
+const COURSEWORK_HIGHLIGHTS = [
+  {
+    title: 'Computer Science',
+    courses: [
+      { code: 'CSC108H1', title: 'Introduction to Computer Programming' },
+      { code: 'CSC148H1', title: 'Introduction to Computer Science' },
+      { code: 'CSC165H1', title: 'Mathematical Expression and Reasoning for Computer Science' },
+      { code: 'CSC207H1', title: 'Software Design' },
+      { code: 'CSC209H1', title: 'Software Tools and Systems Programming' },
+      { code: 'CSC236H1', title: 'Introduction to the Theory of Computation' },
+      { code: 'CSC263H1', title: 'Data Structures and Analysis' },
+      { code: 'CSC373H1', title: 'Algorithm Design and Analysis' }
+    ]
+  },
+  {
+    title: 'Bioinformatics & Computational Biology',
+    courses: [
+      { code: 'BCH441H1', title: 'Bioinformatics' },
+      { code: 'BCB410H1', title: 'Applied Bioinformatics' },
+      { code: 'BCB420H1', title: 'Computational Systems Biology' },
+      { code: 'BCB330Y1', title: 'Bioinformatics Research Project' },
+      { code: 'BCB430Y1', title: 'Advanced Bioinformatics Research Project' }
+    ]
+  },
+  {
+    title: 'Mathematics & Statistics',
+    courses: [
+      { code: 'MAT135H1', title: 'Calculus I (A)' },
+      { code: 'MAT136H1', title: 'Calculus I (B)' },
+      { code: 'STA247H1', title: 'Probability with Computer Applications' },
+      { code: 'STA237H1', title: 'Probability, Statistics and Data Analysis I' }
+    ]
+  },
+  {
+    title: 'Biochemistry & Immunology',
+    courses: [
+      { code: 'BCH210H1', title: 'Biochemistry I: Proteins, Lipids and Metabolism' },
+      { code: 'BCH311H1', title: 'Biochemistry II: Nucleic Acids and Biological Information Flow' },
+      { code: 'IMM250H1', title: 'The Immune System and Infectious Disease' },
+      { code: 'IMM340H1', title: 'Fundamental Immunology' },
+      { code: 'IMM350H1', title: 'The Immune System in Action' }
+    ]
+  }
+];
+
+const COMPLETE_COURSE_GROUPS = [
+  {
+    title: 'Computer Science',
+    courses: [
+      { code: 'CSC108H1', title: 'Introduction to Computer Programming' },
+      { code: 'CSC148H1', title: 'Introduction to Computer Science' },
+      { code: 'CSC165H1', title: 'Mathematical Expression and Reasoning for Computer Science' },
+      { code: 'CSC207H1', title: 'Software Design' },
+      { code: 'CSC209H1', title: 'Software Tools and Systems Programming' },
+      { code: 'CSC236H1', title: 'Introduction to the Theory of Computation' },
+      { code: 'CSC263H1', title: 'Data Structures and Analysis' },
+      { code: 'CSC373H1', title: 'Algorithm Design and Analysis' }
+    ]
+  },
+  {
+    title: 'Bioinformatics & Systems Biology',
+    courses: [
+      { code: 'BCH441H1', title: 'Bioinformatics' },
+      { code: 'BCB330Y1', title: 'BCB Project' },
+      { code: 'BCB410H1', title: 'Applied Bioinformatics' },
+      { code: 'BCB420H1', title: 'Systems Biology' },
+      { code: 'BCB430Y1', title: 'BCB Advanced Project' },
+      { code: 'CSB349H1', title: 'Eukaryotic Gene Expression' }
+    ]
+  },
+  {
+    title: 'Mathematics & Statistics',
+    courses: [
+      { code: 'MAT135H1', title: 'Calculus I (A)' },
+      { code: 'MAT136H1', title: 'Calculus I (B)' },
+      { code: 'STA237H1', title: 'Prob Stat Data I' },
+      { code: 'STA247H1', title: 'Prob Comp Appl' }
+    ]
+  },
+  {
+    title: 'Biochemistry, Chemistry & Immunology',
+    courses: [
+      { code: 'BCH210H1', title: 'Biochemistry I' },
+      { code: 'BCH311H1', title: 'Biochemistry II' },
+      { code: 'CHM138H1', title: 'Intro Org Chemistry I' },
+      { code: 'CHM139H1', title: 'Chem Physical Princ' },
+      { code: 'IMM250H1', title: 'Immunity & Infection' },
+      { code: 'IMM340H1', title: 'Fundamental Immunology' },
+      { code: 'IMM350H1', title: 'Immunity in Action' }
+    ]
+  },
+  {
+    title: 'Biology & Life Sciences',
+    courses: [
+      { code: 'BIO120H1', title: 'Adaptation & Biodiv' },
+      { code: 'BIO130H1', title: 'Molecular & Cell Bio' },
+      { code: 'BIO220H1', title: 'Genomes to Ecosystems' },
+      { code: 'BIO230H1', title: 'Genes to Organisms' },
+      { code: 'HMB265H1', title: 'General & Human Genetics' },
+      { code: 'PSL301H1', title: 'Human Physio II' }
+    ]
+  },
+  {
+    title: 'Language Arts & Literature',
+    courses: [
+      { code: 'ENG215H1', title: 'Can Short Story' },
+      { code: 'ENG235H1', title: 'The Graphic Novel' },
+      { code: 'ENG237H1', title: 'Science Fiction' },
+      { code: 'ENG323H1', title: 'Austen & Contemp' },
+      { code: 'ENG329H1', title: 'Contemp Brit Fict' }
+    ]
+  },
+  {
+    title: 'Humanities, Religion & Society',
+    courses: [
+      { code: 'ANT253H1', title: 'Language & Society' },
+      { code: 'FAH207H1', title: 'Greek&Roman Art&Arch' },
+      { code: 'FOR303H1', title: 'Hum Dimensions Glob For' },
+      { code: 'PHL285H1', title: 'Aesthetics' },
+      { code: 'RLG232H1', title: 'Religion and Film' },
+      { code: 'RLG319H1', title: 'Death Dying Afterlife' },
+      { code: 'RLG351H1', title: "The Qur'an: An Intro" },
+      { code: 'SMC305H1', title: 'Christianity and Pop Culture' },
+      { code: 'VIC278H1', title: 'Model Evil & Disease' }
+    ]
+  }
+];
+
+const CourseCard = ({ course }) => (
+  <div
+    style={{
+      color: 'var(--text-secondary)',
+      fontSize: '0.9rem',
+      padding: '0.75rem',
+      background: 'rgba(255, 255, 255, 0.03)',
+      borderRadius: '8px',
+      border: '1px solid rgba(255, 255, 255, 0.06)',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.75rem',
+      height: '100%'
+    }}
+  >
+    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: '1.5' }}>
+      <i
+        className="fas fa-chevron-right"
+        style={{ color: 'var(--accent-secondary)', fontSize: '0.7rem', flexShrink: 0, marginTop: '0.35rem' }}
+        aria-hidden="true"
+      ></i>
+      <span>
+        <strong style={{ color: 'var(--accent-secondary)' }}>{course.code}</strong> — {course.title}
+      </span>
+    </div>
+
+    <div style={{ display: 'flex', gap: '0.9rem', flexWrap: 'wrap', marginLeft: '1rem' }}>
+      <a
+        href={getCourseCalendarUrl(course.code)}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          color: 'var(--accent-secondary)',
+          textDecoration: 'none',
+          fontSize: '0.82rem',
+          fontWeight: '600'
+        }}
+      >
+        Calendar
+      </a>
+      <a
+        href={ARCHIVED_CALENDARS_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          color: 'var(--text-muted)',
+          textDecoration: 'none',
+          fontSize: '0.82rem',
+          fontWeight: '600'
+        }}
+      >
+        Archive
+      </a>
+    </div>
+  </div>
+);
+
+const CourseGroupSection = ({ title, courses }) => (
+  <div style={{ marginBottom: '1.5rem' }}>
+    <h5
+      style={{
+        color: 'var(--accent-secondary)',
+        fontSize: '0.95rem',
+        fontWeight: '600',
+        marginBottom: '0.75rem',
+        marginTop: 0
+      }}
+    >
+      {title}
+    </h5>
+    <ul
+      style={{
+        listStyle: 'none',
+        padding: 0,
+        margin: 0,
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+        gap: '0.5rem'
+      }}
+    >
+      {courses.map((course) => (
+        <li key={`${title}-${course.code}`}>
+          <CourseCard course={course} />
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
 /**
  * Tabs + TOC config
  */
@@ -421,6 +643,11 @@ function Experiences() {
   }, [router?.isReady, setTab]);
 
   const { show, toc } = useMemo(() => TAB_CONFIG[safeTab(activeTab)], [activeTab]);
+  const uniqueCourseCount = useMemo(
+    () => new Set(COMPLETE_COURSE_GROUPS.flatMap((group) => group.courses.map((course) => course.code))).size,
+    []
+  );
+  const subjectArchetypeCount = useMemo(() => COMPLETE_COURSE_GROUPS.length, []);
 
   const handleTocNav = useCallback(
     (id) => {
@@ -1967,347 +2194,134 @@ function Experiences() {
                 </p>
               </div>
 
-              {/* Relevant Coursework */}
+              {/* Coursework Highlights */}
               <div>
-                <h4
+                <div style={{ marginBottom: '2rem' }}>
+                  <h4
+                    style={{
+                      color: 'var(--accent-secondary)',
+                      marginBottom: '0.75rem',
+                      fontSize: '1.1rem',
+                      fontWeight: '700',
+                      textAlign: 'center',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '10px'
+                    }}
+                  >
+                    <i className="fas fa-book"></i>
+                    <span>Coursework Highlights</span>
+                  </h4>
+                  <p
+                    style={{
+                      maxWidth: '760px',
+                      margin: '0 auto',
+                      color: 'var(--text-secondary)',
+                      lineHeight: '1.7',
+                      textAlign: 'center'
+                    }}
+                  >
+                    Core coursework grouped by subject archetype. Each course includes a direct calendar link plus an
+                    archive reference.
+                  </p>
+                </div>
+
+                {COURSEWORK_HIGHLIGHTS.map((group) => (
+                  <CourseGroupSection key={group.title} title={group.title} courses={group.courses} />
+                ))}
+
+                <div
                   style={{
-                    color: 'var(--accent-secondary)',
-                    marginBottom: '1.5rem',
-                    fontSize: '1.1rem',
-                    fontWeight: '700',
-                    textAlign: 'center',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '10px'
+                    marginTop: '2rem',
+                    paddingTop: '2rem',
+                    borderTop: '1px solid var(--glass-border)'
                   }}
                 >
-                  <i className="fas fa-book"></i>
-                  <span>Relevant Coursework</span>
-                </h4>
-
-                {/* Computer Science */}
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <h5
-                    style={{
-                      color: 'var(--accent-secondary)',
-                      fontSize: '0.95rem',
-                      fontWeight: '600',
-                      marginBottom: '0.75rem',
-                      marginTop: 0
-                    }}
-                  >
-                    Computer Science
-                  </h5>
-                  <ul
-                    style={{
-                      listStyle: 'none',
-                      padding: 0,
-                      margin: 0,
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                      gap: '0.5rem'
-                    }}
-                  >
-                    {[
-                      { code: 'CSC108H1', name: 'Introduction to Computer Programming' },
-                      { code: 'CSC148H1', name: 'Introduction to Computer Science' },
-                      { code: 'CSC165H1', name: 'Mathematical Expression and Reasoning for Computer Science' },
-                      { code: 'CSC207H1', name: 'Software Design' },
-                      { code: 'CSC209H1', name: 'Software Tools and Systems Programming' },
-                      { code: 'CSC236H1', name: 'Introduction to the Theory of Computation' },
-                      { code: 'CSC263H1', name: 'Data Structures and Analysis' },
-                      { code: 'CSC373H1', name: 'Algorithm Design and Analysis' },
-                      { code: 'CSC384H1', name: 'Introduction to Artificial Intelligence' }
-                    ].map((course, idx) => (
-                      <li
-                        key={idx}
+                  <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
+                    <h4
+                      style={{
+                        color: 'var(--accent-secondary)',
+                        marginBottom: '0.75rem',
+                        fontSize: '1.1rem',
+                        fontWeight: '700',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '10px'
+                      }}
+                    >
+                      <i className="fas fa-scroll"></i>
+                      <span>Complete Course History</span>
+                    </h4>
+                    <p
+                      style={{
+                        maxWidth: '760px',
+                        margin: '0 auto 1rem auto',
+                        color: 'var(--text-secondary)',
+                        lineHeight: '1.7'
+                      }}
+                    >
+                      Complete ACORN course history, grouped by subject archetype with dates and grades omitted. Each
+                      course links to the official Arts &amp; Science calendar, with the archive index included for
+                      historical reference.
+                    </p>
+                    <div
+                      style={{
+                        display: 'flex',
+                        gap: '0.75rem',
+                        justifyContent: 'center',
+                        flexWrap: 'wrap',
+                        marginBottom: '1rem'
+                      }}
+                    >
+                      <span
                         style={{
+                          padding: '0.45rem 0.8rem',
+                          borderRadius: '9999px',
+                          background: 'rgba(255, 255, 255, 0.04)',
+                          border: '1px solid rgba(148, 163, 184, 0.16)',
                           color: 'var(--text-secondary)',
-                          fontSize: '0.9rem',
-                          padding: '0.5rem 0.75rem',
-                          background: 'rgba(255, 255, 255, 0.03)',
-                          borderRadius: '8px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '8px'
+                          fontSize: '0.85rem'
                         }}
                       >
-                        <i
-                          className="fas fa-chevron-right"
-                          style={{ color: 'var(--accent-secondary)', fontSize: '0.7rem', flexShrink: 0 }}
-                        ></i>
-                        <span>
-                          <strong style={{ color: 'var(--accent-secondary)' }}>{course.code}</strong> — {course.name}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Bioinformatics & Computational Biology */}
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <h5
-                    style={{
-                      color: 'var(--accent-secondary)',
-                      fontSize: '0.95rem',
-                      fontWeight: '600',
-                      marginBottom: '0.75rem',
-                      marginTop: 0
-                    }}
-                  >
-                    Bioinformatics & Computational Biology
-                  </h5>
-                  <ul
-                    style={{
-                      listStyle: 'none',
-                      padding: 0,
-                      margin: 0,
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                      gap: '0.5rem'
-                    }}
-                  >
-                    {[
-                      { code: 'BCH441H1', name: 'Bioinformatics' },
-                      { code: 'BCB410H1', name: 'Applied Bioinformatics' },
-                      { code: 'BCB420H1', name: 'Computational Systems Biology' },
-                      { code: 'BCB330Y1', name: 'Bioinformatics Research Project' },
-                      { code: 'BCB430Y1', name: 'Advanced Bioinformatics Research Project' },
-                      { code: 'CSB352H1', name: 'Bioinformatic Methods' }
-                    ].map((course, idx) => (
-                      <li
-                        key={idx}
+                        {uniqueCourseCount} unique courses
+                      </span>
+                      <span
                         style={{
+                          padding: '0.45rem 0.8rem',
+                          borderRadius: '9999px',
+                          background: 'rgba(255, 255, 255, 0.04)',
+                          border: '1px solid rgba(148, 163, 184, 0.16)',
                           color: 'var(--text-secondary)',
-                          fontSize: '0.9rem',
-                          padding: '0.5rem 0.75rem',
-                          background: 'rgba(255, 255, 255, 0.03)',
-                          borderRadius: '8px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '8px'
+                          fontSize: '0.85rem'
                         }}
                       >
-                        <i
-                          className="fas fa-chevron-right"
-                          style={{ color: 'var(--accent-secondary)', fontSize: '0.7rem', flexShrink: 0 }}
-                        ></i>
-                        <span>
-                          <strong style={{ color: 'var(--accent-secondary)' }}>{course.code}</strong> — {course.name}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                        {subjectArchetypeCount} subject archetypes
+                      </span>
+                    </div>
+                    <a
+                      href={ARCHIVED_CALENDARS_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        color: 'var(--accent-secondary)',
+                        fontSize: '0.95rem',
+                        fontWeight: '600',
+                        textDecoration: 'none'
+                      }}
+                    >
+                      <i className="fas fa-external-link-alt"></i>
+                      <span>University of Toronto Arts &amp; Science archived calendars</span>
+                    </a>
+                  </div>
 
-                {/* Statistics & Probability */}
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <h5
-                    style={{
-                      color: 'var(--accent-secondary)',
-                      fontSize: '0.95rem',
-                      fontWeight: '600',
-                      marginBottom: '0.75rem',
-                      marginTop: 0
-                    }}
-                  >
-                    Statistics & Probability
-                  </h5>
-                  <ul
-                    style={{
-                      listStyle: 'none',
-                      padding: 0,
-                      margin: 0,
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                      gap: '0.5rem'
-                    }}
-                  >
-                    {[
-                      { code: 'STA247H1', name: 'Probability with Computer Applications' },
-                      { code: 'STA237H1', name: 'Probability, Statistics and Data Analysis I' }
-                    ].map((course, idx) => (
-                      <li
-                        key={idx}
-                        style={{
-                          color: 'var(--text-secondary)',
-                          fontSize: '0.9rem',
-                          padding: '0.5rem 0.75rem',
-                          background: 'rgba(255, 255, 255, 0.03)',
-                          borderRadius: '8px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '8px'
-                        }}
-                      >
-                        <i
-                          className="fas fa-chevron-right"
-                          style={{ color: 'var(--accent-secondary)', fontSize: '0.7rem', flexShrink: 0 }}
-                        ></i>
-                        <span>
-                          <strong style={{ color: 'var(--accent-secondary)' }}>{course.code}</strong> — {course.name}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Mathematics */}
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <h5
-                    style={{
-                      color: 'var(--accent-secondary)',
-                      fontSize: '0.95rem',
-                      fontWeight: '600',
-                      marginBottom: '0.75rem',
-                      marginTop: 0
-                    }}
-                  >
-                    Mathematics
-                  </h5>
-                  <ul
-                    style={{
-                      listStyle: 'none',
-                      padding: 0,
-                      margin: 0,
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                      gap: '0.5rem'
-                    }}
-                  >
-                    {[
-                      { code: 'MAT135H1', name: 'Calculus I (A)' },
-                      { code: 'MAT136H1', name: 'Calculus I (B)' }
-                    ].map((course, idx) => (
-                      <li
-                        key={idx}
-                        style={{
-                          color: 'var(--text-secondary)',
-                          fontSize: '0.9rem',
-                          padding: '0.5rem 0.75rem',
-                          background: 'rgba(255, 255, 255, 0.03)',
-                          borderRadius: '8px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '8px'
-                        }}
-                      >
-                        <i
-                          className="fas fa-chevron-right"
-                          style={{ color: 'var(--accent-secondary)', fontSize: '0.7rem', flexShrink: 0 }}
-                        ></i>
-                        <span>
-                          <strong style={{ color: 'var(--accent-secondary)' }}>{course.code}</strong> — {course.name}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Biochemistry */}
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <h5
-                    style={{
-                      color: 'var(--accent-secondary)',
-                      fontSize: '0.95rem',
-                      fontWeight: '600',
-                      marginBottom: '0.75rem',
-                      marginTop: 0
-                    }}
-                  >
-                    Biochemistry
-                  </h5>
-                  <ul
-                    style={{
-                      listStyle: 'none',
-                      padding: 0,
-                      margin: 0,
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                      gap: '0.5rem'
-                    }}
-                  >
-                    {[
-                      { code: 'BCH210H1', name: 'Biochemistry I: Proteins, Lipids and Metabolism' },
-                      { code: 'BCH311H1', name: 'Biochemistry II: Nucleic Acids and Biological Information Flow' }
-                    ].map((course, idx) => (
-                      <li
-                        key={idx}
-                        style={{
-                          color: 'var(--text-secondary)',
-                          fontSize: '0.9rem',
-                          padding: '0.5rem 0.75rem',
-                          background: 'rgba(255, 255, 255, 0.03)',
-                          borderRadius: '8px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '8px'
-                        }}
-                      >
-                        <i
-                          className="fas fa-chevron-right"
-                          style={{ color: 'var(--accent-secondary)', fontSize: '0.7rem', flexShrink: 0 }}
-                        ></i>
-                        <span>
-                          <strong style={{ color: 'var(--accent-secondary)' }}>{course.code}</strong> — {course.name}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Immunology (Minor) */}
-                <div>
-                  <h5
-                    style={{
-                      color: 'var(--accent-secondary)',
-                      fontSize: '0.95rem',
-                      fontWeight: '600',
-                      marginBottom: '0.75rem',
-                      marginTop: 0
-                    }}
-                  >
-                    Immunology (Minor)
-                  </h5>
-                  <ul
-                    style={{
-                      listStyle: 'none',
-                      padding: 0,
-                      margin: 0,
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                      gap: '0.5rem'
-                    }}
-                  >
-                    {[
-                      { code: 'IMM250H1', name: 'The Immune System and Infectious Disease' },
-                      { code: 'IMM340H1', name: 'Fundamental Immunology' },
-                      { code: 'IMM350H1', name: 'The Immune System in Action' }
-                    ].map((course, idx) => (
-                      <li
-                        key={idx}
-                        style={{
-                          color: 'var(--text-secondary)',
-                          fontSize: '0.9rem',
-                          padding: '0.5rem 0.75rem',
-                          background: 'rgba(255, 255, 255, 0.03)',
-                          borderRadius: '8px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '8px'
-                        }}
-                      >
-                        <i
-                          className="fas fa-chevron-right"
-                          style={{ color: 'var(--accent-secondary)', fontSize: '0.7rem', flexShrink: 0 }}
-                        ></i>
-                        <span>
-                          <strong style={{ color: 'var(--accent-secondary)' }}>{course.code}</strong> — {course.name}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                  {COMPLETE_COURSE_GROUPS.map((group) => (
+                    <CourseGroupSection key={group.title} title={group.title} courses={group.courses} />
+                  ))}
                 </div>
               </div>
             </div>

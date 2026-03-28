@@ -125,34 +125,53 @@ body {
    ========================================================================== */
 
 .custom-cursor {
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--accent-secondary);
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid rgba(212, 175, 55, 0.8);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 10000;
-  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-  mix-blend-mode: difference;
+  transition:
+    transform 90ms ease-out,
+    width 140ms ease,
+    height 140ms ease,
+    background-color 140ms ease,
+    border-color 140ms ease,
+    opacity 140ms ease;
+  background: rgba(212, 175, 55, 0.05);
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.25);
 }
 
 .cursor-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--accent-primary);
+  width: 5px;
+  height: 5px;
+  background: var(--accent-secondary);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 10001;
-  transition: all 0.05s ease;
+  transition:
+    transform 40ms ease-out,
+    opacity 140ms ease,
+    background-color 140ms ease,
+    width 140ms ease,
+    height 140ms ease;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.28);
 }
 
 /* Cursor hover states */
 .custom-cursor.hovering {
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 28px;
   border-color: var(--accent-primary);
-  background: rgba(174, 0, 1, 0.1);
+  background: rgba(174, 0, 1, 0.08);
+}
+
+.cursor-dot.hovering {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-primary);
 }
 
 /* ==========================================================================

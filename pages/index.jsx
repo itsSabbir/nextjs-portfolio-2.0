@@ -358,7 +358,7 @@ export default function Home() {
     {
       title: 'Portfolio Website',
       description:
-        'This cyberpunk-inspired portfolio built with Next.js featuring animated backgrounds, custom cursor, and glassmorphism design.',
+        'This cyberpunk-inspired portfolio built with Next.js featuring animated backgrounds, a minimal custom cursor, and glassmorphism design.',
       tags: ['Next.js', 'React', 'CSS', 'Canvas API'],
       icon: '🚀',
       links: {

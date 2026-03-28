@@ -1,20 +1,20 @@
 'use client';
 
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 /**
  * CustomCursor Component
- * 
- * A custom cursor with:
- * - Outer ring that follows with smooth interpolation (lerp)
- * - Inner dot that follows instantly
- * - Hover state detection for clickable elements
+ *
+ * A minimal custom cursor with:
+ * - Thin outer ring
+ * - Small inner dot
+ * - Subtle hover feedback for clickable elements
  * - Touch device detection (doesn't render on touch devices)
- * 
+ *
  * Relies on CSS classes defined in app.css:
  * - .custom-cursor (outer ring)
  * - .cursor-dot (inner dot)
- * - .custom-cursor.hovering (expanded state)
+ * - .custom-cursor.hovering / .cursor-dot.hovering (subtle hover state)
  */
 
 // Clickable element selectors
@@ -42,38 +42,6 @@ const CustomCursor = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(true); // Default true to prevent flash
-  
-  // Mouse position refs (using refs to avoid re-renders)
-  const mousePos = useRef({ x: 0, y: 0 });
-  const cursorPos = useRef({ x: 0, y: 0 });
-  const animationFrameRef = useRef(null);
-
-  // Linear interpolation function
-  const lerp = (start, end, factor) => {
-    return start + (end - start) * factor;
-  };
-
-  // Animation loop for smooth cursor movement
-  const animate = useCallback(() => {
-    // Lerp factor - lower = smoother/slower, higher = snappier
-    const lerpFactor = 0.15;
-
-    // Interpolate cursor ring position
-    cursorPos.current.x = lerp(cursorPos.current.x, mousePos.current.x, lerpFactor);
-    cursorPos.current.y = lerp(cursorPos.current.y, mousePos.current.y, lerpFactor);
-
-    // Apply positions
-    if (cursorRef.current) {
-      cursorRef.current.style.transform = `translate(${cursorPos.current.x}px, ${cursorPos.current.y}px) translate(-50%, -50%)`;
-    }
-
-    if (dotRef.current) {
-      // Dot follows instantly
-      dotRef.current.style.transform = `translate(${mousePos.current.x}px, ${mousePos.current.y}px) translate(-50%, -50%)`;
-    }
-
-    animationFrameRef.current = requestAnimationFrame(animate);
-  }, []);
 
   // Check if device is touch-based
   useEffect(() => {
@@ -103,14 +71,24 @@ const CustomCursor = () => {
   useEffect(() => {
     if (isTouchDevice) return;
 
+    const updateCursorPosition = (x, y) => {
+      const transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = transform;
+      }
+
+      if (dotRef.current) {
+        dotRef.current.style.transform = transform;
+      }
+    };
+
     // Mouse move handler
     const handleMouseMove = (e) => {
-      mousePos.current = { x: e.clientX, y: e.clientY };
-      
+      updateCursorPosition(e.clientX, e.clientY);
+
       if (!isVisible) {
         setIsVisible(true);
-        // Initialize cursor position on first move
-        cursorPos.current = { x: e.clientX, y: e.clientY };
       }
     };
 
@@ -145,28 +123,12 @@ const CustomCursor = () => {
       }
     };
 
-    // Mouse down/up for click feedback (optional enhancement)
-    const handleMouseDown = () => {
-      if (cursorRef.current) {
-        cursorRef.current.style.transform += ' scale(0.8)';
-      }
-    };
-
-    const handleMouseUp = () => {
-      // Scale is handled by the animation loop, this is just a quick visual feedback
-    };
-
     // Add event listeners
     window.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseenter', handleMouseEnter);
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mouseover', handleMouseOver);
     document.addEventListener('mouseout', handleMouseOut);
-    document.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('mouseup', handleMouseUp);
-
-    // Start animation loop
-    animationFrameRef.current = requestAnimationFrame(animate);
 
     // Cleanup
     return () => {
@@ -175,14 +137,8 @@ const CustomCursor = () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseover', handleMouseOver);
       document.removeEventListener('mouseout', handleMouseOut);
-      document.removeEventListener('mousedown', handleMouseDown);
-      document.removeEventListener('mouseup', handleMouseUp);
-      
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
     };
-  }, [isTouchDevice, isVisible, animate]);
+  }, [isTouchDevice, isVisible]);
 
   // Don't render on touch devices
   if (isTouchDevice) {
@@ -191,7 +147,7 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Outer ring - follows with lerp delay */}
+      {/* Outer ring */}
       <div
         ref={cursorRef}
         className={`custom-cursor ${isHovering ? 'hovering' : ''}`}
@@ -207,10 +163,10 @@ const CustomCursor = () => {
         aria-hidden="true"
       />
       
-      {/* Inner dot - follows instantly */}
+      {/* Inner dot */}
       <div
         ref={dotRef}
-        className="cursor-dot"
+        className={`cursor-dot ${isHovering ? 'hovering' : ''}`}
         style={{
           opacity: isVisible ? 1 : 0,
           position: 'fixed',

@@ -98,7 +98,7 @@ function Projects() {
     },
     {
       title: "Portfolio Website",
-      description: "This cyberpunk-inspired portfolio built with Next.js featuring animated canvas backgrounds with floating symbols, custom cursor with lerp interpolation, glassmorphism design system, and responsive layout. Showcases projects, skills, and experience.",
+      description: "This cyberpunk-inspired portfolio built with Next.js featuring animated canvas backgrounds with floating symbols, a minimal custom cursor, glassmorphism design system, and responsive layout. Showcases projects, skills, and experience.",
       tags: ['Next.js', 'React', 'CSS', 'Canvas API', 'Animation'],
       icon: "🚀",
       links: { 
